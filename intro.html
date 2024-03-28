@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>UC Irvine, Math 10, Fall 2023 &#8212; UC Irvine Math 10, Spring 2024</title>
+    <title>UC Irvine, Math 10, Fall 2023 &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -53,7 +53,6 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -65,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Week 0" href="Week0/Week0_Intro.html" />
+    <link rel="next" title="Course Syllabus" href="syllabus.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -137,7 +136,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">UC Irvine Math 10, Spring 2024</p>
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -151,17 +150,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="Week0/Week0_Intro.html">Week 0</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="Week0/Week_0_Friday.html">Week 0 Friday</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/python_recap.html">Python review</a></li>
 
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Week1/Week1_Intro.html">Week 1</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="Week1/Week_1_Monday.html">Week 1 Monday</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Week1/Week_1_Wednesday.html">Week 1 Wednesday</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Week1/Week_1_Friday.html">Week 1 Friday</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/lec1.html">Week 1 Lecture 1</a></li>
 </ul>
 
     </div>
@@ -203,21 +196,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-<a href="https://github.com/Rayzhangzirui/math10sp24" target="_blank"
-   class="btn btn-sm btn-source-repository-button"
-   title="Source repository"
-   data-bs-placement="bottom" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-
-</a>
-
 
 
 
@@ -300,7 +278,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -316,6 +296,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-programming-for-data-science">Introduction to Programming for Data Science</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -327,39 +315,33 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="uc-irvine-math-10-fall-2023">
 <h1>UC Irvine, Math 10, Fall 2023<a class="headerlink" href="#uc-irvine-math-10-fall-2023" title="Permalink to this heading">#</a></h1>
-<p>Use the Navigation menu on the left to find the course content.</p>
-<p><strong>Introduction to Programming for Data Science</strong></p>
-<p><strong>About the class:</strong>  The goal of this course is to introduce programming in Python, with an emphasis on some of the tools that are most relevant to <em>data science</em>.  There are two primary parts of the course:</p>
+<section id="introduction-to-programming-for-data-science">
+<h2>Introduction to Programming for Data Science<a class="headerlink" href="#introduction-to-programming-for-data-science" title="Permalink to this heading">#</a></h2>
+<p><strong><a class="reference internal" href="syllabus.html"><span class="doc std std-doc">Syllabus</span></a></strong></p>
+<p><strong>[Course schedule]</strong></p>
+<p><strong><a class="reference internal" href="final_project_instruction.html"><span class="doc std std-doc">Final Project Instruction</span></a></strong></p>
+<p><strong>About the class:</strong></p>
 <ul class="simple">
-<li><p>Part 1:  Exploratory Data Analysis</p></li>
-<li><p>Part 2:  Introduction to Machine Learning</p></li>
-</ul>
-<p><strong>Lecture notes:</strong></p>
-<ul class="simple">
-<li><p>Week 0: Introduction to Data Science and Machine Learning</p></li>
-<li><p>Week 1-2: Mastering Functions, Introduction to Numpy and Pandas</p></li>
-<li><p>Week 3: Getting Started with Altair for Data Visualization</p></li>
-<li><p>Week 4: Advanced Data Operations with Pandas</p></li>
-<li><p>Week 5-6: Linear Regression</p></li>
-<li><p>Week 7: Logistic Regression and Classification</p></li>
-<li><p>Week 8: Decision Trees and Random Forests</p></li>
-<li><p>Week 9: Dimension Reduction and Clustering</p></li>
+<li><p>Basic Python</p></li>
+<li><p>Probability and Statistics</p></li>
+<li><p>Data visualization</p></li>
+<li><p>Linear Regression</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Principal Component Analysis</p></li>
+<li><p>Clustering</p></li>
+<li><p>Decision Trees</p></li>
+<li><p>Neural Networks</p></li>
 </ul>
 <p><strong>Reference Materials::</strong></p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://python.swaroopch.com/">A Byte of Python</a></p></li>
-<li><p><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></p></li>
-<li><p><a class="reference external" href="https://statlearning.com/">An Introduction to Statistical Learning</a></p></li>
 <li><p><a class="reference external" href="https://web.stanford.edu/~hastie/ElemStatLearn/">The Elements of Statistical Learning</a></p></li>
-<li><p><a class="reference external" href="https://probml.github.io/pml-book/book1.html">Probabilistic Machine Learning: An Introduction (2021 edition)</a></p></li>
-<li><p>Lecture notes from Dr. Christopher Davis and Dr. Peijie Zhou</p></li>
+<li><p><a class="reference external" href="https://yutongo.github.io/UCI_MATH10_F23/intro.html">Fall 2023 by Dr. Yutong Sha</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cliffzhou92/UCI_MATH_10/">Spring 2021 by Prof. Peijie Zhou</a></p></li>
+<li><p><a class="reference external" href="https://christopherdavisuci.github.io/UCI-Math-10-S23/intro.html">Spring 2023 by Prof. Christopher Davis</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/channel/UCwm9SiqPX4wvbiVXCC0XLJg">Videos by Prof. Christopher Davis</a></p></li>
 </ul>
-<!-- **Earlier versions of these notes**
-
-* [Fall 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-F22/intro.html)
-* [Spring 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-S22/intro.html)
-* [Winter 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-W22/intro.html)
-* [Fall 2021 version](https://christopherdavisuci.github.io/UCI-Math-10-F21/intro.html) --><div class="toctree-wrapper compound">
+</section>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -395,11 +377,11 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="right-next"
-       href="Week0/Week0_Intro.html"
+       href="syllabus.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 0</p>
+        <p class="prev-next-title">Course Syllabus</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -412,6 +394,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-programming-for-data-science">Introduction to Programming for Data Science</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
