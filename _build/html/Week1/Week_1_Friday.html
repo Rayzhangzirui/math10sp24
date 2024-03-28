@@ -1,0 +1,1058 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Week 1 Friday &#8212; UC Irvine Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Week1/Week_1_Friday';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Week 1 Wednesday" href="Week_1_Wednesday.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">UC Irvine Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Week0/Week0_Intro.html">Week 0</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Week0/Week_0_Friday.html">Week 0 Friday</a></li>
+
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Week1_Intro.html">Week 1</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Week_1_Monday.html">Week 1 Monday</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Week_1_Wednesday.html">Week 1 Wednesday</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Week 1 Friday</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/Rayzhangzirui/math10sp24" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Week1/Week_1_Friday.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 1 Friday</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-in-python">Functions in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-pandas">Why pandas?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wrong-approach-1-as-a-list-of-lists">Wrong approach 1: as a list of lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wrong-approach-2-as-a-numpy-array">Wrong approach 2: as a NumPy array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-approach-as-a-pandas-dataframe">Right approach: as a pandas DataFrame</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-friday">
+<h1>Week 1 Friday<a class="headerlink" href="#week-1-friday" title="Permalink to this heading">#</a></h1>
+<section id="functions-in-python">
+<h2>Functions in Python<a class="headerlink" href="#functions-in-python" title="Permalink to this heading">#</a></h2>
+<p>A function is a block of organized, reusable code that is used to perform a single, related action.</p>
+<ul class="simple">
+<li><p>Write a function <code class="docutils literal notranslate"><span class="pre">getsub</span></code> which takes two inputs, a NumPy <code class="docutils literal notranslate"><span class="pre">arr</span></code> and an integer <code class="docutils literal notranslate"><span class="pre">n</span></code>, and as output returns the subarray of <code class="docutils literal notranslate"><span class="pre">arr</span></code> containing all rows with at least two entries equal to <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+</ul>
+<p>A function with two input arguments. Be sure you are using the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement to indicate what should be returned.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getsub</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">cts</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">subarr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">cts</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">subarr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [3, 0, 0],
+       [3, 3, 0],
+       [1, 3, 1],
+       [1, 3, 1],
+       [1, 2, 2],
+       [0, 0, 3],
+       [3, 3, 2],
+       [3, 1, 1],
+       [3, 0, 1],
+       [0, 1, 3],
+       [0, 1, 1],
+       [3, 0, 2],
+       [1, 0, 3],
+       [0, 1, 1],
+       [1, 0, 3],
+       [2, 3, 0],
+       [2, 1, 2],
+       [3, 1, 2],
+       [0, 1, 3],
+       [1, 2, 1],
+       [0, 1, 2],
+       [1, 3, 1],
+       [2, 3, 3],
+       [1, 0, 2],
+       [2, 3, 1],
+       [1, 0, 1],
+       [2, 3, 3],
+       [0, 2, 3],
+       [1, 1, 3],
+       [2, 2, 2],
+       [2, 3, 3],
+       [0, 0, 2],
+       [3, 0, 2],
+       [3, 3, 3],
+       [0, 2, 3],
+       [1, 0, 1],
+       [0, 0, 3],
+       [2, 3, 3],
+       [3, 1, 1],
+       [2, 1, 3],
+       [0, 3, 2],
+       [1, 2, 1],
+       [3, 3, 1],
+       [1, 0, 2],
+       [2, 3, 3],
+       [3, 3, 3],
+       [0, 0, 1],
+       [1, 3, 3],
+       [1, 2, 2],
+       [3, 0, 1],
+       [2, 1, 3],
+       [3, 3, 1],
+       [3, 0, 2],
+       [1, 0, 2],
+       [3, 3, 0],
+       [3, 3, 1],
+       [0, 3, 3],
+       [1, 0, 0],
+       [1, 3, 1],
+       [0, 2, 2],
+       [0, 2, 1],
+       [2, 0, 2],
+       [1, 2, 1],
+       [2, 0, 1],
+       [2, 3, 1],
+       [0, 2, 2],
+       [2, 0, 1],
+       [3, 3, 1],
+       [2, 0, 3],
+       [1, 1, 3],
+       [2, 3, 0],
+       [3, 3, 0],
+       [0, 0, 1],
+       [1, 0, 3],
+       [1, 3, 3],
+       [0, 2, 3],
+       [0, 0, 1],
+       [0, 1, 1],
+       [2, 2, 1],
+       [0, 2, 1],
+       [3, 2, 2],
+       [2, 1, 1],
+       [1, 2, 1],
+       [0, 0, 0],
+       [0, 1, 1],
+       [0, 1, 2],
+       [1, 3, 2],
+       [0, 3, 3],
+       [3, 0, 3],
+       [2, 3, 2],
+       [2, 1, 3],
+       [3, 2, 1],
+       [2, 2, 0],
+       [0, 1, 2],
+       [0, 1, 0],
+       [3, 2, 1],
+       [3, 3, 1],
+       [3, 3, 3],
+       [2, 3, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">getsub</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3, 3, 0],
+       [3, 3, 2],
+       [2, 3, 3],
+       [2, 3, 3],
+       [2, 3, 3],
+       [3, 3, 3],
+       [2, 3, 3],
+       [3, 3, 1],
+       [2, 3, 3],
+       [3, 3, 3],
+       [1, 3, 3],
+       [3, 3, 1],
+       [3, 3, 0],
+       [3, 3, 1],
+       [0, 3, 3],
+       [3, 3, 1],
+       [3, 3, 0],
+       [1, 3, 3],
+       [0, 3, 3],
+       [3, 0, 3],
+       [3, 3, 1],
+       [3, 3, 3]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Properly formatted code can help in preventing errors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getsub</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="n">cts</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">subarr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">cts</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">return</span> <span class="n">subarr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+    <span class="n">cts</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="o">^</span>
+<span class="ne">IndentationError</span>: expected an indented block
+</pre></div>
+</div>
+</div>
+</div>
+<p>There aren’t any <code class="docutils literal notranslate"><span class="pre">5</span></code> values in this array, so that’s why the following returns an empty array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">getsub</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([], shape=(0, 3), dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-pandas">
+<h2>Why pandas?<a class="headerlink" href="#why-pandas" title="Permalink to this heading">#</a></h2>
+<p>Imagine we have made our own tiny dataset like the following.  It’s shown here and is attached to Deepnote as the file <code class="docutils literal notranslate"><span class="pre">our-own.csv</span></code>.  Most of the data files we work with will be csv files (which stands for comma-separated values).  Working with Excel files (xlsx files) is basically the same, but there is an extra step, so I usually would recommend converting to a csv file first.
+<img alt="3 rows of data" src="../_images/our-own.png" /></p>
+<p>What approach could we use to represent this in Python?</p>
+<section id="wrong-approach-1-as-a-list-of-lists">
+<h3>Wrong approach 1: as a list of lists<a class="headerlink" href="#wrong-approach-1-as-a-list-of-lists" title="Permalink to this heading">#</a></h3>
+<p>Here is a pure Python approach (not using any libraries) where we represent the data as a list of lists.  We’re skipping the column names, but that’s not the biggest issue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">our_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mf">6.43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">5.81</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">4.99</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Eve&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Compute the average value in the “Rating” column (the column at index <code class="docutils literal notranslate"><span class="pre">3</span></code>).</p></li>
+</ul>
+<p>Any approach using this list-of-lists data type is inevitably going to be a little awkward.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">our_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<p>Convenient slicing for multiple dimensions does not work with our list of lists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">our_list</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># not a numpy array</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">our_list</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="ne">TypeError</span>: list indices must be integers or slices, not tuple
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some practice with for loops.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">inside_list</span> <span class="ow">in</span> <span class="n">our_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">inside_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.43, 10, &#39;Alice&#39;, 4.7]
+[5.81, 15, &#39;Bob&#39;, 4.4]
+[4.99, 2, &#39;Eve&#39;, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We start out making a list of ratings. We use the <code class="docutils literal notranslate"><span class="pre">append</span></code> method (that is available for any list) to put the ratings onto the end of the <code class="docutils literal notranslate"><span class="pre">rating</span></code> list, one at a time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rating</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">inside_list</span> <span class="ow">in</span> <span class="n">our_list</span><span class="p">:</span>
+    <span class="c1">#print(inside_list[-1])</span>
+    <span class="n">rating</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inside_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">rating</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.7, 4.4, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now compute the average. Notice the small rounding error (the true answer is exactly <code class="docutils literal notranslate"><span class="pre">3.7</span></code>). These sorts of rounding errors are pretty much inevitable when working with floats (decimal values) in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.7000000000000006
+</pre></div>
+</div>
+</div>
+</div>
+<p>Be careful testing equality <code class="docutils literal notranslate"><span class="pre">==</span></code> with floats in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># be careful with numerical precision</span>
+<span class="c1"># that&#39;s also true in NumPy and pandas</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span> <span class="o">==</span> <span class="mf">3.7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following simple computation already fails. (Using equality is safer when working with integers instead of floats.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">==</span> <span class="mf">0.3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>Append a string onto the end of it. (We can make strings using either single or double quotation marks)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="n">rating</span>
+<span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Friday&#39;</span><span class="p">)</span>
+<span class="n">new_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.7, 4.4, 2, &#39;Friday&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rating</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.7, 4.4, 2, &#39;Friday&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because we used copy, the original ratings list did not change.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rating</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">new_list</span> <span class="o">=</span> <span class="n">rating</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;friday&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.7, 4.4, 2, &#39;friday&#39;]
+[4.7, 4.4, 2]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="wrong-approach-2-as-a-numpy-array">
+<h3>Wrong approach 2: as a NumPy array<a class="headerlink" href="#wrong-approach-2-as-a-numpy-array" title="Permalink to this heading">#</a></h3>
+<p>It might be surprising that NumPy also does not work great for this data.</p>
+<p>Convert <code class="docutils literal notranslate"><span class="pre">our_list</span></code> to a NumPy array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">our_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">our_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">our_arr</span><span class="p">)</span> <span class="c1">#Notice the quotation marks.</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">our_arr</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;6.43&#39; &#39;10&#39; &#39;Alice&#39; &#39;4.7&#39;]
+ [&#39;5.81&#39; &#39;15&#39; &#39;Bob&#39; &#39;4.4&#39;]
+ [&#39;4.99&#39; &#39;2&#39; &#39;Eve&#39; &#39;2&#39;]]
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we check the type, we are told this is some NumPy version of a string. (It should be a number!) The problem is the column of seller names. NumPy wants homogeneous data, where all data types are the same within an array. But our data set is most naturally made using different data types in different columns. That is a problem that will be solved using pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">our_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#string not integer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.str_
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># if all data types are numbers</span>
+<span class="n">our_list2</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mf">6.43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>  <span class="mf">4.7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">5.81</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">4.99</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">our_list2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 6.43 10.    4.7 ]
+ [ 5.81 15.    4.4 ]
+ [ 4.99  2.    2.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">our_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">our_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1010&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;10&#39;</span> <span class="o">+</span> <span class="s1">&#39;10&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1010&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can convert to floats using the astype method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">our_arr</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.43, 5.81, 4.99])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="right-approach-as-a-pandas-dataframe">
+<h3>Right approach: as a pandas DataFrame<a class="headerlink" href="#right-approach-as-a-pandas-dataframe" title="Permalink to this heading">#</a></h3>
+<p>The most important Python library in Math 10 is the pandas library.  pandas is like the Python version of Excel.</p>
+<ul class="simple">
+<li><p>Convert <code class="docutils literal notranslate"><span class="pre">our_list</span></code> to a pandas DataFrame.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">our_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.43</td>
+      <td>10</td>
+      <td>Alice</td>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.81</td>
+      <td>15</td>
+      <td>Bob</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.99</td>
+      <td>2</td>
+      <td>Eve</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Actually it’s better to import directly from the csv file.</p>
+<ul class="simple">
+<li><p>Read in the data directly from <code class="docutils literal notranslate"><span class="pre">our-own.csv</span></code> using the pandas function <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> and store it with the variable name <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+</ul>
+<p>One advantage of this approach: the column names show up.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;our-own.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cost</th>
+      <th>Quantity</th>
+      <th>Seller</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6.43</td>
+      <td>10</td>
+      <td>Alice</td>
+      <td>4.7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.81</td>
+      <td>15</td>
+      <td>Bob</td>
+      <td>4.4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.99</td>
+      <td>2</td>
+      <td>Eve</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Week1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Week_1_Wednesday.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 1 Wednesday</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-in-python">Functions in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-pandas">Why pandas?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wrong-approach-1-as-a-list-of-lists">Wrong approach 1: as a list of lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wrong-approach-2-as-a-numpy-array">Wrong approach 2: as a NumPy array</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-approach-as-a-pandas-dataframe">Right approach: as a pandas DataFrame</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

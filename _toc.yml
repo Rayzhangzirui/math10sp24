@@ -1,0 +1,12 @@
+format: jb-book
+root: intro
+chapters:
+  - file: Week0/Week0_Intro
+    sections:
+      - file: Week0/Week_0_Friday
+  - file: Week1/Week1_Intro
+    sections:
+      - file: Week1/Week_1_Monday
+      - file: Week1/Week_1_Wednesday
+      - file: Week1/Week_1_Friday
+  
