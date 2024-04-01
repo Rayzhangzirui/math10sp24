@@ -4,10 +4,11 @@
 
 **[Syllabus](syllabus.md)**
 
-**[Course schedule]**
+**[Course schedule](https://docs.google.com/spreadsheets/d/1E9i-irHGnLF4z9bycO2hNG9cjHS-SnitHNgiwwSiu1Y/edit?usp=sharing)**
 
 **[Final Project Instruction](final_project_instruction.md)**
 
+**Software:** We will use Python and Jupyter Notebook for this class. You can download Anaconda from [here](https://www.anaconda.com/products/individual) and install it on your computer. It is also available in the lab. You can also use any online platform like Google Colab, Deepnote, or Kaggle, etc. 
 
 **About the class:**
 * Basic Python

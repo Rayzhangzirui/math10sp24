@@ -20,7 +20,7 @@
 
 **Makeup Midterms**: No makeup is offered. If you missed one, the other will be reweighed.
 
-**Final project**: For see [final project instruction](final_project_instruction.md).
+**Final project**: See [final project instruction](final_project_instruction.md).
 
 **Final exam**: There is no final exam. See final project description.
 
@@ -28,8 +28,7 @@
 
 **About collaboration**: You are welcome to work on homework problems together, but you should write up your own submission. 
 
-**About ChatGPT**: ChatGPT (or other AI Language Model) is a valuable resource for programming help. Please use it wisely: (1) 
-Relying too heavily on ChatGPT might hinder your learning.  The exams are closed computers. (2) Code from ChatGPT might be incorrect. Remember to thoroughly review and understand the provided code.  
+**About ChatGPT**: ChatGPT (or other AI Language Model) is a valuable resource for programming help. Please use it wisely: (1) Relying too heavily on ChatGPT might hinder your learning. The exams are closed computers. (2) Code from ChatGPT might be incorrect. Remember to thoroughly review and understand the generated code.  
 
 **Academic integrity**: Following the UCI academic integrity policy is a requirement to pass this class. Please see this website for more information on that policy: https://aisc.uci.edu/.
 
