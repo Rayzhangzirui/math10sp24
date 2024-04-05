@@ -310,6 +310,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python review</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type">Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
 </ul>
 </li>
@@ -363,11 +364,38 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is true division, which always returns a float</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># This is floor division, which truncates the decimal without rounding</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># This is the modulo operator, which returns the remainder of the division</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">%</span><span class="k">4</span>)
+
+<span class="c1"># This is exponentiation/raising to a power</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">3</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.75
+0
+3
+9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="assignment">
 <h2>Assignment<a class="headerlink" href="#assignment" title="Permalink to this heading">#</a></h2>
 <p>Assignment = statements in Python do not copy objects, they create bindings between a variable and an object.</p>
-<p>This is a very important concept in python, especially when dealing with list.</p>
-<p>For exams and quizzes, understanding the following three examples is enough</p>
+<p>This is a very important concept in python, especially when dealing with mutable objects (lists, dictionaries, etc.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># normal behavior</span>
@@ -758,7 +786,7 @@ Use the <code class="docutils literal notranslate"><span class="pre">key</span><
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(140436740974864, 140436740974864)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(140409092802672, 140409092802672)
 </pre></div>
 </div>
 </div>
@@ -871,6 +899,7 @@ Use the <code class="docutils literal notranslate"><span class="pre">key</span><
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python review</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type">Type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operations">Operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment">Assignment</a></li>
 </ul>
 </li>
