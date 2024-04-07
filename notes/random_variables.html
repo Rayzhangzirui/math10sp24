@@ -366,8 +366,8 @@ document.write(`
 <h2>Expectation (Mean)<a class="headerlink" href="#expectation-mean" title="Permalink to this heading">#</a></h2>
 <p>The expectation or expected value of a random variable provides a measure of the central tendency of its distribution.</p>
 <ul class="simple">
-<li><p>For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \sum_{x} x \cdot P(X = x)\)</span>.</p></li>
-<li><p>For a continuous random variable <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\mathbb{E}[Y] = \int_{-\infty}^{\infty} y \cdot f_Y(y) \, dy\)</span>.</p></li>
+<li><p>For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(E[X] = \sum_{x} x \cdot P(X = x)\)</span>.</p></li>
+<li><p>For a continuous random variable <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(E[Y] = \int_{-\infty}^{\infty} y \cdot f_Y(y) \, dy\)</span>.</p></li>
 </ul>
 <p>You can always think of the random variable as the “payoff” in a game, and the expectation as the average payoff in each round of the game if you play it many times.</p>
 </section>
@@ -375,14 +375,14 @@ document.write(`
 <h2>Variance<a class="headerlink" href="#variance" title="Permalink to this heading">#</a></h2>
 <p>Variance quantifies the spread of a distribution around its mean, reflecting the variability of the random variable.</p>
 <ul class="simple">
-<li><p>For any random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]\)</span>.</p></li>
-<li><p>This expression simplifies to <span class="math notranslate nohighlight">\(\text{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2\)</span>, a form that’s often more practical for calculations.</p></li>
+<li><p>For any random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(X) = E[(X - E[X])^2]\)</span>.</p></li>
+<li><p>This expression simplifies to <span class="math notranslate nohighlight">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span>, a form that’s often more practical for calculations.</p></li>
 </ul>
 </section>
 <section id="covariance">
 <h2>Covariance<a class="headerlink" href="#covariance" title="Permalink to this heading">#</a></h2>
 <p>Covariance provides a measure of how two random variables change together. For example, if we treat weight and height as random variables, then knowning that someone is taller than average might make it more likely that they have above-average weight.</p>
-<p>For random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, the covariance is defined as <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])]\)</span>.</p>
+<p>For random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, the covariance is defined as <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = E[(X - E[X])(Y - E[Y])]\)</span>.</p>
 </section>
 <section id="estimating-probabilities">
 <h2>Estimating probabilities<a class="headerlink" href="#estimating-probabilities" title="Permalink to this heading">#</a></h2>
