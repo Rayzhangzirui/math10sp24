@@ -155,11 +155,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="OOP.html">Object Oriented Programming (OOP) in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 </ul>
 
@@ -307,6 +309,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Regression</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
@@ -314,6 +317,10 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -330,18 +337,23 @@ document.write(`
 <h2><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <section id="problem">
 <h3><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h3>
-<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\((x_i\in\mathbb{R},y_i}\in\mathbb{R}), i= 1,2,..., N\)</span>, we want to find the linear function $<span class="math notranslate nohighlight">\(y\approx f(x)=wx +b\)</span><span class="math notranslate nohighlight">\( that fits the relations between \)</span>x_i<span class="math notranslate nohighlight">\( and \)</span>y_i}<span class="math notranslate nohighlight">\(. So that given any new \)</span>x^{test}<span class="math notranslate nohighlight">\( in the **test** dataset, we can make the prediction \)</span><span class="math notranslate nohighlight">\(y^{pred} = w x^{test}+b\)</span>$</p>
+<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function $<span class="math notranslate nohighlight">\(y\approx f(x)=wx +b\)</span><span class="math notranslate nohighlight">\( that fits the relations between \)</span>x_i<span class="math notranslate nohighlight">\( and \)</span>y_i<span class="math notranslate nohighlight">\(. So that given any new \)</span>x^{test}<span class="math notranslate nohighlight">\( in the **test** dataset, we can make the prediction \)</span><span class="math notranslate nohighlight">\(y^{pred} = w x^{test}+b\)</span>$</p>
 </section>
 <section id="training-the-model">
 <h3>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(w,b)\)</span> of parameter <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which is also called <strong>mean squared error</strong> (MSE) $<span class="math notranslate nohighlight">\(L(w,b)=\frac{1}{N}\sum_{i=1}^N\big(\hat{y}^{(i)}-y_i}\big)^2=\frac{1}{N}\sum_{i=1}^N\big((wx_i+b)-y_i}\big)^2,\)</span><span class="math notranslate nohighlight">\( where \)</span>\hat{y}^{(i)}<span class="math notranslate nohighlight">\( denotes the predicted value of y at \)</span>x_i<span class="math notranslate nohighlight">\(, i.e. \)</span>\hat{y}^{(i)} = wx_i+b$.</p></li>
+<li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(w,b)\)</span> of parameter <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which is also called <strong>mean squared error</strong> (MSE)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L(w,b)=\frac{1}{N}\sum_{i=1}^N\big(\hat{y}^{(i)}-y_i\big)^2=\frac{1}{N}\sum_{i=1}^N\big((wx_i+b)-y_i\big)^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{y}^{(i)}\)</span> denotes the predicted value of y at <span class="math notranslate nohighlight">\(x_i\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{y}^{(i)} = wx_i+b\)</span>.</p>
+<ul class="simple">
 <li><p>Then find the minimum of loss function – note that this is the quadratic function of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and we can analytically solve <span class="math notranslate nohighlight">\(\partial_{w}L = \partial_{b}L =0\)</span>, and yields</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[ w^* =\frac{\sum_{i=1}^{N}(x_i-\bar{x})(y_i}-\bar{y})}{\sum_{i=1}^{N}(x_i-\bar{x})^{2}} = \frac{\frac{1}{N}\sum_{i=1}^{N}(x_i-\bar{x})(y_i}-\bar{y})}{\frac{1}{N}\sum_{i=1}^{N}(x_i-\bar{x})^{2}} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)},\]</div>
+\[w^* = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{N} (x_i - \bar{x})^2} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)}\]</div>
 <div class="math notranslate nohighlight">
-\[ b^* = \bar{y}  - w^*\bar{x},\]</div>
+\[b^* = \bar{y}  - w^*\bar{x}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> (a little difference with what you learned in statistics is that we have the normalization factor <span class="math notranslate nohighlight">\(1/N\)</span> instead of <span class="math notranslate nohighlight">\(1/(N-1)\)</span> here), and <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span> (the normalization factor is still <span class="math notranslate nohighlight">\(1/N\)</span>). This is just about convention – in statistics, they pursue for unbiased estimator.</p>
 </section>
 <section id="evaluating-the-model">
@@ -351,9 +363,95 @@ document.write(`
 <li><p>R-Squared: The larger <span class="math notranslate nohighlight">\(R^{2}\)</span> (closer to 1) indicates better performance. Compared with MSE, R-squared is <strong>dimensionless</strong>, not dependent on the units of variable.</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[R^{2} = 1 - \frac{\sum_{i=1}^{N}(y_i}-\hat{y}^{(i)})^{2}}{\sum_{i=1}^{N}(y_i}-\bar{y})^{2}} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(y_i}-\hat{y}^{(i)})^{2}}{\frac{1}{N}\sum_{i=1}^{N}(y_i}-\bar{y})^{2}} = 1 - \frac{\text{MSE}}{\text{Var}(Y)}\]</div>
+\[R^{2} = 1 - \frac{\sum_{i=1}^{N}(y_i-\hat{y}^{(i)})^{2}}{\sum_{i=1}^{N}(y_i-\bar{y})^{2}} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(y_i-\hat{y}^{(i)})^{2}}{\frac{1}{N}\sum_{i=1}^{N}(y_i-\bar{y})^{2}} = 1 - \frac{\text{MSE}}{\text{Var}(Y)}\]</div>
+<p>Intuitively, MSE is the “unexplained” variance, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is the proportion of the variance that is explained by the model: if we are not using any model, then our best prediction is the mean of <span class="math notranslate nohighlight">\(y\)</span>, and MSE is the variance of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is 0;
+If our model is perfect, then MSE is 0, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">myLinearRegression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rsquare</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">ypred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+        <span class="k">return</span> <span class="n">ypred</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate synthetic data</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit the model</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="detailed-derivation-of-the-optimal-parameters">
+<h1>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Permalink to this heading">#</a></h1>
+<p>The loss function for simple linear regression is given by:</p>
+<div class="math notranslate nohighlight">
+\[L(w, b) = \frac{1}{N} \sum_{i=1}^N ((wx_i + b) - y_i)^2\]</div>
+<p>To find the optimal ( w ), we set the partial derivative of ( L ) with respect to ( w ) to zero:</p>
+<ol class="arabic simple">
+<li><p>Differentiate with respect to ( w ):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\frac{\partial L}{\partial w} = \frac{2}{N} \sum_{i=1}^{N} x_i ((wx_i + b) - y_i) = 0\]</div>
+<p>Rearrange this equation to get:</p>
+<div class="math notranslate nohighlight">
+\[w \sum_{i=1}^{N} x_i^2 + b N \bar{X} = \sum_{i=1}^{N} x_i y_i\quad\quad(*)\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Derivative with respect to <span class="math notranslate nohighlight">\(b\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial L}{\partial b} = \frac{2}{N} \sum_{i=1}^{N} ((wx_i + b) - y_i) = 0
+\]</div>
+<p>This simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+w\sum_{i=1}^{N} x_i + Nb = \sum_{i=1}^{N} y_i
+\]</div>
+<p>Or, equivalently:</p>
+<div class="math notranslate nohighlight">
+\[
+w\bar{X} + b = \bar{Y}
+\]</div>
+<p>Substitute <span class="math notranslate nohighlight">\(b\)</span> back into the equation (*), we get:</p>
+<div class="math notranslate nohighlight">
+\[w \sum_{i=1}^{N} x_i^2 + (\bar{Y} - w \bar{X}) n \bar{X} = \sum_{i=1}^{N} x_i y_i\]</div>
+<p>Expanding this:</p>
+<div class="math notranslate nohighlight">
+\[w \sum_{i=1}^{N} x_i^2 + N \bar{Y} \bar{X}- w \bar{X} \sum_{i=1}^{N} x_i = \sum_{i=1}^{N} x_i y_i\]</div>
+<p>Rearranging terms</p>
+<div class="math notranslate nohighlight">
+\[w (\sum_{i=1}^{N} x_i^2 - N\bar{X}^2) = \sum_{i=1}^{N} x_i y_i - N\bar{Y}\bar{X}\]</div>
+<p>Now, solving for <span class="math notranslate nohighlight">\(w\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[w = \frac{\sum_{i=1}^{N} x_i y_i - N\bar{Y}\bar{X}}{\sum_{i=1}^{N} x_i^2 - N\bar{X}^2}\]</div>
+<p>Recall that <span class="math notranslate nohighlight">\(Cov(X,Y) = E[XY]-E[X]E[Y]\)</span>, and <span class="math notranslate nohighlight">\(Var(X) = E[X^2] - E[X]^2\)</span>.
+Divide both the numerator and the denominator by <span class="math notranslate nohighlight">\(N\)</span>.
+We can rewrite the above equation in terms of covariance and variance:
+$<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</span>$</p>
+<p>This is the final expression for <span class="math notranslate nohighlight">\(w^*\)</span> in simple linear regression, representing the slope of the best-fit line.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -405,6 +503,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Regression</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
@@ -412,6 +511,10 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

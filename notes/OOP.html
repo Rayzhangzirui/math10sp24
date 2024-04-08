@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Object Oriented Programming (OOP) in Python &#8212; UCI Math 10, Spring 2024</title>
+    <title>OOP and Gradient Descent &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -61,10 +61,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/OOP';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="week1 lec1" href="../lectures/week1_lec1.html" />
+    <link rel="next" title="Probability and Statistics" href="prob_stat.html" />
     <link rel="prev" title="Python review" href="python_review.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -155,11 +157,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Object Oriented Programming (OOP) in Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">OOP and Gradient Descent</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 </ul>
 
@@ -297,7 +301,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Object Oriented Programming (OOP) in Python</h1>
+    <h1>OOP and Gradient Descent</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -307,9 +311,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Object Oriented Programming (OOP) in Python</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-class-and-object-in-python">What is class and object in Python?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OOP and Gradient Descent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#class-and-object">Class and Object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
 </ul>
 
             </nav>
@@ -322,11 +326,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="object-oriented-programming-oop-in-python">
-<h1>Object Oriented Programming (OOP) in Python<a class="headerlink" href="#object-oriented-programming-oop-in-python" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="oop-and-gradient-descent">
+<h1>OOP and Gradient Descent<a class="headerlink" href="#oop-and-gradient-descent" title="Permalink to this heading">#</a></h1>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="what-is-class-and-object-in-python">
-<h1>What is class and object in Python?<a class="headerlink" href="#what-is-class-and-object-in-python" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="class-and-object">
+<h1>Class and Object<a class="headerlink" href="#class-and-object" title="Permalink to this heading">#</a></h1>
 <p>A class combines data/attribute and functionality/method together</p>
 <p>An object is an instance of a class</p>
 <div class="cell docutils container">
@@ -393,28 +397,75 @@ document.write(`
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="inheritance">
-<h1>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="gradient-descent">
+<h1>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h1>
+<p>Problem: minimize f(x), <span class="math notranslate nohighlight">\(x \in \mathbb{R}^d\)</span></p>
+<p>Suppose <span class="math notranslate nohighlight">\(\nabla f(x) = [f'(x_1), f'(x_2), ... , f'(x_d)]^T\)</span> is the gradient of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at point <span class="math notranslate nohighlight">\(x\)</span>, and we have some initial guess <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<p>Our goal is to generate a sequence of numbers <span class="math notranslate nohighlight">\(x_0\)</span>, <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> … that iteratively approaches a local minimizer of the function.</p>
+<p>Idea: the gradient of a function at a point gives the direction of the steepest ascent of the function at that point. So, if we move in the opposite direction of the gradient, we should be moving towards a local minimum.</p>
+<div class="math notranslate nohighlight">
+\[x_{i+1} = x_i - \alpha \nabla f(x_i)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the step size or learning rate. We repeat this process until <span class="math notranslate nohighlight">\(|f'(x_i)|\)</span> is close to 0 for some <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Note:</p>
+<ul class="simple">
+<li><p>This algorithm tends to go to the closest local minimum.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\nabla f(x_i)=0\)</span>, then we are at stationary point so we won’t move.</p></li>
+<li><p>In the simplest form <span class="math notranslate nohighlight">\(\alpha\)</span> is fixed by the user. For more advanced versions, it will be adaptive or randomized.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">():</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">input_name</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;This is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zzz&#39;</span><span class="p">)</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="k">class</span> <span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;meow&#39;</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">greeting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;woof&#39;</span><span class="p">)</span>
+<span class="c1"># test function</span>
+<span class="c1"># f = lambda x, y: x**2 + y**2 </span>
+<span class="c1"># grad_f = lambda x, y: Vector(2 * x , 2 * y)</span>
 
-    
+<span class="c1"># test function2</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">grad_f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># initial guess and learning rate</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">point</span><span class="p">]</span>
+
+<span class="c1"># Gradient descent algorithm</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>  <span class="c1"># Fewer iterations for clarity</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">grad_f</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">grad</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="o">-</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="n">point</span> <span class="o">=</span> <span class="n">point</span> <span class="o">+</span> <span class="n">grad</span>
+    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+
+<span class="c1"># Create a grid of x, y points for the contour plot</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="c1"># Contour plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Adjust the number of levels for more detail</span>
+
+<span class="c1"># Gradient descent path</span>
+<span class="n">x_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
+<span class="n">y_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gradient Descent on f(x, y)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># print final objective value and final point</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final objective value: </span><span class="si">{</span><span class="n">f</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fba7247099030bec3c36d930940285d2b61474b250b68678116a737c15a69fda.png" src="../_images/fba7247099030bec3c36d930940285d2b61474b250b68678116a737c15a69fda.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final objective value: -15.891646751230518
 </pre></div>
 </div>
 </div>
@@ -462,11 +513,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../lectures/week1_lec1.html"
+       href="prob_stat.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">week1 lec1</p>
+        <p class="prev-next-title">Probability and Statistics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -488,9 +539,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Object Oriented Programming (OOP) in Python</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-class-and-object-in-python">What is class and object in Python?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">Inheritance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">OOP and Gradient Descent</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#class-and-object">Class and Object</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a></li>
 </ul>
 
   </nav></div>

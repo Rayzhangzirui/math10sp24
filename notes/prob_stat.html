@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="week1 lec1" href="../lectures/week1_lec1.html" />
-    <link rel="prev" title="Object Oriented Programming (OOP) in Python" href="OOP.html" />
+    <link rel="prev" title="OOP and Gradient Descent" href="OOP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,12 +157,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="OOP.html">Object Oriented Programming (OOP) in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Probability and Statistics</a></li>
-
-
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec 3</a></li>
@@ -313,7 +311,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Probability and Statistics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">Random Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-random-variables">Discrete Random Variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-random-variables">Continuous Random Variables</a></li>
@@ -324,28 +321,27 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pearson-correlation">(Pearson) Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-and-covariance">Independence and Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-and-covariance">Independence and Covariance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities">Estimating probabilities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-distribution-using-histogram">visualizing distribution using histogram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-e-x">How to estimate the E[X]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of large numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-variance">Estimation of variance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central limit theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities">Estimating probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-distribution-using-histogram">visualizing distribution using histogram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-e-x">How to estimate the E[X]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of large numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-variance">Estimation of variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central limit theorem</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -418,9 +414,8 @@ document.write(`
 <p>Intuitively, when two things are independent, the outcome of one does not influence the outcome of the other.</p>
 <p>Two random variables, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, are considered independent if  <span class="math notranslate nohighlight">\(P(X = x, Y = y) = P(X = x) P(Y = y)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. Intuitively, this means that knowing the value of one variable provides no information about the value of the other.</p>
 <p>For example, if we flip two coins, and <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> represent the outcomes of the first and second coin flips, respectively, then the outcomes are independent. The probability of getting two heads is <span class="math notranslate nohighlight">\(P(X = \text{heads}) \cdot P(Y = \text{heads}) = \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}\)</span>.</p>
-</section>
 <section id="independence-and-covariance">
-<h2>Independence and Covariance<a class="headerlink" href="#independence-and-covariance" title="Permalink to this heading">#</a></h2>
+<h3>Independence and Covariance<a class="headerlink" href="#independence-and-covariance" title="Permalink to this heading">#</a></h3>
 <p><strong>Independence implies zero covariance. But the converse is not necessarily true.</strong></p>
 <p>Exercise: If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, use the linearity of expectation to show that <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = 0\)</span>.</p>
 <p>Consider a scenario where <span class="math notranslate nohighlight">\(X\)</span> is a random variable uniformly distributed over <span class="math notranslate nohighlight">\([-1, 1]\)</span> and define <span class="math notranslate nohighlight">\(Y = X^2\)</span>.
@@ -429,29 +424,29 @@ Recall <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = \mathbb{E
 In this example, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0\)</span>, and <span class="math notranslate nohighlight">\(XY = X^3\)</span> is an odd function, so <span class="math notranslate nohighlight">\(\mathbb{E}[X \cdot Y] = 0\)</span> ( for every positive outcome, there is a corresponding negative outcome with the same probability).</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="causality">
-<h1>Causality<a class="headerlink" href="#causality" title="Permalink to this heading">#</a></h1>
+<section id="causality">
+<h2>Causality<a class="headerlink" href="#causality" title="Permalink to this heading">#</a></h2>
 <section id="correlation-is-not-causation">
-<h2>Correlation is Not Causation<a class="headerlink" href="#correlation-is-not-causation" title="Permalink to this heading">#</a></h2>
+<h3>Correlation is Not Causation<a class="headerlink" href="#correlation-is-not-causation" title="Permalink to this heading">#</a></h3>
 <p>Correlation measures the strength and direction of a linear relationship between two variables. However, it does not imply causation.</p>
 <p>For example: Ice cream sales and drowning incidents might be correlated (both increase in the summer), but one does not cause the other.</p>
 </section>
 <section id="dependence-is-not-causation">
-<h2>Dependence is Not Causation<a class="headerlink" href="#dependence-is-not-causation" title="Permalink to this heading">#</a></h2>
+<h3>Dependence is Not Causation<a class="headerlink" href="#dependence-is-not-causation" title="Permalink to this heading">#</a></h3>
 <p>Suppose two light switches, A and B, control the light bulb in the following way: the light is on if (1) A on B off or (2) A off B on.
 Assume the switch are independent “coin flips”: equally likely to be on or off.
-Then knowing the state of switch A gives no information about the light. But there is still a “cause and effect” relationship between the switch and the light. ( Example adapted from <span class="xref myst">here</span>)</p>
+Then knowing the state of switch A gives no information about the light. But there is still a “cause and effect” relationship between the switch and the light. ( Example adapted from <span class="xref myst">here</span></p>
 </section>
 <section id="establishing-causality">
-<h2>Establishing Causality<a class="headerlink" href="#establishing-causality" title="Permalink to this heading">#</a></h2>
+<h3>Establishing Causality<a class="headerlink" href="#establishing-causality" title="Permalink to this heading">#</a></h3>
 <p>Establishing causality is challenging, and might require controlled experiments beyond observational data.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="computation">
-<h1>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h1>
+<section id="computation">
+<h2>Computation<a class="headerlink" href="#computation" title="Permalink to this heading">#</a></h2>
 <p>The following Python code demonstrates how to do computation related to the previous concepts.</p>
 <section id="estimating-probabilities">
-<h2>Estimating probabilities<a class="headerlink" href="#estimating-probabilities" title="Permalink to this heading">#</a></h2>
+<h3>Estimating probabilities<a class="headerlink" href="#estimating-probabilities" title="Permalink to this heading">#</a></h3>
 <p>When we don’t know the probability of some event, we can estimate it by running the experiment many times and calculating the relative frequency of the event.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -470,7 +465,7 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.12
 </pre></div>
 </div>
 </div>
@@ -487,14 +482,204 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.54
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.51
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="visualizing-distribution-using-histogram">
-<h2>visualizing distribution using histogram<a class="headerlink" href="#visualizing-distribution-using-histogram" title="Permalink to this heading">#</a></h2>
+<h3>visualizing distribution using histogram<a class="headerlink" href="#visualizing-distribution-using-histogram" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to install seaborn</span>
+<span class="c1"># %pip install numpy</span>
+
+<span class="o">%</span><span class="k">conda</span> install numpy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting package metadata (current_repodata.json): - 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+Solving environment: | 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>- 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## Package Plan ##
+
+  environment location: /Users/Ray/opt/anaconda3
+
+  added / updated specs:
+    - numpy
+
+
+The following packages will be UPDATED:
+
+  ca-certificates    conda-forge::ca-certificates-2024.2.2~ --&gt; pkgs/main::ca-certificates-2024.3.11-hecd8cb5_0 None
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  openssl            conda-forge::openssl-1.1.1w-h8a1eda9_0 --&gt; pkgs/main::openssl-1.1.1w-hca72f7f_0 None
+
+
+Preparing transaction: \ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verifying transaction: / 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+Executing transaction: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\ 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Retrieving notices: ...working... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for to visualize the distribution, we can use a histogram</span>
@@ -510,7 +695,7 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/6d6dfc8f291d977a08f0b9d2a6e58ff90754fdb883a92df59b839a83189b8f8a.png" src="../_images/6d6dfc8f291d977a08f0b9d2a6e58ff90754fdb883a92df59b839a83189b8f8a.png" />
+<img alt="../_images/bd699e17566f9adfaeefaaedd9e5fd4835c3f2ebf8e596e0e4a9e0518dfcb7c5.png" src="../_images/bd699e17566f9adfaeefaaedd9e5fd4835c3f2ebf8e596e0e4a9e0518dfcb7c5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -525,7 +710,7 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/cf0a2a0b39c9d459dd354b146b2842259b010ec9ac4595e77a637b1a9a50c11d.png" src="../_images/cf0a2a0b39c9d459dd354b146b2842259b010ec9ac4595e77a637b1a9a50c11d.png" />
+<img alt="../_images/fa453aea5b88b4f73dec2420c21e7ac3944cf2f4434d842227b46dbe7ae84771.png" src="../_images/fa453aea5b88b4f73dec2420c21e7ac3944cf2f4434d842227b46dbe7ae84771.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -551,20 +736,20 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc932f13690&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f9888763490&gt;]
 </pre></div>
 </div>
-<img alt="../_images/16a4c911e6a0e36cd289513fb4e6a359b1cbbc304b7b15c0b42505e2169e4714.png" src="../_images/16a4c911e6a0e36cd289513fb4e6a359b1cbbc304b7b15c0b42505e2169e4714.png" />
+<img alt="../_images/320f2ff47b718cce1644b202ddaa242b2304641598fc7bb597b5926633473c9b.png" src="../_images/320f2ff47b718cce1644b202ddaa242b2304641598fc7bb597b5926633473c9b.png" />
 </div>
 </div>
 </section>
 <section id="how-to-estimate-the-e-x">
-<h2>How to estimate the E[X]<a class="headerlink" href="#how-to-estimate-the-e-x" title="Permalink to this heading">#</a></h2>
+<h3>How to estimate the E[X]<a class="headerlink" href="#how-to-estimate-the-e-x" title="Permalink to this heading">#</a></h3>
 <p>the expecttion can be estimated by the sample mean</p>
 <p>Let <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> be samples from a random variable <span class="math notranslate nohighlight">\(X\)</span>. The sample mean <span class="math notranslate nohighlight">\(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\)</span> approximate the <span class="math notranslate nohighlight">\(E[X]\)</span></p>
 </section>
 <section id="law-of-large-numbers">
-<h2>Law of large numbers<a class="headerlink" href="#law-of-large-numbers" title="Permalink to this heading">#</a></h2>
+<h3>Law of large numbers<a class="headerlink" href="#law-of-large-numbers" title="Permalink to this heading">#</a></h3>
 <p>The law of large numbers states that the sample mean converges to the expected value as the sample size increases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -599,12 +784,12 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;estimated mean&#39;)
 </pre></div>
 </div>
-<img alt="../_images/bd89c53a80f0a97b6c4cfe19c4a7ef90d61a4544f8be6d7c8fc9f82f6a865794.png" src="../_images/bd89c53a80f0a97b6c4cfe19c4a7ef90d61a4544f8be6d7c8fc9f82f6a865794.png" />
+<img alt="../_images/94ec81bf1c4822c5e5bb511d557db359ccb133766018a525a232f4166386f3b6.png" src="../_images/94ec81bf1c4822c5e5bb511d557db359ccb133766018a525a232f4166386f3b6.png" />
 </div>
 </div>
 </section>
 <section id="estimation-of-variance">
-<h2>Estimation of variance<a class="headerlink" href="#estimation-of-variance" title="Permalink to this heading">#</a></h2>
+<h3>Estimation of variance<a class="headerlink" href="#estimation-of-variance" title="Permalink to this heading">#</a></h3>
 <p>By definition the variance of a random variable X is defined as
 $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)</span>$</p>
 <p>We can estimate the variance by</p>
@@ -623,14 +808,14 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.3179000000000003 3.3179000000000003
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5770999999999997 2.5770999999999997
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="correlation">
-<h2>Correlation<a class="headerlink" href="#correlation" title="Permalink to this heading">#</a></h2>
+<h3>Correlation<a class="headerlink" href="#correlation" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># sample size</span>
@@ -673,17 +858,17 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.13248497988357338
-[[1.         0.81034448]
- [0.81034448 1.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.038508165914172394
+[[1.         0.78073109]
+ [0.78073109 1.        ]]
 </pre></div>
 </div>
-<img alt="../_images/bbd3b5a358d7f68d5918c230ff1625ecccbd8b169e4f972908732d23c2bd74c5.png" src="../_images/bbd3b5a358d7f68d5918c230ff1625ecccbd8b169e4f972908732d23c2bd74c5.png" />
+<img alt="../_images/cb78c559949e264de2437207c15b52deb38188775c1eddb88b45d268c16074bf.png" src="../_images/cb78c559949e264de2437207c15b52deb38188775c1eddb88b45d268c16074bf.png" />
 </div>
 </div>
 </section>
 <section id="central-limit-theorem">
-<h2>Central limit theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h2>
+<h3>Central limit theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this heading">#</a></h3>
 <p>Roughly speaking, sample average are normally distributed for large sample sizes, regardless of the distribution of the underlying random variable!</p>
 <p>This explains why the normal distribution is so common.</p>
 <p>If <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> are independent and identically distributed random variables with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>,
@@ -733,9 +918,10 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.0, 5.0)
 </pre></div>
 </div>
-<img alt="../_images/ad442e2131a97914841da1eafe540d3e58e32a1c6554370ceaf13afd1b7cf8d3.png" src="../_images/ad442e2131a97914841da1eafe540d3e58e32a1c6554370ceaf13afd1b7cf8d3.png" />
+<img alt="../_images/3eae6ccce6465dcd1a8c4de2e669a518aa7fe99ce7dec2e7aa685555c7781911.png" src="../_images/3eae6ccce6465dcd1a8c4de2e669a518aa7fe99ce7dec2e7aa685555c7781911.png" />
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -776,7 +962,7 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Object Oriented Programming (OOP) in Python</p>
+        <p class="prev-next-title">OOP and Gradient Descent</p>
       </div>
     </a>
     <a class="right-next"
@@ -806,7 +992,6 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Probability and Statistics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">Random Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-random-variables">Discrete Random Variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-random-variables">Continuous Random Variables</a></li>
@@ -817,28 +1002,27 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pearson-correlation">(Pearson) Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-and-covariance">Independence and Covariance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-and-covariance">Independence and Covariance</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities">Estimating probabilities</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-distribution-using-histogram">visualizing distribution using histogram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-e-x">How to estimate the E[X]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of large numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-variance">Estimation of variance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central limit theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation">Computation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-probabilities">Estimating probabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-distribution-using-histogram">visualizing distribution using histogram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-e-x">How to estimate the E[X]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">Law of large numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-variance">Estimation of variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-limit-theorem">Central limit theorem</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
