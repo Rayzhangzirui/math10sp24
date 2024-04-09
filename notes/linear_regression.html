@@ -354,7 +354,7 @@ document.write(`
 \[w^* = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{N} (x_i - \bar{x})^2} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)}\]</div>
 <div class="math notranslate nohighlight">
 \[b^* = \bar{y}  - w^*\bar{x}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> (a little difference with what you learned in statistics is that we have the normalization factor <span class="math notranslate nohighlight">\(1/N\)</span> instead of <span class="math notranslate nohighlight">\(1/(N-1)\)</span> here), and <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span> (the normalization factor is still <span class="math notranslate nohighlight">\(1/N\)</span>). This is just about convention – in statistics, they pursue for unbiased estimator.</p>
+<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </section>
 <section id="evaluating-the-model">
 <h3>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h3>
@@ -369,6 +369,7 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">class</span> <span class="nc">myLinearRegression</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -379,6 +380,9 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
         <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Rsquare</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;w = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, Rsquare = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Rsquare</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
     
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">ypred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
@@ -394,11 +398,28 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="c1"># Fit the model</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">myLinearRegression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="c1"># plot </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pred, $R^2$=</span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">Rsquare</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 2.014, b = 1.013, Rsquare = 0.971
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fcc38464bd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/b8e263b50aaa76ba0c4ddb0d9a457102bf11b92cfefbc0b62d682a89b0c1f845.png" src="../_images/b8e263b50aaa76ba0c4ddb0d9a457102bf11b92cfefbc0b62d682a89b0c1f845.png" />
 </div>
 </div>
 </section>
