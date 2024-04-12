@@ -337,7 +337,7 @@ document.write(`
 <h1>Pandas dataframe<a class="headerlink" href="#pandas-dataframe" title="Permalink to this heading">#</a></h1>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
-<p>Download the <a class="reference external" href="https://github.com/mwaskom/seaborn-data/blob/master/penguins.csv">penguins dataset</a> from the internet and load it into a pandas dataframe.</p>
+<p>Download the <a class="reference external" href="https://github.com/mwaskom/seaborn-data/blob/master/penguins.csv">penguins dataset</a> from the internet.</p>
 <p>If pandas is not installed, you can install it using the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">%conda</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p>
 <p>or</p>
@@ -347,6 +347,10 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;penguins.csv&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># you need to put the penguins.csv file in the same directory as this notebook</span>
+<span class="c1"># otherwise you need to specify the path to the file e.g. pd.read_csv(&#39;/path/to/penguins.csv&#39;)</span>
+<span class="c1"># You can get the current working directory of the notebook by running the following command</span>
+<span class="c1"># !pwd</span>
 </pre></div>
 </div>
 </div>
