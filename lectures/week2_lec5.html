@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>week2 lec4 &#8212; UCI Math 10, Spring 2024</title>
+    <title>week2 lec5 &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/week2_lec4';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/week2_lec5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="week2 lec5" href="week2_lec5.html" />
-    <link rel="prev" title="week1 lec3" href="week1_lec3.html" />
+    <link rel="next" title="Homework 1 (Due 4/12 11:59 PM)" href="../homework/homework1.html" />
+    <link rel="prev" title="week2 lec4" href="week2_lec4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -170,8 +170,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week1_lec2.html">week1 lec2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="week1_lec3.html">week1 lec3</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">week2 lec4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week2_lec4.html">week2 lec4</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 </ul>
 
@@ -227,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/lectures/week2_lec4.ipynb" target="_blank"
+      <li><a href="../_sources/lectures/week2_lec5.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -307,7 +307,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>week2 lec4</h1>
+    <h1>week2 lec5</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -321,112 +321,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week2-lec4">
-<h1>week2 lec4<a class="headerlink" href="#week2-lec4" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In python, everything is an object from a class</span>
-<span class="c1"># We can define our own classes</span>
-
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
-
-<span class="k">class</span> <span class="nc">Vector</span><span class="p">():</span>
-    <span class="c1"># custom type for 2d vectors</span>
-
-    <span class="c1"># class attribute shared by all objects of this class</span>
-    <span class="n">dim</span> <span class="o">=</span> <span class="mi">2</span>
-    
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_x</span><span class="p">,</span> <span class="n">input_y</span><span class="p">):</span>
-        <span class="c1"># constructor, called when new object is created, Vector(x,y)</span>
-        <span class="c1"># self is the object being created</span>
-        <span class="c1"># .x and .y are object attributes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">input_x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">input_y</span>
-    
-    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># length method, returns length of vector</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">l</span>
-    
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-        <span class="c1"># method that scales the vector by a constant c</span>
-        <span class="c1"># changes the object itself</span>
-        <span class="c1"># no return value, so returns None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">c</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">c</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># string representation of the object</span>
-        <span class="c1"># without this method, it prints the memory address</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s1">)&#39;</span>
-            
-    
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">):</span>
-        <span class="c1"># method that adds another vector to this vector, returns new vector</span>
-        <span class="n">x_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">y_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">):</span>
-        <span class="c1"># special method that overloads the + operator</span>
-        <span class="c1"># without this method, vector + vector would raise an error</span>
-        <span class="n">x_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">y_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># method that scales the vector to unit length</span>
-        <span class="c1"># can call other methods of the same object</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">l</span><span class="p">)</span>
-
-
-        
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">x</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">length</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-1.0
-(0.6000000000000001,0.8)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="c1"># custom add method</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-
-<span class="c1"># this is actually calling the __add__ method</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">w</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3,4)
-(3,4)
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="week2-lec5">
+<h1>week2 lec5<a class="headerlink" href="#week2-lec5" title="Permalink to this heading">#</a></h1>
+<p><a class="reference internal" href="../notes/OOP.html"><span class="doc std std-doc">Gradient Descent</span></a></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -461,20 +358,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="week1_lec3.html"
+       href="week2_lec4.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">week1 lec3</p>
+        <p class="prev-next-title">week2 lec4</p>
       </div>
     </a>
     <a class="right-next"
-       href="week2_lec5.html"
+       href="../homework/homework1.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">week2 lec5</p>
+        <p class="prev-next-title">Homework 1 (Due 4/12 11:59 PM)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
