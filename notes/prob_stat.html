@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/prob_stat';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Matrix Equations" href="matrix_equation.html" />
+    <link rel="next" title="Visualization" href="visualization.html" />
     <link rel="prev" title="OOP and Gradient Descent" href="OOP.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -161,6 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Probability and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="matrix_equation.html">Matrix Equations</a></li>
 
 
@@ -477,7 +478,7 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.23
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17
 </pre></div>
 </div>
 </div>
@@ -494,7 +495,7 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.48
 </pre></div>
 </div>
 </div>
@@ -516,33 +517,50 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for to visualize the distribution, we can use a histogram</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
+
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">discrete</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">),</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Count&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([19., 19., 14., 15., 16., 17.]),
+ array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]),
+ &lt;BarContainer object of 6 artists&gt;)
 </pre></div>
 </div>
-<img alt="../_images/646f20be08acf88c282a964538532c0a3a81ecaaf1bbaa432e7f7a1598a566a8.png" src="../_images/646f20be08acf88c282a964538532c0a3a81ecaaf1bbaa432e7f7a1598a566a8.png" />
+<img alt="../_images/c15be7fb5266f22102c090a865cd6c80dbe35aff5941bbd0183a391a2eef52f7.png" src="../_images/c15be7fb5266f22102c090a865cd6c80dbe35aff5941bbd0183a391a2eef52f7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># can also use seaborn</span>
+<span class="c1"># import seaborn</span>
+<span class="c1"># seaborn.histplot(x, discrete=True)</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate uniform random numbers</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">)</span>
+<span class="c1"># seaborn.histplot(x, stat=&#39;density&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([49., 60., 46., 52., 43., 50., 45., 40., 51., 50., 43., 45., 64.,
+        50., 52., 60., 57., 47., 46., 50.]),
+ array([0.  , 0.05, 0.1 , 0.15, 0.2 , 0.25, 0.3 , 0.35, 0.4 , 0.45, 0.5 ,
+        0.55, 0.6 , 0.65, 0.7 , 0.75, 0.8 , 0.85, 0.9 , 0.95, 1.  ]),
+ &lt;BarContainer object of 20 artists&gt;)
 </pre></div>
 </div>
-<img alt="../_images/752ab08845d4cf49bc8eaec9befe65b31097d01637113b0982fa22142f43dac8.png" src="../_images/752ab08845d4cf49bc8eaec9befe65b31097d01637113b0982fa22142f43dac8.png" />
+<img alt="../_images/c29e7b11d74dd6faa21a845b910365f58da3117022d7688788cb00c8405dc83b.png" src="../_images/c29e7b11d74dd6faa21a845b910365f58da3117022d7688788cb00c8405dc83b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -556,22 +574,22 @@ Then knowing the state of switch A gives no information about the light. But the
 <span class="n">x</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># generate samples from the normal distribution</span>
 
 <span class="c1"># plot the histogram</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 
 <span class="c1"># plot the density function</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span>
      <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb7181c52d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe6c9ec9690&gt;]
 </pre></div>
 </div>
-<img alt="../_images/7dc2cdb92c2f1b06e37ced5f884a296f9935e6462cb9061063f2a4c89f23011f.png" src="../_images/7dc2cdb92c2f1b06e37ced5f884a296f9935e6462cb9061063f2a4c89f23011f.png" />
+<img alt="../_images/22cf9c3dd206bfbc99d73c3ce5a9b1b6a2208bf11a99d9a84463ae6695b75fc8.png" src="../_images/22cf9c3dd206bfbc99d73c3ce5a9b1b6a2208bf11a99d9a84463ae6695b75fc8.png" />
 </div>
 </div>
 <section id="how-to-estimate-the-e-x">
@@ -615,7 +633,7 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;estimated mean&#39;)
 </pre></div>
 </div>
-<img alt="../_images/91b2b4101f5c5d55cdd09ef9d1a266f1c04ffc470756b088658aaad03a5c8557.png" src="../_images/91b2b4101f5c5d55cdd09ef9d1a266f1c04ffc470756b088658aaad03a5c8557.png" />
+<img alt="../_images/492258d461b3e0748c81be5b360a4b17f87d3c77a220ae164a5b330cbd5805da.png" src="../_images/492258d461b3e0748c81be5b360a4b17f87d3c77a220ae164a5b330cbd5805da.png" />
 </div>
 </div>
 </section>
@@ -639,7 +657,7 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.31 3.31
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8499000000000008 2.8499000000000008
 </pre></div>
 </div>
 </div>
@@ -689,12 +707,12 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.040877753252377726
-[[1.         0.84307271]
- [0.84307271 1.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.15325152556968852
+[[1.         0.77608297]
+ [0.77608297 1.        ]]
 </pre></div>
 </div>
-<img alt="../_images/2f93799eb2a9753f9b1269d826adbb51a6b603931821cd9d868881be49d8faca.png" src="../_images/2f93799eb2a9753f9b1269d826adbb51a6b603931821cd9d868881be49d8faca.png" />
+<img alt="../_images/11d50435ce6293ff6b34fb9d3faf06584a252a2414dbe8571e3351aa1cffcac9.png" src="../_images/11d50435ce6293ff6b34fb9d3faf06584a252a2414dbe8571e3351aa1cffcac9.png" />
 </div>
 </div>
 </section>
@@ -734,7 +752,7 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 	<span class="n">z_samples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
 <span class="c1"># plot the histogram of z_samples</span>
-<span class="n">seaborn</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">z_samples</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;density&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">z_samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="c1"># overlay the density function of the standard normal distribution</span>
@@ -749,7 +767,7 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.0, 5.0)
 </pre></div>
 </div>
-<img alt="../_images/2b174854da286f2fbdc9025e19d62b1a5adc2e397b3949b0121b97b5d0723b09.png" src="../_images/2b174854da286f2fbdc9025e19d62b1a5adc2e397b3949b0121b97b5d0723b09.png" />
+<img alt="../_images/74afbae2cce4990b1e4b74825ed51e7e0b3e2b7bdd3b9490664b833ac2392060.png" src="../_images/74afbae2cce4990b1e4b74825ed51e7e0b3e2b7bdd3b9490664b833ac2392060.png" />
 </div>
 </div>
 </section>
@@ -798,11 +816,11 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
       </div>
     </a>
     <a class="right-next"
-       href="matrix_equation.html"
+       href="visualization.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Matrix Equations</p>
+        <p class="prev-next-title">Visualization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
