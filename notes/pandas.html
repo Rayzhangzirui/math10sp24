@@ -164,6 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
@@ -180,6 +181,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">Worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
 </ul>
@@ -335,6 +339,10 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes">DataFrames</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">Indexing and slicing</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics">Descriptive statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-handle-missing-values">How to handle missing values</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#view-or-copy">View or Copy</a></li>
 </ul>
 
@@ -769,6 +777,8 @@ Name: species, Length: 344, dtype: object
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># .loc is primarily label based, in this example, 0, 1, 2 are the labels of the rows.</span>
 <span class="c1"># In some other cases, the row label may be a string such as &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, etc.</span>
 <span class="c1"># May also be used with a boolean array.</span>
+
+<span class="c1"># for loc, end index is included</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;island&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -1225,6 +1235,330 @@ Name: species, dtype: int64
 </div></div></div>
 </div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="missing-values">
+<h1>Missing values<a class="headerlink" href="#missing-values" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show rows with missing values</span>
+<span class="n">df_missinig</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">df_missinig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>34.1</td>
+      <td>18.1</td>
+      <td>193.0</td>
+      <td>3475.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>42.0</td>
+      <td>20.2</td>
+      <td>190.0</td>
+      <td>4250.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>37.8</td>
+      <td>17.1</td>
+      <td>186.0</td>
+      <td>3300.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>37.8</td>
+      <td>17.3</td>
+      <td>180.0</td>
+      <td>3700.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>Adelie</td>
+      <td>Dream</td>
+      <td>37.5</td>
+      <td>18.9</td>
+      <td>179.0</td>
+      <td>2975.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>246</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>44.5</td>
+      <td>14.3</td>
+      <td>216.0</td>
+      <td>4100.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>286</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>46.2</td>
+      <td>14.4</td>
+      <td>214.0</td>
+      <td>4650.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>324</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>47.3</td>
+      <td>13.8</td>
+      <td>216.0</td>
+      <td>4725.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>336</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>44.5</td>
+      <td>15.7</td>
+      <td>217.0</td>
+      <td>4875.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="how-to-handle-missing-values">
+<h2>How to handle missing values<a class="headerlink" href="#how-to-handle-missing-values" title="Permalink to this heading">#</a></h2>
+<p>There is no one-size-fits-all solution for handling missing value.
+If the dataset is large and only a few values are missing, it might be practical to simply drop these data points.
+Alternatively, techniques such as imputation can be used to fill in the gaps. For instance, if temperature readings are missing in a time series, interpolating based on surrounding data points might be effective.
+Sometimes retaining missing values is beneficial, as their absence itself can provide meaningful insights into the data. For example, if a survey question is left blank, it might indicate that the respondent was uncomfortable answering it.
+Certain algorithms are designed to interpret and learn from these missing patterns, adding an extra layer of analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop rows with missing values</span>
+<span class="c1"># you can use inplace=True to modify the original data frame</span>
+
+<span class="c1"># In our dataset, we can see that there are two samples with no numerical measurements</span>
+<span class="c1"># There are 11 samples with only sex missing</span>
+
+<span class="c1"># we can drop all rows with missing values, becasue that&#39;s a small fraction of the data</span>
+
+<span class="c1"># maybe we can drop rows with missing numerical measurements and keep those with missing sex</span>
+<span class="c1"># This can be achieved by thresh=6, which means that the row must have at least 6 non-missing values</span>
+
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">df_clean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>MALE</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.3</td>
+      <td>20.6</td>
+      <td>190.0</td>
+      <td>3650.0</td>
+      <td>MALE</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>338</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>47.2</td>
+      <td>13.7</td>
+      <td>214.0</td>
+      <td>4925.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>46.8</td>
+      <td>14.3</td>
+      <td>215.0</td>
+      <td>4850.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>50.4</td>
+      <td>15.7</td>
+      <td>222.0</td>
+      <td>5750.0</td>
+      <td>MALE</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>45.2</td>
+      <td>14.8</td>
+      <td>212.0</td>
+      <td>5200.0</td>
+      <td>FEMALE</td>
+    </tr>
+    <tr>
+      <th>343</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>49.9</td>
+      <td>16.1</td>
+      <td>213.0</td>
+      <td>5400.0</td>
+      <td>MALE</td>
+    </tr>
+  </tbody>
+</table>
+<p>342 rows × 7 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
 <section class="tex2jax_ignore mathjax_ignore" id="view-or-copy">
 <h1>View or Copy<a class="headerlink" href="#view-or-copy" title="Permalink to this heading">#</a></h1>
 <p>Use iloc or loc to modify the DataFrame.</p>
@@ -1414,6 +1748,10 @@ Name: A, dtype: int64
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes">DataFrames</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing">Indexing and slicing</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics">Descriptive statistics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">Missing values</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-handle-missing-values">How to handle missing values</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#view-or-copy">View or Copy</a></li>
 </ul>
 

@@ -166,6 +166,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
@@ -182,6 +183,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
 </ul>
@@ -336,8 +341,15 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions">Distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation">Expectation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation">Expectation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-expectation-of-a-random-variable-from-data">How to estimate the expectation of a random variable from data?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-variance-of-a-random-variable-from-data">How to estimate the variance of a random variable from data?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation">Standard Deviation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a><ul class="nav section-nav flex-column">
@@ -410,18 +422,35 @@ document.write(`
 </ul>
 <p>You can always think of the random variable as the “payoff” in a game, and the expectation is the “average payoff” in each round of the game if you play it many times.</p>
 <p>We have <span class="math notranslate nohighlight">\(E[aX + bY] = aE[X] + bE[Y]\)</span> for any constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<section id="how-to-estimate-the-expectation-of-a-random-variable-from-data">
+<h3>How to estimate the expectation of a random variable from data?<a class="headerlink" href="#how-to-estimate-the-expectation-of-a-random-variable-from-data" title="Permalink to this heading">#</a></h3>
+<p>One common approach is to use the sample mean: if <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> are independent and identically distributed (i.i.d.) samples of <span class="math notranslate nohighlight">\(X\)</span>, then the sample mean <span class="math notranslate nohighlight">\(\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i\)</span> is an estimator of <span class="math notranslate nohighlight">\(E[X]\)</span></p>
+</section>
 </section>
 <section id="variance">
 <h2>Variance<a class="headerlink" href="#variance" title="Permalink to this heading">#</a></h2>
-<p>Variance quantifies the spread of a distribution around its mean, reflecting the variability of the random variable.</p>
-<ul class="simple">
-<li><p>For any random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(X) = E[(X - E[X])^2]\)</span>.</p></li>
-<li><p>Using linearity of expectation, we have <span class="math notranslate nohighlight">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span>.</p></li>
-</ul>
+<p>Variance quantifies the spread of a distribution around its mean, reflecting the variability of the random variable. <span class="math notranslate nohighlight">\(\text{Var}(X) = E[(X - E[X])^2]\)</span></p>
+<p>Alternatively, we can compute the variance as <span class="math notranslate nohighlight">\(\text{Var}(X) = E[X^2] - (E[X])^2\)</span>:
+\begin{align*}
+\text{Var}(X) &amp; = E[(X - E[X])^2] \
+&amp; = E[X^2 - 2XE[X] + (E[X])^2] \
+&amp; = E[X^2] - 2E[X]E[X] + (E[X])^2 \
+&amp; = E[X^2] - (E[X])^2.
+\end{align*}
+The key here is that E[X] is a constant: it’s an property of the distribution of X, not a random variable.</p>
+<section id="how-to-estimate-the-variance-of-a-random-variable-from-data">
+<h3>How to estimate the variance of a random variable from data?<a class="headerlink" href="#how-to-estimate-the-variance-of-a-random-variable-from-data" title="Permalink to this heading">#</a></h3>
+<p>One common approach is to use the sample variance: if <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> are i.i.d. samples of <span class="math notranslate nohighlight">\(X\)</span>, then the sample variance <span class="math notranslate nohighlight">\(S^2 = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2\)</span> is an estimator of <span class="math notranslate nohighlight">\(\text{Var}(X)\)</span>.
+(This is not an “unbiased estimator” in statistics, no need to worry about that in this course)</p>
+</section>
+</section>
+<section id="standard-deviation">
+<h2>Standard Deviation<a class="headerlink" href="#standard-deviation" title="Permalink to this heading">#</a></h2>
+<p>The standard deviation is the square root of the variance, <span class="math notranslate nohighlight">\(\sigma^2 = \text{Var}(X)\)</span>, providing a measure of the spread of a distribution in the same units as the random variable.</p>
 </section>
 <section id="covariance">
 <h2>Covariance<a class="headerlink" href="#covariance" title="Permalink to this heading">#</a></h2>
-<p>Covariance provides a measure of how two random variables change together. For example, if we treat weight and height as random variables, then knowning that someone is taller than average might make it more likely that they have above-average weight.</p>
+<p>Covariance provides a measure of how two random variables change together. For example, if we treat weight and height as random variables, then knowing that someone is taller than average might make it more likely that they have above-average weight.</p>
 <p>For random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, the covariance is defined as <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = E[(X - E[X])(Y - E[Y])]\)</span>.</p>
 <p>Using the linearity of expectation, we also have <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = E[XY] - E[X] \cdot E[Y]\)</span>.</p>
 </section>
@@ -451,6 +480,7 @@ In this example, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0\
 <h3>Correlation is Not Causation<a class="headerlink" href="#correlation-is-not-causation" title="Permalink to this heading">#</a></h3>
 <p>Correlation measures the strength and direction of a linear relationship between two variables. However, it does not imply causation.</p>
 <p>For example: Ice cream sales and drowning incidents might be correlated (both increase in the summer), but one does not cause the other.</p>
+<p>See <a class="reference external" href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for more examples.</p>
 </section>
 <section id="dependence-is-not-causation">
 <h3>Dependence is Not Causation<a class="headerlink" href="#dependence-is-not-causation" title="Permalink to this heading">#</a></h3>
@@ -651,8 +681,8 @@ Then knowing the state of switch A gives no information about the light. But the
 $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)</span>$</p>
 <p>We can estimate the variance by</p>
 <div class="math notranslate nohighlight">
-\[ \hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2\]</div>
-<p>We essentially replace the expected value with the sample mean. (This is one way. For “unbiased estimation” in statistics, we would divide by <span class="math notranslate nohighlight">\(n-1\)</span> instead of <span class="math notranslate nohighlight">\(n\)</span>. But for large <span class="math notranslate nohighlight">\(n\)</span>, the difference is negligible.)</p>
+\[ S^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2\]</div>
+<p>We essentially replace the expected value with the sample mean.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimate variance of dice row</span>
@@ -856,8 +886,15 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributions">Distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation">Expectation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation">Expectation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-expectation-of-a-random-variable-from-data">How to estimate the expectation of a random variable from data?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">Variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-estimate-the-variance-of-a-random-variable-from-data">How to estimate the variance of a random variable from data?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation">Standard Deviation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covariance">Covariance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independence">Independence</a><ul class="nav section-nav flex-column">
