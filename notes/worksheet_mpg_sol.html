@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
@@ -518,22 +519,10 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
-  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;mpg&#39;, ylabel=&#39;Count&#39;&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mpg&#39;, ylabel=&#39;Count&#39;&gt;
-</pre></div>
-</div>
-<img alt="../_images/aa331a6fe551e316a9c2c62ca8340c57b2ac0f088c3f52fdb830c63f9cb50a19.png" src="../_images/aa331a6fe551e316a9c2c62ca8340c57b2ac0f088c3f52fdb830c63f9cb50a19.png" />
+<img alt="../_images/31ebb47619e06a8f4cbd25ca70c33e6d20e5d3e1d68efeb89c273fb9dc8a35da.png" src="../_images/31ebb47619e06a8f4cbd25ca70c33e6d20e5d3e1d68efeb89c273fb9dc8a35da.png" />
 </div>
 </div>
 <p>Q: How to visualize different percentiles of <code class="docutils literal notranslate"><span class="pre">mpg</span></code> for different <code class="docutils literal notranslate"><span class="pre">origin</span></code>?</p>
@@ -544,10 +533,10 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;origin&#39;, ylabel=&#39;mpg&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;origin&#39;, ylabel=&#39;mpg&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/55cc332d521f81b71c8b17321448d31543d13bb537dd8d5a367ac5a384fc0005.png" src="../_images/55cc332d521f81b71c8b17321448d31543d13bb537dd8d5a367ac5a384fc0005.png" />
+<img alt="../_images/df23b179413ee5bfffcaa2e26092f69b07e3537ae3f9906232a6596cf809e32b.png" src="../_images/df23b179413ee5bfffcaa2e26092f69b07e3537ae3f9906232a6596cf809e32b.png" />
 </div>
 </div>
 <p>Q: Calculate and display the mean and standard deviation of the <code class="docutils literal notranslate"><span class="pre">mpg</span></code> and <code class="docutils literal notranslate"><span class="pre">horsepower</span></code> for each country.</p>
@@ -673,10 +662,10 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
 </pre></div>
 </div>
-<img alt="../_images/e27526e5e22a41ec67d8b307267f0aa85ee531e5a7d14225319c0c7326c44a12.png" src="../_images/e27526e5e22a41ec67d8b307267f0aa85ee531e5a7d14225319c0c7326c44a12.png" />
+<img alt="../_images/adad0268b1a2d68131def6e54eded5a008203be735512a205b3cd988774ba01a.png" src="../_images/adad0268b1a2d68131def6e54eded5a008203be735512a205b3cd988774ba01a.png" />
 </div>
 </div>
 <p>Q: Create a pair plot of <code class="docutils literal notranslate"><span class="pre">mpg</span></code>, <code class="docutils literal notranslate"><span class="pre">displacement</span></code>, <code class="docutils literal notranslate"><span class="pre">horsepower</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight</span></code>, colored by the <code class="docutils literal notranslate"><span class="pre">origin</span></code> of the cars. How do these variables interact with each other, and does car origin seem to influence these interactions?</p>
@@ -688,52 +677,10 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
-  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
-  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
-  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
-  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
-/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1075: FutureWarning: When grouping with a length-1 list-like, you will need to pass a length-1 tuple to get_group in a future version of pandas. Pass `(name,)` instead of `name` to silence this warning.
-  data_subset = grouped_data.get_group(pd_key)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x7fc4a0aa1f10&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x1634f37d0&gt;
-</pre></div>
-</div>
-<img alt="../_images/f1c64d465af3120c261de21969798beb8f16429deaf3428de6cd3c668cce9f32.png" src="../_images/f1c64d465af3120c261de21969798beb8f16429deaf3428de6cd3c668cce9f32.png" />
+<img alt="../_images/5a5ff266005b0206a3daecc8e5a3b87fe93bf0c01536e3999d3fc5284244f54c.png" src="../_images/5a5ff266005b0206a3daecc8e5a3b87fe93bf0c01536e3999d3fc5284244f54c.png" />
 </div>
 </div>
 <p>Q Assuming the dataset includes a <code class="docutils literal notranslate"><span class="pre">model_year</span></code>, plot the trend of average <code class="docutils literal notranslate"><span class="pre">mpg</span></code> over the years. What trend do you observe in fuel efficiency over the years?</p>
@@ -746,10 +693,23 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;model_year&#39;, ylabel=&#39;mpg&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;model_year&#39;, ylabel=&#39;mpg&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/687a5eaa40078082ac5da897db1e2942761d818166dc6f73081b1f39fe41ac36.png" src="../_images/687a5eaa40078082ac5da897db1e2942761d818166dc6f73081b1f39fe41ac36.png" />
+<img alt="../_images/24c11fe56b3517b959173da3272fcdeed268128adf678b3f5f313879e8e4e7aa.png" src="../_images/24c11fe56b3517b959173da3272fcdeed268128adf678b3f5f313879e8e4e7aa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;model_year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;model_year&#39;, ylabel=&#39;mpg&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/cdef914df7bfd68bdd1f9e55644b408a3b30b8915267b1fa4b5197b302e99075.png" src="../_images/cdef914df7bfd68bdd1f9e55644b408a3b30b8915267b1fa4b5197b302e99075.png" />
 </div>
 </div>
 <p>Q Suppose someone says “US cars are less fuel efficient than European and Japanese cars”. Use the data, think of arguments that support and oppose this statement.</p>
@@ -765,10 +725,27 @@ memory usage: 28.1+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;model_year&#39;, ylabel=&#39;count&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;model_year&#39;, ylabel=&#39;count&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/cfe326bca2075b87ae406f0abc8cb5004a948b34eb5af09566dba56a8bab9fa6.png" src="../_images/cfe326bca2075b87ae406f0abc8cb5004a948b34eb5af09566dba56a8bab9fa6.png" />
+<img alt="../_images/deec3d50ea06a9425f193df80c6dafbe8def0de154a5e7698cb70ccee64a64d9.png" src="../_images/deec3d50ea06a9425f193df80c6dafbe8def0de154a5e7698cb70ccee64a64d9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># another way to visualize</span>
+<span class="c1"># It seems in this dataset, japan cars are &quot;newer&quot; than the other two origins, leading to higher mpg.</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;model_year&#39;</span><span class="p">)</span>
+
+<span class="c1"># A larger proportion of Japan cars are around 80-82 model year, while US cars are around 72-77 model year.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;origin&#39;, ylabel=&#39;model_year&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/498705b84d21baaabbfa7aec0f94f94b9f826c67d15958048eb835459a817c93.png" src="../_images/498705b84d21baaabbfa7aec0f94f94b9f826c67d15958048eb835459a817c93.png" />
 </div>
 </div>
 </section>
