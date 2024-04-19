@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
@@ -731,6 +732,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find the most correlated stock</span>
+<span class="n">mx</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ticks</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+
 <span class="n">max_corr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 <span class="n">idx_max_corr</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 

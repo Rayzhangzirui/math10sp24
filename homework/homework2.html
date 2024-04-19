@@ -185,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
@@ -393,9 +394,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Q2 Binomial Distribution: If we throw a coin <span class="math notranslate nohighlight">\(n\)</span> times, and the the probability of getting a head is <span class="math notranslate nohighlight">\(p\)</span>.</p>
-<p>Let X be the number of heads. Then X is a random variable, and the probability of getting <span class="math notranslate nohighlight">\(k\)</span> heads is given by the binomial distribution.</p>
-<p>(1) Suppose we throw a fair coin 100 times. Intuitively, what should the distribution looks like? Find the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> function that sample from the binomial distribution. Visualize the distribution using a histogram.</p>
+<p>Q2 Binomial Distribution: If we throw a coin <span class="math notranslate nohighlight">\(n\)</span> times, and the probability of getting a head is <span class="math notranslate nohighlight">\(p\)</span>. Let X be the number of heads. Then X is a random variable, and the probability of getting <span class="math notranslate nohighlight">\(k\)</span> heads is given by the binomial distribution.</p>
+<p>(1) Suppose we draw N samples from the distribution with n = 100 and p = 0.5. That is, each sample is the number of heads we get when we throw a fair coin 100 times.</p>
+<p>Intuitively, what should the distribution looks like? Find the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> function that sample from the binomial distribution. Visualize the distribution using a histogram. Choose a large N. (e.g N= 1000)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#code here</span>

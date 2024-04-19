@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
@@ -335,18 +336,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Regression</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-centering-the-data">What is the effect of centering the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-scaling-the-data">What is the effect of scaling the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -359,14 +355,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
-<section id="id1">
-<h2><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <section id="problem">
-<h3><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h3>
+<h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function $<span class="math notranslate nohighlight">\(y\approx f(x)=wx +b\)</span><span class="math notranslate nohighlight">\( that fits the relations between \)</span>x_i<span class="math notranslate nohighlight">\( and \)</span>y_i<span class="math notranslate nohighlight">\(. So that given any new \)</span>x^{test}<span class="math notranslate nohighlight">\( in the **test** dataset, we can make the prediction \)</span><span class="math notranslate nohighlight">\(y^{pred} = w x^{test}+b\)</span>$</p>
 </section>
 <section id="training-the-model">
-<h3>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h3>
+<h2>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(w,b)\)</span> of parameter <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which is also called <strong>mean squared error</strong> (MSE)</p></li>
 </ul>
@@ -383,7 +377,7 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </section>
 <section id="evaluating-the-model">
-<h3>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h3>
+<h2>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>MSE: The smaller MSE indicates better performance</p></li>
 <li><p>R-Squared: The larger <span class="math notranslate nohighlight">\(R^{2}\)</span> (closer to 1) indicates better performance. Compared with MSE, R-squared is <strong>dimensionless</strong>, not dependent on the units of variable.</p></li>
@@ -469,35 +463,37 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># for reproducibility</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
-<span class="c1"># x = np.array([1, 2])</span>
-<span class="c1"># y = np.array([2, 4])</span>
 
 <span class="c1"># Fit the model</span>
 <span class="n">lm</span> <span class="o">=</span> <span class="n">myLinearRegression</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 
-<span class="c1"># plot </span>
+<span class="c1"># plot data</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">)</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
+<span class="c1"># plot the linear regression model</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pred, $R^2$=</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.994, b = 1.022
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = 1.022
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f82c8b2a6d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc1e8a76150&gt;
 </pre></div>
 </div>
-<img alt="../_images/f7ea21019864b65dcecf1dcf585812557162a5378c05cf987d796d6513d747a4.png" src="../_images/f7ea21019864b65dcecf1dcf585812557162a5378c05cf987d796d6513d747a4.png" />
+<img alt="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" src="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -516,17 +512,72 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.994, b = 1.022
-score = 0.971
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = 1.022
+score = 0.993
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="what-is-the-effect-of-centering-the-data">
+<h2>What is the effect of centering the data?<a class="headerlink" href="#what-is-the-effect-of-centering-the-data" title="Permalink to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(X\)</span> is centered, the slope <span class="math notranslate nohighlight">\(w\)</span> remains the same, but the intercept <span class="math notranslate nohighlight">\(b\)</span> changes.</p>
+<p>The intercept now means the predicted Y when X is at the mean.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_center</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_center</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;w = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = 2.910
+</pre></div>
+</div>
+</div>
+</div>
+<p>When Y is centered, then the intercept <span class="math notranslate nohighlight">\(b\)</span> is 0, and the slope <span class="math notranslate nohighlight">\(w\)</span> is the correlation between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_center</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_center</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_center</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;w = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = -0.000
+</pre></div>
+</div>
+</div>
+</div>
 </section>
+<section id="what-is-the-effect-of-scaling-the-data">
+<h2>What is the effect of scaling the data?<a class="headerlink" href="#what-is-the-effect-of-scaling-the-data" title="Permalink to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(X/c\)</span> is used, the optimal slope is now <span class="math notranslate nohighlight">\(c w\)</span>, and the intercept does not change</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># suppose we want to scale x to [0, 1]</span>
+<span class="n">scale_factor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_scale</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">scale_factor</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_scale</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;w = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">, b = </span><span class="si">{</span><span class="n">reg</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 3.947, b = 1.022
+</pre></div>
+</div>
+</div>
+</div>
+<p>For <em>linear regression</em>, centering and scaling the data (both training and testing data ) does not affect the performance of the model.</p>
+<p>For some other models, centering and scaling might be important.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="detailed-derivation-of-the-optimal-parameters">
-<h1>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Permalink to this heading">#</a></h1>
+<section id="detailed-derivation-of-the-optimal-parameters">
+<h2>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Permalink to this heading">#</a></h2>
 <p>The loss function for simple linear regression is given by:</p>
 <div class="math notranslate nohighlight">
 \[L(w, b) = \frac{1}{N} \sum_{i=1}^N ((wx_i + b) - y_i)^2\]</div>
@@ -573,6 +624,7 @@ Divide both the numerator and the denominator by <span class="math notranslate n
 We can rewrite the above equation in terms of covariance and variance:
 $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</span>$</p>
 <p>This is the final expression for <span class="math notranslate nohighlight">\(w^*\)</span> in simple linear regression, representing the slope of the best-fit line.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -624,18 +676,13 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Linear Regression</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-centering-the-data">What is the effect of centering the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-scaling-the-data">What is the effect of scaling the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

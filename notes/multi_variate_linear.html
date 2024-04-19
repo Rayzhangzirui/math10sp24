@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title> &#8212; UCI Math 10, Spring 2024</title>
+    <title>&lt;no title&gt; &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -61,8 +61,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/multi_variate_linear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -183,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
@@ -325,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,11 +333,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
+
             </nav>
         </div>
     </div>
@@ -356,41 +353,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="id1">
-<h1><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
-<section id="problem">
-<h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
-<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function $<span class="math notranslate nohighlight">\(y\approx f(x)=wx +b\)</span><span class="math notranslate nohighlight">\( that fits the relations between \)</span>x_i<span class="math notranslate nohighlight">\( and \)</span>y_i<span class="math notranslate nohighlight">\(. So that given any new \)</span>x^{test}<span class="math notranslate nohighlight">\( in the **test** dataset, we can make the prediction \)</span><span class="math notranslate nohighlight">\(y^{pred} = w x^{test}+b\)</span>$</p>
-</section>
-<section id="training-the-model">
-<h2>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(w,b)\)</span> of parameter <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which is also called <strong>mean squared error</strong> (MSE)</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[L(w,b)=\frac{1}{N}\sum_{i=1}^N\big(\hat{y}^{(i)}-y_i\big)^2=\frac{1}{N}\sum_{i=1}^N\big((wx_i+b)-y_i\big)^2,\]</div>
-<p>where <span class="math notranslate nohighlight">\(\hat{y}^{(i)}\)</span> denotes the predicted value of y at <span class="math notranslate nohighlight">\(x_i\)</span>, i.e. <span class="math notranslate nohighlight">\(\hat{y}^{(i)} = wx_i+b\)</span>.</p>
-<ul class="simple">
-<li><p>Then find the minimum of loss function – note that this is the quadratic function of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and we can analytically solve <span class="math notranslate nohighlight">\(\partial_{w}L = \partial_{b}L =0\)</span>, and yields</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[w^* = \frac{\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{N} (x_i - \bar{x})^2} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)}\]</div>
-<div class="math notranslate nohighlight">
-\[b^* = \bar{y}  - w^*\bar{x}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
-</section>
-<section id="evaluating-the-model">
-<h2>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>MSE: The smaller MSE indicates better performance</p></li>
-<li><p>R-Squared: The larger <span class="math notranslate nohighlight">\(R^{2}\)</span> (closer to 1) indicates better performance. Compared with MSE, R-squared is <strong>dimensionless</strong>, not dependent on the units of variable.</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[R^{2} = 1 - \frac{\sum_{i=1}^{N}(y_i-\hat{y}^{(i)})^{2}}{\sum_{i=1}^{N}(y_i-\bar{y})^{2}} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(y_i-\hat{y}^{(i)})^{2}}{\frac{1}{N}\sum_{i=1}^{N}(y_i-\bar{y})^{2}} = 1 - \frac{\text{MSE}}{\text{Var}(Y)}\]</div>
-<p>Intuitively, MSE is the “unexplained” variance, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is the proportion of the variance that is explained by the model: if we are not using any model, then our best prediction is the mean of <span class="math notranslate nohighlight">\(y\)</span>, and MSE is the variance of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is 0;
-If our model is perfect, then MSE is 0, and <span class="math notranslate nohighlight">\(R^{2}\)</span> is 1.</p>
-</section>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -440,11 +402,9 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
+
   </nav></div>
 
 </div></div>
