@@ -188,7 +188,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
 </ul>
 
     </div>
@@ -358,7 +360,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-is-not-no-causation">Independent is Not “No-Causation”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
 </ul>
 </li>
@@ -468,10 +470,14 @@ The key here is that E[X] is a constant: it’s an property of the distribution 
 <h3>Independence and Covariance<a class="headerlink" href="#independence-and-covariance" title="Permalink to this heading">#</a></h3>
 <p><strong>Independence implies zero covariance. But the converse is not necessarily true.</strong></p>
 <p>Exercise: If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, use the linearity of expectation to show that <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = 0\)</span>.</p>
+<p>Covariance and correlation only measure <em>linear</em> relationships between random variables. They can’t capture more complex relationships.</p>
+<p>Example of zero covariance but not independence:</p>
 <p>Consider a scenario where <span class="math notranslate nohighlight">\(X\)</span> is a random variable uniformly distributed over <span class="math notranslate nohighlight">\([-1, 1]\)</span> and define <span class="math notranslate nohighlight">\(Y = X^2\)</span>.
-Now they are not independent. However, we can show that <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = 0\)</span>:
-Recall <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = \mathbb{E}[X \cdot Y] - \mathbb{E}[X]\mathbb{E}[Y] = 0\)</span>.
+Now they are not independent: knowing <span class="math notranslate nohighlight">\(X\)</span> gives information about <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Recall <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = \mathbb{E}[X \cdot Y] - \mathbb{E}[X]\mathbb{E}[Y] = 0\)</span>.
 In this example, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0\)</span>, and <span class="math notranslate nohighlight">\(XY = X^3\)</span> is an odd function, so <span class="math notranslate nohighlight">\(\mathbb{E}[X \cdot Y] = 0\)</span> ( for every positive outcome, there is a corresponding negative outcome with the same probability).</p>
+<p>Alternatively, recall the <span class="math notranslate nohighlight">\(\text{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = 0\)</span>. <span class="math notranslate nohighlight">\(E[X]\)</span> is 0, and <span class="math notranslate nohighlight">\(E[Y]\)</span> is somewhere between 0 and 1.
+When <span class="math notranslate nohighlight">\(X&gt;E[X]\)</span>, <span class="math notranslate nohighlight">\(Y\)</span> could be smaller than or larger than <span class="math notranslate nohighlight">\(E[Y]\)</span>. Therefore these two variable does not move in the same direction with respect to their means.</p>
 </section>
 </section>
 <section id="causality">
@@ -482,11 +488,13 @@ In this example, <span class="math notranslate nohighlight">\(\mathbb{E}[X] = 0\
 <p>For example: Ice cream sales and drowning incidents might be correlated (both increase in the summer), but one does not cause the other.</p>
 <p>See <a class="reference external" href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for more examples.</p>
 </section>
-<section id="dependence-is-not-causation">
-<h3>Dependence is Not Causation<a class="headerlink" href="#dependence-is-not-causation" title="Permalink to this heading">#</a></h3>
+<section id="independent-is-not-no-causation">
+<h3>Independent is Not “No-Causation”<a class="headerlink" href="#independent-is-not-no-causation" title="Permalink to this heading">#</a></h3>
 <p>Suppose two light switches, A and B, control the light bulb in the following way: the light is on if (1) A on B off or (2) A off B on.
 Assume the switch are independent “coin flips”: equally likely to be on or off.
-Then knowing the state of switch A gives no information about the light. But there is still a “cause and effect” relationship between the switch and the light. Example adapted from <a class="reference external" href="https://stats.stackexchange.com/questions/357255/does-statistical-independence-mean-lack-of-causation">here</a>.</p>
+Then knowing the state of switch A gives no information about the light. But there is still a “cause and effect” relationship between the switch and the light.
+We only see this relationship when we consider both switches together.
+(Example adapted from <a class="reference external" href="https://stats.stackexchange.com/questions/357255/does-statistical-independence-mean-lack-of-causation">here</a>)</p>
 </section>
 <section id="establishing-causality">
 <h3>Establishing Causality<a class="headerlink" href="#establishing-causality" title="Permalink to this heading">#</a></h3>
@@ -516,7 +524,7 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.17
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.19
 </pre></div>
 </div>
 </div>
@@ -533,7 +541,7 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.48
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.51
 </pre></div>
 </div>
 </div>
@@ -564,12 +572,12 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([19., 19., 14., 15., 16., 17.]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([19., 18., 14., 10., 23., 16.]),
  array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]),
  &lt;BarContainer object of 6 artists&gt;)
 </pre></div>
 </div>
-<img alt="../_images/c15be7fb5266f22102c090a865cd6c80dbe35aff5941bbd0183a391a2eef52f7.png" src="../_images/c15be7fb5266f22102c090a865cd6c80dbe35aff5941bbd0183a391a2eef52f7.png" />
+<img alt="../_images/87dd5e751b5afca9414269060ab620f85739dd30c1993a4edfc3cb2e15601fb6.png" src="../_images/87dd5e751b5afca9414269060ab620f85739dd30c1993a4edfc3cb2e15601fb6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -591,14 +599,14 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([49., 60., 46., 52., 43., 50., 45., 40., 51., 50., 43., 45., 64.,
-        50., 52., 60., 57., 47., 46., 50.]),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([43., 46., 48., 48., 50., 44., 51., 52., 39., 39., 55., 55., 55.,
+        55., 44., 63., 63., 49., 48., 53.]),
  array([0.  , 0.05, 0.1 , 0.15, 0.2 , 0.25, 0.3 , 0.35, 0.4 , 0.45, 0.5 ,
         0.55, 0.6 , 0.65, 0.7 , 0.75, 0.8 , 0.85, 0.9 , 0.95, 1.  ]),
  &lt;BarContainer object of 20 artists&gt;)
 </pre></div>
 </div>
-<img alt="../_images/c29e7b11d74dd6faa21a845b910365f58da3117022d7688788cb00c8405dc83b.png" src="../_images/c29e7b11d74dd6faa21a845b910365f58da3117022d7688788cb00c8405dc83b.png" />
+<img alt="../_images/c33e2544596efacc61db59b3db501a966b45e1636b1944f16ac473935601a989.png" src="../_images/c33e2544596efacc61db59b3db501a966b45e1636b1944f16ac473935601a989.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -624,10 +632,10 @@ Then knowing the state of switch A gives no information about the light. But the
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe6c9ec9690&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb140f36110&gt;]
 </pre></div>
 </div>
-<img alt="../_images/22cf9c3dd206bfbc99d73c3ce5a9b1b6a2208bf11a99d9a84463ae6695b75fc8.png" src="../_images/22cf9c3dd206bfbc99d73c3ce5a9b1b6a2208bf11a99d9a84463ae6695b75fc8.png" />
+<img alt="../_images/22e8ba31844215cd57af137b7c1d7b389c9ae9c6e47362eafe94a109029accde.png" src="../_images/22e8ba31844215cd57af137b7c1d7b389c9ae9c6e47362eafe94a109029accde.png" />
 </div>
 </div>
 <section id="how-to-estimate-the-e-x">
@@ -640,11 +648,16 @@ Then knowing the state of switch A gives no information about the light. But the
 <p>The law of large numbers states that the sample mean converges to the expected value as the sample size increases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In each experiment, we draw n samples and estimate the mean</span>
-<span class="c1"># for small n, each estimation might have large variability from experiment to experiment</span>
-<span class="c1"># as n increases, the variability decreases</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In each experiment, we draw n samples and estimate the mean.</span>
+<span class="c1"># For small n, each estimation might have large variability for different repetitions.</span>
+<span class="c1"># As n increases, the variability decreases.</span>
+<span class="c1"># For very large n, the estimates are almost the same as the true mean and the variability is very small.</span>
+
+<span class="c1"># use n sample to estimate the mean</span>
 <span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10000</span><span class="p">]</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of repetitions for each n</span>
+
+<span class="c1"># number of repetitions for each n</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span> 
 
 <span class="c1"># store the estimates, each row is a different n, each column is a different repetition</span>
 <span class="n">estiamtes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">k</span><span class="p">))</span>
@@ -671,7 +684,7 @@ Then knowing the state of switch A gives no information about the light. But the
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;estimated mean&#39;)
 </pre></div>
 </div>
-<img alt="../_images/492258d461b3e0748c81be5b360a4b17f87d3c77a220ae164a5b330cbd5805da.png" src="../_images/492258d461b3e0748c81be5b360a4b17f87d3c77a220ae164a5b330cbd5805da.png" />
+<img alt="../_images/7295123d24294d0c7b057b1e5849c42dfadb48742a9cf9aecd5c83306630b7a8.png" src="../_images/7295123d24294d0c7b057b1e5849c42dfadb48742a9cf9aecd5c83306630b7a8.png" />
 </div>
 </div>
 </section>
@@ -695,7 +708,7 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8499000000000008 2.8499000000000008
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.4059 2.4059
 </pre></div>
 </div>
 </div>
@@ -713,44 +726,43 @@ $<span class="math notranslate nohighlight">\( \text{Var}(X) = E[(X - E[X])^2]\)
 <span class="c1"># Y is a linear function of X plus noise</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
-<span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-
+<span class="c1"># z is independent of X</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 
 
 
 <span class="c1"># compute our own correlation coefficient</span>
 <span class="c1"># corr(x,y) = cov(x,y) / (std(x) * std(y))</span>
 
-<span class="n">my_coef</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">my_corr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
+<span class="c1"># using numpy</span>
+<span class="c1"># np.corrcoef returns a matrix M with the correlation coefficients [corr(x,x), corr(x,y); corr(y,x), corr(y,y)]</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">my_coef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">))</span>
 
 <span class="c1"># scatter plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r = </span><span class="si">{</span><span class="n">my_coef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r = </span><span class="si">{</span><span class="n">my_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="c1"># equal axis</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r = </span><span class="si">{</span><span class="n">my_coef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;r = </span><span class="si">{</span><span class="n">my_corr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
-
-<span class="c1"># using numpy</span>
-<span class="c1"># np.corrcoef returns a matrix M with the correlation coefficients [corr(x,x), corr(x,y); corr(y,x), corr(y,y)]</span>
-<span class="n">coef_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">coef_matrix</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.15325152556968852
-[[1.         0.77608297]
- [0.77608297 1.        ]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7989815521783616
+[[1.         0.79898155]
+ [0.79898155 1.        ]]
 </pre></div>
 </div>
-<img alt="../_images/11d50435ce6293ff6b34fb9d3faf06584a252a2414dbe8571e3351aa1cffcac9.png" src="../_images/11d50435ce6293ff6b34fb9d3faf06584a252a2414dbe8571e3351aa1cffcac9.png" />
+<img alt="../_images/7394810e84ac2d59437479e8de82831865de2d20160082d9048449cbc459b4cd.png" src="../_images/7394810e84ac2d59437479e8de82831865de2d20160082d9048449cbc459b4cd.png" />
 </div>
 </div>
 </section>
@@ -805,7 +817,7 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-5.0, 5.0)
 </pre></div>
 </div>
-<img alt="../_images/74afbae2cce4990b1e4b74825ed51e7e0b3e2b7bdd3b9490664b833ac2392060.png" src="../_images/74afbae2cce4990b1e4b74825ed51e7e0b3e2b7bdd3b9490664b833ac2392060.png" />
+<img alt="../_images/1a6c7f94c11040c25ed75a27af9d021ee15c987ba37c70846c067f79e367da86.png" src="../_images/1a6c7f94c11040c25ed75a27af9d021ee15c987ba37c70846c067f79e367da86.png" />
 </div>
 </div>
 </section>
@@ -903,7 +915,7 @@ then for large n, Z is approximately normally distributed with mean 0 and varian
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causality">Causality</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-is-not-causation">Correlation is Not Causation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependence-is-not-causation">Dependence is Not Causation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-is-not-no-causation">Independent is Not “No-Causation”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#establishing-causality">Establishing Causality</a></li>
 </ul>
 </li>

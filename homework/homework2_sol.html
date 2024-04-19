@@ -164,6 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+
 <li class="toctree-l1"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
 
 
@@ -180,8 +181,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
 </ul>
 
     </div>
@@ -454,10 +461,14 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:ylabel=&#39;Density&#39;&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context(&#39;mode.use_inf_as_na&#39;, True):
 </pre></div>
 </div>
-<img alt="../_images/9f23cc5c9118a13dcb3af0b49fd6050c11144c873734cff31f16be363f8acbce.png" src="../_images/9f23cc5c9118a13dcb3af0b49fd6050c11144c873734cff31f16be363f8acbce.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Density&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/2b8212a39b794f6bb702367fddc832c9b78e7ff1aa2a28c8b1c3a11aa9bdd506.png" src="../_images/2b8212a39b794f6bb702367fddc832c9b78e7ff1aa2a28c8b1c3a11aa9bdd506.png" />
 </div>
 </div>
 <p>(2) Suppose <span class="math notranslate nohighlight">\(n=100\)</span> and <span class="math notranslate nohighlight">\(p=0.6\)</span>. Intuitively, what is the expectation of X. Estimate the expectation and variance of X numerically using 10000 samples.</p>
@@ -478,7 +489,7 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60.0232 23.87686176
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60.0343 23.56992351
 </pre></div>
 </div>
 </div>
@@ -606,10 +617,10 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.14285960069312367
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.14285960069312353
 </pre></div>
 </div>
-<img alt="../_images/8350b69ad736def8fe95e42db698e351a3a0e0ca609d3d9220bd8cc3c68aa3b9.png" src="../_images/8350b69ad736def8fe95e42db698e351a3a0e0ca609d3d9220bd8cc3c68aa3b9.png" />
+<img alt="../_images/96e5a8d28f35d778e389e9d564ae583273faf9f660ee620037ec949d7b266ee5.png" src="../_images/96e5a8d28f35d778e389e9d564ae583273faf9f660ee620037ec949d7b266ee5.png" />
 </div>
 </div>
 <p>(3) Does the day of the week affect the tip percentage? Use figures to support your answer.</p>
@@ -622,13 +633,17 @@ True
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;day&#39;, ylabel=&#39;tip_percentage&#39;&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/Ray/opt/anaconda3/envs/torch/lib/python3.11/site-packages/seaborn/categorical.py:641: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  grouped_vals = vals.groupby(grouper)
 </pre></div>
 </div>
-<img alt="../_images/067e4cf5944e4e84d957261f74da71fb9c4d1d56373f9d31c56b59dcdf62241f.png" src="../_images/067e4cf5944e4e84d957261f74da71fb9c4d1d56373f9d31c56b59dcdf62241f.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;day&#39;, ylabel=&#39;tip_percentage&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/ca72435bd06d6c6b3a4f459506a2bfa59910ba5d1b097bc037c9db76adb587a5.png" src="../_images/ca72435bd06d6c6b3a4f459506a2bfa59910ba5d1b097bc037c9db76adb587a5.png" />
 </div>
 </div>
-<p>(4) If a someone book a reservation with party of 4 on Saturday, what is the expected tip amount?</p>
+<p>(4) If someone book a reservation with party of 4 on Saturday, what is the expected tip amount?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the average tip amount of table with size 4 on Saturday</span>
