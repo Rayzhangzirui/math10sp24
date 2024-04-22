@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/linear_regression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="week1 lec1" href="../lectures/week1_lec1.html" />
+    <link rel="prev" title="Visualization" href="visualization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
@@ -168,14 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="matrix_equation.html">Matrix Equations</a></li>
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
@@ -341,6 +336,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-centering-the-data">What is the effect of centering the data?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-scaling-the-data">What is the effect of scaling the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-good-fit">What is a “good” fit?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
 </ul>
             </nav>
@@ -357,7 +353,12 @@ document.write(`
 <h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
 <section id="problem">
 <h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
-<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function $<span class="math notranslate nohighlight">\(y\approx f(x)=wx +b\)</span><span class="math notranslate nohighlight">\( that fits the relations between \)</span>x_i<span class="math notranslate nohighlight">\( and \)</span>y_i<span class="math notranslate nohighlight">\(. So that given any new \)</span>x^{test}<span class="math notranslate nohighlight">\( in the **test** dataset, we can make the prediction \)</span><span class="math notranslate nohighlight">\(y^{pred} = w x^{test}+b\)</span>$</p>
+<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function</p>
+<div class="math notranslate nohighlight">
+\[ y\approx f(x) = wx + b \]</div>
+<p>that fits the relations between <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>. So that given any new <span class="math notranslate nohighlight">\(x^{test}\)</span> in the <strong>test</strong> dataset, we can make the prediction</p>
+<div class="math notranslate nohighlight">
+\[ y^{pred} = w x^{test}+b \]</div>
 </section>
 <section id="training-the-model">
 <h2>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
@@ -490,7 +491,7 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = 1.022
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc1e8a76150&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff5605b0bd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" src="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" />
@@ -574,7 +575,54 @@ score = 0.993
 </div>
 </div>
 <p>For <em>linear regression</em>, centering and scaling the data (both training and testing data ) does not affect the performance of the model.</p>
-<p>For some other models, centering and scaling might be important.</p>
+<p>For some other models, centering and scaling can be essential</p>
+</section>
+<section id="what-is-a-good-fit">
+<h2>What is a “good” fit?<a class="headerlink" href="#what-is-a-good-fit" title="Permalink to this heading">#</a></h2>
+<p>It depends on the metric we use to evaluate the model.</p>
+<p>In the following example, the best model in terms of MSE(mean squared error) might not be the best model in terms of MAE(mean absolute error).</p>
+<div class="math notranslate nohighlight">
+\[\text{MAE} = \frac{1}{N}\sum_{i=1}^{N}|y_i-\hat{y}^{(i)}|\]</div>
+<p>Linear regression based on MSE can seem sensitive to outliers than MAE. But minimize MAE is much more challenging.</p>
+<p>For regression methods that handle outliers, see <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model">Outlier-robust regressors</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+    <span class="s2">&quot;y&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">]},</span>
+<span class="p">)</span>
+
+
+<span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.6</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mf">1.4</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;f2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+
+<span class="c1"># import mse and mae</span>
+<span class="n">f1_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">])</span>
+<span class="n">f2_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f2&quot;</span><span class="p">])</span>
+<span class="n">f1_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">])</span>
+<span class="n">f2_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f2&quot;</span><span class="p">])</span>
+
+<span class="c1"># plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f2&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;f1, mse=</span><span class="si">{</span><span class="n">f1_mse</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">, mae=</span><span class="si">{</span><span class="n">f1_mae</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;f2, mse=</span><span class="si">{</span><span class="n">f2_mse</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">, mae=</span><span class="si">{</span><span class="n">f2_mae</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff591882750&gt;
+</pre></div>
+</div>
+<img alt="../_images/f9e78f4c419437e3143911a26e99fa11995d393255ea31f069b176bf6a8331a9.png" src="../_images/f9e78f4c419437e3143911a26e99fa11995d393255ea31f069b176bf6a8331a9.png" />
+</div>
+</div>
 </section>
 <section id="detailed-derivation-of-the-optimal-parameters">
 <h2>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Permalink to this heading">#</a></h2>
@@ -658,6 +706,24 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="visualization.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Visualization</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../lectures/week1_lec1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">week1 lec1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -681,6 +747,7 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-centering-the-data">What is the effect of centering the data?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-effect-of-scaling-the-data">What is the effect of scaling the data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-good-fit">What is a “good” fit?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-derivation-of-the-optimal-parameters">Detailed Derivation of the Optimal Parameters</a></li>
 </ul>
   </nav></div>

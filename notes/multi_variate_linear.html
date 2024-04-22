@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; UCI Math 10, Spring 2024</title>
+    <title>Multiple Linear Regression &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/multi_variate_linear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -166,14 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="matrix_equation.html">Matrix Equations</a></li>
-
-
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
@@ -324,7 +319,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Multiple Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -333,7 +328,20 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple Linear Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-in-test-data">Prediction in Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#colinearity">Colinearity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-coefficients">Interpretation of the coefficients</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -346,13 +354,250 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="multiple-linear-regression">
+<h1>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h1>
+<section id="problem">
+<h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
+<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\((x^{(i)},y^{(i)}), i= 1,2,..., N\)</span>, this time with <span class="math notranslate nohighlight">\(y^{(i)}\in \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(x^{(i)}\in\mathbb{R}^{p}\)</span>, we fit the multi-variable linear function</p>
+<div class="math notranslate nohighlight">
+\[y\approx\mathbf{f}(x)=\beta_{0}+\beta_{1}x_{1}+..+\beta_{p}x_{p} = \mathbf{x}\beta,\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{x}=(1,x_{1},..,x_{p})\in\mathbb{R}^{p+1},\beta = (\beta_{0},\beta_{1},..,\beta_{p})^{T}\in\mathbb{R}^{p+1}.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\beta\)</span> is called regression coefficients, and <span class="math notranslate nohighlight">\(\beta_{0}\)</span> specially referred to intercept.</p>
+<p>Using the whole training dataset, we can write as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Y=\left(
+ \begin{matrix}
+   y^{(1)}\\
+   y^{(2)} \\
+   \cdots \\
+   y^{(N)}
+  \end{matrix} 
+\right)\approx\left(
+  \begin{matrix}
+   \mathbf{f}(\mathbf{x}^{(1)})\\
+   \mathbf{f}(\mathbf{x}^{(2)})\\
+   \cdots \\
+   \mathbf{f}(\mathbf{x}^{(N)})
+  \end{matrix} 
+\right)=\left(
+  \begin{matrix}
+   \mathbf{x}^{(1)^T}\beta\\
+   \mathbf{x}^{(2)^T}\beta\\
+   \cdots \\
+   \mathbf{x}^{(N)^T}\beta
+  \end{matrix} 
+\right)=\left(
+  \begin{matrix}
+   \mathbf{x}^{(1)^T}\\
+   \mathbf{x}^{(2)^T}\\
+   \cdots \\
+   \mathbf{x}^{(N)^T}
+  \end{matrix} 
+\right)\beta = \mathbf{X}\beta,
+\end{split}\]</div>
+<p>where
+$<span class="math notranslate nohighlight">\(
+\mathbf{X}=\left(
+  \begin{matrix}
+   1&amp; x_{1}^{(1)} &amp; \cdots &amp; x_{p}^{(1)}\\
+   1&amp; x_{1}^{(2)} &amp; \cdots &amp; x_{p}^{(2)}\\
+   \cdots \\
+   1&amp; x_{1}^{(N)} &amp; \cdots &amp; x_{p}^{(N)}
+  \end{matrix} 
+\right)
+\in \mathbb{R}^{N\times (p+1)}
+\)</span>$
+is called the data matrix or design matrix.</p>
+<ul class="simple">
+<li><p><strong>Question</strong>: To get unknown <span class="math notranslate nohighlight">\(\beta\)</span>, can we directly solve the linear equation <span class="math notranslate nohighlight">\(\mathbf{X}\beta = Y\)</span>?</p></li>
+<li><p><strong>Answer</strong>: Most time no, because 1) typically there are more equations than variables (<span class="math notranslate nohighlight">\(N&gt;&gt;(p+1)\)</span>) 2) the linear model is merely the approximation to the real mapping 3) there are noises in the data points – it’s highly possible that there is NO solution at all!</p></li>
+<li><p><strong>Strategy</strong>: Instead of solving <span class="math notranslate nohighlight">\(\mathbf{X}\beta = Y\)</span> exactly, we want find <span class="math notranslate nohighlight">\(\beta\)</span> such that <span class="math notranslate nohighlight">\(\mathbf{X}\beta\)</span> is as close as <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+</ul>
+<section id="training-the-model">
+<h3>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(\beta)\)</span> of parameters <span class="math notranslate nohighlight">\(\beta\)</span>, which is also called <strong>mean squared error</strong> (MSE) $<span class="math notranslate nohighlight">\(L(\beta)=\frac{1}{N}\sum_{i=1}^N\big(\hat{y}^{(i)}-y^{(i)}\big)^2 = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-\mathbf{x}^{(i)}\beta)^{2},\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\hat{y}^{(i)}<span class="math notranslate nohighlight">\( denotes the predicted value of y at \)</span>x^{(i)}<span class="math notranslate nohighlight">\(, i.e. \)</span><span class="math notranslate nohighlight">\(\hat{y}^{(i)} = \beta_{0}+\beta_{1}x^{(i)}_{1}+..+\beta_{p}x^{(i)}_{p} = \mathbf{x}^{(i)}\beta.\)</span>$</p>
+<p>Now the problem becomes $<span class="math notranslate nohighlight">\(\min_{\beta}L(\beta),\)</span>$ i.e. find the minimizer of a multi-variable (p+1 dimensions) function.</p>
+</li>
+<li><p>Then find the minimum of loss function – There are two ways, either by numerical optimization (will be introduced in discussion) or by solving linear systems (introduced below), which is also called the <strong>normal equation</strong> approach.</p></li>
+</ul>
+<p>To solve the critical points, we have <span class="math notranslate nohighlight">\(\nabla L(\beta)=0\)</span>.
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+\frac{\partial L}{\partial \beta_{0}}&amp;=2\sum_{i=1}^{N}(\mathbf{x}^{(i)}\beta-y^{(i)})=0,\\
+\frac{\partial L}{\partial \beta_{k}}&amp;=2\sum_{i=1}^{N} x_{k}^{(i)}(\mathbf{x}^{(i)}\beta-y^{(i)})=0,\quad k=1,2,..,p.
+\end{aligned}
+\)</span>$</p>
+<p>In Matrix form, it can be expressed as (left as exercise) $<span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{X}\beta=\mathbf{X}^{T}Y,\)</span>$</p>
+<p>also called the <strong>normal equation</strong> of linear regression.
+The optimal parameter
+<span class="math notranslate nohighlight">\(\hat{\beta}=\text{argmin} L(\beta)\)</span>
+is also called the ordinary least square (<strong>OLS</strong>) estimator in statistics community.</p>
+<p>Then the OLS estimator can be solved as $<span class="math notranslate nohighlight">\(\hat{\beta}=(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}Y.\)</span>$</p>
+<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Geometrical Interpretation</a></strong></p>
+<p>Denote <span class="math notranslate nohighlight">\(\mathbf{X}=(\mathbf{X}_{0},\mathbf{X}_{1},..,\mathbf{X}_{p})\)</span>, then <span class="math notranslate nohighlight">\(\mathbf{X}\beta=\sum_{k=0}^{p}\beta_{k}\mathbf{X}_{k}\)</span>. We require that the residual <span class="math notranslate nohighlight">\(Y-\mathbf{X}\beta\)</span> is vertical to the plane spanned by <span class="math notranslate nohighlight">\(\mathbf{X}_{k}\)</span>, which yields $<span class="math notranslate nohighlight">\(\mathbf{X}_{k}^{T}(Y-\mathbf{X}\beta)=0,\quad k = 0,1,...,p\)</span>$</p>
+<p><strong>Exercise</strong>: Check that when <span class="math notranslate nohighlight">\(p=1\)</span>, the solution is equivalent to the single-variable regression.</p>
+</section>
+<section id="prediction-in-test-data">
+<h3>Prediction in Test Data<a class="headerlink" href="#prediction-in-test-data" title="Permalink to this heading">#</a></h3>
+<p>Given the new observation called <span class="math notranslate nohighlight">\(\mathbf{x} = [x_{1},..,x_{p}]\)</span>
+, we have the prediction as $<span class="math notranslate nohighlight">\(\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{1}+..+\hat{\beta}_{p}x_{p} = \mathbf{x}^T\hat{\beta}.\)</span>$</p>
+</section>
+<section id="evaluating-the-model">
+<h3>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>MSE: The smaller MSE indicates better performance</p></li>
+<li><p>R-Squared: The larger <span class="math notranslate nohighlight">\(R^{2}\)</span> (closer to 1) indicates better performance. Compared with MSE, R-squared is <strong>dimensionless</strong>, not dependent on the units of variable.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R^{2} = 1 - \frac{\sum_{i=1}^{N}(y^{(i)}-\hat{y}^{(i)})^{2}}{\sum_{i=1}^{N}(y^{(i)}-\bar{y})^{2}} = 1 - \frac{\frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-\hat{y}^{(i)})^{2}}{\frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-\bar{y})^{2}} = 1 - \frac{\text{MSE}}{\text{Var}(Y)}\]</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Multi-variable Linear Regression </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+
+<span class="n">lreg_sklearn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.01957851 3.53409428] -0.2780257014278691
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the data</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+
+<span class="c1"># %matplotlib notebook</span>
+
+
+<span class="c1"># Coefficients</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">intercept_</span>
+
+<span class="c1"># Create the figure and axis</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotting the data points</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data Points&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a meshgrid to plot the surface (regression plane)</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">zz</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">xx</span> <span class="o">+</span> <span class="n">coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">yy</span> <span class="o">+</span> <span class="n">intercept</span>
+
+<span class="c1"># Plotting the surface</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">zz</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regression Plane&#39;</span><span class="p">)</span>
+
+<span class="c1"># Labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X_1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;X_2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;3D Plot of Data Points and Regression Plane&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e0300f21ad9f23a42724cd0dbf3857d11df213887c4e5c6aa584c566d2b9a59a.png" src="../_images/e0300f21ad9f23a42724cd0dbf3857d11df213887c4e5c6aa584c566d2b9a59a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># need to remove missing values</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">thresh</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># predict body mass from flipper length and bill length</span>
+
+
+<span class="n">lreg_sklearn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span>
+
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># use more features</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span><span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">]]</span>
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22270435351943108
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="colinearity">
+<h1>Colinearity<a class="headerlink" href="#colinearity" title="Permalink to this heading">#</a></h1>
+<p>If two variables are highly correlated, intuitively, we can say that they are measuring the same thing. In the context of linear regression, this is called multicollinearity.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(Y = aX_1\)</span> and <span class="math notranslate nohighlight">\(X_2 = bX_1\)</span>, then we can write <span class="math notranslate nohighlight">\(Y = \beta_1 X_1 + \beta_2 X_2\)</span> for any <span class="math notranslate nohighlight">\(\beta_1\)</span>  and <span class="math notranslate nohighlight">\(\beta_2\)</span> such that <span class="math notranslate nohighlight">\(\beta_1 + b \beta_2 = a\)</span>.</p>
+<p>We can see that the coefficients are not unique.</p>
+<p><strong>Does this affect prediction?</strong></p>
+<section id="interpretation-of-the-coefficients">
+<h2>Interpretation of the coefficients<a class="headerlink" href="#interpretation-of-the-coefficients" title="Permalink to this heading">#</a></h2>
+<p><strong>Does the size of the coefficient mean “importance”?</strong></p>
+<p>Generally, the size of the coefficient is not a good indicator of the importance of the feature. The size of the coefficient is affected by the scale of the feature. If we change the unit of the feature, the coefficient will change accordingly. For example, if we change the unit of the feature from meters to centimeters, the coefficient will be 100 times larger. However, the importance of the feature does not change.</p>
+<p>But we can ask the following question:</p>
+<p><strong>If we remove/increase a feature from the model, how much the model performance will decrease/increase?</strong></p>
+<p>If the model performance decreases significantly, then the feature is important in making predictions.</p>
+<p>However, this depends on the group of features in the model. Suppose <span class="math notranslate nohighlight">\(Y = X_1 + X_2\)</span>. <span class="math notranslate nohighlight">\(X_3\)</span> is higly correlated with <span class="math notranslate nohighlight">\(X_1\)</span>. Then both (X_1, X_3) and (X_2, X_3) are good models. Using all three features does not increase the performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># append collinear columns</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">lreg_sklearn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.19840118 0.39680237] 0.0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02018130994026246
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -402,7 +647,20 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple Linear Regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-in-test-data">Prediction in Test Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#colinearity">Colinearity</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-of-the-coefficients">Interpretation of the coefficients</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
