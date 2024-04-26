@@ -63,9 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/multi_variate_linear';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/multi_linear_reg';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Polynomial Regression" href="polynomial_reg.html" />
+    <link rel="prev" title="Linear Regression" href="linear_regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,39 +152,55 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="notes_intro.html">Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="python_review.html">Python review</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
 
 
+<li class="toctree-l2"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html">Pandas dataframe</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="polynomial_reg.html">Polynomial Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec9.html">week3 lec9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec10.html">week4 lec10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec11.html">week4 lec11</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 sol (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -237,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/notes/multi_variate_linear.ipynb" target="_blank"
+      <li><a href="../_sources/notes/multi_linear_reg.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +350,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple Linear Regression</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-in-test-data">Prediction in Test Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
 </ul>
 </li>
@@ -358,92 +375,74 @@ document.write(`
 <h1>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h1>
 <section id="problem">
 <h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
-<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\((x^{(i)},y^{(i)}), i= 1,2,..., N\)</span>, this time with <span class="math notranslate nohighlight">\(y^{(i)}\in \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(x^{(i)}\in\mathbb{R}^{p}\)</span>, we fit the multi-variable linear function</p>
+<p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\((\mathbf{x}_i,y_i), i= 1,2,..., N\)</span>, this time with <span class="math notranslate nohighlight">\(y_i\in \mathbb{R}\)</span> and <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}^{p}\)</span>, we fit the multi-variable linear function</p>
 <div class="math notranslate nohighlight">
-\[y\approx\mathbf{f}(x)=\beta_{0}+\beta_{1}x_{1}+..+\beta_{p}x_{p} = \mathbf{x}\beta,\]</div>
+\[y_i\approx\mathbf{f}(x)=\beta_{0}+\beta_{1}x_{i1}+..+\beta_{p}x_{ip} = \mathbf{x}_i^T\beta,\]</div>
 <div class="math notranslate nohighlight">
-\[\mathbf{x}=(1,x_{1},..,x_{p})\in\mathbb{R}^{p+1},\beta = (\beta_{0},\beta_{1},..,\beta_{p})^{T}\in\mathbb{R}^{p+1}.\]</div>
-<p>Here <span class="math notranslate nohighlight">\(\beta\)</span> is called regression coefficients, and <span class="math notranslate nohighlight">\(\beta_{0}\)</span> specially referred to intercept.</p>
-<p>Using the whole training dataset, we can write as</p>
+\[\mathbf{x}_i=(1,x_{i1},..,x_{ip})\in\mathbb{R}^{p+1},\beta = (\beta_{0},\beta_{1},..,\beta_{p})\in\mathbb{R}^{p+1}.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\beta\)</span>’s are regression coefficients, and <span class="math notranslate nohighlight">\(\beta_{0}\)</span> is the intercept.</p>
+<p>The data can be written as</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}Y=\left(
- \begin{matrix}
+\[\begin{split}Y=
+ \begin{bmatrix}
    y^{(1)}\\
    y^{(2)} \\
    \cdots \\
    y^{(N)}
-  \end{matrix} 
-\right)\approx\left(
-  \begin{matrix}
-   \mathbf{f}(\mathbf{x}^{(1)})\\
-   \mathbf{f}(\mathbf{x}^{(2)})\\
-   \cdots \\
-   \mathbf{f}(\mathbf{x}^{(N)})
-  \end{matrix} 
-\right)=\left(
-  \begin{matrix}
-   \mathbf{x}^{(1)^T}\beta\\
-   \mathbf{x}^{(2)^T}\beta\\
-   \cdots \\
-   \mathbf{x}^{(N)^T}\beta
-  \end{matrix} 
-\right)=\left(
-  \begin{matrix}
-   \mathbf{x}^{(1)^T}\\
-   \mathbf{x}^{(2)^T}\\
-   \cdots \\
-   \mathbf{x}^{(N)^T}
-  \end{matrix} 
-\right)\beta = \mathbf{X}\beta,
+  \end{bmatrix} 
 \end{split}\]</div>
-<p>where
-$<span class="math notranslate nohighlight">\(
-\mathbf{X}=\left(
-  \begin{matrix}
-   1&amp; x_{1}^{(1)} &amp; \cdots &amp; x_{p}^{(1)}\\
-   1&amp; x_{1}^{(2)} &amp; \cdots &amp; x_{p}^{(2)}\\
+<p>Our prediction in matrix form is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{bmatrix}
+   \mathbf{f}(\mathbf{x}_1)\\
+   \mathbf{f}(\mathbf{x}_2)\\
    \cdots \\
-   1&amp; x_{1}^{(N)} &amp; \cdots &amp; x_{p}^{(N)}
-  \end{matrix} 
-\right)
-\in \mathbb{R}^{N\times (p+1)}
-\)</span>$
-is called the data matrix or design matrix.</p>
-<ul class="simple">
-<li><p><strong>Question</strong>: To get unknown <span class="math notranslate nohighlight">\(\beta\)</span>, can we directly solve the linear equation <span class="math notranslate nohighlight">\(\mathbf{X}\beta = Y\)</span>?</p></li>
-<li><p><strong>Answer</strong>: Most time no, because 1) typically there are more equations than variables (<span class="math notranslate nohighlight">\(N&gt;&gt;(p+1)\)</span>) 2) the linear model is merely the approximation to the real mapping 3) there are noises in the data points – it’s highly possible that there is NO solution at all!</p></li>
-<li><p><strong>Strategy</strong>: Instead of solving <span class="math notranslate nohighlight">\(\mathbf{X}\beta = Y\)</span> exactly, we want find <span class="math notranslate nohighlight">\(\beta\)</span> such that <span class="math notranslate nohighlight">\(\mathbf{X}\beta\)</span> is as close as <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
-</ul>
+   \mathbf{f}(\mathbf{x}_N)
+  \end{bmatrix} 
+  =
+  \begin{bmatrix}
+   1&amp; x_{11}&amp; \cdots &amp; x_{1p}\\
+   1&amp; x_{21}&amp; \cdots &amp; x_{2p}\\
+   \cdots \\
+   1&amp; x_{N1}&amp; \cdots &amp; x_{Np}  
+   \end{bmatrix} 
+    \begin{bmatrix}
+    \beta_{0}\\
+    \beta_{1}\\
+    \cdots \\
+    \beta_{p}
+  \end{bmatrix}
+= \mathbf{X}\beta,
+\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a <span class="math notranslate nohighlight">\(N\times (p+1)\)</span> matrix, and is called the data matrix or design matrix.</p>
 <section id="training-the-model">
 <h3>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h3>
-<ul>
-<li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(\beta)\)</span> of parameters <span class="math notranslate nohighlight">\(\beta\)</span>, which is also called <strong>mean squared error</strong> (MSE) $<span class="math notranslate nohighlight">\(L(\beta)=\frac{1}{N}\sum_{i=1}^N\big(\hat{y}^{(i)}-y^{(i)}\big)^2 = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-\mathbf{x}^{(i)}\beta)^{2},\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\hat{y}^{(i)}<span class="math notranslate nohighlight">\( denotes the predicted value of y at \)</span>x^{(i)}<span class="math notranslate nohighlight">\(, i.e. \)</span><span class="math notranslate nohighlight">\(\hat{y}^{(i)} = \beta_{0}+\beta_{1}x^{(i)}_{1}+..+\beta_{p}x^{(i)}_{p} = \mathbf{x}^{(i)}\beta.\)</span>$</p>
-<p>Now the problem becomes $<span class="math notranslate nohighlight">\(\min_{\beta}L(\beta),\)</span>$ i.e. find the minimizer of a multi-variable (p+1 dimensions) function.</p>
-</li>
-<li><p>Then find the minimum of loss function – There are two ways, either by numerical optimization (will be introduced in discussion) or by solving linear systems (introduced below), which is also called the <strong>normal equation</strong> approach.</p></li>
-</ul>
-<p>To solve the critical points, we have <span class="math notranslate nohighlight">\(\nabla L(\beta)=0\)</span>.
-$<span class="math notranslate nohighlight">\(
-\begin{aligned}
-\frac{\partial L}{\partial \beta_{0}}&amp;=2\sum_{i=1}^{N}(\mathbf{x}^{(i)}\beta-y^{(i)})=0,\\
-\frac{\partial L}{\partial \beta_{k}}&amp;=2\sum_{i=1}^{N} x_{k}^{(i)}(\mathbf{x}^{(i)}\beta-y^{(i)})=0,\quad k=1,2,..,p.
-\end{aligned}
-\)</span>$</p>
-<p>In Matrix form, it can be expressed as (left as exercise) $<span class="math notranslate nohighlight">\(\mathbf{X}^{T}\mathbf{X}\beta=\mathbf{X}^{T}Y,\)</span>$</p>
-<p>also called the <strong>normal equation</strong> of linear regression.
-The optimal parameter
-<span class="math notranslate nohighlight">\(\hat{\beta}=\text{argmin} L(\beta)\)</span>
-is also called the ordinary least square (<strong>OLS</strong>) estimator in statistics community.</p>
-<p>Then the OLS estimator can be solved as $<span class="math notranslate nohighlight">\(\hat{\beta}=(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}Y.\)</span>$</p>
-<p><strong><a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">Geometrical Interpretation</a></strong></p>
-<p>Denote <span class="math notranslate nohighlight">\(\mathbf{X}=(\mathbf{X}_{0},\mathbf{X}_{1},..,\mathbf{X}_{p})\)</span>, then <span class="math notranslate nohighlight">\(\mathbf{X}\beta=\sum_{k=0}^{p}\beta_{k}\mathbf{X}_{k}\)</span>. We require that the residual <span class="math notranslate nohighlight">\(Y-\mathbf{X}\beta\)</span> is vertical to the plane spanned by <span class="math notranslate nohighlight">\(\mathbf{X}_{k}\)</span>, which yields $<span class="math notranslate nohighlight">\(\mathbf{X}_{k}^{T}(Y-\mathbf{X}\beta)=0,\quad k = 0,1,...,p\)</span>$</p>
+<p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(\beta)\)</span> of parameters <span class="math notranslate nohighlight">\(\beta\)</span>, which is the <strong>Residual Sum of Squares</strong> (RSS). We could also divide it by <span class="math notranslate nohighlight">\(N\)</span> to get the <strong>Mean Squared Error</strong> (MSE). This does not change the optimal solution</p>
+<div class="math notranslate nohighlight">
+\[L(\beta)= \sum_{i=1}^N(y_i-\mathbf{x}_i^T\beta)^{2},\]</div>
+<p>In matrix form, it can be written as</p>
+<div class="math notranslate nohighlight">
+\[ L(\beta) = ||Y-\mathbf{X} \beta||^{2} \]</div>
+<p>We arrive at the optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\min_{\beta} L(\beta).\]</div>
+<p>To solve the critical points, we have <span class="math notranslate nohighlight">\(\nabla L(\beta)=0\)</span>.</p>
+<p>In Matrix form, it can be expressed as (left as exercise)</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{X}^{T}\mathbf{X}\beta=\mathbf{X}^{T}Y,\]</div>
+<p>also called the <strong>normal equation</strong> of linear regression.</p>
+<p>The optimal parameter is given by
+<span class="math notranslate nohighlight">\(\hat{\beta}= (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}Y\)</span>.</p>
+<p>The prediction of the model is <span class="math notranslate nohighlight">\(\hat{Y}=\mathbf{X}\hat{\beta}\)</span>.</p>
+<!-- **[Geometrical Interpretation](https://en.wikipedia.org/wiki/Ordinary_least_squares)**
+
+From the normal equation,
+
+$$\mathbf{X}^{T}(\mathbf{Y}-\mathbf{X} \hat{\beta})=0$$
+
+We are requiring that the residual $Y-\mathbf{X} \hat{\beta}$ is orthogonal to the column space of $\mathbf{X}$. -->
 <p><strong>Exercise</strong>: Check that when <span class="math notranslate nohighlight">\(p=1\)</span>, the solution is equivalent to the single-variable regression.</p>
-</section>
-<section id="prediction-in-test-data">
-<h3>Prediction in Test Data<a class="headerlink" href="#prediction-in-test-data" title="Permalink to this heading">#</a></h3>
-<p>Given the new observation called <span class="math notranslate nohighlight">\(\mathbf{x} = [x_{1},..,x_{p}]\)</span>
-, we have the prediction as $<span class="math notranslate nohighlight">\(\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{1}+..+\hat{\beta}_{p}x_{p} = \mathbf{x}^T\hat{\beta}.\)</span>$</p>
 </section>
 <section id="evaluating-the-model">
 <h3>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h3>
@@ -461,7 +460,7 @@ is also called the ordinary least square (<strong>OLS</strong>) estimator in sta
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
 
 <span class="n">lreg_sklearn</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">()</span>
@@ -484,7 +483,7 @@ is also called the ordinary least square (<strong>OLS</strong>) estimator in sta
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 
-<span class="c1"># %matplotlib notebook</span>
+<span class="o">%</span><span class="k">matplotlib</span> notebook
 
 
 <span class="c1"># Coefficients</span>
@@ -569,7 +568,7 @@ is also called the ordinary least square (<strong>OLS</strong>) estimator in sta
 <p><strong>Does the size of the coefficient mean “importance”?</strong></p>
 <p>Generally, the size of the coefficient is not a good indicator of the importance of the feature. The size of the coefficient is affected by the scale of the feature. If we change the unit of the feature, the coefficient will change accordingly. For example, if we change the unit of the feature from meters to centimeters, the coefficient will be 100 times larger. However, the importance of the feature does not change.</p>
 <p>But we can ask the following question:</p>
-<p><strong>If we remove/increase a feature from the model, how much the model performance will decrease/increase?</strong></p>
+<p><strong>If we remove/increase a feature from the model, how much does the model performance decrease/increase?</strong></p>
 <p>If the model performance decreases significantly, then the feature is important in making predictions.</p>
 <p>However, this depends on the group of features in the model. Suppose <span class="math notranslate nohighlight">\(Y = X_1 + X_2\)</span>. <span class="math notranslate nohighlight">\(X_3\)</span> is higly correlated with <span class="math notranslate nohighlight">\(X_1\)</span>. Then both (X_1, X_3) and (X_2, X_3) are good models. Using all three features does not increase the performance.</p>
 <div class="cell docutils container">
@@ -630,6 +629,24 @@ is also called the ordinary least square (<strong>OLS</strong>) estimator in sta
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="linear_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Linear Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="polynomial_reg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Polynomial Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -651,7 +668,6 @@ is also called the ordinary least square (<strong>OLS</strong>) estimator in sta
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multiple Linear Regression</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem"><strong>Problem</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-model">Training the model</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-in-test-data">Prediction in Test Data</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-model">Evaluating the model</a></li>
 </ul>
 </li>

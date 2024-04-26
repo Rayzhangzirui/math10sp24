@@ -66,6 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/polynomial_reg';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lectures" href="../lectures/intro.html" />
+    <link rel="prev" title="Multiple Linear Regression" href="multi_linear_reg.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -150,39 +152,55 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_review.html">Python review</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="notes_intro.html">Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="python_review.html">Python review</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
 
 
+<li class="toctree-l2"><a class="reference internal" href="prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html">Pandas dataframe</a></li>
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Polynomial Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec9.html">week3 lec9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec10.html">week4 lec10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec11.html">week4 lec11</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 sol (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -356,11 +374,16 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Given some feature X, we can create other features such as X^2, X^3, X^4, etc. This is called polynomial regression.</p>
-<p>We can fit the following model</p>
+<p>Given some feature <span class="math notranslate nohighlight">\(x\)</span>, we can create other features such as <span class="math notranslate nohighlight">\(x^2\)</span>, <span class="math notranslate nohighlight">\(x^3\)</span> … <span class="math notranslate nohighlight">\(x^p\)</span>, etc.</p>
+<p>We can fit a polynomial of degree <span class="math notranslate nohighlight">\(p\)</span> to the data:</p>
 <div class="math notranslate nohighlight">
-\[y = b0 + b1*X + b2*X^2 + b3*X^3 + ... + bn*X^n\]</div>
-<p>This is sometimes called a polynomial regression, but it is still a linear regression: as we are seeking a linear combination of features.</p>
+\[f(x) = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + ... + \beta_p x^p\]</div>
+<p>This is sometimes called a polynomial regression, but it is still a linear regression: as we are seeking a linear combination of the polynomial features. The design matrix is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix} 1 &amp; x_1 &amp; x_1^2 &amp; x_1^3 &amp; ... &amp; x_1^p \\ 1 &amp; x_2 &amp; x_2^2 &amp; x_2^3 &amp; ... &amp; x_2^p \\ ... &amp; ... &amp; ... &amp; ... &amp; ... &amp; ... \\ 1 &amp; x_N &amp; x_N^2 &amp; x_N^3 &amp; ... &amp; x_N^p \end{bmatrix}\end{split}\]</div>
+<p>Note that if we have <span class="math notranslate nohighlight">\((x_0, y_0)\)</span>, <span class="math notranslate nohighlight">\((x_1, y_1)\)</span>, …, <span class="math notranslate nohighlight">\((x_n, y_n)\)</span>, and the <span class="math notranslate nohighlight">\(x_i\)</span>’s are different, then there is always a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span> that passes through all the points.
+In this case, the design matrix is a square invertible matrix, and therefore <span class="math notranslate nohighlight">\(X\beta = y\)</span> has a unique solution.
+This is called interpolation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suppos the true model is a linear model of x</span>
@@ -382,7 +405,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8c214bd490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7feca86bcf50&gt;
 </pre></div>
 </div>
 <img alt="../_images/44f49e4a4236365eaaa1d384d185d5517fb13c942a1e23d41450c51954d3401c.png" src="../_images/44f49e4a4236365eaaa1d384d185d5517fb13c942a1e23d41450c51954d3401c.png" />
@@ -409,10 +432,18 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.1329286   6.40789176  3.50868941 -7.55811971] -0.3673693141494301
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8c41f5c150&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">3</span><span class="n">b</span><span class="o">/</span><span class="n">sldzpq7d6h9gbk6l26n1g20w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2453</span><span class="o">/</span><span class="mf">3349308807.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">y_grid</span> <span class="o">=</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">lreg_sklearn</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">y_grid</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;x_grid&#39; is not defined
 </pre></div>
 </div>
-<img alt="../_images/912f2a3089377750a47e89a3894248fa9aaf86d7e3bbd6860dda744e19df0479.png" src="../_images/912f2a3089377750a47e89a3894248fa9aaf86d7e3bbd6860dda744e19df0479.png" />
+<img alt="../_images/33eee491fbf854b85fe7749d6dc5d535608a9ae68e7c619366f74b4e2c950769.png" src="../_images/33eee491fbf854b85fe7749d6dc5d535608a9ae68e7c619366f74b4e2c950769.png" />
 </div>
 </div>
 <p>This polynomial can fit all the data! But is it a good fit?</p>
@@ -422,12 +453,14 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
+<span class="c1"># generate N data, this is the whole population</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
 
+<span class="c1"># maximum degree of the polynomial</span>
 <span class="n">degree</span> <span class="o">=</span> <span class="mi">7</span>
 
 <span class="c1"># create a dataframe of all the polynomial features</span>
@@ -441,9 +474,10 @@ document.write(`
 <span class="n">coeff</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">c</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coeff</span><span class="p">)])</span>
 
+<span class="c1"># add some noise to get data</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y_true&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 
-<span class="c1"># split the data into training and test sets</span>
+<span class="c1"># split the data into training and test sets </span>
 <span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">df_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">):]</span>
 
@@ -459,10 +493,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f8c80fdaa10&gt;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">3</span><span class="n">b</span><span class="o">/</span><span class="n">sldzpq7d6h9gbk6l26n1g20w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2453</span><span class="o">/</span><span class="mf">49387694.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># generate N data, this is the whole population</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
 </pre></div>
 </div>
-<img alt="../_images/001be44156d4a24b44020939e65b4db60a17170f7008a0f14d67b4c37c9ee8c3.png" src="../_images/001be44156d4a24b44020939e65b4db60a17170f7008a0f14d67b4c37c9ee8c3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -568,26 +610,27 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for each degree, fit a polynomial model</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="c1"># our feature include the constant term</span>
+
+<span class="c1"># our features already include the constant term</span>
 <span class="n">lreg</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">train_mse</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">test_mse</span> <span class="o">=</span> <span class="p">[]</span>
 
-
 <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">degree</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">degree</span><span class="o">*</span><span class="mi">5</span><span class="p">))</span>
 
-
+<span class="c1"># fit a polynomial model for each degree</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">degree</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
 
+    <span class="c1"># fit the model</span>
     <span class="n">Xtrain_poly</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">Xtest_poly</span> <span class="o">=</span> <span class="n">df_test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     
     <span class="n">lreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtrain_poly</span><span class="p">,</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
 
+    <span class="c1"># calculate the MSE on training and test sets</span>
     <span class="n">train_mse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">lreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtrain_poly</span><span class="p">)))</span>
     <span class="n">test_mse</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">lreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xtest_poly</span><span class="p">)))</span>
-
 
     <span class="c1"># visualize the fit</span>
     <span class="n">y_grid</span> <span class="o">=</span> <span class="n">lreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_grid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
@@ -626,6 +669,7 @@ document.write(`
 <section id="bias-variance-tradeoff">
 <h2>Bias-Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">bias–variance tradeoff</a> describes the relationship between a model’s complexity, the accuracy of its predictions, and how well it can generalize to new data.</p>
+<p><img alt="tradeoff" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/2880px-Bias_and_variance_contributing_to_total_error.svg.png" /></p>
 <p>In general, as we increase the number of tunable parameters in a model, such as the degree of the polynomial, the model becomes more flexible and can better fit the training data. It is said to have lower bias. However, more flexible model is also better at fitting the noise. Each time we draw a different batch of training data, the model will fit these data differently, and there is greater variance in the model’s estimated parameters.</p>
 </section>
 <section id="training-validation-and-test-data-sets">
@@ -673,6 +717,24 @@ The test set is used for assessment of the generalization error of the final cho
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="multi_linear_reg.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Multiple Linear Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../lectures/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lectures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
