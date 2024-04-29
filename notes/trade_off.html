@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/polynomial_reg';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/trade_off';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lectures" href="../lectures/intro.html" />
@@ -255,7 +255,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/notes/polynomial_reg.ipynb" target="_blank"
+      <li><a href="../_sources/notes/trade_off.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -653,7 +653,10 @@ This is called interpolation.</p>
 <h2>Bias-Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">bias–variance tradeoff</a> describes the relationship between a model’s complexity, the accuracy of its predictions, and how well it can generalize to new data.</p>
 <p><img alt="tradeoff" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Bias_and_variance_contributing_to_total_error.svg/2880px-Bias_and_variance_contributing_to_total_error.svg.png" /></p>
-<p>In general, as we increase the number of tunable parameters in a model, such as the degree of the polynomial, the model becomes more flexible and can better fit the training data. It is said to have lower bias. However, more flexible model is also better at fitting the noise. Each time we draw a different batch of training data, the model will fit these data differently, and there is greater variance in the model’s estimated parameters.</p>
+<p><strong>Bias</strong> is the inherent error of the model even with infinite data. For example, the model might assume a linear relationship, but the true relationship is not linear.</p>
+<p><strong>Variance</strong> is the error due to the model’s sensitivity to the training data. Notice that the training data consists of random samples from the population: if we have a different batch of training data, the model will fit these data differently, and therefore the parameters are different when the training data changes.</p>
+<p><strong>noise</strong> is “inherent” or “irreducible” error due to the randomness of the data. For example, the data might be noisy, or there might be other variables that affect the output.</p>
+<p>In general, as we increase the number of tunable parameters in a model, such as the degree of the polynomial, the model becomes more flexible and can better fit the training data. It is said to have lower bias. However, more flexible model is also better at fitting the noise. Each time we draw a different batch of training data, the model will fit these data differently, and there is greater variance in the model’s estimated parameters. It is said to have higher variance.</p>
 </section>
 <section id="training-validation-and-test-data-sets">
 <h2>Training, validation, and test data sets<a class="headerlink" href="#training-validation-and-test-data-sets" title="Permalink to this heading">#</a></h2>
