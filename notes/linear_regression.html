@@ -174,7 +174,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multi_linear_reg.html">Multiple Linear Regression</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="trade_off.html">Polynomial Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trade_off.html">Bias-Variance Tradeoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -194,11 +194,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework1.html">Homework 1 (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework2.html">Homework 2 (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 sol (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework3.html">Homework 3 (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4.html">Homework 4 (Due 5/10)</a></li>
 </ul>
 </li>
 </ul>
@@ -466,8 +465,8 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <span class="sd">        -------</span>
 <span class="sd">        returns the R^2 score of the model</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">mse</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">mse</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">Rsquare</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mse</span> <span class="o">/</span> <span class="n">var</span>
         <span class="k">return</span> <span class="n">Rsquare</span>
 </pre></div>
@@ -511,6 +510,16 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 </pre></div>
 </div>
 <img alt="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" src="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the following command to install scikit-learn</span>
+<span class="c1"># %conda install scikit-learn</span>
+<span class="c1"># or</span>
+<span class="c1"># %pip install scikit-learn</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -600,7 +609,7 @@ score = 0.993
 <div class="math notranslate nohighlight">
 \[\text{MAE} = \frac{1}{N}\sum_{i=1}^{N}|y_i-\hat{y}^{(i)}|\]</div>
 <p>Linear regression based on MSE can seem sensitive to outliers than MAE. But minimize MAE is much more challenging.</p>
-<p>For regression methods that handle outliers, see <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model">Outlier-robust regressors</a></p>
+<p>For regression methods that are designed to handle outliers, see <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.linear_model">Outlier-robust regressors</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>

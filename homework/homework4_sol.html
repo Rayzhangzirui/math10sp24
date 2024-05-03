@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Homework 4 (Due 5/10) &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'homework/homework4_sol';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec9.html">week3 lec9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec10.html">week4 lec10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec11.html">week4 lec11</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework4.html">Homework 4 (Due 5/10)</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/homework/homework4_sol.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Homework 4 (Due 5/10)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-4-due-5-10">
+<h1>Homework 4 (Due 5/10)<a class="headerlink" href="#homework-4-due-5-10" title="Permalink to this heading">#</a></h1>
+<p><strong>Q1</strong> Linear regression on exponential growth</p>
+<p>Suppose we want to measure the growth of a population of bacteria. We culture the bacteria in a test tube.
+We measure the volume of the cell culture at various times (hr) and obtain the following dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df_bac</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;Volume&#39;</span><span class="p">:[</span><span class="mf">0.37</span><span class="p">,</span> <span class="mf">1.63</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">10.66</span><span class="p">]})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_bac</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   time  Volume
+0   0.0    0.37
+1   1.5    1.63
+2   5.0    2.40
+3   9.0    6.20
+4  10.0   10.66
+</pre></div>
+</div>
+</div>
+</div>
+<p>(1) Use linear regression to fit the data. Compute the <span class="math notranslate nohighlight">\(R^2\)</span>. Plot the data and the fitted line on the same figure.</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_bac</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Volume&#39;</span><span class="p">)</span>
+
+<span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]],</span> <span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">])</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]],</span> <span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2&#39;</span> <span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 0.8523390725174672
+</pre></div>
+</div>
+<img alt="../_images/1aaa0857f7d4841ede51bca1266daca2f77699e275b04827acda40f8e6fb0cdb.png" src="../_images/1aaa0857f7d4841ede51bca1266daca2f77699e275b04827acda40f8e6fb0cdb.png" />
+</div>
+</div>
+<p>(2) We know that when nutrients are abundant, the bacteria grow exponentially. Therefore, a better model might be</p>
+<div class="math notranslate nohighlight">
+\[ y = a e^{bx} \]</div>
+<p>where <span class="math notranslate nohighlight">\(y\)</span> is the volume of the bacteria culture and <span class="math notranslate nohighlight">\(x\)</span> is the time.</p>
+<p>Can we turn this into a linear regression problem?</p>
+<p>Hint: Take the natural logarithm of both sides of the equation.</p>
+<p>After taking the natural logarithm, we have</p>
+<div class="math notranslate nohighlight">
+\[ \log y = \log a + bx \]</div>
+<p>This is a linear regression problem.</p>
+<p>(3) After the transformation, find the optimal values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.  Compute the <span class="math notranslate nohighlight">\(R^2\)</span>. Is it better than the linear model?</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exponential growth</span>
+<span class="n">lm2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lm2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">]],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">]))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lm2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5954551711492091 0.2805094137824158
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute R2</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">df_bac</span><span class="p">[</span><span class="s1">&#39;Volume&#39;</span><span class="p">])</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mse</span> <span class="o">/</span> <span class="n">var</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;R2 = &#39;</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+<span class="c1"># the R2 is higher than the linear model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 =  0.9605944747794366
+</pre></div>
+</div>
+</div>
+</div>
+<p>(4) Plot the data and the fitted curve in the same figure.</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_bac</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Volume&#39;</span><span class="p">)</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">yy</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">xx</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">xx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yy</span><span class="p">)</span>
+<span class="c1"># add legend</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="s2">&quot;fit&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1c094b44a9767b40939974817a6a4899cb168d4671fbba2263d304ccdaa6f156.png" src="../_images/1c094b44a9767b40939974817a6a4899cb168d4671fbba2263d304ccdaa6f156.png" />
+</div>
+</div>
+<p><strong>Q2</strong> Multiple linear regression</p>
+<p>In this problem, we would like to predict the <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code> of a penguin based on the other features in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="c1"># the stratify parameter makes sure that the train and test sets have the same proportion of species</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>(1)</strong> First, let’s start with single variable linear regression. Among the following numerical features,</p>
+<p><code class="docutils literal notranslate"><span class="pre">features</span> <span class="pre">=</span> <span class="pre">['bill_length_mm',</span> <span class="pre">'bill_depth_mm',	'flipper_length_mm']</span></code></p>
+<p>which one is the best predictor of <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code>?</p>
+<p>For each feature, fit a linear regression model and compute the <span class="math notranslate nohighlight">\(R^2\)</span> on the training and testing data.</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find single best feature</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span>	<span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+    <span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train</span><span class="p">[[</span><span class="n">feature</span><span class="p">]],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="n">score_train</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_train</span><span class="p">[[</span><span class="n">feature</span><span class="p">]],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="n">score_test</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_test</span><span class="p">[[</span><span class="n">feature</span><span class="p">]],</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">score_train</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">score_test</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bill_length_mm: 0.3042236028988017 0.38123528774052484
+bill_depth_mm: 0.17561834963296608 0.24395255304407737
+flipper_length_mm: 0.7254565080042716 0.7802937024294685
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>(2)</strong> Best subset selection</p>
+<p>In this exercise, Let’s consider what is the best subset of features to predict <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code>.</p>
+<p>Since we have 3 features, there are <span class="math notranslate nohighlight">\(2^3 = 8\)</span> possible models. To generate all combinations, you can look up the <code class="docutils literal notranslate"><span class="pre">combinations</span></code> function in the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> module (part of the Python standard library).</p>
+<p>For each model, fit a linear regression model and compute the <span class="math notranslate nohighlight">\(R^2\)</span> on the training and testing data.</p>
+<p>Is the one using all features the best model?</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span>	<span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span>
+
+<span class="n">best_subset</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">best_score</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="p">)],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+        <span class="n">test_score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="p">)],</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+        <span class="n">train_score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">subset</span><span class="p">)],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">train_score</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">test_score</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">test_score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
+            <span class="n">best_score</span> <span class="o">=</span> <span class="n">test_score</span>
+            <span class="n">best_subset</span> <span class="o">=</span> <span class="n">subset</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;best subset: </span><span class="si">{</span><span class="n">best_subset</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">best_score</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;bill_length_mm&#39;,): 0.3042 0.3812
+(&#39;bill_depth_mm&#39;,): 0.1756 0.2440
+(&#39;flipper_length_mm&#39;,): 0.7255 0.7803
+(&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;): 0.4017 0.5091
+(&#39;bill_length_mm&#39;, &#39;flipper_length_mm&#39;): 0.7261 0.7815
+(&#39;bill_depth_mm&#39;, &#39;flipper_length_mm&#39;): 0.7298 0.7803
+(&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;, &#39;flipper_length_mm&#39;): 0.7300 0.7807
+best subset: (&#39;bill_length_mm&#39;, &#39;flipper_length_mm&#39;) 0.7815
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Q3</strong> Including categorical variables in linear regression</p>
+<p>In this problem, we stil want to predict the <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code> of a penguin based on other features in the dataset.</p>
+<p>Let’s try to make use of the <code class="docutils literal notranslate"><span class="pre">species</span></code> feature in the penguins dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">df_penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">df_penguins</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>(1)</strong></p>
+<p>We can think of two different methods to encode the categorical feature:</p>
+<ol class="arabic simple">
+<li><p>Method 1: Using integer 1, 2, 3 …</p></li>
+<li><p>Method 2: Using dummy variables such as <code class="docutils literal notranslate"><span class="pre">is_category_A</span></code>, where <code class="docutils literal notranslate"><span class="pre">is_category_A</span></code> is 1 if the category is A, 0 otherwise.</p></li>
+</ol>
+<p>In this problem, we will compare the two methods.</p>
+<p>For our dataset, the species are <code class="docutils literal notranslate"><span class="pre">['Adelie',</span> <span class="pre">'Chinstrap',</span> <span class="pre">'Gentoo']</span></code>.</p>
+<p>Let’s generate a few new features in <code class="docutils literal notranslate"><span class="pre">df_penguins</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span></code> is 0 if the species is Adelie, 1 if the species is Chinstrap, 2 if the species is Gentoo</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_Adelie</span></code> is 1 if the species is Adelie, 0 otherwise</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_Chinstrap</span></code> is 1 if the species is Chinstrap, 0 otherwise</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">is_Adelie</span></code> and <code class="docutils literal notranslate"><span class="pre">is_Chinstrap</span></code> features are called dummy variables.</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;is_Adelie&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Adelie&#39;</span>
+<span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;is_Chinstrap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chinstrap&#39;</span>
+
+<span class="c1"># encode species as 0 1 2</span>
+<span class="n">code</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Adelie&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Chinstrap&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Gentoo&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After generating these new features, split the new augmented dataframe into training and testing sets use the following command</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">df_penguins_train</span><span class="p">,</span> <span class="n">df_penguins_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_penguins</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(2) Compare the performance using different combinations of features. Compute the <span class="math notranslate nohighlight">\(R^2\)</span> on training and testing sets. Which one is the best?</p>
+<ul class="simple">
+<li><p>Baseline: <code class="docutils literal notranslate"><span class="pre">['bill_length_mm',</span> <span class="pre">'bill_depth_mm',</span> <span class="pre">'flipper_length_mm']</span></code></p></li>
+<li><p>Use code: <code class="docutils literal notranslate"><span class="pre">['bill_length_mm',</span> <span class="pre">'bill_depth_mm',</span> <span class="pre">'flipper_length_mm',</span> <span class="pre">'code']</span></code></p></li>
+<li><p>Use dummy: <code class="docutils literal notranslate"><span class="pre">['bill_length_mm',</span> <span class="pre">'bill_depth_mm',</span> <span class="pre">'flipper_length_mm',</span> <span class="pre">'is_Adelie',</span> <span class="pre">'is_Chinstrap']</span></code></p></li>
+</ul>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we define a helper function for our workflow: take some features, fit a linear regression model, and return the R2 score</span>
+<span class="k">def</span> <span class="nf">get_score</span><span class="p">(</span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+    <span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="n">train_score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="n">test_score</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span>
+<span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span> <span class="o">=</span> <span class="n">get_score</span><span class="p">(</span><span class="n">df_penguins_train</span><span class="p">,</span> <span class="n">df_penguins_test</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Baseline: Train score: </span><span class="si">{</span><span class="n">train_score</span><span class="si">}</span><span class="s1">, Test score: </span><span class="si">{</span><span class="n">test_score</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">]</span>
+<span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span> <span class="o">=</span> <span class="n">get_score</span><span class="p">(</span><span class="n">df_penguins_train</span><span class="p">,</span> <span class="n">df_penguins_test</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Use code: Train score: </span><span class="si">{</span><span class="n">train_score</span><span class="si">}</span><span class="s1">, Test score: </span><span class="si">{</span><span class="n">test_score</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;is_Adelie&#39;</span><span class="p">,</span> <span class="s1">&#39;is_Chinstrap&#39;</span><span class="p">]</span>
+<span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span> <span class="o">=</span> <span class="n">get_score</span><span class="p">(</span><span class="n">df_penguins_train</span><span class="p">,</span> <span class="n">df_penguins_test</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Use dummy: Train score: </span><span class="si">{</span><span class="n">train_score</span><span class="si">}</span><span class="s1">, Test score: </span><span class="si">{</span><span class="n">test_score</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># the dummy variables are better than the code variable</span>
+<span class="c1"># In general, encoding categorical variables as integers 1 2 3 is not a good idea, because it implies an order between the categories that does not exist.</span>
+<span class="c1"># However, in some case, when the categories are age groups, it can make sense to encode them as 1 2 3, as there is an order between the categories.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Baseline: Train score: 0.729953765423641, Test score: 0.7807385342305077
+Use dummy: Train score: 0.8224404173083516, Test score: 0.8565460654138681
+Use code: Train score: 0.7329547327647618, Test score: 0.7813024441159253
+</pre></div>
+</div>
+</div>
+</div>
+<p>(3) A final method is to fit a linear regression model for each species separately.</p>
+<p>body_mass = <span class="math notranslate nohighlight">\(\beta^s_0\)</span> + <span class="math notranslate nohighlight">\(\beta^s_1\)</span> bill_length + <span class="math notranslate nohighlight">\(\beta^s_2\)</span> bill_depth + <span class="math notranslate nohighlight">\(\beta^s_3\)</span> flipper_length</p>
+<p>where <span class="math notranslate nohighlight">\(s\in\)</span> {Adelie, Chinstrap, Gentoo}.</p>
+<p>Compute the <span class="math notranslate nohighlight">\(R^2\)</span> on training and testing sets. Is this method better?</p>
+<div class="cell tag_solution docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit a linear regression to each species</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span>	<span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span>
+
+<span class="n">species</span> <span class="o">=</span> <span class="n">df_penguins</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">total_rss</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">:</span>
+    <span class="n">df_train_species</span> <span class="o">=</span> <span class="n">df_penguins_train</span><span class="p">[</span><span class="n">df_penguins_train</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+    <span class="n">df_test_species</span> <span class="o">=</span> <span class="n">df_penguins_test</span><span class="p">[</span><span class="n">df_penguins_test</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">]</span>
+
+    <span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_train_species</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df_train_species</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">df_test_species</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_test_species</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">total_rss</span> <span class="o">+=</span> <span class="n">err</span>
+
+<span class="n">total_mse</span> <span class="o">=</span> <span class="n">total_rss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_penguins_test</span><span class="p">)</span>
+<span class="n">total_r2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">total_mse</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">df_penguins_test</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total R2:&#39;</span><span class="p">,</span> <span class="n">total_r2</span><span class="p">)</span>
+
+<span class="c1"># This is slightly better than the dummy variable approach</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total R2: 0.8576000807265031
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./homework"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
