@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Notes &#8212; UCI Math 10, Spring 2024</title>
+    <title>Cross Validation &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/notes_intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notes/cv';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python review" href="python_review.html" />
-    <link rel="prev" title="Final Project Instruction" href="../final_project_instruction.html" />
+    <link rel="next" title="Lectures" href="../lectures/intro.html" />
+    <link rel="prev" title="Bias-Variance Tradeoff" href="trade_off.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="notes_intro.html">Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="python_review.html">Python review</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="OOP.html">OOP and Gradient Descent</a></li>
@@ -173,7 +173,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="multi_linear_reg.html">Multiple Linear Regression</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="trade_off.html">Bias-Variance Tradeoff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cv.html">Cross Validation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Cross Validation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -253,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/notes/notes_intro.md" target="_blank"
+      <li><a href="../_sources/notes/cv.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -263,7 +263,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -322,7 +322,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -333,11 +335,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notes</h1>
+    <h1>Cross Validation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-validation-and-testing">Training, Validation, and Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cross-Validation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -347,11 +358,122 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notes">
-<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this heading">#</a></h1>
-<p>Use the Navigation menu on the left to find the course content.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="cross-validation">
+<h1>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h1>
+<section id="training-validation-and-testing">
+<h2>Training, Validation, and Testing<a class="headerlink" href="#training-validation-and-testing" title="Permalink to this heading">#</a></h2>
+<p>Note that we have the following separate goals:</p>
+<ul class="simple">
+<li><p><strong>Model selection</strong>: estimate the performance of different models in order to choose the best one.</p></li>
+<li><p><strong>Model assessment</strong>: after choosing the best model, estimate its prediction error on new data.</p></li>
+</ul>
+<p>If we have plenty of data, we can split it into three sets: training, validation, and test.</p>
+<p>The training set is used to fit the models.
+The validation set is used to estimate prediction error, which is used to select the model or tune the hyperparameters. In our example, this is the degree of the polynomial. Notice that in the process, the models “see” the validation set.
+The test set is used for assessment of the generalization error of the final chosen model. This set is never seen by the models. We should not go back and choose the model based on the test set performance.</p>
+<p>One common way of splitting the data is 60% training, 20% validation, and 20% test.</p>
+<p>Sometimes people use “validation” and “test” interchangeably. This is fine if we are only doing only one of the tasks above (model selection or model assessment). However, if we are doing both, we should have two separate sets.</p>
+</section>
+<section id="id1">
+<h2>Cross-Validation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>When the data is limited, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html">cross-validation</a>. The most common method is k-fold cross-validation. For example, for 5-fold cross-validation, the data is randomly split into 5 equal parts. We train on 4 parts and validate on the remaining part. We repeat this process 5 times (the folds), each time with a different validation part. The final score is the average of the 5 validation scores.</p>
+<p><img alt="image info" src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="c1"># Load the Penguins dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+<span class="c1"># features = [&#39;bill_length_mm&#39;, &#39;bill_depth_mm&#39;,&#39;flipper_length_mm&#39;]</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span>  
+
+<span class="c1"># Remove missing values based on the features and target</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">features</span> <span class="o">+</span> <span class="n">target</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Remove missing values</span>
+
+
+<span class="c1"># Initialize linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Set up 5-fold cross-validation</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Initialize a list to store the R^2 scores for each fold</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Manually perform cross-validation</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+
+    <span class="c1"># Split the data into training and test sets for this fold</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+
+    <span class="c1"># Fit the model to the training data</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># Predict on the test data</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the R^2 score and append to list</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+
+    <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Output the scores for each fold and the average score</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fold </span><span class="si">{</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2"> R^2 score:&quot;</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average R^2 score:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fold 1 R^2 score: 0.758969714080479
+Fold 2 R^2 score: 0.6996496443204514
+Fold 3 R^2 score: 0.7813098171294692
+Fold 4 R^2 score: 0.7538535583920862
+Fold 5 R^2 score: 0.7554820079335888
+Average R^2 score: 0.7498529483712149
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also use the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html">cross_val_score</a> function to streamline the process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+
+<span class="c1"># Initialize linear regression model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Set up 5-fold cross-validation</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="c1"># Perform cross-validation</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">target</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;r2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Output the scores for each fold</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2 scores for each fold:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average R^2 score:&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R^2 scores for each fold: [0.75896971 0.69964964 0.78130982 0.75385356 0.75548201]
+Average R^2 score: 0.7498529483712149
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -386,20 +508,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../final_project_instruction.html"
+       href="trade_off.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Final Project Instruction</p>
+        <p class="prev-next-title">Bias-Variance Tradeoff</p>
       </div>
     </a>
     <a class="right-next"
-       href="python_review.html"
+       href="../lectures/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python review</p>
+        <p class="prev-next-title">Lectures</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -412,6 +534,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-validation-and-testing">Training, Validation, and Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Cross-Validation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
