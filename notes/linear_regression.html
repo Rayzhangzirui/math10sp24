@@ -175,20 +175,28 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="multi_linear_reg.html">Multiple Linear Regression</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec9.html">week3 lec9</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec10.html">week4 lec10</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec11.html">week4 lec11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -506,7 +514,7 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w = 1.997, b = 1.022
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff5605b0bd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fada2202810&gt;
 </pre></div>
 </div>
 <img alt="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" src="../_images/923b0c2931963c0d0b0826efd5115d83fcfc5c5b29562711da01dfc09068ce72.png" />
@@ -638,14 +646,16 @@ score = 0.993
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;f2&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f2&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;f1, mse=</span><span class="si">{</span><span class="n">f1_mse</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">, mae=</span><span class="si">{</span><span class="n">f1_mae</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;f2, mse=</span><span class="si">{</span><span class="n">f2_mse</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">, mae=</span><span class="si">{</span><span class="n">f2_mae</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff591882750&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.15000000000000002, 3.15, -10.8, 6.8)
 </pre></div>
 </div>
-<img alt="../_images/f9e78f4c419437e3143911a26e99fa11995d393255ea31f069b176bf6a8331a9.png" src="../_images/f9e78f4c419437e3143911a26e99fa11995d393255ea31f069b176bf6a8331a9.png" />
+<img alt="../_images/14de804355608cf1d183f6ee69da25adcacc43fbe172103ebda21fe4f3fb8eef.png" src="../_images/14de804355608cf1d183f6ee69da25adcacc43fbe172103ebda21fe4f3fb8eef.png" />
 </div>
 </div>
 </section>

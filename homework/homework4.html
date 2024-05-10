@@ -66,6 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'homework/homework4';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Homework 5 (Due 5/17)" href="homework5.html" />
     <link rel="prev" title="Homework 3 Solution (Due 4/26 11:59 PM)" href="homework3_sol.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,20 +175,28 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec1.html">week1 lec1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec2.html">week1 lec2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_lec3.html">week1 lec3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec4.html">week2 lec4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec5.html">week2 lec5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_lec6.html">week2 lec6</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec7.html">week3 lec7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec8.html">week3 lec8</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_lec9.html">week3 lec9</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec10.html">week4 lec10</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_lec11.html">week4 lec11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Homework</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -197,6 +206,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework5.html">Homework 5 (Due 5/17)</a></li>
 </ul>
 </li>
 </ul>
@@ -322,7 +332,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -338,6 +350,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id">ID:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -349,6 +371,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="homework-4-due-5-10">
 <h1>Homework 4 (Due 5/10)<a class="headerlink" href="#homework-4-due-5-10" title="Permalink to this heading">#</a></h1>
+<section id="name">
+<h2>Name:<a class="headerlink" href="#name" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id">
+<h2>ID:<a class="headerlink" href="#id" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">#</a></h2>
+<p>Run everything (select cell in the menu, and click Run all), export as pdf, and submit the pdf to gradescope.</p>
+<p>To export as pdf, you can use the following methods: (1) File -&gt; download as -&gt; pdf (2) print as pdf from browser.</p>
 <p><strong>Q1</strong> Linear regression on exponential growth</p>
 <p>Suppose we want to measure the growth of a population of bacteria. We culture the bacteria in a test tube.
 We measure the volume of the cell culture at various times (hr) and obtain the following dataframe:</p>
@@ -522,6 +554,7 @@ We measure the volume of the cell culture at various times (hr) and obtain the f
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -563,6 +596,15 @@ We measure the volume of the cell culture at various times (hr) and obtain the f
         <p class="prev-next-title">Homework 3 Solution (Due 4/26 11:59 PM)</p>
       </div>
     </a>
+    <a class="right-next"
+       href="homework5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 5 (Due 5/17)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -572,6 +614,22 @@ We measure the volume of the cell culture at various times (hr) and obtain the f
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name">Name:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id">ID:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
