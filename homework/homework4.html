@@ -469,7 +469,17 @@ We measure the volume of the cell culture at various times (hr) and obtain the f
 </div>
 <p><strong>(2)</strong> Best subset selection</p>
 <p>In this exercise, Let’s consider what is the best subset of features to predict <code class="docutils literal notranslate"><span class="pre">body_mass_g</span></code>.</p>
-<p>Since we have 3 features, there are <span class="math notranslate nohighlight">\(2^3 = 8\)</span> possible models. To generate all combinations, you can look up the <code class="docutils literal notranslate"><span class="pre">combinations</span></code> function in the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> module (part of the Python standard library).</p>
+<p>Since we have 3 features, we can fit 7 models, each with a different subset of features:</p>
+<ul class="simple">
+<li><p>Model 1: <code class="docutils literal notranslate"><span class="pre">bill_length_mm</span></code></p></li>
+<li><p>Model 2: <code class="docutils literal notranslate"><span class="pre">bill_depth_mm</span></code></p></li>
+<li><p>Model 3: <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code></p></li>
+<li><p>Model 4: <code class="docutils literal notranslate"><span class="pre">bill_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">bill_depth_mm</span></code></p></li>
+<li><p>Model 5: <code class="docutils literal notranslate"><span class="pre">bill_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code></p></li>
+<li><p>Model 6: <code class="docutils literal notranslate"><span class="pre">bill_depth_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code></p></li>
+<li><p>Model 7: <code class="docutils literal notranslate"><span class="pre">bill_length_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">bill_depth_mm</span></code>, <code class="docutils literal notranslate"><span class="pre">flipper_length_mm</span></code></p></li>
+</ul>
+<p>This can be done manually. Alternatively, look up the <code class="docutils literal notranslate"><span class="pre">combinations</span></code> function in the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> module (part of the Python standard library).</p>
 <p>For each model, fit a linear regression model and compute the <span class="math notranslate nohighlight">\(R^2\)</span> on the training and testing data.</p>
 <p>Is the one using all features the best model?</p>
 <div class="cell docutils container">
@@ -543,6 +553,9 @@ We measure the volume of the cell culture at various times (hr) and obtain the f
 </div>
 </div>
 <p>(3) A final method is to fit a linear regression model for each species separately.</p>
+<p>For fair comparison, we need to use the same training and testing sets <code class="docutils literal notranslate"><span class="pre">df_penguins_train,</span> <span class="pre">df_penguins_test</span></code> as in the previous question.</p>
+<p>More specifically, we for each species <code class="docutils literal notranslate"><span class="pre">s</span></code>, we fit a linear regression model using <code class="docutils literal notranslate"><span class="pre">df_penguins_train[df_penguins_train['species']</span> <span class="pre">==</span> <span class="pre">s]</span></code> and test on <code class="docutils literal notranslate"><span class="pre">df_penguins_test[df_penguins_test['species']</span> <span class="pre">==</span> <span class="pre">s]</span></code>.</p>
+<p>Notice that in this case, we have 12 parameters to estimate.</p>
 <p>body_mass = <span class="math notranslate nohighlight">\(\beta^s_0\)</span> + <span class="math notranslate nohighlight">\(\beta^s_1\)</span> bill_length + <span class="math notranslate nohighlight">\(\beta^s_2\)</span> bill_depth + <span class="math notranslate nohighlight">\(\beta^s_3\)</span> flipper_length</p>
 <p>where <span class="math notranslate nohighlight">\(s\in\)</span> {Adelie, Chinstrap, Gentoo}.</p>
 <p>Compute the <span class="math notranslate nohighlight">\(R^2\)</span> on training and testing sets. Is this method better?</p>
