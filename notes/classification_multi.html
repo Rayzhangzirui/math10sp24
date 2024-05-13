@@ -586,21 +586,21 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">conf_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Labels&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Labels&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix of Penguin Sex Prediction&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix of Species Classification&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training accuracy: 0.83
-Test accuracy: 0.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training accuracy: 1.00
+Test accuracy: 0.99
 Confusion Matrix:
- [[32 11  1]
- [ 6  6  1]
- [ 0  1 28]]
+ [[44  0  0]
+ [ 1 12  0]
+ [ 0  0 29]]
 </pre></div>
 </div>
-<img alt="../_images/54e1429ff7bc961096ee3f265a22ee2b2fceb3f5da155cb9e8506111377b3e8c.png" src="../_images/54e1429ff7bc961096ee3f265a22ee2b2fceb3f5da155cb9e8506111377b3e8c.png" />
+<img alt="../_images/4720c9e987a71b7eb35b35b8d20192339a3d938ebdac035a0e214f5dfd5d5ee0.png" src="../_images/4720c9e987a71b7eb35b35b8d20192339a3d938ebdac035a0e214f5dfd5d5ee0.png" />
 </div>
 </div>
 </section>

@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/regularization';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lectures" href="../lectures/intro.html" />
+    <link rel="next" title="Binary Classification with logistic regression" href="classification.html" />
     <link rel="prev" title="Feature Scaling" href="feature_scaling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,6 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="cv.html">Cross Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="feature_scaling.html">Feature Scaling</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classification.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classification_multi.html">Logistic Regression for Multiclass Classification</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -387,7 +389,7 @@ document.write(`
 <p>Here, we are penalizing large value of <span class="math notranslate nohighlight">\(\beta\)</span>. Intuitively, large coefficients are more sensitive to changes in the input data, which can lead to overfitting.</p>
 <p>We can view this as the middle ground of two extremes:
 if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are back to the original linear regression model; if <span class="math notranslate nohighlight">\(\alpha\)</span> is very large, then we are forcing all the <span class="math notranslate nohighlight">\(\beta_1, \beta_2, \ldots, \beta_p\)</span> to be close to 0, and the model becomes a constant model (i.e., <span class="math notranslate nohighlight">\(f(x) = \beta_0\)</span>).</p>
-<p>An equivalent way is to write the problem as a constrained optimization problem:</p>
+<p>The previous problem is equivalent to the following constrained optimization problem:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -395,7 +397,7 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 &amp;\text{subject to} \sum_{j=1}^p \beta_j^2 \leq t
 \end{align*}
 \end{split}\]</div>
-<p>Here, it’s clear to see that we are constraining the complexity of the model by limiting the space of <span class="math notranslate nohighlight">\(\beta\)</span>: instead of finding the optimal <span class="math notranslate nohighlight">\(\beta\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span>, we are finding the optimal <span class="math notranslate nohighlight">\(\beta\)</span> in a <span class="math notranslate nohighlight">\(p\)</span>-dimensional ball.</p>
+<p>We are constraining the complexity of the model by limiting the space of <span class="math notranslate nohighlight">\(\beta\)</span>: instead of finding the optimal <span class="math notranslate nohighlight">\(\beta\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^p\)</span>, we are finding the optimal <span class="math notranslate nohighlight">\(\beta\)</span> in a <span class="math notranslate nohighlight">\(p\)</span>-dimensional ball.</p>
 <p>There is a one-to-one correspondence between the <span class="math notranslate nohighlight">\(\alpha\)</span> in the first formulation and <span class="math notranslate nohighlight">\(t\)</span> in the second formulation (see Lagrange multiplier in optimization).</p>
 <p>Notice that</p>
 <ul class="simple">
@@ -553,10 +555,11 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 </section>
 <section id="the-lasso">
 <h2>The Lasso<a class="headerlink" href="#the-lasso" title="Permalink to this heading">#</a></h2>
-<p>The lasso is another way to regularize the linear regression model. The optimization problem is:
-$<span class="math notranslate nohighlight">\(
+<p>The lasso is another way to regularize the linear regression model. The optimization problem is:</p>
+<div class="math notranslate nohighlight">
+\[
 \min_{\beta}  \sum_{i=1}^N (\beta_0 + \sum_{j=1}^p x_{ij} \beta_j - y_i)^2 + \alpha \sum_{j=1}^p |\beta_j|
-\)</span>$</p>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the regularization strength.</p>
 <p>We can also write the problem as a constrained optimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -692,11 +695,11 @@ This is useful in practice because it can help us select a subset of the feature
       </div>
     </a>
     <a class="right-next"
-       href="../lectures/intro.html"
+       href="classification.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lectures</p>
+        <p class="prev-next-title">Binary Classification with logistic regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
