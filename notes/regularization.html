@@ -359,6 +359,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lasso">The Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-take-away">Some take away</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-lasso-prefer-sparse-solutions">Why does the Lasso prefer sparse solutions?</a></li>
 </ul>
             </nav>
         </div>
@@ -467,12 +469,13 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/4b2a0d05fabe7ddd2f8a7dca64ca0d5e903f08bab3840111d60580295163d2c7.png" src="../_images/4b2a0d05fabe7ddd2f8a7dca64ca0d5e903f08bab3840111d60580295163d2c7.png" />
-<img alt="../_images/c7023cc37e4c6f2f21c4277321530fe79cc9ea48936fe96123131f9973efd6e3.png" src="../_images/c7023cc37e4c6f2f21c4277321530fe79cc9ea48936fe96123131f9973efd6e3.png" />
+<img alt="../_images/9fe4f198e0e4b83cc2b4e53012428cdda8d7a7ec902eb358a7053ece3b08d459.png" src="../_images/9fe4f198e0e4b83cc2b4e53012428cdda8d7a7ec902eb358a7053ece3b08d459.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
 
@@ -514,7 +517,7 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 <span class="n">min_test_error_alpha</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span>
 
 <span class="c1"># Plotting coefficients as a function of alpha</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coefficients</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_test_error_alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
@@ -526,10 +529,11 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;coefficient at min_test_error_alpha: </span><span class="si">{</span><span class="n">coefficients</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">best_coef</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;coefficient at min_test_error_alpha: </span><span class="si">{</span><span class="n">best_coef</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plotting training and testing error as a function of alpha</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">train_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">test_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Testing error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_test_error_alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$ with min testing error&#39;</span><span class="p">)</span>
@@ -544,12 +548,12 @@ if <span class="math notranslate nohighlight">\(\alpha = 0\)</span>, then we are
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d80b935f61b634f402653a212d9bc48130dc60a5cb9f206fd62a5db038c48409.png" src="../_images/d80b935f61b634f402653a212d9bc48130dc60a5cb9f206fd62a5db038c48409.png" />
+<img alt="../_images/a4414fba035c5984e32c8167c603484faba11f5c01df73cef5c7f9dd410d5ed5.png" src="../_images/a4414fba035c5984e32c8167c603484faba11f5c01df73cef5c7f9dd410d5ed5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coefficient at min_test_error_alpha: [ -40.29975879 -207.42325577  473.89549682  314.67375928  -58.88723172
   -71.1515363  -200.45697995   79.62340778  462.24473432   61.82651944]
 </pre></div>
 </div>
-<img alt="../_images/83dab6e00a9fe78c1317848e60a852819830c7c5f693f434781c2313f75a050e.png" src="../_images/83dab6e00a9fe78c1317848e60a852819830c7c5f693f434781c2313f75a050e.png" />
+<img alt="../_images/45fdf22d1cd0dc804367c5a83e44e431c6ab46dcb0be979cdb4223566daef63b.png" src="../_images/45fdf22d1cd0dc804367c5a83e44e431c6ab46dcb0be979cdb4223566daef63b.png" />
 </div>
 </div>
 </section>
@@ -613,7 +617,7 @@ This is useful in practice because it can help us select a subset of the feature
 <span class="n">min_test_error_alpha</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span>
 
 <span class="c1"># Plotting coefficients as a function of alpha</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">coefficients</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_test_error_alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
@@ -625,10 +629,11 @@ This is useful in practice because it can help us select a subset of the feature
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Coefficients&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;coefficient at min_test_error_alpha: </span><span class="si">{</span><span class="n">coefficients</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">best_coef</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">test_errors</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;coefficient at min_test_error_alpha: </span><span class="si">{</span><span class="n">best_coef</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plotting training and testing error as a function of alpha</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">train_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">alphas</span><span class="p">,</span> <span class="n">test_errors</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Testing error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">min_test_error_alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\alpha$ with min testing error&#39;</span><span class="p">)</span>
@@ -643,14 +648,34 @@ This is useful in practice because it can help us select a subset of the feature
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b3d44e4a817b749f5a3a5ba08787e2820ed35210e658f541fac6e177dda5edcf.png" src="../_images/b3d44e4a817b749f5a3a5ba08787e2820ed35210e658f541fac6e177dda5edcf.png" />
+<img alt="../_images/e78708f643f6970c86495072c81615dbb67c58b2346d13370584993b8ae22c13.png" src="../_images/e78708f643f6970c86495072c81615dbb67c58b2346d13370584993b8ae22c13.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>coefficient at min_test_error_alpha: [  -0.         -168.94733268  508.38872566  286.86290699  -63.78716274
    -0.         -193.54527567    0.          521.00758347    0.        ]
 </pre></div>
 </div>
-<img alt="../_images/55b6ab50d6b8dd04c10881479ca482e8f9c6755196904cec519a7edc4e0b126b.png" src="../_images/55b6ab50d6b8dd04c10881479ca482e8f9c6755196904cec519a7edc4e0b126b.png" />
+<img alt="../_images/94aa1cd54913f2387798ead4cba5df6b669905491115a9cc9e1ac8d9c52cd30b.png" src="../_images/94aa1cd54913f2387798ead4cba5df6b669905491115a9cc9e1ac8d9c52cd30b.png" />
 </div>
 </div>
+</section>
+<section id="some-take-away">
+<h2>Some take away<a class="headerlink" href="#some-take-away" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Both Lasso and Ridge regression are used to prevent overfitting in linear models.</p></li>
+<li><p>Both require the feature to be of the same scale.</p></li>
+<li><p>Ridge regression has a closed-form solution, while Lasso does not.</p></li>
+<li><p>Lasso tends to produce sparse solutions, that is, it encourages the coefficients to be exactly 0.</p></li>
+<li><p>The choice of <span class="math notranslate nohighlight">\(\alpha\)</span> is important. It can be chosen by cross-validation.</p></li>
+</ul>
+</section>
+<section id="why-does-the-lasso-prefer-sparse-solutions">
+<h2>Why does the Lasso prefer sparse solutions?<a class="headerlink" href="#why-does-the-lasso-prefer-sparse-solutions" title="Permalink to this heading">#</a></h2>
+<p>Consider the contrained optimization problem of the lasso and the ridge regression. We can visualize the constraints in 2 dimensions.</p>
+<p>The elliptical contours are contours of the loss function, and the diamond and the circle region are the constraints.</p>
+<p>For the ridge regression, the coefficients are constrained in a ball, while for the lasso, the coefficients are constrained in a diamond shape.</p>
+<p>The optimal solution happens when the contours of the loss function are tangent to the constraints.</p>
+<p>For the ridge regression, that usually happens at the boundary of the ball, where the coefficients are not 0. While for the lasso, that usually happens at the corner of the diamond, where some coefficients are 0.</p>
+<p><img alt="Figure Description" src="https://images.datacamp.com/image/upload/v1648205672/image18_a3zz7y.png" /></p>
+<p><a class="reference external" href="https://online.stat.psu.edu/stat508/book/export/html/749">Souce</a></p>
 </section>
 </section>
 
@@ -723,6 +748,8 @@ This is useful in practice because it can help us select a subset of the feature
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lasso">The Lasso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-take-away">Some take away</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-the-lasso-prefer-sparse-solutions">Why does the Lasso prefer sparse solutions?</a></li>
 </ul>
   </nav></div>
 
