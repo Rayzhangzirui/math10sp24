@@ -358,7 +358,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-function">Loss function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-cross-entropy-loss">Binary Cross-Entropy Loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">Optimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-and-performance-metrics">Prediction and Performance Metrics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-decision-boundary">Visualizing the Decision Boundary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-classification-using-penguins-dataset">Binary Classification using penguins dataset</a></li>
@@ -422,11 +423,10 @@ which maps any real number to the range (0, 1).</p>
 </div>
 </div>
 </section>
-<section id="loss-function">
-<h2>Loss function<a class="headerlink" href="#loss-function" title="Permalink to this heading">#</a></h2>
-<p>For binary classification, the loss function is the cross-entropy loss function. The binary cross-entropy loss function is defined as:</p>
-<p>For one sample <span class="math notranslate nohighlight">\((x, y)\)</span>:</p>
-<p><span class="math notranslate nohighlight">\(\hat{y} = f(x)\)</span> is the predicted probability of the input belonging to class 1.</p>
+<section id="binary-cross-entropy-loss">
+<h2>Binary Cross-Entropy Loss<a class="headerlink" href="#binary-cross-entropy-loss" title="Permalink to this heading">#</a></h2>
+<p>For binary classification, we will use the binary cross-entropy.</p>
+<p>Let <span class="math notranslate nohighlight">\(\hat{y} = f(x)\)</span> be the predicted probability that the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> belonging to class 1.</p>
 <div class="math notranslate nohighlight">
 \[BCE(y, \hat{y}) = -y \log(\hat{y}) - (1 - y) \log(1 - \hat{y})\]</div>
 <p>where <span class="math notranslate nohighlight">\(y\)</span> is the true label, which is either 0 or 1,
@@ -479,16 +479,21 @@ and <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the predict
 <img alt="../_images/9da6909f7ee9da7026ee8edc50e6eff09c0527dd1d017c78f05a4ad2cbe3de28.png" src="../_images/9da6909f7ee9da7026ee8edc50e6eff09c0527dd1d017c78f05a4ad2cbe3de28.png" />
 </div>
 </div>
-<p>We can see that the cross-entropy loss function penalizes the model more when the prediction is wrong, which is important for classification problems. For example, if the true label is 1 and the model predicts 0.1 probability of class 1, the cross-entropy loss is 2.3, but the mean squared error loss is 0.81.</p>
-<p>Our loss function is
-$<span class="math notranslate nohighlight">\(
+<p>We can see that the cross-entropy loss function penalizes the model more when the predicted probability is far from the true label.
+For example, if the true label is 1 and the model predicts 0.01 probability of class 1, the cross-entropy loss is 4.6, but the mean squared error loss is 0.99.</p>
+</section>
+<section id="optimization">
+<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this heading">#</a></h2>
+<p>Our loss function is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 &amp; = \sum_{i=1}^{n} - y_i \log(f(\mathbf{x}_i)) - (1 - y_i) \log(1 - f(\mathbf{x}_i)) \\
 &amp; = \sum_{i=1}^{n} y_i \log(1+e^{\mathbf{\beta}^T \mathbf{x}_i})   - (1 - y_i)   (\mathbf{\beta}^T \mathbf{x}_i + \log(1+e^{-\mathbf{\beta}^T \mathbf{x}_i}))\\
 &amp; = \sum_{i=1}^{n}  \log(1+e^{\mathbf{\beta}^T \mathbf{x}_i}) -(1-y_i) \mathbf{\beta}^T \mathbf{x}_i
-\end{align*}\)</span>$</p>
-<p>We arrive at the following minimization problem</p>
+\end{align*}\end{split}\]</div>
+<p>We arrive at the following minimization problem:</p>
 <div class="math notranslate nohighlight">
 \[\min_{\mathbf{\beta}} L(\mathbf{\beta})\]</div>
 <p>There is no closed-form solution for the minimization problem, so we need to use optimization algorithms to find the optimal parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>.</p>
@@ -497,6 +502,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <h2>Prediction and Performance Metrics<a class="headerlink" href="#prediction-and-performance-metrics" title="Permalink to this heading">#</a></h2>
 <p>After we find the optimal parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>, we can use the model to make predictions. The output of the model is the probability of the input belonging to class 1. Therefore, if the output is greater than 0.5, we predict class 1, otherwise we predict class 0.</p>
 <p>Accuracy is the most common metric for classification problems. It is defined as the number of correct predictions divided by the total number of predictions.</p>
+<p>Alternatively, we can use the confusion matrix to evaluate the performance of the model. The confusion matrix is a table that shows the number of true positives, true negatives, false positives, and false negatives.</p>
 </section>
 <section id="visualizing-the-decision-boundary">
 <h2>Visualizing the Decision Boundary<a class="headerlink" href="#visualizing-the-decision-boundary" title="Permalink to this heading">#</a></h2>
@@ -606,7 +612,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
 
 <span class="c1"># Predict on the mesh points to find the decision boundary</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="c1"># Plot the decision boundary</span>
@@ -782,7 +788,8 @@ Confusion Matrix:
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loss-function">Loss function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-cross-entropy-loss">Binary Cross-Entropy Loss</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization">Optimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-and-performance-metrics">Prediction and Performance Metrics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-decision-boundary">Visualizing the Decision Boundary</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-classification-using-penguins-dataset">Binary Classification using penguins dataset</a></li>
