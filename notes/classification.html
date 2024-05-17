@@ -543,7 +543,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># probability of class 1</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">X_test</span> <span class="o">*</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span> <span class="o">+</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">X_test</span> <span class="o">*</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span> <span class="o">+</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
 
 <span class="c1"># alternatively, you can use the predict_proba method</span>
 <span class="c1"># prob = clf.predict_proba(X_test)[:, 1]</span>
@@ -622,7 +622,10 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">])</span>
 
 <span class="c1"># add text for the decision boundary</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\sigma(\mathbf{\beta}^T \mathbf</span><span class="si">{x}</span><span class="s1">) = 0.5$&#39;</span><span class="p">,</span>
+<span class="c1"># plt.text(1.5, -5.5, r&#39;$\sigma(\beta^T \mathbf{x}) = 0.5$&#39;,</span>
+<span class="c1">#          horizontalalignment=&#39;center&#39;, fontsize=12)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\beta^T \mathbf</span><span class="si">{x}</span><span class="s1"> = 0$&#39;</span><span class="p">,</span>
          <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
@@ -637,7 +640,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/28485c79866f29a52c04ef8dc85b51fd676d04276a1f794137d88d9d3f07c809.png" src="../_images/28485c79866f29a52c04ef8dc85b51fd676d04276a1f794137d88d9d3f07c809.png" />
+<img alt="../_images/32053fb171bc4db04f5c9b6a888c114ca21f14bf634c3153161e52a455d2b233.png" src="../_images/32053fb171bc4db04f5c9b6a888c114ca21f14bf634c3153161e52a455d2b233.png" />
 </div>
 </div>
 </section>
