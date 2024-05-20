@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Binary Classification with logistic regression &#8212; UCI Math 10, Spring 2024</title>
   
@@ -19,48 +18,45 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/classification';</script>
@@ -77,7 +73,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -112,11 +116,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,6 +138,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -139,10 +147,22 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">UCI Math 10, Spring 2024</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -207,8 +227,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework4.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework5.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6.html">Homework 6 (Due 5/24)</a></li>
 </ul>
 </li>
 </ul>
@@ -317,20 +338,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -372,10 +395,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="binary-classification-with-logistic-regression">
-<h1>Binary Classification with logistic regression<a class="headerlink" href="#binary-classification-with-logistic-regression" title="Permalink to this heading">#</a></h1>
+<h1>Binary Classification with logistic regression<a class="headerlink" href="#binary-classification-with-logistic-regression" title="Link to this heading">#</a></h1>
 <p>In generatl, for classification problems, we have data (<span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>, y_i) for i = 1, 2, …, N, where <span class="math notranslate nohighlight">\(\mathbf{x}_i\in\mathbb{R}^p\)</span> is the input/feature and <span class="math notranslate nohighlight">\(y_i\)</span> is the output/label, which indicates the class of the input.</p>
 <p>In binary classification, the data is divided into class 1 and class 2:</p>
 <ul class="simple">
@@ -383,7 +406,7 @@ document.write(`
 <li><p>y = 0 means the input does not belong to class 1, i.e., it belongs to class 2.</p></li>
 </ul>
 <section id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
+<h2>Model<a class="headerlink" href="#model" title="Link to this heading">#</a></h2>
 <p>We assume the the probability of the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> belonging to class 1 is</p>
 <div class="math notranslate nohighlight">
 \[f(\mathbf{x}) = \sigma(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p),\]</div>
@@ -419,12 +442,12 @@ which maps any real number to the range (0, 1).</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y&#39;)
 </pre></div>
 </div>
-<img alt="../_images/6afc69b7a635457f8236181366f868456ac8e62eb7793ecec534fd400358dd05.png" src="../_images/6afc69b7a635457f8236181366f868456ac8e62eb7793ecec534fd400358dd05.png" />
+<img alt="../_images/430a28a18b7dd323c232f844086908136f84e4a7dfe5d46804b89a2830fae976.png" src="../_images/430a28a18b7dd323c232f844086908136f84e4a7dfe5d46804b89a2830fae976.png" />
 </div>
 </div>
 </section>
 <section id="binary-cross-entropy-loss">
-<h2>Binary Cross-Entropy Loss<a class="headerlink" href="#binary-cross-entropy-loss" title="Permalink to this heading">#</a></h2>
+<h2>Binary Cross-Entropy Loss<a class="headerlink" href="#binary-cross-entropy-loss" title="Link to this heading">#</a></h2>
 <p>For binary classification, we will use the binary cross-entropy.</p>
 <p>Let <span class="math notranslate nohighlight">\(\hat{y} = f(x)\)</span> be the predicted probability that the input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> belonging to class 1.</p>
 <div class="math notranslate nohighlight">
@@ -476,14 +499,14 @@ and <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the predict
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Loss&#39;)
 </pre></div>
 </div>
-<img alt="../_images/9da6909f7ee9da7026ee8edc50e6eff09c0527dd1d017c78f05a4ad2cbe3de28.png" src="../_images/9da6909f7ee9da7026ee8edc50e6eff09c0527dd1d017c78f05a4ad2cbe3de28.png" />
+<img alt="../_images/f91bf7868d72ebc1eb480e6d6aec949e032bd124ebaf6ec60d1d03529a657411.png" src="../_images/f91bf7868d72ebc1eb480e6d6aec949e032bd124ebaf6ec60d1d03529a657411.png" />
 </div>
 </div>
 <p>We can see that the cross-entropy loss function penalizes the model more when the predicted probability is far from the true label.
 For example, if the true label is 1 and the model predicts 0.01 probability of class 1, the cross-entropy loss is 4.6, but the mean squared error loss is 0.99.</p>
 </section>
 <section id="optimization">
-<h2>Optimization<a class="headerlink" href="#optimization" title="Permalink to this heading">#</a></h2>
+<h2>Optimization<a class="headerlink" href="#optimization" title="Link to this heading">#</a></h2>
 <p>Our loss function is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -499,13 +522,13 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <p>There is no closed-form solution for the minimization problem, so we need to use optimization algorithms to find the optimal parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>.</p>
 </section>
 <section id="prediction-and-performance-metrics">
-<h2>Prediction and Performance Metrics<a class="headerlink" href="#prediction-and-performance-metrics" title="Permalink to this heading">#</a></h2>
+<h2>Prediction and Performance Metrics<a class="headerlink" href="#prediction-and-performance-metrics" title="Link to this heading">#</a></h2>
 <p>After we find the optimal parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span>, we can use the model to make predictions. The output of the model is the probability of the input belonging to class 1. Therefore, if the output is greater than 0.5, we predict class 1, otherwise we predict class 0.</p>
 <p>Accuracy is the most common metric for classification problems. It is defined as the number of correct predictions divided by the total number of predictions.</p>
 <p>Alternatively, we can use the confusion matrix to evaluate the performance of the model. The confusion matrix is a table that shows the number of true positives, true negatives, false positives, and false negatives.</p>
 </section>
 <section id="visualizing-the-decision-boundary">
-<h2>Visualizing the Decision Boundary<a class="headerlink" href="#visualizing-the-decision-boundary" title="Permalink to this heading">#</a></h2>
+<h2>Visualizing the Decision Boundary<a class="headerlink" href="#visualizing-the-decision-boundary" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Gael Varoquaux</span>
@@ -531,7 +554,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 
 
 <span class="c1"># Fit the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># and plot the result</span>
@@ -578,7 +601,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4cebaf0727a21b9b87ea91d926603b1188854c4bff235bfcd72f2051ad71a579.png" src="../_images/4cebaf0727a21b9b87ea91d926603b1188854c4bff235bfcd72f2051ad71a579.png" />
+<img alt="../_images/127ff3a338b2117257a401d99dd6433404271b1c6a0b758552bae850a511d827.png" src="../_images/127ff3a338b2117257a401d99dd6433404271b1c6a0b758552bae850a511d827.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -640,12 +663,12 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/32053fb171bc4db04f5c9b6a888c114ca21f14bf634c3153161e52a455d2b233.png" src="../_images/32053fb171bc4db04f5c9b6a888c114ca21f14bf634c3153161e52a455d2b233.png" />
+<img alt="../_images/7de60357d57c3e5a6365958310bee12a5891c629aca5a228e4f711c5a2a93776.png" src="../_images/7de60357d57c3e5a6365958310bee12a5891c629aca5a228e4f711c5a2a93776.png" />
 </div>
 </div>
 </section>
 <section id="binary-classification-using-penguins-dataset">
-<h2>Binary Classification using penguins dataset<a class="headerlink" href="#binary-classification-using-penguins-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Binary Classification using penguins dataset<a class="headerlink" href="#binary-classification-using-penguins-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -683,7 +706,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Initialize and train the logistic regression model</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c1"># Calculate the training and test accuracy</span>
@@ -717,7 +740,7 @@ Confusion Matrix:
  [ 5 29]]
 </pre></div>
 </div>
-<img alt="../_images/f3425d63d3713a4f0cda671d7d93ab637b728e5cca9755f0f26ffdeb780f47a2.png" src="../_images/f3425d63d3713a4f0cda671d7d93ab637b728e5cca9755f0f26ffdeb780f47a2.png" />
+<img alt="../_images/adafecf97a65900b85db5ca2f4c11e8d046efad87b34dc2652a531ce380a5006.png" src="../_images/adafecf97a65900b85db5ca2f4c11e8d046efad87b34dc2652a531ce380a5006.png" />
 </div>
 </div>
 </section>
@@ -748,11 +771,10 @@ Confusion Matrix:
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="regularization.html"
@@ -772,10 +794,7 @@ Confusion Matrix:
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -783,6 +802,7 @@ Confusion Matrix:
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -817,6 +837,7 @@ By Ray Zirui Zhang
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -843,8 +864,8 @@ By Ray Zirui Zhang
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
