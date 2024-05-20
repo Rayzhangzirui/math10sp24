@@ -383,6 +383,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-loss">Cross-entropy loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-using-penguins-dataset">Classification using penguins dataset</a></li>
 </ul>
             </nav>
         </div>
@@ -467,7 +468,7 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
 
 <span class="c1"># Create a logistic regression classifier with multinomial option for multi-class</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Create a mesh to plot the decision boundaries</span>
@@ -495,7 +496,7 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/20876cd671c00242891e4ad4a9c0e3e50998ce42f5f7f90701dd20dfe3ccda51.png" src="../_images/20876cd671c00242891e4ad4a9c0e3e50998ce42f5f7f90701dd20dfe3ccda51.png" />
+<img alt="../_images/437dac6ebdd5c2c6067521a4b5bbd6a929ce78119a245c4d7a7812cf70d5aebb.png" src="../_images/437dac6ebdd5c2c6067521a4b5bbd6a929ce78119a245c4d7a7812cf70d5aebb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -513,7 +514,7 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
 
 <span class="c1"># Create a logistic regression classifier with multinomial option for multi-class</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Create a mesh to plot the decision boundaries</span>
@@ -541,16 +542,12 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ca255792e2e90be9a740f269c8e354f741a3f0b2597ca45f7207fa27e0781a02.png" src="../_images/ca255792e2e90be9a740f269c8e354f741a3f0b2597ca45f7207fa27e0781a02.png" />
+<img alt="../_images/fd40b80d90771dcd596b4d1c4430be7c9715c3b93a7afc831361ed9daff49aef.png" src="../_images/fd40b80d90771dcd596b4d1c4430be7c9715c3b93a7afc831361ed9daff49aef.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Classification using penguins dataset</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="classification-using-penguins-dataset">
+<h2>Classification using penguins dataset<a class="headerlink" href="#classification-using-penguins-dataset" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -588,7 +585,7 @@ L(\mathbf{W}) = -\sum_{i=1}^N \sum_{k=1}^K y_{ik}\log(f_k(\mathbf{x}_i; \mathbf{
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Initialize and train the logistic regression model</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c1"># Calculate the training and test accuracy</span>
@@ -623,7 +620,7 @@ Confusion Matrix:
  [ 0  0 29]]
 </pre></div>
 </div>
-<img alt="../_images/4720c9e987a71b7eb35b35b8d20192339a3d938ebdac035a0e214f5dfd5d5ee0.png" src="../_images/4720c9e987a71b7eb35b35b8d20192339a3d938ebdac035a0e214f5dfd5d5ee0.png" />
+<img alt="../_images/708f2e0562fdca2d5c37276dd248f8014c87ad7cf0eed32e0d638365444c2255.png" src="../_images/708f2e0562fdca2d5c37276dd248f8014c87ad7cf0eed32e0d638365444c2255.png" />
 </div>
 </div>
 </section>
@@ -696,6 +693,7 @@ Confusion Matrix:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-entropy-loss">Cross-entropy loss</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-using-penguins-dataset">Classification using penguins dataset</a></li>
 </ul>
   </nav></div>
 

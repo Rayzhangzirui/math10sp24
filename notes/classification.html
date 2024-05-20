@@ -513,8 +513,8 @@ For example, if the true label is 1 and the model predicts 0.01 probability of c
 \begin{align*}
 L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 &amp; = \sum_{i=1}^{n} - y_i \log(f(\mathbf{x}_i)) - (1 - y_i) \log(1 - f(\mathbf{x}_i)) \\
-&amp; = \sum_{i=1}^{n} y_i \log(1+e^{\mathbf{\beta}^T \mathbf{x}_i})   - (1 - y_i)   (\mathbf{\beta}^T \mathbf{x}_i + \log(1+e^{-\mathbf{\beta}^T \mathbf{x}_i}))\\
-&amp; = \sum_{i=1}^{n}  \log(1+e^{\mathbf{\beta}^T \mathbf{x}_i}) -(1-y_i) \mathbf{\beta}^T \mathbf{x}_i
+&amp; = \sum_{i=1}^{n} y_i \log(1+e^{-\mathbf{\beta}^T \mathbf{x}_i})   - (1 - y_i)   (-\mathbf{\beta}^T \mathbf{x}_i - \log(1+e^{-\mathbf{\beta}^T \mathbf{x}_i}))\\
+&amp; = \sum_{i=1}^{n}  \log(1+e^{-\mathbf{\beta}^T \mathbf{x}_i}) +(1-y_i) \mathbf{\beta}^T \mathbf{x}_i
 \end{align*}\end{split}\]</div>
 <p>We arrive at the following minimization problem:</p>
 <div class="math notranslate nohighlight">
@@ -531,77 +531,83 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 <h2>Visualizing the Decision Boundary<a class="headerlink" href="#visualizing-the-decision-boundary" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code source: Gael Varoquaux</span>
-<span class="c1"># License: BSD 3 clause</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span>
 
-<span class="c1"># Generate a toy dataset, class 1 is normally distributed with mean 3, variance 1</span>
-<span class="c1"># class 2 is normally distributed with mean 0, variance 1</span>
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1"># Set seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Generate a toy dataset</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">x_class1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-<span class="n">x_class2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">x_class2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 
-<span class="c1"># features, first N are class 1, second N are class 2</span>
+<span class="c1"># Include outlier</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">y_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="c1"># Features and labels, with and without outlier</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x_class1</span><span class="p">,</span> <span class="n">x_class2</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># labels: class 1 has label 1, class 2 has label 0</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
 
+<span class="n">X_with_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">x_extra</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">y_with_extra</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">y_extra</span><span class="p">])</span>
 
-<span class="c1"># Fit the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-<span class="c1"># and plot the result</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;example data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="c1"># for plotting</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># probability of class 1</span>
-<span class="n">prob</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">X_test</span> <span class="o">*</span> <span class="n">clf</span><span class="o">.</span><span class="n">coef_</span> <span class="o">+</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
-
-<span class="c1"># alternatively, you can use the predict_proba method</span>
-<span class="c1"># prob = clf.predict_proba(X_test)[:, 1]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">prob</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Logistic Regression Model&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
+<span class="c1"># Fit linear regression</span>
 <span class="n">ols</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">ols</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ols_with_extra</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">ols_with_extra</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_with_extra</span><span class="p">,</span> <span class="n">y_with_extra</span><span class="p">)</span>
 
+<span class="c1"># Fit logistic regression</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">clf_with_extra</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf_with_extra</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_with_extra</span><span class="p">,</span> <span class="n">y_with_extra</span><span class="p">)</span>
+
+<span class="c1"># Generate test data for plotting</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">y_test_with_extra</span> <span class="o">=</span> <span class="n">ols_with_extra</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">logistic_prob</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">X_test</span> <span class="o">+</span> <span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="n">logistic_prob_with_extra</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">clf_with_extra</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">X_test</span> <span class="o">+</span> <span class="n">clf_with_extra</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">X_test</span><span class="p">,</span>
-    <span class="n">y_test</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear Regression Model&quot;</span><span class="p">,</span>
-    <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_extra</span><span class="p">,</span> <span class="n">y_extra</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;extra&quot;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>  <span class="c1"># Show the outlier in red</span>
+
+<span class="c1"># Without extra points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear Regression&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">logistic_prob</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Logistic Regression&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># With extra points</span>
+<span class="c1"># plt.scatter(X_with_extra, y_with_extra, label=&quot;Data w/ Outlier&quot;, color=&quot;black&quot;, alpha=0.5, zorder=20)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test_with_extra</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear Regression w/ extra points&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">logistic_prob_with_extra</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Logistic Regression w/ extra points&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Comparison of Regression Models&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;.5&quot;</span><span class="p">)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span>
-    <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/127ff3a338b2117257a401d99dd6433404271b1c6a0b758552bae850a511d827.png" src="../_images/127ff3a338b2117257a401d99dd6433404271b1c6a0b758552bae850a511d827.png" />
+<img alt="../_images/b19b46d23dd236ac162cb226f0aa17b1f72a96a760c00aa5bce1db592e27de6e.png" src="../_images/b19b46d23dd236ac162cb226f0aa17b1f72a96a760c00aa5bce1db592e27de6e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -640,14 +646,11 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 
 <span class="c1"># Plot the decision boundary</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="c1"># plt.contourf(xx, yy, Z, [0.25, 0.5, 0.75],</span>
-<span class="c1">#               cmap=&#39;coolwarm&#39;)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="c1"># plt.contour(xx, yy, Z, colors=&#39;k&#39;, levels=[0.5])  # Decision boundary at 0.5</span>
+
 
 <span class="c1"># add text for the decision boundary</span>
-<span class="c1"># plt.text(1.5, -5.5, r&#39;$\sigma(\beta^T \mathbf{x}) = 0.5$&#39;,</span>
-<span class="c1">#          horizontalalignment=&#39;center&#39;, fontsize=12)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\beta^T \mathbf</span><span class="si">{x}</span><span class="s1"> = 0$&#39;</span><span class="p">,</span>
          <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
@@ -663,7 +666,7 @@ L(\mathbf{\beta}) &amp;= \sum_{i=1}^{n} BCE(y_i, f(\mathbf{x}_i)) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7de60357d57c3e5a6365958310bee12a5891c629aca5a228e4f711c5a2a93776.png" src="../_images/7de60357d57c3e5a6365958310bee12a5891c629aca5a228e4f711c5a2a93776.png" />
+<img alt="../_images/1b6381be3f479cf478b2f77ea5ba8bb45592866106a6e92f9a237ea8f554e49c.png" src="../_images/1b6381be3f479cf478b2f77ea5ba8bb45592866106a6e92f9a237ea8f554e49c.png" />
 </div>
 </div>
 </section>
