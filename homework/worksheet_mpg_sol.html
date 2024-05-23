@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'homework/worksheet_mpg_sol';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Homework 1 Solution (Due 4/12 11:59 PM)" href="homework1_sol.html" />
+    <link rel="next" title="Homework 1 (Due 4/12)" href="homework1_sol.html" />
     <link rel="prev" title="worksheet week 3" href="worksheet_mpg.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,8 +196,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/classification.html">Binary Classification with logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/classification_multi.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -217,17 +217,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Homework</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">worksheet week 3 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 (Due 4/26)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework4_sol.html">Homework 4 (Due 5/10)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework5.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework5_sol.html">Homework 5 (Due 5/17)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework6.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework7.html">Homework 7 (Due 5/31)</a></li>
 </ul>
 </li>
 </ul>
@@ -836,7 +841,7 @@ memory usage: 28.1+ KB
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Homework 1 Solution (Due 4/12 11:59 PM)</p>
+        <p class="prev-next-title">Homework 1 (Due 4/12)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

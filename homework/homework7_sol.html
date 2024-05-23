@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Homework 7 (Due 5/29) &#8212; UCI Math 10, Spring 2024</title>
+    <title>Homework 7 (Due 5/31) &#8212; UCI Math 10, Spring 2024</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -198,8 +198,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/classification.html">Binary Classification with logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notes/classification_multi.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -219,17 +219,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="worksheet_mpg.html">worksheet week 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework1_sol.html">Homework 1 Solution (Due 4/12 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 Solution (Due 4/19 11:59 PM)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 Solution (Due 4/26 11:59 PM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework3_sol.html">Homework 3 (Due 4/26)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework4_sol.html">Homework 4 (Due 5/10)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework5.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework5_sol.html">Homework 5 (Due 5/17)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="homework6.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework7.html">Homework 7 (Due 5/31)</a></li>
 </ul>
 </li>
 </ul>
@@ -370,7 +375,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Homework 7 (Due 5/29)</h1>
+    <h1>Homework 7 (Due 5/31)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -394,8 +399,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="homework-7-due-5-29">
-<h1>Homework 7 (Due 5/29)<a class="headerlink" href="#homework-7-due-5-29" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="homework-7-due-5-31">
+<h1>Homework 7 (Due 5/31)<a class="headerlink" href="#homework-7-due-5-31" title="Link to this heading">#</a></h1>
 <section id="name">
 <h2>Name:<a class="headerlink" href="#name" title="Link to this heading">#</a></h2>
 </section>
@@ -407,31 +412,31 @@ document.write(`
 <p>Run everything (select cell in the menu, and click Run all), export as pdf, and submit the pdf to gradescope.</p>
 <p>To export as pdf, you can use the following methods: (1) File -&gt; download as -&gt; pdf (2) print as pdf from browser.</p>
 <p><strong>Q1</strong></p>
-<p>In Q1 and Q2, we show that the multiclass logistic regression is a generalization of the binary logistic regression. The notations follow the <a class="reference internal" href="../notes/classification_multi.html"><span class="std std-doc">lecture on multiclass logistic regression</span></a> and the <a class="reference internal" href="../notes/classification.html"><span class="std std-doc">lecture on binary logistic regression</span></a>.</p>
-<p>Suppose <span class="math notranslate nohighlight">\(x\in \mathbb{R}^p\)</span> and we do have the intercept term.</p>
+<p>In Q1 and Q2, we show that the multiclass logistic regression is a generalization of the binary logistic regression. The notations follow the <a class="reference internal" href="#../notes/classification_multi.ipynb"><span class="xref myst">notes on multiclass logistic regression</span></a> and the <a class="reference internal" href="#../notes/classification.ipynb"><span class="xref myst">notes on binary logistic regression</span></a>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(x\in \mathbb{R}^p\)</span> and we <strong>do not have the intercept term</strong>.</p>
 <p>For binary logistic regression, we assume the probability of <span class="math notranslate nohighlight">\(x\)</span> belonging to class 1 is</p>
 <div class="math notranslate nohighlight">
 \[p(x) = \frac{1}{1+e^{-\beta^T x}}\]</div>
 <p>and the probability of <span class="math notranslate nohighlight">\(x\)</span> belonging to class 2 is</p>
 <div class="math notranslate nohighlight">
 \[1-p(x) = \frac{e^{-\beta^T x}}{1+e^{-\beta^T x}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\beta \in \mathbb{R}^p\)</span> is the weight vector.</p>
+<p>where <span class="math notranslate nohighlight">\(\beta \in \mathbb{R}^p\)</span> is vector of coefficients.</p>
 <p>For multiclass logistic regression, suppose <span class="math notranslate nohighlight">\(K=2\)</span>, the predicted probability of class 1 and class 2 are given by</p>
 <div class="math notranslate nohighlight">
 \[f_1(x) = \frac{e^{{w_1}^T x}}{e^{{w_1}^T x} + e^{{w_2}^T x}}\]</div>
 <div class="math notranslate nohighlight">
 \[f_2(x) = \frac{e^{{w_2}^T x}}{e^{{w_1}^T x} + e^{{w_2}^T x}}\]</div>
-<p>where <span class="math notranslate nohighlight">\(w_1, w_2 \in \mathbb{R}^d\)</span> are the weight vectors.</p>
+<p>where <span class="math notranslate nohighlight">\(w_1, w_2 \in \mathbb{R}^p\)</span> are the vectors of coefficients.</p>
 <p>Show that when <span class="math notranslate nohighlight">\(\beta = w_1 - w_2\)</span>, the predicted probability of class 1 and class 2 in the multiclass logistic regression is the same as the binary logistic regression.</p>
 <div class="math notranslate nohighlight">
 \[f_1(x) = \frac{e^{{w_1}^T x}}{e^{{w_1}^T x} + e^{{w_2}^T x}} = \frac{1}{1+e^{(w_2-w_1)^T x}} = \frac{1}{1+e^{-\beta^T x}} = p(x)\]</div>
 <div class="math notranslate nohighlight">
 \[f_2(x) = 1 - f_1(x) = \frac{e^{-\beta^T x}}{1+e^{-\beta^T x}} = 1-p(x)\]</div>
 <p><strong>Q2</strong></p>
-<p>Let <span class="math notranslate nohighlight">\(y_{ik}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(k\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(k\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ik}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(y_{ik}=0\)</span> otherwise.</p>
+<p>Let <span class="math notranslate nohighlight">\(y_{ij}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(k\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(j\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ij}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(y_{ij}=0\)</span> otherwise.</p>
 <p>For multiclass logistic regression, the cross entropy loss is given by</p>
 <div class="math notranslate nohighlight">
-\[L = -\sum_{i=1}^n \sum_{k=1}^K y_{ik} \log f_k(x_i)\]</div>
+\[L = -\sum_{i=1}^n \sum_{j=1}^K y_{ij} \log f_j(x_i)\]</div>
 <p>When <span class="math notranslate nohighlight">\(K=2\)</span>, use results from <strong>Q1</strong>, show that this is the same as the binary cross-entropy loss</p>
 <p>Hint: use the fact that <span class="math notranslate nohighlight">\(y_{i1} + y_{i2} = 1\)</span></p>
 <div class="math notranslate nohighlight">
@@ -443,7 +448,8 @@ document.write(`
 <p>We will explore different classifiers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT modify this cell</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
@@ -458,11 +464,9 @@ document.write(`
 <span class="c1"># scale the features</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 
-<span class="c1"># # encode the species to 1, 2, 3</span>
-<span class="c1"># encoder = LabelEncoder()</span>
-<span class="c1"># y = encoder.fit_transform(df.species)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -473,10 +477,11 @@ document.write(`
 <p>(1) Fit a logistic regression model to predict the species.</p>
 <p>(2) Report the accuracy of the model.</p>
 <p>(3) Visualize the decision boundary.</p>
-<div class="cell docutils container">
+<div class="cell tag_solution docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">DecisionBoundaryDisplay</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Create a logistic regression classifier with multinomial option for multi-class</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -511,18 +516,18 @@ document.write(`
 </div>
 </div>
 <p><strong>Q4</strong></p>
-<p>Use the kNN classifier.</p>
-<p>Using 5-fold cross validation, find the k that gives the best accuracy.</p>
-<div class="cell docutils container">
+<p>Use the kNN classifier to predict the species. First, we need to find the best k.</p>
+<p>Use 5-fold cross validation, find the k that gives the best average accuracy. Try k=1,2,…,9. Set <code class="docutils literal notranslate"><span class="pre">random_state=0</span></code> for the KFold object.</p>
+<div class="cell tag_solution docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">KFold</span>
 
 <span class="c1"># Set up cross-validation</span>
-<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Try different values of k for kNN</span>
-<span class="n">k_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>  <span class="c1"># Test k from 1 to 30</span>
+<span class="n">k_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">mean_scores</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
     <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
@@ -539,21 +544,21 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best k: 4
-Best cross-validated accuracy: 0.9648763853367435
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best k: 5
+Best cross-validated accuracy: 0.9707161125319693
 </pre></div>
 </div>
 </div>
 </div>
 <p><strong>Q5</strong></p>
-<p>Given the optimal <span class="math notranslate nohighlight">\(k\)</span> value from Q4, perform the following tasks:</p>
+<p>Use the optimal <span class="math notranslate nohighlight">\(k\)</span> obtained from <strong>Q4</strong>, perform the following tasks:</p>
 <p>(1) Fit a kNN classifier to predict the species.</p>
 <p>(2) Report the accuracy of the model.</p>
 <p>(3) Visualize the decision boundary.</p>
-<div class="cell docutils container">
+<div class="cell tag_solution docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize and fit the KNeighborsClassifier</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Assuming k=3 is the optimal k found from Q4</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">best_k</span>
 <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
 <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
@@ -578,10 +583,10 @@ Best cross-validated accuracy: 0.9648763853367435
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9649122807017544
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9707602339181286
 </pre></div>
 </div>
-<img alt="../_images/67630d0ac9b4d7fc9809011b6b3f6788dac1f365323fa6a91462c50bbc542c6e.png" src="../_images/67630d0ac9b4d7fc9809011b6b3f6788dac1f365323fa6a91462c50bbc542c6e.png" />
+<img alt="../_images/2a1bb9f211815d2011f1bdc9f4cc81b5ab996681f118063092c0997465165054.png" src="../_images/2a1bb9f211815d2011f1bdc9f4cc81b5ab996681f118063092c0997465165054.png" />
 </div>
 </div>
 </section>
