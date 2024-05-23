@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -200,6 +200,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -223,6 +225,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -433,7 +437,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[f_2(x) = 1 - f_1(x) = \frac{e^{-\beta^T x}}{1+e^{-\beta^T x}} = 1-p(x)\]</div>
 <p><strong>Q2</strong></p>
-<p>Let <span class="math notranslate nohighlight">\(y_{ij}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(k\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(j\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ij}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(y_{ij}=0\)</span> otherwise.</p>
+<p>Let <span class="math notranslate nohighlight">\(y_{ij}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(j\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(j\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ij}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(y_{ij}=0\)</span> otherwise.</p>
 <p>For multiclass logistic regression, the cross entropy loss is given by</p>
 <div class="math notranslate nohighlight">
 \[L = -\sum_{i=1}^n \sum_{j=1}^K y_{ij} \log f_j(x_i)\]</div>

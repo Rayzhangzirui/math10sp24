@@ -199,6 +199,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -222,6 +224,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Homework</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -411,7 +415,7 @@ document.write(`
 <p>Run everything (select cell in the menu, and click Run all), export as pdf, and submit the pdf to gradescope.</p>
 <p>To export as pdf, you can use the following methods: (1) File -&gt; download as -&gt; pdf (2) print as pdf from browser.</p>
 <p><strong>Q1</strong></p>
-<p>In Q1 and Q2, we show that the multiclass logistic regression is a generalization of the binary logistic regression. The notations follow the <a class="reference internal" href="../notes/logistic_multiclass.html"><span class="std std-doc">notes on multiclass logistic regression</span></a> and the <a class="reference internal" href="../notes/logistic_binary.html"><span class="std std-doc">notes on binary logistic regression</span></a>.</p>
+<p>In Q1 and Q2, we show that the multiclass logistic regression is a generalization of the binary logistic regression. The notations follow the <a class="reference internal" href="#../notes/classification_multi.ipynb"><span class="xref myst">notes on multiclass logistic regression</span></a> and the <a class="reference internal" href="#../notes/classification.ipynb"><span class="xref myst">notes on binary logistic regression</span></a>.</p>
 <p>Suppose <span class="math notranslate nohighlight">\(x\in \mathbb{R}^p\)</span> and we <strong>do not have the intercept term</strong>.</p>
 <p>For binary logistic regression, we assume the probability of <span class="math notranslate nohighlight">\(x\)</span> belonging to class 1 is</p>
 <div class="math notranslate nohighlight">
@@ -429,7 +433,7 @@ document.write(`
 <p>Show that when <span class="math notranslate nohighlight">\(\beta = w_1 - w_2\)</span>, the predicted probability of class 1 and class 2 in the multiclass logistic regression is the same as the binary logistic regression.</p>
 <p><em>Answer here</em></p>
 <p><strong>Q2</strong></p>
-<p>Let <span class="math notranslate nohighlight">\(y_{ij}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(k\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(j\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ij}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(y_{ij}=0\)</span> otherwise.</p>
+<p>Let <span class="math notranslate nohighlight">\(y_{ij}\)</span> be the indicator function for class <span class="math notranslate nohighlight">\(j\)</span> for the <span class="math notranslate nohighlight">\(i\)</span>-th sample for <span class="math notranslate nohighlight">\(i\)</span>=1,…,n and <span class="math notranslate nohighlight">\(j\)</span>=1,…,K. That is, <span class="math notranslate nohighlight">\(y_{ij}=1\)</span> if the <span class="math notranslate nohighlight">\(i\)</span>-th sample belongs to class <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(y_{ij}=0\)</span> otherwise.</p>
 <p>For multiclass logistic regression, the cross entropy loss is given by</p>
 <div class="math notranslate nohighlight">
 \[L = -\sum_{i=1}^n \sum_{j=1}^K y_{ij} \log f_j(x_i)\]</div>
