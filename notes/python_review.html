@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -198,6 +198,8 @@
 <li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logistic_binary.html">Binary Classification with logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knn.html">Nearest Neighbor Regression and Classification</a></li>
+
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -221,6 +223,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -880,7 +884,7 @@ Use the <code class="docutils literal notranslate"><span class="pre">key</span><
 <span class="c1"># Even if we change &#39;a&#39; now, it does not affect the closures</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">99</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">myadd_1</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># This outputs 11, regardless of the global &#39;a&#39;.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myadd_1</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">myadd_20</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  
 </pre></div>
 </div>
