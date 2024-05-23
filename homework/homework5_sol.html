@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -200,6 +200,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -223,6 +225,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Homework</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -586,13 +590,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 
-<span class="c1"># Choosing imputation strategy for numerical columns</span>
-<span class="c1"># We will use the mean strategy for this example</span>
+<span class="c1"># create an object for imputation</span>
 <span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
 
+<span class="c1"># columns to impute</span>
 <span class="n">col_impute</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span>
 
-<span class="c1"># Fit and transform the data - imputation</span>
+<span class="c1"># fit_transform performs the imputation</span>
 <span class="n">df</span><span class="p">[</span><span class="n">col_impute</span><span class="p">]</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col_impute</span><span class="p">])</span>
 
 
@@ -769,8 +773,6 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1"># Assuming df is your DataFrame ready for modeling</span>
-<span class="c1"># Define X (features) and y (target) - example assumes &#39;target&#39; as your target variable</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span>
 
@@ -806,8 +808,6 @@ Standard Deviation of R-squared: 0.03308
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
 
-<span class="c1"># Assuming df is your DataFrame ready for modeling</span>
-<span class="c1"># Define X (features) and y (target) - example assumes &#39;target&#39; as your target variable</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">]</span>
 
@@ -847,7 +847,9 @@ Standard Deviation of R-squared: 0.03311
 <p>If <code class="docutils literal notranslate"><span class="pre">drop_first</span> <span class="pre">=</span> <span class="pre">True</span></code>, it will drop the first category <code class="docutils literal notranslate"><span class="pre">color_red</span></code> and keep <code class="docutils literal notranslate"><span class="pre">color_blue</span></code> and <code class="docutils literal notranslate"><span class="pre">color_green</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">drop_first</span> <span class="pre">=</span> <span class="pre">False</span></code>, it will keep all the categories <code class="docutils literal notranslate"><span class="pre">color_red</span></code>, <code class="docutils literal notranslate"><span class="pre">color_blue</span></code>, <code class="docutils literal notranslate"><span class="pre">color_green</span></code>.</p>
 <p>For linear regression, should we set drop_first = True or False? Why?</p>
-<p>For linear regression, we should use drop_first=True to avoid multicollinearity</p>
+<p><strong>Answer</strong></p>
+<p>For linear regression, we should use <code class="docutils literal notranslate"><span class="pre">drop_first=True</span></code> to avoid multicollinearity.</p>
+<p>In the above example, <code class="docutils literal notranslate"><span class="pre">color_red</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">-</span> <span class="pre">color_blue</span> <span class="pre">-</span> <span class="pre">color_green</span></code>. So <code class="docutils literal notranslate"><span class="pre">color_red</span></code> is redundant, and it will cause multicollinearity.</p>
 <p>(2) Use the <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> method to convert <code class="docutils literal notranslate"><span class="pre">species</span></code>, <code class="docutils literal notranslate"><span class="pre">island</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code> to dummy variables.</p>
 <p>Print the first 5 rows of your dataframe</p>
 <div class="cell tag_solution docutils container">
