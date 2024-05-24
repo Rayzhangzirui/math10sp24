@@ -554,7 +554,11 @@ document.write(`
 <p>Suppose it’s k-nearest neighbors in the training set are <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_k\)</span>. Then the prediction of the kNN algorithm is</p>
 <div class="math notranslate nohighlight">
 \[\hat{y} = \frac{1}{k} \sum_{i=1}^k y_i = \frac{1}{k} \sum_{i=1}^k f(x_i) + \frac{1}{k} \sum_{i=1}^k \epsilon_i.\]</div>
-<p>Notice that the prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span> is a random variable, because it depends on the random variables <span class="math notranslate nohighlight">\(\epsilon_i\)</span>: different training sets will lead to different predictions.</p>
+<p>Notice that</p>
+<ul class="simple">
+<li><p>The prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span> is a random variable, because it depends on the random variables <span class="math notranslate nohighlight">\(\epsilon_i\)</span>: different training sets will lead to different predictions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_i\)</span>’s are independent and identically distributed, with mean 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. In particular, <span class="math notranslate nohighlight">\(\text{E}[\epsilon_i^2] = \sigma^2\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>=0, 1, 2, …, k.</p></li>
+</ul>
 <p>The <strong>expected squared error</strong> between the prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span>, and the measured response <span class="math notranslate nohighlight">\(y_0\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -562,7 +566,7 @@ document.write(`
 &amp;= \text{E}[(\hat{y} - f(x_0))^2] + \text{E}[\epsilon_0^2] + 2 \text{E}[(\hat{y} - f(x_0)) \epsilon_0] \\
 &amp;= \text{E}[(\hat{y} - f(x_0))^2] + \underbrace{\sigma^2}_{\text{noise}}.
 \end{aligned}\end{split}\]</div>
-<p>because <span class="math notranslate nohighlight">\(\text{E}[\epsilon_0] = 0\)</span> and <span class="math notranslate nohighlight">\(\text{E}[\epsilon_0^2] = \sigma^2\)</span>.</p>
+<p>The 3rd term in the second line is 0 because <span class="math notranslate nohighlight">\(\hat{y} - f(x_0)\)</span> is independent of <span class="math notranslate nohighlight">\(\epsilon_0\)</span>, and <span class="math notranslate nohighlight">\(\text{E}[\epsilon_0] = 0\)</span>.</p>
 <p>This noise term is the error that we cannot avoid, because it is due to the inherent randomness in the response. Even if we know the model <span class="math notranslate nohighlight">\(f(x)\)</span> perfectly, we would still have this error.</p>
 <p>We can decompose the first term into two terms:</p>
 <div class="math notranslate nohighlight">
@@ -570,9 +574,18 @@ document.write(`
 \text{E} \left[   \left(\hat{y} - f(x_0)\right)^2\right] 
 &amp;= \text{E}\left[\left(\frac{1}{k} \sum_{i=1}^k f(x_i) + \frac{1}{k} \sum_{i=1}^k \epsilon_i - f(x_0)\right)^2\right] \\
 &amp;= \text{E}\left[\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2\right] + \text{E}\left[\frac{1}{k} \left(\sum_{i=1}^k \epsilon_i\right)^2\right] + 2 \text{E}\left[ \left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right) \frac{1}{k} \sum_{i=1}^k \epsilon_i\right] \\
-&amp;= \underbrace{\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2}_{\text{bias}^2} + \underbrace{\frac{1}{k} \sigma^2}_{\text{variance}}
+% &amp;= \underbrace{\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2}_{\text{bias}^2} + \underbrace{\frac{1}{k} \sigma^2}_{\text{variance}}
 \end{aligned}\end{split}\]</div>
-<p>where we used the fact that the <span class="math notranslate nohighlight">\(\epsilon_i\)</span> are independent with mean 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
+<p>Let’s analyze the terms in the second line:</p>
+<ul class="simple">
+<li><p>The 1st term in the second line is not random, so its expectation is itself. This is the <strong>bias</strong> term.</p></li>
+<li><p>The 2nd term in the second line is $<span class="math notranslate nohighlight">\(\text{E}\left[\frac{1}{k} \left(\sum_{i=1}^k \epsilon_i\right)^2\right] = \frac{1}{k^2} \sum_{i=1}^k \text{E}[\epsilon_i^2] + \frac{1}{k^2} \sum_{i \neq j} \text{E}[\epsilon_i \epsilon_j] = \frac{1}{k} \sigma^2.\)</span>$ This is the <strong>variance</strong> term.</p></li>
+<li><p>The 3rd term in the second line is 0 because <span class="math notranslate nohighlight">\(\epsilon_i\)</span>’s are independent with mean 0.</p></li>
+</ul>
+<p>Therefore, we have
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+\text{E} \left[   \left(\hat{y} - f(x_0)\right)^2\right] = \underbrace{\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2}_{\text{bias}^2} + \underbrace{\frac{1}{k} \sigma^2}_{\text{variance}}
+\end{aligned}\)</span>$</p>
 <p>Therefore, we decompose the expected error into three terms: the bias term, the variance term, and the noise term.</p>
 <div class="math notranslate nohighlight">
 \[
