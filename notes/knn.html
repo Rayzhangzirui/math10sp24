@@ -564,13 +564,14 @@ document.write(`
 \end{aligned}\end{split}\]</div>
 <p>because <span class="math notranslate nohighlight">\(\text{E}[\epsilon_0] = 0\)</span> and <span class="math notranslate nohighlight">\(\text{E}[\epsilon_0^2] = \sigma^2\)</span>.</p>
 <p>This noise term is the error that we cannot avoid, because it is due to the inherent randomness in the response. Even if we know the model <span class="math notranslate nohighlight">\(f(x)\)</span> perfectly, we would still have this error.</p>
-<p>We can decompose the first term into two terms:
-$<span class="math notranslate nohighlight">\(\begin{aligned}
+<p>We can decompose the first term into two terms:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
 \text{E} \left[   \left(\hat{y} - f(x_0)\right)^2\right] 
 &amp;= \text{E}\left[\left(\frac{1}{k} \sum_{i=1}^k f(x_i) + \frac{1}{k} \sum_{i=1}^k \epsilon_i - f(x_0)\right)^2\right] \\
 &amp;= \text{E}\left[\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2\right] + \text{E}\left[\frac{1}{k} \left(\sum_{i=1}^k \epsilon_i\right)^2\right] + 2 \text{E}\left[ \left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right) \frac{1}{k} \sum_{i=1}^k \epsilon_i\right] \\
 &amp;= \underbrace{\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2}_{\text{bias}^2} + \underbrace{\frac{1}{k} \sigma^2}_{\text{variance}}
-\end{aligned}\)</span>$</p>
+\end{aligned}\end{split}\]</div>
 <p>where we used the fact that the <span class="math notranslate nohighlight">\(\epsilon_i\)</span> are independent with mean 0 and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p>Therefore, we decompose the expected error into three terms: the bias term, the variance term, and the noise term.</p>
 <div class="math notranslate nohighlight">
