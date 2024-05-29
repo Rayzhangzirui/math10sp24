@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/knn';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lectures" href="../lectures/intro.html" />
+    <link rel="next" title="Dimensionality Reduction" href="pca.html" />
     <link rel="prev" title="Logistic Regression for Multiclass Classification" href="logistic_multiclass.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,6 +202,8 @@
 <li class="toctree-l2"><a class="reference internal" href="logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Nearest Neighbor Regression and Classification</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kmeans.html">Clustering</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -594,7 +596,7 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
 <p>Therefore, we decompose the expected error into three terms: the bias term, the variance term, and the noise term.</p>
 <div class="math notranslate nohighlight">
 \[
-\text{E}[(\hat{y} - y_0)^2] = \text{bias}^2 + \text{variance} + \text{noise}.
+\text{E}[(\hat{y} - y_0)^2] = \underbrace{\left(\frac{1}{k} \sum_{i=1}^k f(x_i) - f(x_0)\right)^2}_{\text{bias}^2} + \underbrace{\frac{1}{k} \sigma^2}_{\text{variance}} + \underbrace{\sigma^2}_{\text{noise}}
 \]</div>
 <p>As <span class="math notranslate nohighlight">\(k\)</span> increase,</p>
 <ul class="simple">
@@ -645,11 +647,11 @@ $<span class="math notranslate nohighlight">\(\begin{aligned}
       </div>
     </a>
     <a class="right-next"
-       href="../lectures/intro.html"
+       href="pca.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lectures</p>
+        <p class="prev-next-title">Dimensionality Reduction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
