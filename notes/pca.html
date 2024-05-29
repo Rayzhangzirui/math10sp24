@@ -412,10 +412,10 @@ document.write(`
 <p>This can help us to visualize the data and compress the data, which facilitates downstream tasks. To achieve good compression, we want to keep the most important information and discard the less important information, such as noise.</p>
 <p>We will introduce the classic method for dimensionality reduction: Principal Component Analysis (PCA).</p>
 <p>Suppose we have n data points in p-dimensional space: <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_n \in \mathbb{R}^p\)</span>, and we want to reduce the dimension to d (d &lt; p).</p>
-<p>Our goal is to find a d-dimensional subspace subspace such that the projection of the data points onto this subspace best approximates the original data points.</p>
+<p>Our goal is to find a d-dimensional subspace such that the projection of the data points onto this subspace best approximates the original data points.</p>
 <p>Mathematically, we are trying to approximate each <span class="math notranslate nohighlight">\(x_k\)</span> by</p>
 <div class="math notranslate nohighlight">
-\[x_k \approx \mu \sum_{j=1}^d (\beta_k)_j v_j\]</div>
+\[x_k \approx \mu + \sum_{j=1}^d (\beta_k)_j v_j\]</div>
 <p>where <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_d \in \mathbb{R}^p\)</span>
 is an orthonormal basis for the d-dimensional subspace, <span class="math notranslate nohighlight">\(\mu\)</span> represents the translation, and <span class="math notranslate nohighlight">\((\beta_k)_j\)</span> is the coefficient of the projection of <span class="math notranslate nohighlight">\(x_k\)</span> onto <span class="math notranslate nohighlight">\(v_j\)</span>.</p>
 <p>We can represent the subspace by <span class="math notranslate nohighlight">\( V = [v_1, v_2, ..., v_d] \in \mathbb{R}^{p \times d}\)</span>, and the projection of <span class="math notranslate nohighlight">\(x_k\)</span> onto the subspace is <span class="math notranslate nohighlight">\(V \beta_k\)</span>, where <span class="math notranslate nohighlight">\(\beta_k \in \mathbb{R}^d\)</span>.</p>
@@ -434,14 +434,18 @@ is an orthonormal basis for the d-dimensional subspace, <span class="math notran
 <p>Then we can rewrite the optimization problem as</p>
 <div class="math notranslate nohighlight">
 \[\min_{V^T V = 1} \sum_{k=1}^n ||x_k - \bar{x} - V V^T (x_k - \bar{x})||^2\]</div>
-<p><strong>What is <span class="math notranslate nohighlight">\(V^*\)</span></strong></p>
-<p>Let X be the centered data matrix, <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times p}\)</span>, where <span class="math notranslate nohighlight">\(X_{ij} = x_{ij} - \bar{x}_j\)</span>.</p>
-<p>(1) <span class="math notranslate nohighlight">\(V^*\)</span> is the the first d columns of the right singular vectors of X.</p>
-<p>We construct the <strong>singular value decomposition (SVD)</strong> of X:</p>
+<p><strong>How do we find the optimal subspace <span class="math notranslate nohighlight">\(V^*\)</span>?</strong></p>
+<p>Let X be the centered data matrix, <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times p}\)</span>, where <span class="math notranslate nohighlight">\(X_{ij} = x_{ij} - \bar{x}_j\)</span>. The following two characterizations of <span class="math notranslate nohighlight">\(V^*\)</span> are equivalent:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(V^*\)</span> consists of the first <span class="math notranslate nohighlight">\(d\)</span> columns of the right singular vectors of X.</p></li>
+</ol>
+<p>Consider the <strong>singular value decomposition (SVD)</strong> of X:</p>
 <div class="math notranslate nohighlight">
 \[X = U D V^T\]</div>
 <p>where <span class="math notranslate nohighlight">\(U\)</span> is an <span class="math notranslate nohighlight">\(N \times p\)</span> orthogonal matrix, <span class="math notranslate nohighlight">\(D\)</span> is a <span class="math notranslate nohighlight">\(p \times p\)</span> diagonal matrix, with diagonal entries <span class="math notranslate nohighlight">\(d_1 \geq d_2 \geq ... \geq d_p \geq 0\)</span>, and <span class="math notranslate nohighlight">\(V\)</span> is a <span class="math notranslate nohighlight">\(p \times p\)</span> orthogonal matrix.</p>
-<p>(2) <span class="math notranslate nohighlight">\(V^*\)</span> is the d leading eigenvectors of the covariance matrix of X.</p>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(V^*\)</span> consists of the <span class="math notranslate nohighlight">\(d\)</span> leading eigenvectors of the covariance matrix of X.</p></li>
+</ol>
 <p>The covariance matrix of X is <span class="math notranslate nohighlight">\(\Sigma = \frac{1}{n} X^T X\)</span>, which is a <span class="math notranslate nohighlight">\(p \times p\)</span> symmetric matrix, and it has <span class="math notranslate nohighlight">\(p\)</span> real eigenvalues <span class="math notranslate nohighlight">\(\lambda_1 \geq \lambda_2 \geq ... \geq \lambda_p \geq 0\)</span> and <span class="math notranslate nohighlight">\(p\)</span> orthonormal eigenvectors <span class="math notranslate nohighlight">\(v_1, v_2, ..., v_p\)</span>.</p>
 <section id="pca-on-synthetic-2d-data">
 <h2>PCA on synthetic 2D data<a class="headerlink" href="#pca-on-synthetic-2d-data" title="Link to this heading">#</a></h2>
@@ -459,10 +463,6 @@ is an orthonormal basis for the d-dimensional subspace, <span class="math notran
 <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-
-<span class="c1"># Standardize the data</span>
-<span class="c1"># scaler = StandardScaler()</span>
-<span class="c1"># data = scaler.fit_transform(data)</span>
 
 <span class="c1"># Apply PCA</span>
 <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -513,6 +513,8 @@ is an orthonormal basis for the d-dimensional subspace, <span class="math notran
 </section>
 <section id="pca-on-hand-written-digits">
 <h2>PCA on hand written digits<a class="headerlink" href="#pca-on-hand-written-digits" title="Link to this heading">#</a></h2>
+<p>Images are high dimensional data. We can use PCA to reduce the dimension of the images.</p>
+<p>We will use the hand written digits dataset from sklearn. Each image is 8x8 pixels, so the dimension of each image is 64. We can treat each image as a data point in 64-dimensional space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
@@ -566,15 +568,14 @@ is an orthonormal basis for the d-dimensional subspace, <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2103a0dd80c1c77708c8bbd26e494c4a68594f48c167788cdd68903f05d14e98.png" src="../_images/2103a0dd80c1c77708c8bbd26e494c4a68594f48c167788cdd68903f05d14e98.png" />
+<img alt="../_images/81704c62979ce4f32ba1cdd61ac8931dff53774a78cba5a0dfd55f19d8856080.png" src="../_images/81704c62979ce4f32ba1cdd61ac8931dff53774a78cba5a0dfd55f19d8856080.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the first few principal components as images</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -609,7 +610,7 @@ The projection of the data points onto the subspace spanned by <span class="math
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1906f7590&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1965ff530&gt;
 </pre></div>
 </div>
 <img alt="../_images/7188248d7eaa91156cfdadda3c894ff10bc90f98d0a9811815604a28deafbed1.png" src="../_images/7188248d7eaa91156cfdadda3c894ff10bc90f98d0a9811815604a28deafbed1.png" />
@@ -670,13 +671,14 @@ With the first 20 principal components, we can achieve a classification accuracy
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e14e36feb7f2e49213805ac46c07ab36863e9359e48e4e0bec00ad660203a1f6.png" src="../_images/e14e36feb7f2e49213805ac46c07ab36863e9359e48e4e0bec00ad660203a1f6.png" />
+<img alt="../_images/ef083f07ac9ccb9061c11a264566ce20759dcb93bf1b2677395337dec7b4657c.png" src="../_images/ef083f07ac9ccb9061c11a264566ce20759dcb93bf1b2677395337dec7b4657c.png" />
 </div>
 </div>
 </section>
 <section id="example-of-nonlinear-dimensionality-reduction">
 <h2>Example of Nonlinear Dimensionality Reduction<a class="headerlink" href="#example-of-nonlinear-dimensionality-reduction" title="Link to this heading">#</a></h2>
 <p>PCA is a linear method, and it may not work well for nonlinear data. One popular nonlinear method is t-distributed stochastic neighbor embedding (t-SNE).</p>
+<p>Intuitively, let <span class="math notranslate nohighlight">\(x_i\)</span> be a data point in high dimensional space, and <span class="math notranslate nohighlight">\(y_i\)</span> be the corresponding low dimensional representation. We want to adjust the location of <span class="math notranslate nohighlight">\(y_i\)</span> such that similar points (in terms of their high dimensional counterparts) are close to each other in the low dimensional space.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
@@ -707,7 +709,7 @@ With the first 20 principal components, we can achieve a classification accuracy
 <span class="n">indices_of_digit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">digit</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get all indices where the digit is 3</span>
 <span class="n">X_tsne_digit</span> <span class="o">=</span> <span class="n">X_tsne</span><span class="p">[</span><span class="n">indices_of_digit</span><span class="p">]</span>  <span class="c1"># Filter t-SNE results for 3s</span>
 
-<span class="c1"># Find the index of the minimum X value among all &#39;3&#39; digits</span>
+<span class="c1"># Find the index of the minimum X1 value among all &#39;1&#39; digits</span>
 <span class="n">min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">X_tsne_digit</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">actual_min_index</span> <span class="o">=</span> <span class="n">indices_of_digit</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>  <span class="c1"># Get the actual index in the original dataset</span>
 
