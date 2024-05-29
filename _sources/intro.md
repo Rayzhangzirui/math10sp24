@@ -18,8 +18,8 @@
 * Logistic Regression
 * Principal Component Analysis
 * Clustering
-* Decision Trees
 * Neural Networks
+* Fairness, Privacy
 
 
 
