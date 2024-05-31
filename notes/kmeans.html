@@ -239,7 +239,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework6.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework7.html">Homework 7 (Due 5/31)</a></li>
 </ul>
 </li>
@@ -417,11 +417,12 @@ the KMeans algorithm partitions the data points into <span class="math notransla
 </ol>
 <div class="math notranslate nohighlight">
 \[ c_i = \frac{1}{|S_i|} \sum_{j \in S_i} x_j\]</div>
+<p>See visualization of the KMeans algorithm <a class="reference external" href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">here</a>.</p>
 <p>While Kmeans is a popular clustering algorithm, it has some limitations. For example</p>
 <ul class="simple">
 <li><p>The number of clusters <span class="math notranslate nohighlight">\(k\)</span> needs to be specified in advance</p></li>
 <li><p>The algorithm usually converges to a local minimum, which depends on the initial cluster centers</p></li>
-<li><p>The solution are always convex, which means that the clusters are always convex shapes.</p></li>
+<li><p>The solution are always ``sphere-like’’ clusters</p></li>
 </ul>
 <p>See <a class="reference external" href="https://scikit-learn.org/stable/modules/clustering.html">comparison of the clustering algorithms</a></p>
 <div class="cell docutils container">
