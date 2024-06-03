@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Linear Regression &#8212; UCI Math 10, Spring 2024</title>
   
@@ -18,45 +19,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notes/linear_regression';</script>
@@ -73,15 +77,7 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -116,14 +112,11 @@
 </form></div>
   </div>
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +131,6 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="../intro.html">
@@ -147,22 +139,10 @@
   
   
   
-  
     <p class="title logo__title">UCI Math 10, Spring 2024</p>
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -202,6 +182,8 @@
 <li class="toctree-l2"><a class="reference internal" href="logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="knn.html">Nearest Neighbor Regression and Classification</a></li>
 
+<li class="toctree-l2"><a class="reference internal" href="pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kmeans.html">Clustering</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -237,7 +219,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../homework/homework6.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../homework/homework7.html">Homework 7 (Due 5/31)</a></li>
 </ul>
 </li>
@@ -347,22 +329,20 @@
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -405,12 +385,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
-<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h1>
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
 <section id="problem">
-<h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Link to this heading">#</a></h2>
+<h2><strong>Problem</strong><a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Given the <em>training dataset</em> <span class="math notranslate nohighlight">\(x_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(i= 1,2,..., N\)</span>, we want to find the linear function</p>
 <div class="math notranslate nohighlight">
 \[ y\approx f(x) = wx + b \]</div>
@@ -419,7 +399,7 @@ document.write(`
 \[ y^{pred} = w x^{test}+b \]</div>
 </section>
 <section id="training-the-model">
-<h2>Training the model<a class="headerlink" href="#training-the-model" title="Link to this heading">#</a></h2>
+<h2>Training the model<a class="headerlink" href="#training-the-model" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>With the training dataset, define the loss function <span class="math notranslate nohighlight">\(L(w,b)\)</span> of parameter <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which is also called <strong>mean squared error</strong> (MSE)</p></li>
 </ul>
@@ -436,7 +416,7 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\bar{y}\)</span> are the mean of <span class="math notranslate nohighlight">\(x\)</span> and of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\text{Cov}(X,Y)\)</span> denotes the estimated covariance (or called sample covariance) between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(\text{Var}(Y)\)</span> denotes the sample variance of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </section>
 <section id="evaluating-the-model">
-<h2>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Link to this heading">#</a></h2>
+<h2>Evaluating the model<a class="headerlink" href="#evaluating-the-model" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>MSE: The smaller MSE indicates better performance</p></li>
 <li><p>R-Squared: The larger <span class="math notranslate nohighlight">\(R^{2}\)</span> (closer to 1) indicates better performance. Compared with MSE, R-squared is <strong>dimensionless</strong>, not dependent on the units of variable.</p></li>
@@ -451,11 +431,11 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">class</span> <span class="nc">myLinearRegression</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    The single-variable linear regression estimator</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Determine the optimal parameters w, b for the input data x and y</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
@@ -481,7 +461,7 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
 
     
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Predict the output values for the input value x, based on trained parameters</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
@@ -496,7 +476,7 @@ If our model is perfect, then MSE is 0, and <span class="math notranslate nohigh
         <span class="k">return</span> <span class="n">ypred</span>
 
     <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Calculate the R^2 score of the model</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
@@ -589,7 +569,7 @@ score = 0.993
 </div>
 </section>
 <section id="what-is-the-effect-of-centering-the-data">
-<h2>What is the effect of centering the data?<a class="headerlink" href="#what-is-the-effect-of-centering-the-data" title="Link to this heading">#</a></h2>
+<h2>What is the effect of centering the data?<a class="headerlink" href="#what-is-the-effect-of-centering-the-data" title="Permalink to this heading">#</a></h2>
 <p>When <span class="math notranslate nohighlight">\(X\)</span> is centered, the slope <span class="math notranslate nohighlight">\(w\)</span> remains the same, but the intercept <span class="math notranslate nohighlight">\(b\)</span> changes.</p>
 <p>The intercept now means the predicted Y when X is at the mean.</p>
 <div class="cell docutils container">
@@ -624,7 +604,7 @@ score = 0.993
 </div>
 </section>
 <section id="what-is-the-effect-of-scaling-the-data">
-<h2>What is the effect of scaling the data?<a class="headerlink" href="#what-is-the-effect-of-scaling-the-data" title="Link to this heading">#</a></h2>
+<h2>What is the effect of scaling the data?<a class="headerlink" href="#what-is-the-effect-of-scaling-the-data" title="Permalink to this heading">#</a></h2>
 <p>When <span class="math notranslate nohighlight">\(X/c\)</span> is used, the optimal slope is now <span class="math notranslate nohighlight">\(c w\)</span>, and the intercept does not change</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,7 +626,7 @@ score = 0.993
 <p>For some other models, centering and scaling can be essential</p>
 </section>
 <section id="what-is-a-good-fit">
-<h2>What is a “good” fit?<a class="headerlink" href="#what-is-a-good-fit" title="Link to this heading">#</a></h2>
+<h2>What is a “good” fit?<a class="headerlink" href="#what-is-a-good-fit" title="Permalink to this heading">#</a></h2>
 <p>It depends on the metric we use to evaluate the model.</p>
 <p>In the following example, the best model in terms of MSE(mean squared error) might not be the best model in terms of MAE(mean absolute error).</p>
 <div class="math notranslate nohighlight">
@@ -695,7 +675,7 @@ score = 0.993
 </div>
 </section>
 <section id="detailed-derivation-of-the-optimal-parameters">
-<h2>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Link to this heading">#</a></h2>
+<h2>Detailed Derivation of the Optimal Parameters<a class="headerlink" href="#detailed-derivation-of-the-optimal-parameters" title="Permalink to this heading">#</a></h2>
 <p>The loss function for simple linear regression is given by:</p>
 <div class="math notranslate nohighlight">
 \[L(w, b) = \frac{1}{N} \sum_{i=1}^N ((wx_i + b) - y_i)^2\]</div>
@@ -770,10 +750,11 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="visualization.html"
@@ -793,7 +774,10 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -801,7 +785,6 @@ $<span class="math notranslate nohighlight">\(w = \frac{Cov(X,Y)}{Var(X)}\)</spa
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -837,7 +820,6 @@ By Ray Zirui Zhang
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2024.
@@ -864,8 +846,8 @@ By Ray Zirui Zhang
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
