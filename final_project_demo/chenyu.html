@@ -1,0 +1,1692 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Predicting computer prices using multiple linear regression and decision trees &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'final_project_demo/chenyu';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analyzing Tennis Match Outcomes in the 2014 Grand Slams" href="dabirarjun.html" />
+    <link rel="prev" title="An Analysis of USA Climbing’s Youth Bouldering Series." href="changsilas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_template.html">[Title here]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/kmeans.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/intro_nn.html">Nerual Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/gan.html">Generative Adversarial Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/fairness.html">Bias and Fairness</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework7_sol.html">Homework 7 (Due 5/31)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Student Projects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baosi.html">Predicting NBA Game Outcomes Project</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="caotranhoangthuc.html">Cancer Prediction Based on Medical and Lifestyle Information</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="changsilas.html">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Predicting computer prices using multiple linear regression and decision trees</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="dabirarjun.html">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huanganita.html">Youtube Video Trending Prediction</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="huynhstanley.html">Wine Quality Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="jiaoyuhao.html">Analysis of house price forecasts and influencing factors</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="kimmalex.html">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="milleradamchristopher.html">Classifying Songs by Genre using its Features</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="mongiadron.html">US GDP Forecasting</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenalexanderdavid.html">MOVIE SUCCESS IN RELATION TO ITS FILM DISTRIBUTION COMPANY</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenmilanngoc.html">LPGA 2022 Rolex Ranking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presnyakovoleg.html">Phone cost prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roblesisabellaesther.html">Predicting Medical Expenses for Insurance and Analyzing Factors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sonnevillenicolecaroline.html">Predicting ratings on Sephora based on price and number of ingredients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tongbenjaminv.html">Prediction and Classification of Stellar Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torreshornbeakelijahcharles.html">Methods for Analyzing the Best NBA Players</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="trancrystal.html">Analysis of Mushroom Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tranethank.html">Top Valorant Players</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="wunathan.html">Image Classfication on “Heart Failure Cinical Records” Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yangchenxi.html">Analysis of Tesla Stock Price in the most recnet 6 months</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zhangzhiwei.html">CO2 Emissions and Renewable Energy Trends</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhangzidong.html">Math 10 Final Project: Analyzing the weather conditions in 10 locations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhaomickey.html">[Predicting CO2 Emissions of Vehicles]</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/final_project_demo/chenyu.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicting computer prices using multiple linear regression and decision trees</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting computer prices using multiple linear regression and decision trees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-information-about-the-data-and-visualization">Basic information about the data and Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-data">Optimize data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-test">correlation test</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning">Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="predicting-computer-prices-using-multiple-linear-regression-and-decision-trees">
+<h1>Predicting computer prices using multiple linear regression and decision trees<a class="headerlink" href="#predicting-computer-prices-using-multiple-linear-regression-and-decision-trees" title="Link to this heading">#</a></h1>
+<p>Author: Yu Chen</p>
+<p>Course Project, UC Irvine, Math 10, S24</p>
+<p>I would like to post my notebook on the course’s website. [Yes]</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>In this project, I will analyze the impact of different hardware of different laptops on the price, and which parameters have the greatest impact on the <a class="reference external" href="http://price.In">price.In</a> kaggle (<a class="reference external" href="https://www.kaggle.com/datasets/jacksondivakarr/laptop-price-prediction-dataset">https://www.kaggle.com/datasets/jacksondivakarr/laptop-price-prediction-dataset</a>)I found a dataset with information about more than 800 models of computers, including price, Ram, Rom, screen size, CPU, etc.</p>
+<p>The goal of this project is to predict the price of a certain type of computer after knowing its hardware information, which may serve as a price reference for shoppers who don’t know much about laptops.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="importing">
+<h1>Importing<a class="headerlink" href="#importing" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">explained_variance_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="basic-information-about-the-data-and-visualization">
+<h1>Basic information about the data and Visualization<a class="headerlink" href="#basic-information-about-the-data-and-visualization" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;LaptopPricePredictionDataset.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0.1</th>
+      <th>Unnamed: 0</th>
+      <th>brand</th>
+      <th>name</th>
+      <th>price</th>
+      <th>spec_rating</th>
+      <th>processor</th>
+      <th>CPU</th>
+      <th>Ram</th>
+      <th>Ram_type</th>
+      <th>ROM</th>
+      <th>ROM_type</th>
+      <th>GPU</th>
+      <th>display_size</th>
+      <th>resolution_width</th>
+      <th>resolution_height</th>
+      <th>OS</th>
+      <th>warranty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>HP</td>
+      <td>Victus 15-fb0157AX Gaming Laptop</td>
+      <td>49900</td>
+      <td>73.000000</td>
+      <td>5th Gen AMD Ryzen 5 5600H</td>
+      <td>Hexa Core, 12 Threads</td>
+      <td>8GB</td>
+      <td>DDR4</td>
+      <td>512GB</td>
+      <td>SSD</td>
+      <td>4GB AMD Radeon RX 6500M</td>
+      <td>15.6</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>HP</td>
+      <td>15s-fq5007TU Laptop</td>
+      <td>39900</td>
+      <td>60.000000</td>
+      <td>12th Gen Intel Core i3 1215U</td>
+      <td>Hexa Core (2P + 4E), 8 Threads</td>
+      <td>8GB</td>
+      <td>DDR4</td>
+      <td>512GB</td>
+      <td>SSD</td>
+      <td>Intel UHD Graphics</td>
+      <td>15.6</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>Acer</td>
+      <td>One 14 Z8-415 Laptop</td>
+      <td>26990</td>
+      <td>69.323529</td>
+      <td>11th Gen Intel Core i3 1115G4</td>
+      <td>Dual Core, 4 Threads</td>
+      <td>8GB</td>
+      <td>DDR4</td>
+      <td>512GB</td>
+      <td>SSD</td>
+      <td>Intel Iris Xe Graphics</td>
+      <td>14.0</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>3</td>
+      <td>Lenovo</td>
+      <td>Yoga Slim 6 14IAP8 82WU0095IN Laptop</td>
+      <td>59729</td>
+      <td>66.000000</td>
+      <td>12th Gen Intel Core i5 1240P</td>
+      <td>12 Cores (4P + 8E), 16 Threads</td>
+      <td>16GB</td>
+      <td>LPDDR5</td>
+      <td>512GB</td>
+      <td>SSD</td>
+      <td>Intel Integrated Iris Xe</td>
+      <td>14.0</td>
+      <td>2240.0</td>
+      <td>1400.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>4</td>
+      <td>Apple</td>
+      <td>MacBook Air 2020 MGND3HN Laptop</td>
+      <td>69990</td>
+      <td>69.323529</td>
+      <td>Apple M1</td>
+      <td>Octa Core (4P + 4E)</td>
+      <td>8GB</td>
+      <td>DDR4</td>
+      <td>256GB</td>
+      <td>SSD</td>
+      <td>Apple M1 Integrated Graphics</td>
+      <td>13.3</td>
+      <td>2560.0</td>
+      <td>1600.0</td>
+      <td>Mac OS</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 893 entries, 0 to 892
+Data columns (total 18 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   Unnamed: 0.1       893 non-null    int64  
+ 1   Unnamed: 0         893 non-null    int64  
+ 2   brand              893 non-null    object 
+ 3   name               893 non-null    object 
+ 4   price              893 non-null    int64  
+ 5   spec_rating        893 non-null    float64
+ 6   processor          893 non-null    object 
+ 7   CPU                893 non-null    object 
+ 8   Ram                893 non-null    object 
+ 9   Ram_type           893 non-null    object 
+ 10  ROM                893 non-null    object 
+ 11  ROM_type           893 non-null    object 
+ 12  GPU                893 non-null    object 
+ 13  display_size       893 non-null    float64
+ 14  resolution_width   893 non-null    float64
+ 15  resolution_height  893 non-null    float64
+ 16  OS                 893 non-null    object 
+ 17  warranty           893 non-null    int64  
+dtypes: float64(4), int64(4), object(10)
+memory usage: 125.7+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are no missing values in the data set and no data needs to be deleted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0.1</th>
+      <th>Unnamed: 0</th>
+      <th>price</th>
+      <th>spec_rating</th>
+      <th>display_size</th>
+      <th>resolution_width</th>
+      <th>resolution_height</th>
+      <th>warranty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+      <td>893.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>467.14</td>
+      <td>521.38</td>
+      <td>79907.41</td>
+      <td>69.38</td>
+      <td>15.17</td>
+      <td>2035.39</td>
+      <td>1218.32</td>
+      <td>1.08</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>270.21</td>
+      <td>299.92</td>
+      <td>60880.04</td>
+      <td>5.54</td>
+      <td>0.94</td>
+      <td>426.08</td>
+      <td>326.76</td>
+      <td>0.33</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>9999.00</td>
+      <td>60.00</td>
+      <td>11.60</td>
+      <td>1080.00</td>
+      <td>768.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>235.00</td>
+      <td>265.00</td>
+      <td>44500.00</td>
+      <td>66.00</td>
+      <td>14.00</td>
+      <td>1920.00</td>
+      <td>1080.00</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>467.00</td>
+      <td>531.00</td>
+      <td>61990.00</td>
+      <td>69.32</td>
+      <td>15.60</td>
+      <td>1920.00</td>
+      <td>1080.00</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>702.00</td>
+      <td>784.00</td>
+      <td>90990.00</td>
+      <td>71.00</td>
+      <td>15.60</td>
+      <td>1920.00</td>
+      <td>1200.00</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>930.00</td>
+      <td>1019.00</td>
+      <td>450039.00</td>
+      <td>89.00</td>
+      <td>18.00</td>
+      <td>3840.00</td>
+      <td>3456.00</td>
+      <td>3.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Defined a function to draw bar</span>
+<span class="k">def</span> <span class="nf">draw_bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Apple computers have fixed prices and different operating systems, so Apple computer data is removed here</span>
+<span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="o">~</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;Apple&#39;</span><span class="p">)]</span>
+<span class="n">df_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;brand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">draw_bar</span><span class="p">(</span><span class="n">df_count</span><span class="p">,</span> <span class="s1">&#39;Quantity of each operating systems&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/691e926b4b39d17d95382065bc422c38e8e279d6608f54d1ea237c5aa46b6620.png" src="../_images/691e926b4b39d17d95382065bc422c38e8e279d6608f54d1ea237c5aa46b6620.png" />
+</div>
+</div>
+<p>Popular brands include HP, Lenovo, and Asus</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ram_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">draw_bar</span><span class="p">(</span><span class="n">df_count</span><span class="p">,</span> <span class="s1">&#39;Quantity of each Ram types&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0a453575aa7a888c8dabcaf207d333b23cfcdab8b75aee8f650524ae34ad676e.png" src="../_images/0a453575aa7a888c8dabcaf207d333b23cfcdab8b75aee8f650524ae34ad676e.png" />
+</div>
+</div>
+<p>The mainstream memory type is DDR4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_system</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;OS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">draw_bar</span><span class="p">(</span><span class="n">df_system</span><span class="p">,</span><span class="s1">&#39;Quantity of each operating system&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/07d9bbe2d5188d3ec24cd21f45404c2f2927cdccf685e135de50c6c8aaa320c5.png" src="../_images/07d9bbe2d5188d3ec24cd21f45404c2f2927cdccf685e135de50c6c8aaa320c5.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optimize-data">
+<h1>Optimize data<a class="headerlink" href="#optimize-data" title="Link to this heading">#</a></h1>
+<p>Convert some data into numbers for analysis. In this step, I optimize the data into a type that is easier to analyze. For example, 1TB needs to be converted into 1024GB before analysis. And most of the CPU model data contains text, and the number of cores and threads needs to be extracted.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ram&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ram&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span> <span class="n">r</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;GB&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;TB&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;ROM&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ROM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span> <span class="n">r</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;GB&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;TB&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;ROM&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ROM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="o">*</span><span class="mi">1024</span> <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="k">else</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getThreads</span><span class="p">(</span><span class="n">cpu</span><span class="p">):</span>
+        <span class="n">l</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cpu</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">l</span><span class="o">=</span><span class="n">cpu</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Threads&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">getCores</span><span class="p">(</span><span class="n">cpu</span><span class="p">):</span>
+    <span class="n">cpu</span> <span class="o">=</span> <span class="n">cpu</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">l</span><span class="o">=</span><span class="n">cpu</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;hexa&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="mi">6</span>
+        <span class="k">elif</span> <span class="s2">&quot;octa&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="mi">8</span>
+        <span class="k">elif</span> <span class="s2">&quot;dual&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="s2">&quot;quad&quot;</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="k">return</span> <span class="mi">4</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Thread&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;CPU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getThreads</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cores&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;CPU&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">getCores</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Unnamed: 0.1&#39;</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>brand</th>
+      <th>name</th>
+      <th>price</th>
+      <th>spec_rating</th>
+      <th>processor</th>
+      <th>CPU</th>
+      <th>Ram</th>
+      <th>Ram_type</th>
+      <th>ROM</th>
+      <th>ROM_type</th>
+      <th>GPU</th>
+      <th>display_size</th>
+      <th>resolution_width</th>
+      <th>resolution_height</th>
+      <th>OS</th>
+      <th>warranty</th>
+      <th>Thread</th>
+      <th>Cores</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>HP</td>
+      <td>Victus 15-fb0157AX Gaming Laptop</td>
+      <td>49900</td>
+      <td>73.000000</td>
+      <td>5th Gen AMD Ryzen 5 5600H</td>
+      <td>Hexa Core, 12 Threads</td>
+      <td>8</td>
+      <td>DDR4</td>
+      <td>512</td>
+      <td>SSD</td>
+      <td>4GB AMD Radeon RX 6500M</td>
+      <td>15.6</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+      <td>12</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>HP</td>
+      <td>15s-fq5007TU Laptop</td>
+      <td>39900</td>
+      <td>60.000000</td>
+      <td>12th Gen Intel Core i3 1215U</td>
+      <td>Hexa Core (2P + 4E), 8 Threads</td>
+      <td>8</td>
+      <td>DDR4</td>
+      <td>512</td>
+      <td>SSD</td>
+      <td>Intel UHD Graphics</td>
+      <td>15.6</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+      <td>8</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Acer</td>
+      <td>One 14 Z8-415 Laptop</td>
+      <td>26990</td>
+      <td>69.323529</td>
+      <td>11th Gen Intel Core i3 1115G4</td>
+      <td>Dual Core, 4 Threads</td>
+      <td>8</td>
+      <td>DDR4</td>
+      <td>512</td>
+      <td>SSD</td>
+      <td>Intel Iris Xe Graphics</td>
+      <td>14.0</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lenovo</td>
+      <td>Yoga Slim 6 14IAP8 82WU0095IN Laptop</td>
+      <td>59729</td>
+      <td>66.000000</td>
+      <td>12th Gen Intel Core i5 1240P</td>
+      <td>12 Cores (4P + 8E), 16 Threads</td>
+      <td>16</td>
+      <td>LPDDR5</td>
+      <td>512</td>
+      <td>SSD</td>
+      <td>Intel Integrated Iris Xe</td>
+      <td>14.0</td>
+      <td>2240.0</td>
+      <td>1400.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+      <td>16</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Acer</td>
+      <td>Extensa EX214-53 Laptop</td>
+      <td>39990</td>
+      <td>62.000000</td>
+      <td>12th Gen Intel Core i5 1240P</td>
+      <td>12 Cores (4P + 8E), 16 Threads</td>
+      <td>8</td>
+      <td>DDR4</td>
+      <td>512</td>
+      <td>SSD</td>
+      <td>Intel Iris Xe Graphics</td>
+      <td>14.0</td>
+      <td>1920.0</td>
+      <td>1080.0</td>
+      <td>Windows 11 OS</td>
+      <td>1</td>
+      <td>16</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 877 entries, 0 to 892
+Data columns (total 18 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   brand              877 non-null    object 
+ 1   name               877 non-null    object 
+ 2   price              877 non-null    int64  
+ 3   spec_rating        877 non-null    float64
+ 4   processor          877 non-null    object 
+ 5   CPU                877 non-null    object 
+ 6   Ram                877 non-null    int64  
+ 7   Ram_type           877 non-null    object 
+ 8   ROM                877 non-null    int64  
+ 9   ROM_type           877 non-null    object 
+ 10  GPU                877 non-null    object 
+ 11  display_size       877 non-null    float64
+ 12  resolution_width   877 non-null    float64
+ 13  resolution_height  877 non-null    float64
+ 14  OS                 877 non-null    object 
+ 15  warranty           877 non-null    int64  
+ 16  Thread             877 non-null    int64  
+ 17  Cores              877 non-null    int64  
+dtypes: float64(4), int64(6), object(8)
+memory usage: 130.2+ KB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="correlation-test">
+<h1>correlation test<a class="headerlink" href="#correlation-test" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numColForCoef</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span>
+<span class="n">plot</span><span class="o">=</span><span class="n">sb</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">numColForCoef</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c9ae95422c79a37d7d233e525afefc9dd94dfe56574e7f7a92a12baaf375aa5b.png" src="../_images/c9ae95422c79a37d7d233e525afefc9dd94dfe56574e7f7a92a12baaf375aa5b.png" />
+</div>
+</div>
+<p>It can be seen that the price is strongly correlated with Cores, Thread, resolution, ROM, RAM, and spec rating.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;warranty&#39;</span><span class="p">,</span><span class="s1">&#39;display_size&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numColForCoef</span><span class="o">=</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span>
+<span class="n">plot</span><span class="o">=</span><span class="n">sb</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">numColForCoef</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/033b6570bc09cf72ebc141a43b51c61ce1efaced51a6b55f572a4f96b74d9d21.png" src="../_images/033b6570bc09cf72ebc141a43b51c61ce1efaced51a6b55f572a4f96b74d9d21.png" />
+</div>
+</div>
+<p>After this step is completed, we have obtained several highly correlated variables,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.865017269749211
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price_ln&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+<span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price_ln&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">skew</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4124667391274515
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">skew</span> 
+
+<span class="k">def</span> <span class="nf">norm_test</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fit</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">norm_test</span><span class="p">(</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">price</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ae3cf379c1cac16bc67377db6af2a5df1677019cfe476021e95b071b17a67566.png" src="../_images/ae3cf379c1cac16bc67377db6af2a5df1677019cfe476021e95b071b17a67566.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm_test</span><span class="p">(</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">price_ln</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d048e1ab27c1e672ecb1b71ac612cf33ecc1ca9b86f1cc7c668ec9e0b33ac07d.png" src="../_images/d048e1ab27c1e672ecb1b71ac612cf33ecc1ca9b86f1cc7c668ec9e0b33ac07d.png" />
+</div>
+</div>
+<p>After logarithmic transformation, the data is closer to a normal distribution</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">#</a></h1>
+<p>In this step, I will use linear regression and decision trees to analyze the variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;spec_rating&#39;</span><span class="p">,</span><span class="s1">&#39;Ram&#39;</span><span class="p">,</span><span class="s1">&#39;ROM&#39;</span><span class="p">,</span><span class="s1">&#39;resolution_width&#39;</span><span class="p">,</span><span class="s1">&#39;resolution_height&#39;</span><span class="p">,</span><span class="s1">&#39;Thread&#39;</span><span class="p">,</span><span class="s1">&#39;Cores&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">TrainingSet</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price_ln&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span><span class="o">=</span><span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price_ln&#39;</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Score: 0.7882271170948115
+Test Score: 0.7612986644120081
+Score: 0.7680228504845487
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here I got the prediction data of price from linear regression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;Pred_price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">,</span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below I have tried different depths of the decision tree to achieve the maximum fit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DT</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">DT</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">DT</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">DT</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Score: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">DT</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;price_ln&#39;</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Score: 0.8526644856850252
+Test Score: 0.7197774115465023
+Score: 0.7528334930481183
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">DT</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/43036ad918aede9c22b2130895d525a37fa3f38015c7e54cb3a45dab06b13dc1.png" src="../_images/43036ad918aede9c22b2130895d525a37fa3f38015c7e54cb3a45dab06b13dc1.png" />
+</div>
+</div>
+<p>Here I got the prediction data of price from decision tree</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;DT_Pred_price&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">,</span><span class="n">DT</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">[</span><span class="n">features</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TrainingSet</span><span class="p">[</span><span class="s1">&#39;counter&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TrainingSet</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;counter&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="p">)</span>
+<span class="n">P2</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Pred_price&#39;</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;counter&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="p">)</span>
+<span class="n">P3</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">TrainingSet</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;DT_Pred_price&#39;</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;counter&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comparison of linear regression predictions and true values，</p>
+<p>Red is the actual value, blue is the predicted value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span><span class="o">+</span><span class="n">P2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  #altair-viz-afa27a0d00494c25927c7663114acf2f.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-afa27a0d00494c25927c7663114acf2f.vega-embed details,
+  #altair-viz-afa27a0d00494c25927c7663114acf2f.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-afa27a0d00494c25927c7663114acf2f"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-afa27a0d00494c25927c7663114acf2f") {
+      outputDiv = document.getElementById("altair-viz-afa27a0d00494c25927c7663114acf2f");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-1b2de1116c5274559e1e070bf9850e04"}, "mark": {"type": "circle", "color": "red"}, "encoding": {"x": {"field": "counter", "type": "quantitative"}, "y": {"field": "price", "type": "quantitative"}}}, {"data": {"name": "data-1b2de1116c5274559e1e070bf9850e04"}, "mark": {"type": "circle", "color": "blue"}, "encoding": {"x": {"field": "counter", "type": "quantitative"}, "y": {"field": "Pred_price", "type": "quantitative"}}}], "height": 300, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-1b2de1116c5274559e1e070bf9850e04": [{"brand": "HP", "name": "Victus 15-fb0157AX Gaming Laptop", "price": 49900, "spec_rating": 73.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB AMD Radeon RX 6500M", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.81777628173961, "Pred_price": 53235.941256925034, "DT_Pred_price": 70690.60808185047, "counter": 0}, {"brand": "HP", "name": "15s-fq5007TU Laptop", "price": 39900, "spec_rating": 60.0, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.594131602877955, "Pred_price": 39927.03857898772, "DT_Pred_price": 54153.174482085495, "counter": 1}, {"brand": "Acer", "name": "One 14 Z8-415 Laptop", "price": 26990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.20322170601205, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 2}, {"brand": "Lenovo", "name": "Yoga Slim 6 14IAP8 82WU0095IN Laptop", "price": 59729, "spec_rating": 66.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 2240.0, "resolution_height": 1400.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.99757294358051, "Pred_price": 86733.13814343898, "DT_Pred_price": 119815.23589362414, "counter": 3}, {"brand": "Acer", "name": "Extensa EX214-53 Laptop", "price": 39990, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.596384701840863, "Pred_price": 65606.97568014883, "DT_Pred_price": 54153.174482085495, "counter": 4}, {"brand": "Dell", "name": "Inspiron 3520 D560896WIN9B Laptop", "price": 36790, "spec_rating": 60.0, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.51298134809882, "Pred_price": 39927.03857898772, "DT_Pred_price": 54153.174482085495, "counter": 5}, {"brand": "Acer", "name": "Nitro V ANV15-51 2023 Gaming Laptop", "price": 76990, "spec_rating": 63.0, "processor": "13th Gen Intel Core i5 13420H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.251430822272095, "Pred_price": 59475.6339467296, "DT_Pred_price": 69536.26005768515, "counter": 6}, {"brand": "Asus", "name": "Vivobook 15 X1502ZA-EJ523WS Laptop", "price": 48990, "spec_rating": 64.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.79937147463262, "Pred_price": 67436.22751257301, "DT_Pred_price": 54153.174482085495, "counter": 7}, {"brand": "Samsung", "name": "Galaxy Book2 Pro 13 Laptop", "price": 74990, "spec_rating": 68.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1080.0, "resolution_height": 1920.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.225110050295434, "Pred_price": 106726.59698992869, "DT_Pred_price": 119815.23589362414, "counter": 8}, {"brand": "Lenovo", "name": "V15 G3 IAP 82TTA08AIN Laptop", "price": 49990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i7 1255U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.819578264407616, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 9}, {"brand": "Ultimus", "name": "Pro NU14U3INC43BN-CS Laptop", "price": 10990, "spec_rating": 69.32352941176471, "processor": "Intel Celeron  N4020", "CPU": "Dual Core, 2 Threads", "Ram": 4, "Ram_type": "DDR4", "ROM": 128, "ROM_type": "SSD", "GPU": "Intel Integrated UHD Graphics", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 9.304741047397666, "Pred_price": 26204.48793197588, "DT_Pred_price": 17953.626561799825, "counter": 10}, {"brand": "Asus", "name": "TUF Gaming F15 2022 FX507ZC4-HN116W Gaming Laptop", "price": 72990, "spec_rating": 76.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.198077724445678, "Pred_price": 93762.1889053718, "DT_Pred_price": 110486.07943288147, "counter": 11}, {"brand": "Primebook", "name": "4G Android Laptop", "price": 10990, "spec_rating": 69.32352941176471, "processor": "MediaTek MTK8788", "CPU": "Octa Core", "Ram": 4, "Ram_type": "LPDDR4", "ROM": 64, "ROM_type": "Hard-Disk", "GPU": "ARM Mali G72", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Android 11 OS", "Thread": 0, "Cores": 8, "price_ln": 9.304741047397666, "Pred_price": 31429.179632817544, "DT_Pred_price": 17953.626561799825, "counter": 12}, {"brand": "Lenovo", "name": "V15 G4 \u200e82YU00W7IN Laptop", "price": 29990, "spec_rating": 69.32352941176471, "processor": "7th Gen AMD Ryzen 3 7320U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.308619271743055, "Pred_price": 41741.524407645615, "DT_Pred_price": 34858.80534415319, "counter": 13}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HF-HN024W Gaming Laptop", "price": 53649, "spec_rating": 70.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.890218108556146, "Pred_price": 51084.60784777866, "DT_Pred_price": 70690.60808185047, "counter": 14}, {"brand": "MSI", "name": "Modern 14 C11M-031IN Laptop", "price": 33990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.433821642690162, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 15}, {"brand": "Infinix", "name": "Zerobook 2023 Laptop", "price": 79990, "spec_rating": 71.0, "processor": "13th Gen Intel Core i9 13900H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 32, "Ram_type": "LPDDR5X", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.289656905842868, "Pred_price": 166312.8158391588, "DT_Pred_price": 76013.43970785677, "counter": 16}, {"brand": "HP", "name": "Victus 15-fa0666TX Gaming Laptop", "price": 68990, "spec_rating": 65.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.141716845540154, "Pred_price": 61133.9318830962, "DT_Pred_price": 69536.26005768515, "counter": 17}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 15IHU6 82K101GSIN Laptop", "price": 45990, "spec_rating": 71.0, "processor": "11th Gen Intel Core i5 11300H", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.73617926053397, "Pred_price": 42714.91615858333, "DT_Pred_price": 34858.80534415319, "counter": 18}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB502WS Laptop", "price": 49900, "spec_rating": 65.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.81777628173961, "Pred_price": 49058.36689949698, "DT_Pred_price": 54153.174482085495, "counter": 19}, {"brand": "Acer", "name": "Aspire 7 A715-76G UN.QMYSI.002 Gaming Laptop", "price": 54990, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.91490662950186, "Pred_price": 67310.63687949466, "DT_Pred_price": 69536.26005768515, "counter": 20}, {"brand": "HP", "name": "15s-fq2510tu Laptop", "price": 49580, "spec_rating": 64.0, "processor": "11th Gen Intel Core i5 1135G7 ", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.811342805589181, "Pred_price": 45735.47187741077, "DT_Pred_price": 46627.892160336174, "counter": 21}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB711WS Laptop", "price": 55990, "spec_rating": 71.0, "processor": "5th Gen AMD Ryzen 7  5800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 10.932928382342938, "Pred_price": 76155.26622187611, "DT_Pred_price": 67580.53476864977, "counter": 22}, {"brand": "HP", "name": "15s-eq2132AU Laptop", "price": 43990, "spec_rating": 63.0, "processor": "5th Gen AMD Ryzen 5 5500U", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon AMD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.691717614342766, "Pred_price": 54697.02051893551, "DT_Pred_price": 69536.26005768515, "counter": 23}, {"brand": "HP", "name": "255 G9 840T7PA Laptop", "price": 19850, "spec_rating": 69.32352941176471, "processor": "3rd Gen AMD Athlon 3050U", "CPU": "Dual Core, 2 Threads", "Ram": 4, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "AMD Integrated", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "DOS OS", "Thread": 2, "Cores": 2, "price_ln": 9.895959286115337, "Pred_price": 27002.668309506837, "DT_Pred_price": 17953.626561799825, "counter": 24}, {"brand": "Acer", "name": "Extensa 15 EX215-33 2023 Laptop", "price": 28990, "spec_rating": 69.32352941176471, "processor": "Intel Core i3 N305", "CPU": "Octa Core, 8 Threads", "Ram": 8, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 8, "price_ln": 10.274706221915702, "Pred_price": 49353.63278984087, "DT_Pred_price": 39036.47285094371, "counter": 25}, {"brand": "Acer", "name": "Aspire 5 A515-57G UN.K9TSI.002 Gaming Laptop", "price": 54999, "spec_rating": 71.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.915070282231135, "Pred_price": 87532.55701606412, "DT_Pred_price": 76013.43970785677, "counter": 26}, {"brand": "Dell", "name": "Inspiron 3530 Laptop", "price": 70990, "spec_rating": 69.32352941176471, "processor": "13th Gen Intel Core i7 1355U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 11.170294301033431, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 27}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 82SB00V2IN Laptop", "price": 56889, "spec_rating": 60.0, "processor": "6th Gen AMD Ryzen 5 6600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.948857279808518, "Pred_price": 44521.91329018436, "DT_Pred_price": 54153.174482085495, "counter": 28}, {"brand": "Acer", "name": "Predator Helios Neo 16 2023 PHN16-71 Gaming Laptop", "price": 179880, "spec_rating": 78.0, "processor": "13th Gen Intel Core i9 13900HX", "CPU": "24 Cores (8P + 16E), 32 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4070", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 32, "Cores": 24, "price_ln": 12.100045240884644, "Pred_price": 285663.98401096236, "DT_Pred_price": 153775.56788329227, "counter": 29}, {"brand": "HP", "name": "Victus 15-fb0150AX Gaming Laptop", "price": 53790, "spec_rating": 71.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB AMD Radeon RX 6500M Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.892842855267288, "Pred_price": 61057.16922780773, "DT_Pred_price": 69536.26005768515, "counter": 30}, {"brand": "Acer", "name": "Aspire Lite AL15 Laptop", "price": 37990, "spec_rating": 60.0, "processor": "5th Gen AMD Ryzen 5 5500U", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.54507824618167, "Pred_price": 52486.64300245186, "DT_Pred_price": 69536.26005768515, "counter": 31}, {"brand": "Acer", "name": "Nitro 5 AN515-58 NH.QFSSI.001 Gaming Laptop", "price": 96990, "spec_rating": 77.0, "processor": "12th Gen Intel Core i7 12650H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 3070 Ti", "resolution_width": 2560.0, "resolution_height": 1440.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.482363159387589, "Pred_price": 103953.49554435471, "DT_Pred_price": 95096.79877053479, "counter": 32}, {"brand": "HP", "name": "Pavilion 15-eg3081TU Laptop", "price": 71990, "spec_rating": 66.0, "processor": "13th Gen Intel Core i5 1340P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Integrated", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.184282499463349, "Pred_price": 81716.82665709982, "DT_Pred_price": 66308.83935421948, "counter": 33}, {"brand": "HP", "name": "Victus 16-d0333TX Gaming Laptop", "price": 59990, "spec_rating": 75.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 11.00193316064714, "Pred_price": 64509.42385246291, "DT_Pred_price": 101829.2803714917, "counter": 34}, {"brand": "Lenovo", "name": "IdeaPad Slim 5 14IAH8 83BF0045IN Laptop", "price": 62990, "spec_rating": 60.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.050731262615974, "Pred_price": 66195.63747850774, "DT_Pred_price": 67580.53476864977, "counter": 35}, {"brand": "Infinix", "name": "INBook X3 Slim XL422 2023 Laptop", "price": 30990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.341419850781794, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 36}, {"brand": "Lenovo", "name": "LOQ 15IRH8 82XV00F5IN 2023 Gaming Laptop", "price": 74990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.225110050295434, "Pred_price": 65484.79177523664, "DT_Pred_price": 69536.26005768515, "counter": 37}, {"brand": "HP", "name": "15s-fr2515TU Laptop", "price": 36490, "spec_rating": 60.0, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.504793529430493, "Pred_price": 30283.74352226152, "DT_Pred_price": 42696.790429023225, "counter": 38}, {"brand": "Dell", "name": "G15-5520 2023 Laptop", "price": 77990, "spec_rating": 73.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.264335892324544, "Pred_price": 101446.45637706098, "DT_Pred_price": 101829.2803714917, "counter": 39}, {"brand": "Samsung", "name": "Galaxy Book2 NP550XED-KA2IN Laptop", "price": 54990, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1235U ", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.91490662950186, "Pred_price": 63788.56985934381, "DT_Pred_price": 66308.83935421948, "counter": 40}, {"brand": "Lenovo", "name": "IdeaPad 3 15IAU7 82RK00WXIN Laptop", "price": 41190, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "Intel UHD Graphics ", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.625950787430126, "Pred_price": 42744.64425006464, "DT_Pred_price": 39036.47285094371, "counter": 41}, {"brand": "Asus", "name": "ROG Strix G16 2023 G614JJ-N3086WS Gaming Laptop", "price": 89990, "spec_rating": 70.0, "processor": "13th Gen Intel Core i5 13450HX", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.407453832027993, "Pred_price": 81677.74258450235, "DT_Pred_price": 119815.23589362414, "counter": 42}, {"brand": "Lenovo", "name": "Legion 9i 2023 Laptop", "price": 399999, "spec_rating": 84.0, "processor": "13th Gen Intel Core i9 13980HX", "CPU": "24 Cores (8P + 16E), 32 Threads", "Ram": 32, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "16GB NVIDIA GeForce RTX 4090", "resolution_width": 3200.0, "resolution_height": 2000.0, "OS": "Windows 11 OS", "Thread": 32, "Cores": 24, "price_ln": 12.899217326086994, "Pred_price": 488657.8463349331, "DT_Pred_price": 296462.58717422216, "counter": 43}, {"brand": "Wings", "name": "Nuvobook V1 Laptop", "price": 31990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Graphics", "resolution_width": 1080.0, "resolution_height": 1920.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.373178632943564, "Pred_price": 53037.88844673435, "DT_Pred_price": 34858.80534415319, "counter": 44}, {"brand": "Dell", "name": "Inspiron 3525 Laptop", "price": 31490, "spec_rating": 69.32352941176471, "processor": "5th Gen AMD Ryzen 3 5300U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.357425314095071, "Pred_price": 41741.524407645615, "DT_Pred_price": 34858.80534415319, "counter": 45}, {"brand": "HP", "name": "Victus 15-fa0555TX  Laptop", "price": 70590, "spec_rating": 71.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.164643770389517, "Pred_price": 66391.43800455201, "DT_Pred_price": 69536.26005768515, "counter": 46}, {"brand": "Asus", "name": "TUF Gaming F15 2023 FX507ZV-LP094W Gaming Laptop", "price": 104990, "spec_rating": 78.0, "processor": "12th Gen Intel Core i7 12700H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.561620386508986, "Pred_price": 116856.56509673527, "DT_Pred_price": 153775.56788329227, "counter": 47}, {"brand": "Lenovo", "name": "V15 82QYA00MIN Laptop", "price": 23990, "spec_rating": 69.32352941176471, "processor": "Intel Celeron  N4020", "CPU": "Dual Core, 2 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 10.08539235583374, "Pred_price": 30702.292642802466, "DT_Pred_price": 34858.80534415319, "counter": 48}, {"brand": "HP", "name": "255 G9 7B1L8PA Laptop", "price": 37999, "spec_rating": 64.0, "processor": "5th Gen AMD Ryzen 5 5625U", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.545315122572783, "Pred_price": 44919.37248473547, "DT_Pred_price": 54153.174482085495, "counter": 49}, {"brand": "Honor", "name": "MagicBook X14 2023 \u200eFRI-F56 Laptop", "price": 52990, "spec_rating": 66.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.877858495486807, "Pred_price": 63758.060633799076, "DT_Pred_price": 67580.53476864977, "counter": 50}, {"brand": "Lenovo", "name": "V15 82KDA01BIH Laptop", "price": 30849, "spec_rating": 62.0, "processor": "5th Gen AMD Ryzen 3 5300U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.3368596138973, "Pred_price": 37742.871487924924, "DT_Pred_price": 42696.790429023225, "counter": 51}, {"brand": "HP", "name": "Victus 15-fa0070TX Laptop", "price": 58990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.98512321699712, "Pred_price": 55547.62229900422, "DT_Pred_price": 70690.60808185047, "counter": 52}, {"brand": "Zebronics", "name": "ZEB-NBC 2S Laptop", "price": 34990, "spec_rating": 63.0, "processor": "11th Gen Intel Core i5 1155G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.462817585361734, "Pred_price": 45110.90499996544, "DT_Pred_price": 46627.892160336174, "counter": 53}, {"brand": "Lenovo", "name": "ThinkBook 15 Gen 5 21JF0026MJ Laptop", "price": 49990, "spec_rating": 69.0, "processor": "7th Gen AMD Ryzen 7 7730U", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon AMD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 10.819578264407616, "Pred_price": 72023.7196307193, "DT_Pred_price": 69536.26005768515, "counter": 54}, {"brand": "HP", "name": "15S-FQ5202TU Laptop", "price": 51780, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.854759253305529, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 55}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HE-HN382W Gaming Laptop", "price": 68990, "spec_rating": 71.0, "processor": "11th Gen Intel Core i7 11800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050 Ti", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.141716845540154, "Pred_price": 74031.882935713, "DT_Pred_price": 69536.26005768515, "counter": 56}, {"brand": "Asus", "name": "TUF Gaming F15 FX577ZC-HN192W Gaming Laptop", "price": 85990, "spec_rating": 76.0, "processor": "12th Gen Intel Core i7 12700H ", "CPU": "14 Cores, 20 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.361986289404943, "Pred_price": 128184.01917670478, "DT_Pred_price": 110486.07943288147, "counter": 57}, {"brand": "Lenovo", "name": "LOQ 15IRH8 82XV00BQIN 2023 Gaming Laptop", "price": 96990, "spec_rating": 67.0, "processor": "13th Gen Intel Core i7 13620H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.482363159387589, "Pred_price": 76191.70770347837, "DT_Pred_price": 66308.83935421948, "counter": 58}, {"brand": "Lenovo", "name": "Legion Y9000X 2023 Laptop", "price": 148990, "spec_rating": 80.0, "processor": "13th Gen Intel Core i9 13900H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 32, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 3200.0, "resolution_height": 2000.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.911634468581385, "Pred_price": 219442.71550167556, "DT_Pred_price": 296462.58717422216, "counter": 59}, {"brand": "Asus", "name": "TUF Gaming F17 FX707ZC4-HX067W Gaming Laptop", "price": 72990, "spec_rating": 75.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.198077724445678, "Pred_price": 92481.76574271082, "DT_Pred_price": 101829.2803714917, "counter": 60}, {"brand": "Dell", "name": "Inspiron 5430 Laptop", "price": 84490, "spec_rating": 66.0, "processor": "13th Gen Intel Core i7 1360P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.34438846314689, "Pred_price": 94779.98933362131, "DT_Pred_price": 119815.23589362414, "counter": 61}, {"brand": "Asus", "name": "Vivobook 15 X1502ZA-EJ741WS Laptop", "price": 60990, "spec_rating": 67.0, "processor": "12th Gen Intel Core i7 12650H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.018465195290503, "Pred_price": 76191.70770347837, "DT_Pred_price": 66308.83935421948, "counter": 62}, {"brand": "Infinix", "name": "INBook X2 Slim Series XL23 Laptop", "price": 33990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i5 1155G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.433821642690162, "Pred_price": 49208.85757273237, "DT_Pred_price": 46627.892160336174, "counter": 63}, {"brand": "Asus", "name": "VivoBook 14 X415EA-EK344WS Notebook", "price": 35990, "spec_rating": 64.0, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.490996401073076, "Pred_price": 37719.943562121916, "DT_Pred_price": 46627.892160336174, "counter": 64}, {"brand": "Acer", "name": "Aspire 7 A715-76G NH.QMFSI.004 Gaming Laptop", "price": 60990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.018465195290503, "Pred_price": 65484.79177523664, "DT_Pred_price": 69536.26005768515, "counter": 65}, {"brand": "Xiaomi", "name": "Redmi Book 14 2023 Laptop", "price": 43990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 2880.0, "resolution_height": 1800.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.691717614342766, "Pred_price": 96653.31925329517, "DT_Pred_price": 95096.79877053479, "counter": 66}, {"brand": "Asus", "name": "Vivobook 16X 2023 K3605ZF-MB541WS Laptop", "price": 62990, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.050731262615974, "Pred_price": 69241.24131184467, "DT_Pred_price": 67580.53476864977, "counter": 67}, {"brand": "MSI", "name": "GF63 Thin 11UC-1294IN Gaming Laptop", "price": 65990, "spec_rating": 76.0, "processor": "11th Gen Intel Core i7 11800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.097258494377467, "Pred_price": 89413.0551874117, "DT_Pred_price": 110486.07943288147, "counter": 68}, {"brand": "Infinix", "name": "INBook Y1 Plus Neo XL30 Laptop", "price": 23990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Celeron N5100", "CPU": "Quad Core, 4 Threads", "Ram": 8, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 4, "price_ln": 10.08539235583374, "Pred_price": 37433.59914717004, "DT_Pred_price": 34858.80534415319, "counter": 69}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HC-HN362WS Gaming Laptop", "price": 61990, "spec_rating": 72.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 11.034728360695965, "Pred_price": 61902.514395019345, "DT_Pred_price": 69536.26005768515, "counter": 70}, {"brand": "Dell", "name": "Inspiron 3525 Laptop", "price": 36990, "spec_rating": 62.0, "processor": "5th Gen AMD Ryzen 3 5425U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.5184028848265, "Pred_price": 37742.871487924924, "DT_Pred_price": 42696.790429023225, "counter": 71}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB511WS Laptop", "price": 50970, "spec_rating": 65.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7 Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.838992503334087, "Pred_price": 57834.643649622274, "DT_Pred_price": 67580.53476864977, "counter": 72}, {"brand": "Dell", "name": "Precision 5550 Laptop", "price": 184999, "spec_rating": 70.0, "processor": "10th Gen Intel Core i7 10750H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA ", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 10 OS", "Thread": 12, "Cores": 6, "price_ln": 12.128105698640447, "Pred_price": 61950.69546700848, "DT_Pred_price": 67580.53476864977, "counter": 73}, {"brand": "HP", "name": "Omen 16-XD0007ax Gaming Laptop", "price": 109990, "spec_rating": 76.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.608144731551162, "Pred_price": 89413.0551874117, "DT_Pred_price": 110486.07943288147, "counter": 74}, {"brand": "Zebronics", "name": "Pro Series Z ZEB-NBC 4S Laptop", "price": 42990, "spec_rating": 69.0, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.668722809490328, "Pred_price": 70233.48786194761, "DT_Pred_price": 76013.43970785677, "counter": 75}, {"brand": "HP", "name": "15s-fq5185TU Laptop", "price": 39150, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.575155701418948, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 76}, {"brand": "Acer", "name": "Swift Go NXKPZSI002 Laptop", "price": 92999, "spec_rating": 64.0, "processor": "13th Gen Intel Core i5 13500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 2880.0, "resolution_height": 1800.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.44034401938941, "Pred_price": 89831.08697522322, "DT_Pred_price": 95096.79877053479, "counter": 77}, {"brand": "HP", "name": "Victus 16-s0095AX Gaming Laptop", "price": 80990, "spec_rating": 76.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.302080969243036, "Pred_price": 79300.6811347325, "DT_Pred_price": 110486.07943288147, "counter": 78}, {"brand": "HP", "name": "Victus 15-FB1001AX Gaming Laptop", "price": 55850, "spec_rating": 70.0, "processor": "7th Gen AMD Ryzen 5 7535HS", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.930424804497347, "Pred_price": 51084.60784777866, "DT_Pred_price": 70690.60808185047, "counter": 79}, {"brand": "Acer", "name": "Aspire Lite AL15-51 UN.431SI.288 Laptop", "price": 38990, "spec_rating": 64.0, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris XE Graphics ", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.571060481976643, "Pred_price": 38795.21715870894, "DT_Pred_price": 42696.790429023225, "counter": 80}, {"brand": "MSI", "name": "Thin GF63 11UCX-1492IN Gaming Laptop", "price": 53990, "spec_rating": 73.0, "processor": "11th Gen Intel Core i5 11260H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.896554123212333, "Pred_price": 70762.62439630192, "DT_Pred_price": 101829.2803714917, "counter": 81}, {"brand": "Infinix", "name": "INBook X3 Slim XL422 Laptop", "price": 38990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.571060481976643, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 82}, {"brand": "HP", "name": "Omen 16-xf0060AX Gaming Laptop", "price": 139234, "spec_rating": 80.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.843911249931143, "Pred_price": 94468.58981469847, "DT_Pred_price": 153775.56788329227, "counter": 83}, {"brand": "MSI", "name": "Thin GF63 11UC-1490IN Gaming Laptop", "price": 57990, "spec_rating": 73.0, "processor": "11th Gen Intel Core i5 11260H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.968025860870487, "Pred_price": 70762.62439630192, "DT_Pred_price": 101829.2803714917, "counter": 84}, {"brand": "Lenovo", "name": "LOQ 2023 Gaming Laptop", "price": 89999, "spec_rating": 64.0, "processor": "13th Gen Intel Core i5 13420H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 8, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.407553838139561, "Pred_price": 51148.83274048756, "DT_Pred_price": 54153.174482085495, "counter": 85}, {"brand": "Acer", "name": "One 14 Z8-415 \u200e2023 Laptop", "price": 37990, "spec_rating": 60.0, "processor": "11th Gen Intel Core i5  1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.54507824618167, "Pred_price": 43287.914840462436, "DT_Pred_price": 46627.892160336174, "counter": 86}, {"brand": "Asus", "name": "VivoBook 14 X415EA-EK326WS Notebook", "price": 30990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.341419850781794, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 87}, {"brand": "Dell", "name": "G15-5530 GN5530D83M6002ORB1 Gaming Laptop", "price": 92990, "spec_rating": 71.0, "processor": "13th Gen Intel Core i5 13450HX", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.440247239472242, "Pred_price": 80499.68952782919, "DT_Pred_price": 76013.43970785677, "counter": 88}, {"brand": "HP", "name": "15s-fr5009TU Laptop", "price": 42990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.668722809490328, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 89}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HF-HN025W Gaming Laptop", "price": 59089, "spec_rating": 72.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.986800060859236, "Pred_price": 61902.514395019345, "DT_Pred_price": 69536.26005768515, "counter": 90}, {"brand": "HP", "name": "Victus 15-fa0998TX Gaming Laptop", "price": 72999, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.198201021406565, "Pred_price": 67310.63687949466, "DT_Pred_price": 69536.26005768515, "counter": 91}, {"brand": "HP", "name": "Omen 16-n0123AX Gaming Laptop", "price": 126742, "spec_rating": 77.0, "processor": "6th Gen AMD Ryzen 7  6800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 3070 Ti ", "resolution_width": 2560.0, "resolution_height": 1440.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.7499088030907, "Pred_price": 95601.27570724758, "DT_Pred_price": 95096.79877053479, "counter": 92}, {"brand": "Samsung", "name": "Galaxy Book2 NP550XED-KA1IN 15 Laptop", "price": 49990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "LPDDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.819578264407616, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 93}, {"brand": "Dell", "name": "Inspiron 5420 Laptop", "price": 74390, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.217076803185387, "Pred_price": 77343.70912028357, "DT_Pred_price": 66308.83935421948, "counter": 94}, {"brand": "Dell", "name": "Inspiron 3520 D560871WIN9B Laptop", "price": 52990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.877858495486807, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 95}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 15IHU6 82K101EDIN Laptop", "price": 60990, "spec_rating": 67.0, "processor": "11th Gen Intel Core i5 11300H", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050 Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 11.018465195290503, "Pred_price": 40429.005697074885, "DT_Pred_price": 42696.790429023225, "counter": 96}, {"brand": "HP", "name": "Omen 16-n0079AX Gaming Laptop", "price": 98174, "spec_rating": 80.0, "processor": "6th Gen AMD Ryzen 7  6800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB AMD Radeon RX 6650M", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.494496693501794, "Pred_price": 83784.44850632908, "DT_Pred_price": 153775.56788329227, "counter": 97}, {"brand": "Lenovo", "name": "E41-55 Laptop", "price": 18990, "spec_rating": 69.32352941176471, "processor": "AMD Athlon Pro 3045B", "CPU": "Dual Core, 2 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 9.85166780380633, "Pred_price": 30702.292642802466, "DT_Pred_price": 34858.80534415319, "counter": 98}, {"brand": "Asus", "name": "VivoBook 15 X515EA-EJ522WS Laptop", "price": 38990, "spec_rating": 60.0, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.571060481976643, "Pred_price": 36719.071382597795, "DT_Pred_price": 42696.790429023225, "counter": 99}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+<p>Comparison of dicision tree predictions and true values，</p>
+<p>Red is the actual value, green is the predicted value</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span><span class="o">+</span><span class="n">P3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  #altair-viz-f39809763d844b1db5c45fd2a7d96c7d.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-f39809763d844b1db5c45fd2a7d96c7d.vega-embed details,
+  #altair-viz-f39809763d844b1db5c45fd2a7d96c7d.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-f39809763d844b1db5c45fd2a7d96c7d"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-f39809763d844b1db5c45fd2a7d96c7d") {
+      outputDiv = document.getElementById("altair-viz-f39809763d844b1db5c45fd2a7d96c7d");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-1b2de1116c5274559e1e070bf9850e04"}, "mark": {"type": "circle", "color": "red"}, "encoding": {"x": {"field": "counter", "type": "quantitative"}, "y": {"field": "price", "type": "quantitative"}}}, {"data": {"name": "data-1b2de1116c5274559e1e070bf9850e04"}, "mark": {"type": "circle", "color": "green"}, "encoding": {"x": {"field": "counter", "type": "quantitative"}, "y": {"field": "DT_Pred_price", "type": "quantitative"}}}], "height": 300, "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-1b2de1116c5274559e1e070bf9850e04": [{"brand": "HP", "name": "Victus 15-fb0157AX Gaming Laptop", "price": 49900, "spec_rating": 73.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB AMD Radeon RX 6500M", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.81777628173961, "Pred_price": 53235.941256925034, "DT_Pred_price": 70690.60808185047, "counter": 0}, {"brand": "HP", "name": "15s-fq5007TU Laptop", "price": 39900, "spec_rating": 60.0, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.594131602877955, "Pred_price": 39927.03857898772, "DT_Pred_price": 54153.174482085495, "counter": 1}, {"brand": "Acer", "name": "One 14 Z8-415 Laptop", "price": 26990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.20322170601205, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 2}, {"brand": "Lenovo", "name": "Yoga Slim 6 14IAP8 82WU0095IN Laptop", "price": 59729, "spec_rating": 66.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 2240.0, "resolution_height": 1400.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.99757294358051, "Pred_price": 86733.13814343898, "DT_Pred_price": 119815.23589362414, "counter": 3}, {"brand": "Acer", "name": "Extensa EX214-53 Laptop", "price": 39990, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.596384701840863, "Pred_price": 65606.97568014883, "DT_Pred_price": 54153.174482085495, "counter": 4}, {"brand": "Dell", "name": "Inspiron 3520 D560896WIN9B Laptop", "price": 36790, "spec_rating": 60.0, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.51298134809882, "Pred_price": 39927.03857898772, "DT_Pred_price": 54153.174482085495, "counter": 5}, {"brand": "Acer", "name": "Nitro V ANV15-51 2023 Gaming Laptop", "price": 76990, "spec_rating": 63.0, "processor": "13th Gen Intel Core i5 13420H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.251430822272095, "Pred_price": 59475.6339467296, "DT_Pred_price": 69536.26005768515, "counter": 6}, {"brand": "Asus", "name": "Vivobook 15 X1502ZA-EJ523WS Laptop", "price": 48990, "spec_rating": 64.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.79937147463262, "Pred_price": 67436.22751257301, "DT_Pred_price": 54153.174482085495, "counter": 7}, {"brand": "Samsung", "name": "Galaxy Book2 Pro 13 Laptop", "price": 74990, "spec_rating": 68.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1080.0, "resolution_height": 1920.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.225110050295434, "Pred_price": 106726.59698992869, "DT_Pred_price": 119815.23589362414, "counter": 8}, {"brand": "Lenovo", "name": "V15 G3 IAP 82TTA08AIN Laptop", "price": 49990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i7 1255U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.819578264407616, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 9}, {"brand": "Ultimus", "name": "Pro NU14U3INC43BN-CS Laptop", "price": 10990, "spec_rating": 69.32352941176471, "processor": "Intel Celeron  N4020", "CPU": "Dual Core, 2 Threads", "Ram": 4, "Ram_type": "DDR4", "ROM": 128, "ROM_type": "SSD", "GPU": "Intel Integrated UHD Graphics", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 9.304741047397666, "Pred_price": 26204.48793197588, "DT_Pred_price": 17953.626561799825, "counter": 10}, {"brand": "Asus", "name": "TUF Gaming F15 2022 FX507ZC4-HN116W Gaming Laptop", "price": 72990, "spec_rating": 76.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.198077724445678, "Pred_price": 93762.1889053718, "DT_Pred_price": 110486.07943288147, "counter": 11}, {"brand": "Primebook", "name": "4G Android Laptop", "price": 10990, "spec_rating": 69.32352941176471, "processor": "MediaTek MTK8788", "CPU": "Octa Core", "Ram": 4, "Ram_type": "LPDDR4", "ROM": 64, "ROM_type": "Hard-Disk", "GPU": "ARM Mali G72", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Android 11 OS", "Thread": 0, "Cores": 8, "price_ln": 9.304741047397666, "Pred_price": 31429.179632817544, "DT_Pred_price": 17953.626561799825, "counter": 12}, {"brand": "Lenovo", "name": "V15 G4 \u200e82YU00W7IN Laptop", "price": 29990, "spec_rating": 69.32352941176471, "processor": "7th Gen AMD Ryzen 3 7320U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.308619271743055, "Pred_price": 41741.524407645615, "DT_Pred_price": 34858.80534415319, "counter": 13}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HF-HN024W Gaming Laptop", "price": 53649, "spec_rating": 70.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.890218108556146, "Pred_price": 51084.60784777866, "DT_Pred_price": 70690.60808185047, "counter": 14}, {"brand": "MSI", "name": "Modern 14 C11M-031IN Laptop", "price": 33990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.433821642690162, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 15}, {"brand": "Infinix", "name": "Zerobook 2023 Laptop", "price": 79990, "spec_rating": 71.0, "processor": "13th Gen Intel Core i9 13900H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 32, "Ram_type": "LPDDR5X", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.289656905842868, "Pred_price": 166312.8158391588, "DT_Pred_price": 76013.43970785677, "counter": 16}, {"brand": "HP", "name": "Victus 15-fa0666TX Gaming Laptop", "price": 68990, "spec_rating": 65.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.141716845540154, "Pred_price": 61133.9318830962, "DT_Pred_price": 69536.26005768515, "counter": 17}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 15IHU6 82K101GSIN Laptop", "price": 45990, "spec_rating": 71.0, "processor": "11th Gen Intel Core i5 11300H", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.73617926053397, "Pred_price": 42714.91615858333, "DT_Pred_price": 34858.80534415319, "counter": 18}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB502WS Laptop", "price": 49900, "spec_rating": 65.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.81777628173961, "Pred_price": 49058.36689949698, "DT_Pred_price": 54153.174482085495, "counter": 19}, {"brand": "Acer", "name": "Aspire 7 A715-76G UN.QMYSI.002 Gaming Laptop", "price": 54990, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.91490662950186, "Pred_price": 67310.63687949466, "DT_Pred_price": 69536.26005768515, "counter": 20}, {"brand": "HP", "name": "15s-fq2510tu Laptop", "price": 49580, "spec_rating": 64.0, "processor": "11th Gen Intel Core i5 1135G7 ", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.811342805589181, "Pred_price": 45735.47187741077, "DT_Pred_price": 46627.892160336174, "counter": 21}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB711WS Laptop", "price": 55990, "spec_rating": 71.0, "processor": "5th Gen AMD Ryzen 7  5800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 10.932928382342938, "Pred_price": 76155.26622187611, "DT_Pred_price": 67580.53476864977, "counter": 22}, {"brand": "HP", "name": "15s-eq2132AU Laptop", "price": 43990, "spec_rating": 63.0, "processor": "5th Gen AMD Ryzen 5 5500U", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon AMD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.691717614342766, "Pred_price": 54697.02051893551, "DT_Pred_price": 69536.26005768515, "counter": 23}, {"brand": "HP", "name": "255 G9 840T7PA Laptop", "price": 19850, "spec_rating": 69.32352941176471, "processor": "3rd Gen AMD Athlon 3050U", "CPU": "Dual Core, 2 Threads", "Ram": 4, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "AMD Integrated", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "DOS OS", "Thread": 2, "Cores": 2, "price_ln": 9.895959286115337, "Pred_price": 27002.668309506837, "DT_Pred_price": 17953.626561799825, "counter": 24}, {"brand": "Acer", "name": "Extensa 15 EX215-33 2023 Laptop", "price": 28990, "spec_rating": 69.32352941176471, "processor": "Intel Core i3 N305", "CPU": "Octa Core, 8 Threads", "Ram": 8, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 8, "price_ln": 10.274706221915702, "Pred_price": 49353.63278984087, "DT_Pred_price": 39036.47285094371, "counter": 25}, {"brand": "Acer", "name": "Aspire 5 A515-57G UN.K9TSI.002 Gaming Laptop", "price": 54999, "spec_rating": 71.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.915070282231135, "Pred_price": 87532.55701606412, "DT_Pred_price": 76013.43970785677, "counter": 26}, {"brand": "Dell", "name": "Inspiron 3530 Laptop", "price": 70990, "spec_rating": 69.32352941176471, "processor": "13th Gen Intel Core i7 1355U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 11.170294301033431, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 27}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 82SB00V2IN Laptop", "price": 56889, "spec_rating": 60.0, "processor": "6th Gen AMD Ryzen 5 6600H", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.948857279808518, "Pred_price": 44521.91329018436, "DT_Pred_price": 54153.174482085495, "counter": 28}, {"brand": "Acer", "name": "Predator Helios Neo 16 2023 PHN16-71 Gaming Laptop", "price": 179880, "spec_rating": 78.0, "processor": "13th Gen Intel Core i9 13900HX", "CPU": "24 Cores (8P + 16E), 32 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4070", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 32, "Cores": 24, "price_ln": 12.100045240884644, "Pred_price": 285663.98401096236, "DT_Pred_price": 153775.56788329227, "counter": 29}, {"brand": "HP", "name": "Victus 15-fb0150AX Gaming Laptop", "price": 53790, "spec_rating": 71.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB AMD Radeon RX 6500M Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.892842855267288, "Pred_price": 61057.16922780773, "DT_Pred_price": 69536.26005768515, "counter": 30}, {"brand": "Acer", "name": "Aspire Lite AL15 Laptop", "price": 37990, "spec_rating": 60.0, "processor": "5th Gen AMD Ryzen 5 5500U", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.54507824618167, "Pred_price": 52486.64300245186, "DT_Pred_price": 69536.26005768515, "counter": 31}, {"brand": "Acer", "name": "Nitro 5 AN515-58 NH.QFSSI.001 Gaming Laptop", "price": 96990, "spec_rating": 77.0, "processor": "12th Gen Intel Core i7 12650H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 3070 Ti", "resolution_width": 2560.0, "resolution_height": 1440.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.482363159387589, "Pred_price": 103953.49554435471, "DT_Pred_price": 95096.79877053479, "counter": 32}, {"brand": "HP", "name": "Pavilion 15-eg3081TU Laptop", "price": 71990, "spec_rating": 66.0, "processor": "13th Gen Intel Core i5 1340P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Integrated", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.184282499463349, "Pred_price": 81716.82665709982, "DT_Pred_price": 66308.83935421948, "counter": 33}, {"brand": "HP", "name": "Victus 16-d0333TX Gaming Laptop", "price": 59990, "spec_rating": 75.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 11.00193316064714, "Pred_price": 64509.42385246291, "DT_Pred_price": 101829.2803714917, "counter": 34}, {"brand": "Lenovo", "name": "IdeaPad Slim 5 14IAH8 83BF0045IN Laptop", "price": 62990, "spec_rating": 60.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.050731262615974, "Pred_price": 66195.63747850774, "DT_Pred_price": 67580.53476864977, "counter": 35}, {"brand": "Infinix", "name": "INBook X3 Slim XL422 2023 Laptop", "price": 30990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.341419850781794, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 36}, {"brand": "Lenovo", "name": "LOQ 15IRH8 82XV00F5IN 2023 Gaming Laptop", "price": 74990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.225110050295434, "Pred_price": 65484.79177523664, "DT_Pred_price": 69536.26005768515, "counter": 37}, {"brand": "HP", "name": "15s-fr2515TU Laptop", "price": 36490, "spec_rating": 60.0, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.504793529430493, "Pred_price": 30283.74352226152, "DT_Pred_price": 42696.790429023225, "counter": 38}, {"brand": "Dell", "name": "G15-5520 2023 Laptop", "price": 77990, "spec_rating": 73.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.264335892324544, "Pred_price": 101446.45637706098, "DT_Pred_price": 101829.2803714917, "counter": 39}, {"brand": "Samsung", "name": "Galaxy Book2 NP550XED-KA2IN Laptop", "price": 54990, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1235U ", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.91490662950186, "Pred_price": 63788.56985934381, "DT_Pred_price": 66308.83935421948, "counter": 40}, {"brand": "Lenovo", "name": "IdeaPad 3 15IAU7 82RK00WXIN Laptop", "price": 41190, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "Intel UHD Graphics ", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.625950787430126, "Pred_price": 42744.64425006464, "DT_Pred_price": 39036.47285094371, "counter": 41}, {"brand": "Asus", "name": "ROG Strix G16 2023 G614JJ-N3086WS Gaming Laptop", "price": 89990, "spec_rating": 70.0, "processor": "13th Gen Intel Core i5 13450HX", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.407453832027993, "Pred_price": 81677.74258450235, "DT_Pred_price": 119815.23589362414, "counter": 42}, {"brand": "Lenovo", "name": "Legion 9i 2023 Laptop", "price": 399999, "spec_rating": 84.0, "processor": "13th Gen Intel Core i9 13980HX", "CPU": "24 Cores (8P + 16E), 32 Threads", "Ram": 32, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "16GB NVIDIA GeForce RTX 4090", "resolution_width": 3200.0, "resolution_height": 2000.0, "OS": "Windows 11 OS", "Thread": 32, "Cores": 24, "price_ln": 12.899217326086994, "Pred_price": 488657.8463349331, "DT_Pred_price": 296462.58717422216, "counter": 43}, {"brand": "Wings", "name": "Nuvobook V1 Laptop", "price": 31990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Graphics", "resolution_width": 1080.0, "resolution_height": 1920.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.373178632943564, "Pred_price": 53037.88844673435, "DT_Pred_price": 34858.80534415319, "counter": 44}, {"brand": "Dell", "name": "Inspiron 3525 Laptop", "price": 31490, "spec_rating": 69.32352941176471, "processor": "5th Gen AMD Ryzen 3 5300U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.357425314095071, "Pred_price": 41741.524407645615, "DT_Pred_price": 34858.80534415319, "counter": 45}, {"brand": "HP", "name": "Victus 15-fa0555TX  Laptop", "price": 70590, "spec_rating": 71.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.164643770389517, "Pred_price": 66391.43800455201, "DT_Pred_price": 69536.26005768515, "counter": 46}, {"brand": "Asus", "name": "TUF Gaming F15 2023 FX507ZV-LP094W Gaming Laptop", "price": 104990, "spec_rating": 78.0, "processor": "12th Gen Intel Core i7 12700H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.561620386508986, "Pred_price": 116856.56509673527, "DT_Pred_price": 153775.56788329227, "counter": 47}, {"brand": "Lenovo", "name": "V15 82QYA00MIN Laptop", "price": 23990, "spec_rating": 69.32352941176471, "processor": "Intel Celeron  N4020", "CPU": "Dual Core, 2 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 10.08539235583374, "Pred_price": 30702.292642802466, "DT_Pred_price": 34858.80534415319, "counter": 48}, {"brand": "HP", "name": "255 G9 7B1L8PA Laptop", "price": 37999, "spec_rating": 64.0, "processor": "5th Gen AMD Ryzen 5 5625U", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1366.0, "resolution_height": 768.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.545315122572783, "Pred_price": 44919.37248473547, "DT_Pred_price": 54153.174482085495, "counter": 49}, {"brand": "Honor", "name": "MagicBook X14 2023 \u200eFRI-F56 Laptop", "price": 52990, "spec_rating": 66.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.877858495486807, "Pred_price": 63758.060633799076, "DT_Pred_price": 67580.53476864977, "counter": 50}, {"brand": "Lenovo", "name": "V15 82KDA01BIH Laptop", "price": 30849, "spec_rating": 62.0, "processor": "5th Gen AMD Ryzen 3 5300U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.3368596138973, "Pred_price": 37742.871487924924, "DT_Pred_price": 42696.790429023225, "counter": 51}, {"brand": "HP", "name": "Victus 15-fa0070TX Laptop", "price": 58990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 1650", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 10.98512321699712, "Pred_price": 55547.62229900422, "DT_Pred_price": 70690.60808185047, "counter": 52}, {"brand": "Zebronics", "name": "ZEB-NBC 2S Laptop", "price": 34990, "spec_rating": 63.0, "processor": "11th Gen Intel Core i5 1155G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.462817585361734, "Pred_price": 45110.90499996544, "DT_Pred_price": 46627.892160336174, "counter": 53}, {"brand": "Lenovo", "name": "ThinkBook 15 Gen 5 21JF0026MJ Laptop", "price": 49990, "spec_rating": 69.0, "processor": "7th Gen AMD Ryzen 7 7730U", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon AMD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 10.819578264407616, "Pred_price": 72023.7196307193, "DT_Pred_price": 69536.26005768515, "counter": 54}, {"brand": "HP", "name": "15S-FQ5202TU Laptop", "price": 51780, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.854759253305529, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 55}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HE-HN382W Gaming Laptop", "price": 68990, "spec_rating": 71.0, "processor": "11th Gen Intel Core i7 11800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050 Ti", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.141716845540154, "Pred_price": 74031.882935713, "DT_Pred_price": 69536.26005768515, "counter": 56}, {"brand": "Asus", "name": "TUF Gaming F15 FX577ZC-HN192W Gaming Laptop", "price": 85990, "spec_rating": 76.0, "processor": "12th Gen Intel Core i7 12700H ", "CPU": "14 Cores, 20 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.361986289404943, "Pred_price": 128184.01917670478, "DT_Pred_price": 110486.07943288147, "counter": 57}, {"brand": "Lenovo", "name": "LOQ 15IRH8 82XV00BQIN 2023 Gaming Laptop", "price": 96990, "spec_rating": 67.0, "processor": "13th Gen Intel Core i7 13620H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.482363159387589, "Pred_price": 76191.70770347837, "DT_Pred_price": 66308.83935421948, "counter": 58}, {"brand": "Lenovo", "name": "Legion Y9000X 2023 Laptop", "price": 148990, "spec_rating": 80.0, "processor": "13th Gen Intel Core i9 13900H", "CPU": "14 Cores (6P + 8E), 20 Threads", "Ram": 32, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 3200.0, "resolution_height": 2000.0, "OS": "Windows 11 OS", "Thread": 20, "Cores": 14, "price_ln": 11.911634468581385, "Pred_price": 219442.71550167556, "DT_Pred_price": 296462.58717422216, "counter": 59}, {"brand": "Asus", "name": "TUF Gaming F17 FX707ZC4-HX067W Gaming Laptop", "price": 72990, "spec_rating": 75.0, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.198077724445678, "Pred_price": 92481.76574271082, "DT_Pred_price": 101829.2803714917, "counter": 60}, {"brand": "Dell", "name": "Inspiron 5430 Laptop", "price": 84490, "spec_rating": 66.0, "processor": "13th Gen Intel Core i7 1360P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.34438846314689, "Pred_price": 94779.98933362131, "DT_Pred_price": 119815.23589362414, "counter": 61}, {"brand": "Asus", "name": "Vivobook 15 X1502ZA-EJ741WS Laptop", "price": 60990, "spec_rating": 67.0, "processor": "12th Gen Intel Core i7 12650H", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.018465195290503, "Pred_price": 76191.70770347837, "DT_Pred_price": 66308.83935421948, "counter": 62}, {"brand": "Infinix", "name": "INBook X2 Slim Series XL23 Laptop", "price": 33990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i5 1155G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.433821642690162, "Pred_price": 49208.85757273237, "DT_Pred_price": 46627.892160336174, "counter": 63}, {"brand": "Asus", "name": "VivoBook 14 X415EA-EK344WS Notebook", "price": 35990, "spec_rating": 64.0, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.490996401073076, "Pred_price": 37719.943562121916, "DT_Pred_price": 46627.892160336174, "counter": 64}, {"brand": "Acer", "name": "Aspire 7 A715-76G NH.QMFSI.004 Gaming Laptop", "price": 60990, "spec_rating": 70.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce GTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.018465195290503, "Pred_price": 65484.79177523664, "DT_Pred_price": 69536.26005768515, "counter": 65}, {"brand": "Xiaomi", "name": "Redmi Book 14 2023 Laptop", "price": 43990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 12500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 2880.0, "resolution_height": 1800.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 10.691717614342766, "Pred_price": 96653.31925329517, "DT_Pred_price": 95096.79877053479, "counter": 66}, {"brand": "Asus", "name": "Vivobook 16X 2023 K3605ZF-MB541WS Laptop", "price": 62990, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.050731262615974, "Pred_price": 69241.24131184467, "DT_Pred_price": 67580.53476864977, "counter": 67}, {"brand": "MSI", "name": "GF63 Thin 11UC-1294IN Gaming Laptop", "price": 65990, "spec_rating": 76.0, "processor": "11th Gen Intel Core i7 11800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.097258494377467, "Pred_price": 89413.0551874117, "DT_Pred_price": 110486.07943288147, "counter": 68}, {"brand": "Infinix", "name": "INBook Y1 Plus Neo XL30 Laptop", "price": 23990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Celeron N5100", "CPU": "Quad Core, 4 Threads", "Ram": 8, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 4, "price_ln": 10.08539235583374, "Pred_price": 37433.59914717004, "DT_Pred_price": 34858.80534415319, "counter": 69}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HC-HN362WS Gaming Laptop", "price": 61990, "spec_rating": 72.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 11.034728360695965, "Pred_price": 61902.514395019345, "DT_Pred_price": 69536.26005768515, "counter": 70}, {"brand": "Dell", "name": "Inspiron 3525 Laptop", "price": 36990, "spec_rating": 62.0, "processor": "5th Gen AMD Ryzen 3 5425U", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.5184028848265, "Pred_price": 37742.871487924924, "DT_Pred_price": 42696.790429023225, "counter": 71}, {"brand": "Asus", "name": "Vivobook 16X 2022 M1603QA-MB511WS Laptop", "price": 50970, "spec_rating": 65.0, "processor": "5th Gen AMD Ryzen 5 5600H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "AMD Radeon Vega 7 Graphics", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.838992503334087, "Pred_price": 57834.643649622274, "DT_Pred_price": 67580.53476864977, "counter": 72}, {"brand": "Dell", "name": "Precision 5550 Laptop", "price": 184999, "spec_rating": 70.0, "processor": "10th Gen Intel Core i7 10750H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA ", "resolution_width": 1920.0, "resolution_height": 1200.0, "OS": "Windows 10 OS", "Thread": 12, "Cores": 6, "price_ln": 12.128105698640447, "Pred_price": 61950.69546700848, "DT_Pred_price": 67580.53476864977, "counter": 73}, {"brand": "HP", "name": "Omen 16-XD0007ax Gaming Laptop", "price": 109990, "spec_rating": 76.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 4050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.608144731551162, "Pred_price": 89413.0551874117, "DT_Pred_price": 110486.07943288147, "counter": 74}, {"brand": "Zebronics", "name": "Pro Series Z ZEB-NBC 4S Laptop", "price": 42990, "spec_rating": 69.0, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.668722809490328, "Pred_price": 70233.48786194761, "DT_Pred_price": 76013.43970785677, "counter": 75}, {"brand": "HP", "name": "15s-fq5185TU Laptop", "price": 39150, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.575155701418948, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 76}, {"brand": "Acer", "name": "Swift Go NXKPZSI002 Laptop", "price": 92999, "spec_rating": 64.0, "processor": "13th Gen Intel Core i5 13500H", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "LPDDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 2880.0, "resolution_height": 1800.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.44034401938941, "Pred_price": 89831.08697522322, "DT_Pred_price": 95096.79877053479, "counter": 77}, {"brand": "HP", "name": "Victus 16-s0095AX Gaming Laptop", "price": 80990, "spec_rating": 76.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.302080969243036, "Pred_price": 79300.6811347325, "DT_Pred_price": 110486.07943288147, "counter": 78}, {"brand": "HP", "name": "Victus 15-FB1001AX Gaming Laptop", "price": 55850, "spec_rating": 70.0, "processor": "7th Gen AMD Ryzen 5 7535HS", "CPU": "Hexa Core, 12 Threads", "Ram": 8, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.930424804497347, "Pred_price": 51084.60784777866, "DT_Pred_price": 70690.60808185047, "counter": 79}, {"brand": "Acer", "name": "Aspire Lite AL15-51 UN.431SI.288 Laptop", "price": 38990, "spec_rating": 64.0, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris XE Graphics ", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.571060481976643, "Pred_price": 38795.21715870894, "DT_Pred_price": 42696.790429023225, "counter": 80}, {"brand": "MSI", "name": "Thin GF63 11UCX-1492IN Gaming Laptop", "price": 53990, "spec_rating": 73.0, "processor": "11th Gen Intel Core i5 11260H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.896554123212333, "Pred_price": 70762.62439630192, "DT_Pred_price": 101829.2803714917, "counter": 81}, {"brand": "Infinix", "name": "INBook X3 Slim XL422 Laptop", "price": 38990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 16, "Ram_type": "LPDDR4X", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.571060481976643, "Pred_price": 70546.6235276894, "DT_Pred_price": 76013.43970785677, "counter": 82}, {"brand": "HP", "name": "Omen 16-xf0060AX Gaming Laptop", "price": 139234, "spec_rating": 80.0, "processor": "7th Gen AMD Ryzen 7 7840HS", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.843911249931143, "Pred_price": 94468.58981469847, "DT_Pred_price": 153775.56788329227, "counter": 83}, {"brand": "MSI", "name": "Thin GF63 11UC-1490IN Gaming Laptop", "price": 57990, "spec_rating": 73.0, "processor": "11th Gen Intel Core i5 11260H", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 1024, "ROM_type": "Hard-Disk", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.968025860870487, "Pred_price": 70762.62439630192, "DT_Pred_price": 101829.2803714917, "counter": 84}, {"brand": "Lenovo", "name": "LOQ 2023 Gaming Laptop", "price": 89999, "spec_rating": 64.0, "processor": "13th Gen Intel Core i5 13420H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 8, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 4060", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.407553838139561, "Pred_price": 51148.83274048756, "DT_Pred_price": 54153.174482085495, "counter": 85}, {"brand": "Acer", "name": "One 14 Z8-415 \u200e2023 Laptop", "price": 37990, "spec_rating": 60.0, "processor": "11th Gen Intel Core i5  1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Iris Xe Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.54507824618167, "Pred_price": 43287.914840462436, "DT_Pred_price": 46627.892160336174, "counter": 86}, {"brand": "Asus", "name": "VivoBook 14 X415EA-EK326WS Notebook", "price": 30990, "spec_rating": 69.32352941176471, "processor": "11th Gen Intel Core i3 1115G4", "CPU": "Dual Core, 4 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Intel UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 4, "Cores": 2, "price_ln": 10.341419850781794, "Pred_price": 34425.9691705724, "DT_Pred_price": 34858.80534415319, "counter": 87}, {"brand": "Dell", "name": "G15-5530 GN5530D83M6002ORB1 Gaming Laptop", "price": 92990, "spec_rating": 71.0, "processor": "13th Gen Intel Core i5 13450HX", "CPU": "10 Cores (6P + 4E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "6GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 10, "price_ln": 11.440247239472242, "Pred_price": 80499.68952782919, "DT_Pred_price": 76013.43970785677, "counter": 88}, {"brand": "HP", "name": "15s-fr5009TU Laptop", "price": 42990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i3 1215U", "CPU": "Hexa Core (2P + 4E), 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 6, "price_ln": 10.668722809490328, "Pred_price": 45388.27896828786, "DT_Pred_price": 39036.47285094371, "counter": 89}, {"brand": "Asus", "name": "TUF Gaming F15 FX506HF-HN025W Gaming Laptop", "price": 59089, "spec_rating": 72.0, "processor": "11th Gen Intel Core i5 11400H ", "CPU": "Hexa Core, 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 2050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 6, "price_ln": 10.986800060859236, "Pred_price": 61902.514395019345, "DT_Pred_price": 69536.26005768515, "counter": 90}, {"brand": "HP", "name": "Victus 15-fa0998TX Gaming Laptop", "price": 72999, "spec_rating": 72.0, "processor": "12th Gen Intel Core i5 12450H", "CPU": "Octa Core (4P + 4E), 12 Threads", "Ram": 16, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 8, "price_ln": 11.198201021406565, "Pred_price": 67310.63687949466, "DT_Pred_price": 69536.26005768515, "counter": 91}, {"brand": "HP", "name": "Omen 16-n0123AX Gaming Laptop", "price": 126742, "spec_rating": 77.0, "processor": "6th Gen AMD Ryzen 7  6800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 1024, "ROM_type": "SSD", "GPU": "8GB NVIDIA GeForce RTX 3070 Ti ", "resolution_width": 2560.0, "resolution_height": 1440.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.7499088030907, "Pred_price": 95601.27570724758, "DT_Pred_price": 95096.79877053479, "counter": 92}, {"brand": "Samsung", "name": "Galaxy Book2 NP550XED-KA1IN 15 Laptop", "price": 49990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "LPDDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.819578264407616, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 93}, {"brand": "Dell", "name": "Inspiron 5420 Laptop", "price": 74390, "spec_rating": 62.0, "processor": "12th Gen Intel Core i5 1240P", "CPU": "12 Cores (4P + 8E), 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated UHD", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 12, "price_ln": 11.217076803185387, "Pred_price": 77343.70912028357, "DT_Pred_price": 66308.83935421948, "counter": 94}, {"brand": "Dell", "name": "Inspiron 3520 D560871WIN9B Laptop", "price": 52990, "spec_rating": 69.32352941176471, "processor": "12th Gen Intel Core i5 1235U", "CPU": "10 Cores (2P + 8E), 12 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel UHD Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 12, "Cores": 10, "price_ln": 10.877858495486807, "Pred_price": 59841.332498029085, "DT_Pred_price": 47017.35127116805, "counter": 95}, {"brand": "Lenovo", "name": "IdeaPad Gaming 3 15IHU6 82K101EDIN Laptop", "price": 60990, "spec_rating": 67.0, "processor": "11th Gen Intel Core i5 11300H", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "4GB NVIDIA GeForce RTX 3050 Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 11.018465195290503, "Pred_price": 40429.005697074885, "DT_Pred_price": 42696.790429023225, "counter": 96}, {"brand": "HP", "name": "Omen 16-n0079AX Gaming Laptop", "price": 98174, "spec_rating": 80.0, "processor": "6th Gen AMD Ryzen 7  6800H", "CPU": "Octa Core, 16 Threads", "Ram": 16, "Ram_type": "DDR5", "ROM": 512, "ROM_type": "SSD", "GPU": "8GB AMD Radeon RX 6650M", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 16, "Cores": 8, "price_ln": 11.494496693501794, "Pred_price": 83784.44850632908, "DT_Pred_price": 153775.56788329227, "counter": 97}, {"brand": "Lenovo", "name": "E41-55 Laptop", "price": 18990, "spec_rating": 69.32352941176471, "processor": "AMD Athlon Pro 3045B", "CPU": "Dual Core, 2 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 256, "ROM_type": "SSD", "GPU": "AMD Radeon Graphics", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 2, "Cores": 2, "price_ln": 9.85166780380633, "Pred_price": 30702.292642802466, "DT_Pred_price": 34858.80534415319, "counter": 98}, {"brand": "Asus", "name": "VivoBook 15 X515EA-EJ522WS Laptop", "price": 38990, "spec_rating": 60.0, "processor": "11th Gen Intel Core i5 1135G7", "CPU": "Quad Core, 8 Threads", "Ram": 8, "Ram_type": "DDR4", "ROM": 512, "ROM_type": "SSD", "GPU": "Intel Integrated Iris Xe", "resolution_width": 1920.0, "resolution_height": 1080.0, "OS": "Windows 11 OS", "Thread": 8, "Cores": 4, "price_ln": 10.571060481976643, "Pred_price": 36719.071382597795, "DT_Pred_price": 42696.790429023225, "counter": 99}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
+<p>In this project, I analyzed the impact of different hardware on price. In the analysis, we learned that price has a strong correlation with hardware, and our predictions are relatively close to the real price.The most important factors are Ram, and threads. In fact, graphics cards also have a great impact on prices, but in this data set, it is difficult to analyze the graphics card factors, so there is a little inaccuracy in the prediction.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>Dataset:
+<a class="reference external" href="https://www.kaggle.com/datasets/jacksondivakarr/laptop-price-prediction-dataset">https://www.kaggle.com/datasets/jacksondivakarr/laptop-price-prediction-dataset</a></p>
+<p>Decision Tree Regression:
+<a class="reference external" href="https://scikit-learn.org/stable/auto_examples/tree/plot_tree_regression.html">https://scikit-learn.org/stable/auto_examples/tree/plot_tree_regression.html</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./final_project_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="changsilas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">An Analysis of USA Climbing’s Youth Bouldering Series.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dabirarjun.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Predicting computer prices using multiple linear regression and decision trees</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-information-about-the-data-and-visualization">Basic information about the data and Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-data">Optimize data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-test">correlation test</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning">Machine Learning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

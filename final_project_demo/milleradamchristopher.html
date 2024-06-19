@@ -1,0 +1,1702 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Classifying Songs by Genre using its Features &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'final_project_demo/milleradamchristopher';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="US GDP Forecasting" href="mongiadron.html" />
+    <link rel="prev" title="Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health" href="kimmalex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_template.html">[Title here]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/kmeans.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/intro_nn.html">Nerual Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/gan.html">Generative Adversarial Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/fairness.html">Bias and Fairness</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework7_sol.html">Homework 7 (Due 5/31)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Student Projects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baosi.html">Predicting NBA Game Outcomes Project</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="caotranhoangthuc.html">Cancer Prediction Based on Medical and Lifestyle Information</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="changsilas.html">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chenyu.html">Predicting computer prices using multiple linear regression and decision trees</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="dabirarjun.html">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huanganita.html">Youtube Video Trending Prediction</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="huynhstanley.html">Wine Quality Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="jiaoyuhao.html">Analysis of house price forecasts and influencing factors</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="kimmalex.html">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Classifying Songs by Genre using its Features</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="mongiadron.html">US GDP Forecasting</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenalexanderdavid.html">MOVIE SUCCESS IN RELATION TO ITS FILM DISTRIBUTION COMPANY</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenmilanngoc.html">LPGA 2022 Rolex Ranking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presnyakovoleg.html">Phone cost prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roblesisabellaesther.html">Predicting Medical Expenses for Insurance and Analyzing Factors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sonnevillenicolecaroline.html">Predicting ratings on Sephora based on price and number of ingredients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tongbenjaminv.html">Prediction and Classification of Stellar Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torreshornbeakelijahcharles.html">Methods for Analyzing the Best NBA Players</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="trancrystal.html">Analysis of Mushroom Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tranethank.html">Top Valorant Players</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="wunathan.html">Image Classfication on “Heart Failure Cinical Records” Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yangchenxi.html">Analysis of Tesla Stock Price in the most recnet 6 months</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zhangzhiwei.html">CO2 Emissions and Renewable Energy Trends</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhangzidong.html">Math 10 Final Project: Analyzing the weather conditions in 10 locations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhaomickey.html">[Predicting CO2 Emissions of Vehicles]</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/final_project_demo/milleradamchristopher.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classifying Songs by Genre using its Features</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classifying Songs by Genre using its Features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up-the-data">Cleaning Up the Data:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-of-songs-by-genre">Classification of Songs by Genre:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-the-data">Scaling the Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#label-encoding">Label Encoding:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-classification">kNN Classification:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">k-means Clustering:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-classification">Random Forest Classification:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classifying-songs-by-genre-using-its-features">
+<h1>Classifying Songs by Genre using its Features<a class="headerlink" href="#classifying-songs-by-genre-using-its-features" title="Link to this heading">#</a></h1>
+<p>Author: Adam Miller</p>
+<p>Course Project, UC Irvine, Math 10, S24</p>
+<p>I would like to post my notebook on the course’s website. Yes</p>
+<section id="introduction">
+<h2>Introduction:<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>This data is from over 30,000 songs from the Spotify API. The songs come from six main genres (EDM, Latin, Pop, R&amp;B, Rap, and Rock), but there are also some subgenres categorized by Spotify included in the data. Both the data and the data dictionary below were taken from <a class="reference external" href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs?resource=download">Kaggle</a>. As we can see from the data dictionary, the data includes many features of each song, including the popularity, genre, danceability, energy, speechiness, acousticness, tempo, and duration; I plan to explore any possible correlation between these features (e.g. are songs with higher tempo more danceable? Does track length affect popularity?). I also plan to use k-means clustering to see if we can classify songs by genre based on the other features, and also to see if we are able to find similar songs to an input song (as the other songs in the same cluster as the input should be similar).</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>variable</p></th>
+<th class="head text-left"><p>class</p></th>
+<th class="head text-left"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>track_id</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Song unique ID</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>track_name</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Song Name</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>track_artist</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Song Artist</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>track_popularity</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Song Popularity (0-100) where higher is better</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>track_album_id</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Album unique ID</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>track_album_name</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Song album name</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>track_album_release_date</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Date when album released</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>playlist_name</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Name of playlist</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>playlist_id</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Playlist ID</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>playlist_genre</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Playlist genre</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>playlist_subgenre</p></td>
+<td class="text-left"><p>character</p></td>
+<td class="text-left"><p>Playlist subgenre</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>danceability</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>energy</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>key</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>The estimated overall key of the track. Integers map to pitches using standard Pitch Class notation . E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>loudness</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>mode</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>speechiness</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>acousticness</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>instrumentalness</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>liveness</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>valence</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>tempo</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>duration_ms</p></td>
+<td class="text-left"><p>double</p></td>
+<td class="text-left"><p>Duration of song in milliseconds</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./spotify_songs.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cleaning-up-the-data">
+<h2>Cleaning Up the Data:<a class="headerlink" href="#cleaning-up-the-data" title="Link to this heading">#</a></h2>
+<p>Since the way the data is organized is by Spotify’s playlisting, or the autogenerated playlists created by Spotify, it’s possible that some songs show up more than once in the dataframe, since one song could be placed in multiple playlists. The following code computes how many unique entries there are in the <code class="docutils literal notranslate"><span class="pre">'track_id'</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>28356
+</pre></div>
+</div>
+</div>
+</div>
+<p>So, there are only 28,356 unique tracks in the data set. In order to get the best results when we perform regression and classification methods on the data set, we should update the dataframe so that each track appears once, and drop the duplicate values. Also, we’ll drop any rows with missing values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_unique</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;track_id&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data_unique</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(28352, 23)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-exploration">
+<h1>Data Exploration:<a class="headerlink" href="#data-exploration" title="Link to this heading">#</a></h1>
+<p>Now, we have a dataframe <code class="docutils literal notranslate"><span class="pre">df</span></code> which consists of 28,352 unique songs (and no missing values). For this section, we focus on visualizing the data in a sort of exploratory data analysis. We’ll begin by printing the first five rows of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_id</th>
+      <th>track_name</th>
+      <th>track_artist</th>
+      <th>track_popularity</th>
+      <th>track_album_id</th>
+      <th>track_album_name</th>
+      <th>track_album_release_date</th>
+      <th>playlist_name</th>
+      <th>playlist_id</th>
+      <th>playlist_genre</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>duration_ms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6f807x0ima9a1j3VPbc7VN</td>
+      <td>I Don't Care (with Justin Bieber) - Loud Luxur...</td>
+      <td>Ed Sheeran</td>
+      <td>66</td>
+      <td>2oCs0DGTsRO98Gh5ZSl2Cx</td>
+      <td>I Don't Care (with Justin Bieber) [Loud Luxury...</td>
+      <td>2019-06-14</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-2.634</td>
+      <td>1</td>
+      <td>0.0583</td>
+      <td>0.1020</td>
+      <td>0.000000</td>
+      <td>0.0653</td>
+      <td>0.518</td>
+      <td>122.036</td>
+      <td>194754</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0r7CVbZTWZgbTCYdfa2P31</td>
+      <td>Memories - Dillon Francis Remix</td>
+      <td>Maroon 5</td>
+      <td>67</td>
+      <td>63rPSO264uRjW1X5E6cWv6</td>
+      <td>Memories (Dillon Francis Remix)</td>
+      <td>2019-12-13</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-4.969</td>
+      <td>1</td>
+      <td>0.0373</td>
+      <td>0.0724</td>
+      <td>0.004210</td>
+      <td>0.3570</td>
+      <td>0.693</td>
+      <td>99.972</td>
+      <td>162600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1z1Hg7Vb0AhHDiEmnDE79l</td>
+      <td>All the Time - Don Diablo Remix</td>
+      <td>Zara Larsson</td>
+      <td>70</td>
+      <td>1HoSmj2eLcsrR0vE9gThr4</td>
+      <td>All the Time (Don Diablo Remix)</td>
+      <td>2019-07-05</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>1</td>
+      <td>-3.432</td>
+      <td>0</td>
+      <td>0.0742</td>
+      <td>0.0794</td>
+      <td>0.000023</td>
+      <td>0.1100</td>
+      <td>0.613</td>
+      <td>124.008</td>
+      <td>176616</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>75FpbthrwQmzHlBJLuGdC7</td>
+      <td>Call You Mine - Keanu Silva Remix</td>
+      <td>The Chainsmokers</td>
+      <td>60</td>
+      <td>1nqYsOef1yKKuGOVchbsk6</td>
+      <td>Call You Mine - The Remixes</td>
+      <td>2019-07-19</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-3.778</td>
+      <td>1</td>
+      <td>0.1020</td>
+      <td>0.0287</td>
+      <td>0.000009</td>
+      <td>0.2040</td>
+      <td>0.277</td>
+      <td>121.956</td>
+      <td>169093</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1e8PAfcKUYoKkxPhrHqw4x</td>
+      <td>Someone You Loved - Future Humans Remix</td>
+      <td>Lewis Capaldi</td>
+      <td>69</td>
+      <td>7m7vv9wlQ4i0LFuJiE2zsQ</td>
+      <td>Someone You Loved (Future Humans Remix)</td>
+      <td>2019-03-05</td>
+      <td>Pop Remix</td>
+      <td>37i9dQZF1DXcZDD7cfEKhW</td>
+      <td>pop</td>
+      <td>...</td>
+      <td>1</td>
+      <td>-4.672</td>
+      <td>1</td>
+      <td>0.0359</td>
+      <td>0.0803</td>
+      <td>0.000000</td>
+      <td>0.0833</td>
+      <td>0.725</td>
+      <td>123.976</td>
+      <td>189052</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div></div></div>
+</div>
+<p>Next, we compute the mean, standard deviation, min, max, and 25th, 50th, and 75th quartiles of each of the features that have numerical values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>track_popularity</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>duration_ms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+      <td>28352.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>39.335320</td>
+      <td>0.653375</td>
+      <td>0.698373</td>
+      <td>5.367417</td>
+      <td>-6.817777</td>
+      <td>0.565533</td>
+      <td>0.107939</td>
+      <td>0.177192</td>
+      <td>0.091129</td>
+      <td>0.190955</td>
+      <td>0.510386</td>
+      <td>120.958219</td>
+      <td>226574.631102</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>23.699443</td>
+      <td>0.145791</td>
+      <td>0.183508</td>
+      <td>3.613743</td>
+      <td>3.036433</td>
+      <td>0.495696</td>
+      <td>0.102547</td>
+      <td>0.222814</td>
+      <td>0.232562</td>
+      <td>0.155888</td>
+      <td>0.234344</td>
+      <td>26.954502</td>
+      <td>61081.363704</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000175</td>
+      <td>0.000000</td>
+      <td>-46.448000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4000.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>21.000000</td>
+      <td>0.561000</td>
+      <td>0.579000</td>
+      <td>2.000000</td>
+      <td>-8.310250</td>
+      <td>0.000000</td>
+      <td>0.041000</td>
+      <td>0.014300</td>
+      <td>0.000000</td>
+      <td>0.092600</td>
+      <td>0.329000</td>
+      <td>99.972000</td>
+      <td>187741.250000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>42.000000</td>
+      <td>0.670000</td>
+      <td>0.722000</td>
+      <td>6.000000</td>
+      <td>-6.261000</td>
+      <td>1.000000</td>
+      <td>0.062600</td>
+      <td>0.079700</td>
+      <td>0.000021</td>
+      <td>0.127000</td>
+      <td>0.512000</td>
+      <td>121.993500</td>
+      <td>216933.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>58.000000</td>
+      <td>0.760000</td>
+      <td>0.843000</td>
+      <td>9.000000</td>
+      <td>-4.708750</td>
+      <td>1.000000</td>
+      <td>0.133000</td>
+      <td>0.260000</td>
+      <td>0.006573</td>
+      <td>0.249000</td>
+      <td>0.695000</td>
+      <td>133.999000</td>
+      <td>254975.250000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>100.000000</td>
+      <td>0.983000</td>
+      <td>1.000000</td>
+      <td>11.000000</td>
+      <td>1.275000</td>
+      <td>1.000000</td>
+      <td>0.918000</td>
+      <td>0.994000</td>
+      <td>0.994000</td>
+      <td>0.996000</td>
+      <td>0.991000</td>
+      <td>239.440000</td>
+      <td>517810.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is a lot of information to process just by looking at it, so we’ll make a few graphs to make some of the relationships between the features a bit more visually appealing. First, let’s plot the number of songs in each genre:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;playlist_genre&#39;</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;playlist_genre&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of songs by genre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Genre&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Songs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9108b42eed6cb221fdce1bacc4cab4a2ecda8a6c68e14a27a9985364c72273b7.png" src="../_images/9108b42eed6cb221fdce1bacc4cab4a2ecda8a6c68e14a27a9985364c72273b7.png" />
+</div>
+</div>
+<p>We can see that there are over 4000 songs in each genre, so it’s a pretty uniform distribution, where there isn’t too much or too little of one genre. This makes the <code class="docutils literal notranslate"><span class="pre">'playlist_genre'</span></code> feature of the data a good canditate to use for multiclass classfication, which we will focus on later.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
+<h1>Linear Regression:<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h1>
+<p>Before really analyzing the data, I have a hunch that loudness and energy will be correlated, in that louder songs will have more energy. To see this relationship, let’s plot energy as a function of loudness. Also, we’ll apply linear regression and plot the linear regression line on the same graph:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;loudness&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span> <span class="o">*</span> <span class="n">lm</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Loudness&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loudness as a function of Energy, R^2 = </span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/476634dd07d4e938dbf3eb7575b8626e8b0570d27cd2c89b78c5e445a8890c09.png" src="../_images/476634dd07d4e938dbf3eb7575b8626e8b0570d27cd2c89b78c5e445a8890c09.png" />
+</div>
+</div>
+<p>So, we can see that the R^2 value is 0.4653.</p>
+<p>The above graph shows only the relationship between <code class="docutils literal notranslate"><span class="pre">'loudness'</span></code> and <code class="docutils literal notranslate"><span class="pre">'energy'</span></code>. If we want to visualize the relationships between many more of the features, particularly the features which take on numerical values, we can use the Correlation Matrix, and plot it using a heatmap:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numerical_features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">numerical_features</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/d9d46eb92b875637a080c52d3d9c482d41a760d282cb8b6701d444fbf8b82a05.png" src="../_images/d9d46eb92b875637a080c52d3d9c482d41a760d282cb8b6701d444fbf8b82a05.png" />
+</div>
+</div>
+<p>From this, we can see that the vast majority of the features are not correlated at all. In fact, <code class="docutils literal notranslate"><span class="pre">'loudness'</span></code> and <code class="docutils literal notranslate"><span class="pre">'energy'</span></code>, which we plotted above, happen to be the highest correlated. Now, this may mean that we may get some low accuracy scores when doing classification, but that doesn’t mean that these efforts are fruitless. However, this goes a bit against our intuition: one may guess that a song’s energy and danceability may be very correlated, or that a song’s energy and tempo may be correlated, etc. and this correlation matrix shows that this is actually not the case: There are a couple of explanations for this that I can come up with. One is that we are missing a few key features, including the types of instruments in the song or the lyrical content of the song. Another possibility is that multiple features together are better at predicting one feature than only considering one at a time. To test this, we can use multiple linear regression and compare the <span class="math notranslate nohighlight">\(R^2\)</span> scores for different combinations of features predicting one feature. We’ll test how combinations of the features <code class="docutils literal notranslate"><span class="pre">'danceability'</span></code>, <code class="docutils literal notranslate"><span class="pre">'loudness'</span></code>, <code class="docutils literal notranslate"><span class="pre">'tempo'</span></code>, <code class="docutils literal notranslate"><span class="pre">'valence'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'liveness'</span></code> predict <code class="docutils literal notranslate"><span class="pre">'energy'</span></code>. We’ll only use combinations of these five features just for simplicity, so we don’t get too many combinations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;playlist_genre&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First we split the data into training and testing data, and the <code class="docutils literal notranslate"><span class="pre">stratify=df['playlist_genre']</span></code> code ensures that each group has the same proportion of genres.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;danceability&#39;</span><span class="p">,</span> <span class="s1">&#39;loudness&#39;</span><span class="p">,</span>	<span class="s1">&#39;tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;valence&#39;</span><span class="p">,</span> <span class="s1">&#39;liveness&#39;</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="n">features_comb</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">R2_train</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">R2_test</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">features_comb</span><span class="p">:</span>
+    <span class="n">x_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">combination</span><span class="p">)]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">combination</span><span class="p">)]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span>
+
+    <span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+    <span class="n">r2_train</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+    <span class="n">r2_test</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred</span><span class="p">)</span>
+
+    <span class="n">R2_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2_train</span><span class="p">)</span>
+    <span class="n">R2_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r2_test</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">comb</span><span class="p">)</span> <span class="k">for</span> <span class="n">comb</span> <span class="ow">in</span> <span class="n">features_comb</span><span class="p">],</span><span class="s1">&#39;R2_train&#39;</span><span class="p">:</span> <span class="n">R2_train</span><span class="p">,</span><span class="s1">&#39;R2_test&#39;</span><span class="p">:</span> <span class="n">R2_test</span><span class="p">})</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>R2_train</th>
+      <th>R2_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[danceability]</td>
+      <td>0.006296</td>
+      <td>0.006805</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[loudness]</td>
+      <td>0.463760</td>
+      <td>0.466767</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[tempo]</td>
+      <td>0.027840</td>
+      <td>0.017513</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[valence]</td>
+      <td>0.023161</td>
+      <td>0.021459</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[liveness]</td>
+      <td>0.028556</td>
+      <td>0.024941</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>[danceability, loudness]</td>
+      <td>0.472100</td>
+      <td>0.475298</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>[danceability, tempo]</td>
+      <td>0.030229</td>
+      <td>0.020985</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>[danceability, valence]</td>
+      <td>0.042003</td>
+      <td>0.041449</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>[danceability, liveness]</td>
+      <td>0.031961</td>
+      <td>0.028985</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>[loudness, tempo]</td>
+      <td>0.472914</td>
+      <td>0.472255</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>[loudness, valence]</td>
+      <td>0.478530</td>
+      <td>0.478818</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>[loudness, liveness]</td>
+      <td>0.476912</td>
+      <td>0.477022</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>[tempo, valence]</td>
+      <td>0.052022</td>
+      <td>0.040490</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>[tempo, liveness]</td>
+      <td>0.055106</td>
+      <td>0.041784</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>[valence, liveness]</td>
+      <td>0.052503</td>
+      <td>0.047761</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>[danceability, loudness, tempo]</td>
+      <td>0.478456</td>
+      <td>0.478603</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>[danceability, loudness, valence]</td>
+      <td>0.497897</td>
+      <td>0.497790</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>[danceability, loudness, liveness]</td>
+      <td>0.482871</td>
+      <td>0.483401</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>[danceability, tempo, valence]</td>
+      <td>0.063390</td>
+      <td>0.054302</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>[danceability, tempo, liveness]</td>
+      <td>0.055917</td>
+      <td>0.043291</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>[danceability, valence, liveness]</td>
+      <td>0.065980</td>
+      <td>0.062597</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>[loudness, tempo, valence]</td>
+      <td>0.488272</td>
+      <td>0.484990</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>[loudness, tempo, liveness]</td>
+      <td>0.485740</td>
+      <td>0.482326</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>[loudness, valence, liveness]</td>
+      <td>0.492216</td>
+      <td>0.489798</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>[tempo, valence, liveness]</td>
+      <td>0.080049</td>
+      <td>0.065952</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>[danceability, loudness, tempo, valence]</td>
+      <td>0.503250</td>
+      <td>0.500700</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>[danceability, loudness, tempo, liveness]</td>
+      <td>0.489390</td>
+      <td>0.486824</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>[danceability, loudness, valence, liveness]</td>
+      <td>0.507846</td>
+      <td>0.505543</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>[danceability, tempo, valence, liveness]</td>
+      <td>0.087447</td>
+      <td>0.075575</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>[loudness, tempo, valence, liveness]</td>
+      <td>0.501625</td>
+      <td>0.495785</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>[danceability, loudness, tempo, valence, liven...</td>
+      <td>0.513358</td>
+      <td>0.508561</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From this, we see that the combination of all five features has the best <span class="math notranslate nohighlight">\(R^2\)</span> score, and is therefore using the combination of danceability, loudness, tempo, valence, and liveness is the best at predicting the energy of the song, with a training <span class="math notranslate nohighlight">\(R^2\)</span> score of <span class="math notranslate nohighlight">\(0.513358\)</span> and a testing <span class="math notranslate nohighlight">\(R^2\)</span> score of <span class="math notranslate nohighlight">\(0.508561\)</span>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="classification-of-songs-by-genre">
+<h1>Classification of Songs by Genre:<a class="headerlink" href="#classification-of-songs-by-genre" title="Link to this heading">#</a></h1>
+<p>In this section, I want to see if we are able to accurately classify the songs by Genre using methods of multiclass classification. In order to do this, I will use k-nearest neighbor classification, k-means clustering, and another method of classification called Random Forest Classification, which we did not discuss in Math 10. From the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">scikit-learn</a> website, the random forest classifier is a machine learning algorithm which fits decision tree classifiers on subsamples of the data set, and then uses averaging to imporve the predictive accuracy and control overfitting.</p>
+<p>Before we start using these classification methods, we have to:</p>
+<ol class="arabic simple">
+<li><p>Scale the features using a min-max scaler</p></li>
+<li><p>Use the Label Encoder to encode the genres <code class="docutils literal notranslate"><span class="pre">pop</span></code>, <code class="docutils literal notranslate"><span class="pre">rap</span></code>, <code class="docutils literal notranslate"><span class="pre">edm</span></code>, <code class="docutils literal notranslate"><span class="pre">latin</span></code>, <code class="docutils literal notranslate"><span class="pre">r&amp;b</span></code>, and <code class="docutils literal notranslate"><span class="pre">rock</span></code> into the classes <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6</span></code></p></li>
+</ol>
+<section id="scaling-the-data">
+<h2>Scaling the Data:<a class="headerlink" href="#scaling-the-data" title="Link to this heading">#</a></h2>
+<p>First, we need to choose which features we want to use to predict the genre of the song.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;danceability&#39;</span><span class="p">,</span> <span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;loudness&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;speechiness&#39;</span><span class="p">,</span> <span class="s1">&#39;acousticness&#39;</span><span class="p">,</span> <span class="s1">&#39;instrumentalness&#39;</span><span class="p">,</span> <span class="s1">&#39;liveness&#39;</span><span class="p">,</span> <span class="s1">&#39;valence&#39;</span><span class="p">,</span> <span class="s1">&#39;tempo&#39;</span><span class="p">,</span> <span class="s1">&#39;duration_ms&#39;</span><span class="p">]</span>
+<span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;playlist_genre&#39;</span>
+<span class="n">scaled_features</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+<span class="n">df_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaled_features</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_scaled</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="label-encoding">
+<h2>Label Encoding:<a class="headerlink" href="#label-encoding" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we’re ready to start using the classification methods to see if we can classify songs by genre using the features <code class="docutils literal notranslate"><span class="pre">'danceability',</span> <span class="pre">'energy',</span> <span class="pre">'key',</span> <span class="pre">'loudness',</span> <span class="pre">'mode',</span> <span class="pre">'speechiness',</span> <span class="pre">'acousticness',</span> <span class="pre">'instrumentalness',</span> <span class="pre">'liveness',</span> <span class="pre">'valence',</span> <span class="pre">'tempo',</span> <span class="pre">'duration_ms'</span></code>. Note that since we are using a total of <span class="math notranslate nohighlight">\(12\)</span> features to make the prediction, we are not going to be able to graph and visualize the decision boundary, since we are not able to plot a 12-dimensional graph. We are still going to be able to get accuracy scores.</p>
+</section>
+<section id="knn-classification">
+<h2>kNN Classification:<a class="headerlink" href="#knn-classification" title="Link to this heading">#</a></h2>
+<p>We will test different values of <span class="math notranslate nohighlight">\(k\)</span> to see which one gives us the best accuracy using 5-fold cross validation. Since there are a total of <span class="math notranslate nohighlight">\(28352\)</span> songs in the dataframe, we should test using a large number of neighbors, so we’ll test using the 100, 500, 2000, and 5000 nearest neighbors. Unfortunately, this will take a long time to run since there are so many songs and so many features for each song.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="n">num_neighbors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">]</span>
+<span class="n">average_accuracy</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">num_neighbors</span><span class="p">:</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">)</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">average_accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">average_accuracy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.456793239654581,
+ 0.4690676939545452,
+ 0.44042765927207234,
+ 0.39394114118148676,
+ 0.32604477683887545]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this, we can see that of the number of neighbors being 10, 100, 500, 2000, or 5000, using 100 neighbors gave the best prediction accuracy of <span class="math notranslate nohighlight">\(0.4691\)</span>. Just this test does not mean that 100 is the ideal number of neighbors, but of the five values we tested, 100 neighbors gave the best accuracy.</p>
+</section>
+<section id="k-means-clustering">
+<h2>k-means Clustering:<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h2>
+<p>Here, we want to choose the best <span class="math notranslate nohighlight">\(k\)</span> value, or the number of clusters which will be best at predicting the genres. To do this, we will plot the loss as a function of <span class="math notranslate nohighlight">\(k\)</span> and then find the “elbow” in the graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="n">k_values</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">inertias</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">inertias</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k_values</span><span class="p">,</span> <span class="n">inertias</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Loss vs. number of clusters k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Loss (Inertia)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c6286c59429f15b3bed66ad82d657ba5307c84ddd3326960121b53a1eaaa1b96.png" src="../_images/c6286c59429f15b3bed66ad82d657ba5307c84ddd3326960121b53a1eaaa1b96.png" />
+</div>
+</div>
+<p>From this, we can see that the most decrease is at 2 clusters, but there is still a pretty steady decrease after 2 clusters. If I had to classify a true “elbow” for this graph, I would say that <span class="math notranslate nohighlight">\(k=2\)</span> is probably a good number to choose.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+    <span class="n">correct_labels</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="n">labels</span><span class="p">)</span>
+    <span class="n">accuracy_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">correct_labels</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">accuracy_scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.1720160835214447,
+ 0.15282872460496613,
+ 0.15953019187358916,
+ 0.15244074492099322,
+ 0.15695541760722348,
+ 0.14637415349887134,
+ 0.13441732505643342,
+ 0.12521162528216703,
+ 0.1177341986455982,
+ 0.09600733634311512,
+ 0.07763120767494357,
+ 0.06867240406320542,
+ 0.061336060948081264,
+ 0.060983352144469524]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this, we see that <span class="math notranslate nohighlight">\(k=1\)</span> gives the best accuracy score, but for <span class="math notranslate nohighlight">\(k&gt;1\)</span>, the best number of clusters is <span class="math notranslate nohighlight">\(k=3\)</span>. Also, the accuracy of the k-means clustering is much lower (~0.16) than the accuracy we got using the kNN classification above (~0.47).</p>
+</section>
+<section id="random-forest-classification">
+<h2>Random Forest Classification:<a class="headerlink" href="#random-forest-classification" title="Link to this heading">#</a></h2>
+<p>Now, we use the Random Forest Classification, which is an algorithm that we did not discuss in Math 10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">num_estimators</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="n">accuracy_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">num_estimators</span><span class="p">:</span>
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">accuracy_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">accuracy_scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5132618510158014,
+ 0.5630643340857788,
+ 0.5633465011286681,
+ 0.5677200902934537,
+ 0.5660270880361173]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Random Forest Classifier is a machine learning algorithm which creates an ensemble of decision trees, which are like flowcharts where the nodes represent the features, each branch is a decision rule, and each leaf node is the class label. The Random Forest classification takes a bunch of these decision trees and combines their predictions in a way which reduces the variance and increases the accuracy in comparison to just using a single decision tree. One of the main pros to using this algorithm is that it helps reduce the overfitting of data, especially when there are many features; in this case, since we are using a total of 12 features, this is especially helpful. In the above code, we tested the data using the Random Forest Classifier using 10, 100, 250, 500, and 1000 estimators (which is the number of trees in the forest). We obtained that of these, 500 trees in the forest gave the highest accuracy of classification, with an accuracy score of <span class="math notranslate nohighlight">\(0.5677\)</span>. This is a higher accuracy than we were able to obtain using kNN and k-means clustering, which indicates that this algorithm is the best out of the three at classifying these songs by genre.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion:<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
+<p>The data set we are analyzing consists of 28,352 unique songs and many features pulled from Spotify’s API. My goal with this project is to analyze any relationships between all of the features using linear regression, as well as to use multiclass classification methods to see how accurately we are able to use a song’s features to classify it by genre. Using multiple linear regression, we tested which combination of the features <code class="docutils literal notranslate"><span class="pre">'danceability'</span></code>, <code class="docutils literal notranslate"><span class="pre">'loudness'</span></code>, <code class="docutils literal notranslate"><span class="pre">'tempo'</span></code>, <code class="docutils literal notranslate"><span class="pre">'valence'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'liveness'</span></code> best predict <code class="docutils literal notranslate"><span class="pre">'energy'</span></code>, and we found that the combination of all five features was the best predictor, with a training <span class="math notranslate nohighlight">\(R^2\)</span> score of <span class="math notranslate nohighlight">\(0.513358\)</span> and a testing <span class="math notranslate nohighlight">\(R^2\)</span> score of <span class="math notranslate nohighlight">\(0.508561\)</span>. Next, we used kNN classification, k-means clustering, and Random forest classification (which is an algorithm we didn’t discuss in class) to use all the numerical features in the dataset to predict a song’s genre. We found that the Random forest classification was the best classifier, where using 500 trees gave an accuracy of <span class="math notranslate nohighlight">\(0.5677\)</span> of correctly predicting the song’s genre.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References:<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>The dataset was taken from <a class="reference external" href="https://www.kaggle.com/datasets/joebeachcapital/30000-spotify-songs?resource=download">Kaggle</a></p>
+<p>The information for the Random Forest Classifier was taken from <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">scikit-learn</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./final_project_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="kimmalex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mongiadron.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">US GDP Forecasting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classifying Songs by Genre using its Features</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-up-the-data">Cleaning Up the Data:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-of-songs-by-genre">Classification of Songs by Genre:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-the-data">Scaling the Data:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#label-encoding">Label Encoding:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-classification">kNN Classification:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">k-means Clustering:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-classification">Random Forest Classification:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

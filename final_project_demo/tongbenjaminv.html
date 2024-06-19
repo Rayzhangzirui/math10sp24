@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Prediction and Classification of Stellar Characteristics &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'final_project_demo/tongbenjaminv';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Methods for Analyzing the Best NBA Players" href="torreshornbeakelijahcharles.html" />
+    <link rel="prev" title="Predicting ratings on Sephora based on price and number of ingredients" href="sonnevillenicolecaroline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_template.html">[Title here]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/kmeans.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/intro_nn.html">Nerual Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/gan.html">Generative Adversarial Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/fairness.html">Bias and Fairness</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework7_sol.html">Homework 7 (Due 5/31)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Student Projects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baosi.html">Predicting NBA Game Outcomes Project</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="caotranhoangthuc.html">Cancer Prediction Based on Medical and Lifestyle Information</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="changsilas.html">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chenyu.html">Predicting computer prices using multiple linear regression and decision trees</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="dabirarjun.html">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huanganita.html">Youtube Video Trending Prediction</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="huynhstanley.html">Wine Quality Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="jiaoyuhao.html">Analysis of house price forecasts and influencing factors</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="kimmalex.html">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="milleradamchristopher.html">Classifying Songs by Genre using its Features</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="mongiadron.html">US GDP Forecasting</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenalexanderdavid.html">MOVIE SUCCESS IN RELATION TO ITS FILM DISTRIBUTION COMPANY</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenmilanngoc.html">LPGA 2022 Rolex Ranking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presnyakovoleg.html">Phone cost prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roblesisabellaesther.html">Predicting Medical Expenses for Insurance and Analyzing Factors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sonnevillenicolecaroline.html">Predicting ratings on Sephora based on price and number of ingredients</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Prediction and Classification of Stellar Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torreshornbeakelijahcharles.html">Methods for Analyzing the Best NBA Players</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="trancrystal.html">Analysis of Mushroom Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tranethank.html">Top Valorant Players</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="wunathan.html">Image Classfication on “Heart Failure Cinical Records” Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yangchenxi.html">Analysis of Tesla Stock Price in the most recnet 6 months</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zhangzhiwei.html">CO2 Emissions and Renewable Energy Trends</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhangzidong.html">Math 10 Final Project: Analyzing the weather conditions in 10 locations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhaomickey.html">[Predicting CO2 Emissions of Vehicles]</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/final_project_demo/tongbenjaminv.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prediction and Classification of Stellar Characteristics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prediction-and-classification-of-stellar-characteristics">
+<h1>Prediction and Classification of Stellar Characteristics<a class="headerlink" href="#prediction-and-classification-of-stellar-characteristics" title="Link to this heading">#</a></h1>
+<p>Author: Benjamin Tong</p>
+<p>Course Project, UC Irvine, Math 10, S24</p>
+<p>I would like to post my notebook on the course’s website. Yes</p>
+<p>Astronomers have observed that the mass, luminosity, and radiuses of stars obey certain relationship. In this project, we will try to predict these characteristics from other characteristics using linear and k-nearest-neighbor regression models. We will also try to predict whether a star is main sequence or not using logistic regression. Finally, we will look at the distribution of masses in this sample by using histograms and kernel density.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The dataset we will be training from is called <a class="reference external" href="https://www.astro.keele.ac.uk/jkt/debcat/">DEBCat</a>, which is a catalogue of well-studied eclipsing binary star systems. Stars in eclipsing binary star systems have masses and radiuses which are easy to measure, which is why I am using this dataset to observe relationships between mass and radius.</p>
+<p>We will first try to predict the radius of the stars from other parameters. The dataset that we are given gives us the logarithm of mass, radius, and luminosity When we plot the logarithm of radius of a star compared to the logarithm of its mass or the logarithm of its luminosity, we get this plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parse input</span>
+<span class="c1"># Input is from https://www.astro.keele.ac.uk/jkt/debcat/</span>
+<span class="c1"># Note that &quot;-9.9900&quot; is considered NaN</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;binaries.txt&quot;</span><span class="p">,</span> <span class="n">na_values</span> <span class="o">=</span> <span class="o">-</span><span class="mf">9.9900</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                      System         SpT1         SpT2    Pday   Vmag   BmV  \
+0             EPIC_203710387       M4.5_V         M5_V   2.809  14.30  1.80   
+1    2MASS_J05221817-2507112         M5_V         M5_V   1.748  16.88  1.49   
+2                    TOI-450       M4.5_V       M4.5_V  10.715  15.20  1.50   
+3                     CM_Dra       M4.5_V       M4.5_V   1.268  12.90  1.60   
+4                    KOI-126            M            M   1.722  -1.00 -1.00   
+..                       ...          ...          ...     ...    ...   ...   
+329                delta_Cir   O7_IV((f))            B   3.902   5.09 -0.06   
+330                   EM_Car  O7.5_V((f))  O7.5_V((f))   3.414   8.38 -0.31   
+331                   CC_Cas  O8.5_III(n)       B0.5_V   3.366   7.08  0.48   
+332                 V467_Vel        O6_Vf         B1_V   2.753  10.90  0.00   
+333                V3903_Sgr       O7V(n)        B0:V:   1.744   7.27  0.06   
+
+      logM1  logM1e   logM2  logM2e  ...  logT1  logT1e  logT2  logT2e  logL1  \
+0   -0.9363  0.0116 -0.9763  0.0111  ...  3.483   0.011  3.483   0.011 -1.842   
+1   -0.7597  0.0032 -0.7590  0.0032  ...  3.476   0.014  3.477   0.012    NaN   
+2   -0.7525  0.0010 -0.7528  0.0007  ...  3.492   0.014  3.492   0.014    NaN   
+3   -0.6478  0.0006 -0.6776  0.0006  ...  3.496   0.010  3.494   0.014 -2.258   
+4   -0.6286  0.0011 -0.6834  0.0013  ...  3.510   0.005  3.501   0.005 -2.194   
+..      ...     ...     ...     ...  ...    ...     ...    ...     ...    ...   
+329  1.3010  0.0109  1.0573  0.0091  ...  4.574   0.010  4.519   0.013  5.184   
+330  1.3596  0.0061  1.3310  0.0067  ...  4.531   0.026  4.531   0.026  5.020   
+331  1.3709  0.0170  0.9978  0.0148  ...  4.538   0.025  4.452   0.031  5.179   
+332  1.4031  0.0120  0.9165  0.0090  ...  4.559   0.031  4.402   0.046  5.187   
+333  1.4357  0.0088  1.2790  0.0101  ...  4.580   0.021  4.531   0.021  5.087   
+
+     logL1e  logL2  logL2e   MoH  MoHe  
+0     0.047 -1.861   0.047   NaN   NaN  
+1       NaN    NaN     NaN   NaN   NaN  
+2       NaN    NaN     NaN   NaN   NaN  
+3     0.038 -2.313   0.056 -0.30  0.12  
+4     0.020 -2.312   0.020  0.15  0.08  
+..      ...    ...     ...   ...   ...  
+329   0.070  4.339   0.090   NaN   NaN  
+330   0.100  4.920   0.100   NaN   NaN  
+331   0.053  4.474   0.064   NaN   NaN  
+332   0.126  3.649   0.110   NaN   NaN  
+333   0.029  4.658   0.032   NaN   NaN  
+
+[334 rows x 28 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Each row represents a system of two stars, but for this project, we want to make a table where</span>
+<span class="c1"># one row is one star, so we must merge data</span>
+<span class="n">binaries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logM1&#39;</span><span class="p">],</span> <span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logM2&#39;</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logR1&#39;</span><span class="p">],</span> <span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logR2&#39;</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logL1&#39;</span><span class="p">],</span> <span class="nb">input</span><span class="p">[</span><span class="s1">&#39;logL2&#39;</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;SpT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="nb">input</span><span class="p">[</span><span class="s1">&#39;SpT1&#39;</span><span class="p">],</span> <span class="nb">input</span><span class="p">[</span><span class="s1">&#39;SpT2&#39;</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">binaries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       logM    logR   logL          SpT
+0   -0.9363 -0.3648 -1.842       M4.5_V
+1   -0.7597 -0.6893    NaN         M5_V
+2   -0.7525 -0.4622    NaN       M4.5_V
+3   -0.6478 -0.6003 -2.258       M4.5_V
+4   -0.6286 -0.5943 -2.194            M
+..      ...     ...    ...          ...
+663  1.0573  0.7264  4.339            B
+664  1.3310  0.9212  4.920  O7.5_V((f))
+665  0.9978  0.8351  4.474       B0.5_V
+666  0.9165  0.5428  3.649         B1_V
+667  1.2790  0.7871  4.658        B0:V:
+
+[668 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the logarithm of mass with the logarithm of radius, and the logarithm of luminosity with the logarithm of radius.</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log(radius) (solar radii)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logM&#39;</span><span class="p">],</span> <span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">])</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(Luminosity) (solar luminosities)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log(radius) (solar radii)&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logL&#39;</span><span class="p">],</span> <span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x1637316e3d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/539ddc204d795edc2e583f1a8ea311cc786105541bd66e0ed985e979463cb8d1.png" src="../_images/539ddc204d795edc2e583f1a8ea311cc786105541bd66e0ed985e979463cb8d1.png" />
+</div>
+</div>
+<p>There are two clusters that we can see here. The lower cluster corresponds to stars on the main sequence, which are stars that burn mostly hydrogen and have not reached the end of their evolution. The higher cluster corresponds to stars that are giants, meaning that they are reaching the end of their lives and have little hydrogen to fuse.</p>
+<p>Luckilly, the dataset provides us a way to differentiate between main sequence stars and giant stars. The dataset gives us the stellar classification of a star, which also has information about whether a star is on the main sequence or not. When we separate main sequence stars from giants we get this plot:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Main Sequence&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Giant&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">classification</span><span class="p">):</span>
+    <span class="c1"># If the &quot;Yerkes luminosity class&quot; is IV or V, then the star is considered main sequence</span>
+    <span class="n">main_sequence_markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_IV&#39;</span><span class="p">,</span> <span class="s1">&#39;_V&#39;</span><span class="p">]</span>
+    <span class="n">giant_markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_I&#39;</span><span class="p">,</span> <span class="s1">&#39;_II&#39;</span><span class="p">,</span> <span class="s1">&#39;_III&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">marker</span> <span class="ow">in</span> <span class="n">classification</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">main_sequence_markers</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;Main Sequence&quot;</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">marker</span> <span class="ow">in</span> <span class="n">classification</span> <span class="k">for</span> <span class="n">marker</span> <span class="ow">in</span> <span class="n">giant_markers</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;Giant&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;Unknown&quot;</span>
+
+<span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">binaries</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">classify</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;SpT&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># filter for only known classifications</span>
+<span class="n">binaries_known</span> <span class="o">=</span> <span class="n">binaries</span><span class="p">[</span><span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">])</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log(radius) (solar radii)&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log(radius) (solar radii)&quot;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;logM&#39;</span><span class="p">],</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;logL&#39;</span><span class="p">],</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1637318e2d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/48dd3dad0237ce8e10c4a0353791d7dbc65373f2ef8cc240eb76c7d244cbf883.png" src="../_images/48dd3dad0237ce8e10c4a0353791d7dbc65373f2ef8cc240eb76c7d244cbf883.png" />
+</div>
+</div>
+<p>The main sequence stars seem to obey a relationship between mass and radius, so we will attempt to predict the radius of a main sequence star using a linear regression model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+<span class="c1"># Filter for only main sequence stars with an observed luminosity</span>
+<span class="n">binaries_mainSeq</span> <span class="o">=</span> <span class="n">binaries</span><span class="p">[</span><span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Main Sequence&quot;</span><span class="p">]</span>
+<span class="n">binaries_mainSeq</span> <span class="o">=</span> <span class="n">binaries_mainSeq</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">binaries_mainSeq</span><span class="p">[[</span><span class="s1">&#39;logM&#39;</span><span class="p">,</span> <span class="s1">&#39;logL&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">binaries_mainSeq</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42086192</span><span class="p">)</span>
+
+<span class="n">lr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">train_score</span> <span class="o">=</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The model&#39;s score on the training data is </span><span class="si">{</span><span class="n">train_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">test_score</span> <span class="o">=</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The model&#39;s score on the testing data is </span><span class="si">{</span><span class="n">test_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lr_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The model&#39;s score on the training data is 0.9305131827685944
+The model&#39;s score on the testing data is 0.8867788885584653
+[-0.64651062  0.35158324] 0.03950482057602028
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also try to use a k-nearest neighbor regression model. We will check which model performs the best by determining which value of k produces the best testing score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+  <span class="n">knn_model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+  <span class="n">knn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+  <span class="n">train_score</span> <span class="o">=</span> <span class="n">knn_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+  <span class="n">test_score</span> <span class="o">=</span> <span class="n">knn_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+  <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">))</span>
+
+<span class="n">best_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The best model was when k was equal to </span><span class="si">{</span><span class="n">best_score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with a testing score of </span><span class="si">{</span><span class="n">best_score</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="p">[</span><span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+<span class="n">train_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+<span class="n">test_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">score</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Score&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training score&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s2">&quot;Testing score&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best model was when k was equal to 7 with a testing score of 0.880189063188313
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16373cdbb90&gt;
+</pre></div>
+</div>
+<img alt="../_images/c4fa67eda5d8dfe372149982735607dc26775a2ae4753a9b2a7806ecaa2c4412.png" src="../_images/c4fa67eda5d8dfe372149982735607dc26775a2ae4753a9b2a7806ecaa2c4412.png" />
+</div>
+</div>
+<p>We can improve the R^2 of both models by performing k-fold cross validation. When we do so, the R^2 goes from 0.88 to 0.90 for the linear model, and to 0.91 for the k-nearest-neighbor model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42086192</span><span class="p">)</span>
+<span class="n">lr_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">knn_scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">binaries_mainSeq</span><span class="p">):</span>
+  <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
+  
+  <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test</span><span class="p">]</span>
+  <span class="n">lr_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+  <span class="n">knn_model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+  <span class="n">lr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+  <span class="n">lr_score</span> <span class="o">=</span> <span class="n">lr_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear Model - Fold </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: R^2 = </span><span class="si">{</span><span class="n">lr_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">lr_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr_score</span><span class="p">)</span>
+  <span class="n">knn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+  <span class="n">knn_score</span> <span class="o">=</span> <span class="n">knn_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+  <span class="n">knn_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">knn_score</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K-nearest-neighbor model- Fold </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: R^2 = </span><span class="si">{</span><span class="n">knn_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear Model average R^2: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lr_scores</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K-nearest-neighbor average R^2: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">knn_scores</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear Model - Fold 1: R^2 = 0.9149201016026459
+K-nearest-neighbor model- Fold 1: R^2 = 0.919196127996394
+Linear Model - Fold 2: R^2 = 0.8805677542455563
+K-nearest-neighbor model- Fold 2: R^2 = 0.8402608668355813
+Linear Model - Fold 3: R^2 = 0.8503569898188309
+K-nearest-neighbor model- Fold 3: R^2 = 0.9052802382659894
+Linear Model - Fold 4: R^2 = 0.9338817400759195
+K-nearest-neighbor model- Fold 4: R^2 = 0.9368006462431022
+Linear Model - Fold 5: R^2 = 0.9222375179595681
+K-nearest-neighbor model- Fold 5: R^2 = 0.9588169832119561
+Linear Model average R^2: 0.9003928207405043
+K-nearest-neighbor average R^2: 0.9120709725106046
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the scatterplot shown earlier, there is a clear line between giants and main-sequence stars. So, we should expect that logistic regression can help us predict the classification of a star as a giant or a main-sequence star.</p>
+<p>We will test which features we should use for our logistic regression model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span><span class="p">,</span> <span class="n">chain</span>
+<span class="c1"># taken from https://docs.python.org/3/library/itertools.html#itertools-recipes </span>
+<span class="c1"># needed to create a list of all subsets</span>
+<span class="k">def</span> <span class="nf">powerset</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">combinations</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">all_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;logM&#39;</span><span class="p">,</span> <span class="s1">&#39;logL&#39;</span><span class="p">,</span> <span class="s1">&#39;logR&#39;</span><span class="p">]</span>
+<span class="n">powerset</span> <span class="o">=</span> <span class="n">powerset</span><span class="p">(</span><span class="n">all_features</span><span class="p">)</span>
+<span class="n">binaries_known</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">features</span> <span class="ow">in</span> <span class="n">powerset</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">features</span> <span class="o">==</span> <span class="p">():</span> <span class="k">continue</span>
+  <span class="n">features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+  <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42086192</span><span class="p">)</span>
+  <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+  <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="n">accuracy</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing accuracy with </span><span class="si">{</span><span class="n">features</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing accuracy with [&#39;logM&#39;]: 0.7713625866050808
+Testing accuracy with [&#39;logL&#39;]: 0.7182448036951501
+Testing accuracy with [&#39;logR&#39;]: 0.9745958429561201
+Testing accuracy with [&#39;logM&#39;, &#39;logL&#39;]: 0.8752886836027713
+Testing accuracy with [&#39;logM&#39;, &#39;logR&#39;]: 0.9838337182448037
+Testing accuracy with [&#39;logL&#39;, &#39;logR&#39;]: 0.9838337182448037
+Testing accuracy with [&#39;logM&#39;, &#39;logL&#39;, &#39;logR&#39;]: 0.9838337182448037
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this, it seems that logR is the best single variable that we should use for predicting stellar classification. When we add another variable alongside logM to help with our predictions, the prediction ends up being the best it can possibly be.</p>
+<p>When we plot out the decision boundary for logM and logR, we find this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">DecisionBoundaryDisplay</span>
+<span class="c1"># We dropped the binaries with unknown luminosities earlier, so we have to redefine this variable</span>
+<span class="n">binaries_known</span> <span class="o">=</span> <span class="n">binaries</span><span class="p">[</span><span class="n">binaries</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Unknown&quot;</span><span class="p">]</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[[</span><span class="s1">&#39;logM&#39;</span><span class="p">,</span> <span class="s1">&#39;logR&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">grid_resolution</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">plot_method</span><span class="o">=</span><span class="s1">&#39;pcolormesh&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;logM&#39;</span><span class="p">]</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;logR&#39;</span><span class="p">]</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;log(radius) (solar radiuses)&quot;</span><span class="p">)</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x163732b9550&gt;
+</pre></div>
+</div>
+<img alt="../_images/d49c5f84440343ea0fcca6db5eec2e4c9744cfbe31d2afe3db48dfd9d41bd15b.png" src="../_images/d49c5f84440343ea0fcca6db5eec2e4c9744cfbe31d2afe3db48dfd9d41bd15b.png" />
+</div>
+</div>
+<p>and when we look at the confusion matrix of this model, we find this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[[</span><span class="s1">&#39;logM&#39;</span><span class="p">,</span> <span class="s1">&#39;logR&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">binaries_known</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dc6fda09139809406d0c4368e2a768d6b2c2ff5d7b4427f30ce7480b81936959.png" src="../_images/dc6fda09139809406d0c4368e2a768d6b2c2ff5d7b4427f30ce7480b81936959.png" />
+</div>
+</div>
+<p>Since only one main sequence star out of 337 was predicted incorrectly, and eight out of 96 giants were predicted incorrectly, this model is good.</p>
+<p>One final thing we can do is to look at the distribution of masses in our data. One way we can do this is by using a histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">masses</span> <span class="o">=</span> <span class="n">binaries</span><span class="p">[[</span><span class="s1">&#39;logM&#39;</span><span class="p">]]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">masses</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.02482597, 0.04965194, 0.11171686, 0.03723895, 0.11171686,
+        0.13654283, 0.39721552, 0.83166999, 1.650927  , 1.75023088,
+        1.10475566, 0.7447791 , 0.39721552, 0.28549865, 0.06206492,
+        0.09930388, 0.13654283, 0.1613688 , 0.13654283, 0.06206492]),
+ array([-0.9763, -0.8557, -0.7351, -0.6145, -0.4939, -0.3733, -0.2527,
+        -0.1321, -0.0115,  0.1091,  0.2297,  0.3503,  0.4709,  0.5915,
+         0.7121,  0.8327,  0.9533,  1.0739,  1.1945,  1.3151,  1.4357]),
+ &lt;BarContainer object of 20 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/b839aa07667c91d4fb8f2dac5436d37ad11e02d656ef0aed66367330c70b2993.png" src="../_images/b839aa07667c91d4fb8f2dac5436d37ad11e02d656ef0aed66367330c70b2993.png" />
+</div>
+</div>
+<p>A problem with using histograms is the choice of where to put the bins can result in the histogram being shaped differently. For example, if the histogram had 19 bins instead of 20, we get this histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">masses</span> <span class="o">=</span> <span class="n">binaries</span><span class="p">[[</span><span class="s1">&#39;logM&#39;</span><span class="p">]]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">masses</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># New histogram, where the range expands in 0.5 in each direction</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.02358467, 0.04716934, 0.10613102, 0.05896168, 0.11792336,
+        0.21226204, 0.50707044, 1.06131022, 2.00469707, 1.36791094,
+        0.88442518, 0.45990109, 0.30660073, 0.15330036, 0.08254635,
+        0.09433869, 0.18867737, 0.14150803, 0.05896168]),
+ array([-0.9763    , -0.84935263, -0.72240526, -0.59545789, -0.46851053,
+        -0.34156316, -0.21461579, -0.08766842,  0.03927895,  0.16622632,
+         0.29317368,  0.42012105,  0.54706842,  0.67401579,  0.80096316,
+         0.92791053,  1.05485789,  1.18180526,  1.30875263,  1.4357    ]),
+ &lt;BarContainer object of 19 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/4164b7bdfa914e3822060f8c24ace36f6818f4b9775159d91dcd018abf6d1348.png" src="../_images/4164b7bdfa914e3822060f8c24ace36f6818f4b9775159d91dcd018abf6d1348.png" />
+</div>
+</div>
+<p>Our choice to create 19 bins insteead of 20 created a sharper peak around x=0.2, so our choice on how many bins we create or where the bins are placed has a great effect on how the distribution looks in the histogram. Another way that we can represent the distribution is by using kernel density estimation.</p>
+<p>The way kernel density estimation works is that is an estimation of the probability density of a discrete set of points. To calculate the density at point x for a set of points <span class="math notranslate nohighlight">\(x_1, x_2, x_3, \dots, x_n\)</span>, you need to take the sum
+$<span class="math notranslate nohighlight">\(\rho(x) = \sum_{i=1}^{n} K(x - x_i, h)\)</span><span class="math notranslate nohighlight">\(
+Where \)</span>K(x, h)$ is what is known as the kernel function which is controlled by the bandwidth parameter h.</p>
+<p>For this project, we will be using the gaussian function as our kernel density function. It is defined as
+$<span class="math notranslate nohighlight">\(K(x, h) = e^{\frac{-x^2}{2h^2}}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+
+<span class="c1"># Set up a KernelDensity object</span>
+<span class="n">kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
+<span class="n">kde</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">masses</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="c1"># score_samples() gives the log of the density, so we have to do np.exp() to get the estimated probability density</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">masses</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability density&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the kernel density function</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># Plot the histogram for comparison</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0.02482597, 0.04965194, 0.11171686, 0.03723895, 0.11171686,
+        0.13654283, 0.39721552, 0.83166999, 1.650927  , 1.75023088,
+        1.10475566, 0.7447791 , 0.39721552, 0.28549865, 0.06206492,
+        0.09930388, 0.13654283, 0.1613688 , 0.13654283, 0.06206492]),
+ array([-0.9763, -0.8557, -0.7351, -0.6145, -0.4939, -0.3733, -0.2527,
+        -0.1321, -0.0115,  0.1091,  0.2297,  0.3503,  0.4709,  0.5915,
+         0.7121,  0.8327,  0.9533,  1.0739,  1.1945,  1.3151,  1.4357]),
+ &lt;BarContainer object of 20 artists&gt;)
+</pre></div>
+</div>
+<img alt="../_images/29779219d381d697675efb4332edf198801d029d167af18782a3dd005d2aa248.png" src="../_images/29779219d381d697675efb4332edf198801d029d167af18782a3dd005d2aa248.png" />
+</div>
+</div>
+<p>The bandwidth of the kernel density estimator changes how the density of the distribution looks. Setting it to a lower number makes the distribution look more rough, while setting it to a higher number makes the distribution look more smooth. To see this in action, we will be making multiple plots where the bandwidth varies each time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bandwidths</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
+<span class="c1"># Adjust the spacing between plots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">bandwidth</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bandwidths</span><span class="p">):</span>
+    <span class="n">kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span>
+    <span class="n">kde</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">masses</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;log(mass) (solar masses)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability density&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bandwidth = </span><span class="si">{</span><span class="n">bandwidth</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3275520e5dafb1bb28a105ffeb663b55a9217eb96a984c3da89d4c3e06e690db.png" src="../_images/3275520e5dafb1bb28a105ffeb663b55a9217eb96a984c3da89d4c3e06e690db.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./final_project_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="sonnevillenicolecaroline.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Predicting ratings on Sephora based on price and number of ingredients</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="torreshornbeakelijahcharles.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Methods for Analyzing the Best NBA Players</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

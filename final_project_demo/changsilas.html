@@ -1,0 +1,2020 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>An Analysis of USA Climbing’s Youth Bouldering Series. &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'final_project_demo/changsilas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Predicting computer prices using multiple linear regression and decision trees" href="chenyu.html" />
+    <link rel="prev" title="Cancer Prediction Based on Medical and Lifestyle Information" href="caotranhoangthuc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_template.html">[Title here]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/kmeans.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/intro_nn.html">Nerual Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/gan.html">Generative Adversarial Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/fairness.html">Bias and Fairness</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework7_sol.html">Homework 7 (Due 5/31)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Student Projects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baosi.html">Predicting NBA Game Outcomes Project</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="caotranhoangthuc.html">Cancer Prediction Based on Medical and Lifestyle Information</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chenyu.html">Predicting computer prices using multiple linear regression and decision trees</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="dabirarjun.html">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="huanganita.html">Youtube Video Trending Prediction</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="huynhstanley.html">Wine Quality Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="jiaoyuhao.html">Analysis of house price forecasts and influencing factors</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="kimmalex.html">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="milleradamchristopher.html">Classifying Songs by Genre using its Features</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="mongiadron.html">US GDP Forecasting</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenalexanderdavid.html">MOVIE SUCCESS IN RELATION TO ITS FILM DISTRIBUTION COMPANY</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenmilanngoc.html">LPGA 2022 Rolex Ranking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presnyakovoleg.html">Phone cost prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roblesisabellaesther.html">Predicting Medical Expenses for Insurance and Analyzing Factors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sonnevillenicolecaroline.html">Predicting ratings on Sephora based on price and number of ingredients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tongbenjaminv.html">Prediction and Classification of Stellar Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torreshornbeakelijahcharles.html">Methods for Analyzing the Best NBA Players</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="trancrystal.html">Analysis of Mushroom Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tranethank.html">Top Valorant Players</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="wunathan.html">Image Classfication on “Heart Failure Cinical Records” Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yangchenxi.html">Analysis of Tesla Stock Price in the most recnet 6 months</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zhangzhiwei.html">CO2 Emissions and Renewable Energy Trends</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhangzidong.html">Math 10 Final Project: Analyzing the weather conditions in 10 locations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhaomickey.html">[Predicting CO2 Emissions of Vehicles]</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/final_project_demo/changsilas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>An Analysis of USA Climbing’s Youth Bouldering Series.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-explanation-of-competitive-bouldering">A Brief Explanation of Competitive Bouldering.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The Dataset.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-feature-engineering-and-dataframe-manipulation">Part I. Feature Engineering and DataFrame Manipulation.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proportion-stats">Proportion stats.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#category-dummies">Category Dummies.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quali-final-dataframe">Quali-Final Dataframe.</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-seaborn-visualizations">Part II. Seaborn Visualizations.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-rates-by-category">Top Rates by Category</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iii-linear-regression-analysis-of-qualifier-final-events">Part III. Linear Regression Analysis of Qualifier-Final Events.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#all-categories">All Categories.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-categories">Individual Categories</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iv-binary-classification-of-1-and-4-boulders">Part IV. Binary Classification of #1 and #4 Boulders.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-method">Logistic Regression Method.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-neighbors-method">K-Neighbors Method.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-with-principal-component-dimension-reduction">Classification with Principal-Component Dimension Reduction.</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-demonstration-of-web-scraping-data-collection-methods">Extra: Demonstration of Web Scraping/Data Collection Methods.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraping">Scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processing">Processing</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="an-analysis-of-usa-climbing-s-youth-bouldering-series">
+<h1>An Analysis of USA Climbing’s Youth Bouldering Series.<a class="headerlink" href="#an-analysis-of-usa-climbing-s-youth-bouldering-series" title="Link to this heading">#</a></h1>
+<p>Author: Silas Chang</p>
+<p>Course Project, UC Irvine, Math 10, S24</p>
+<p>Post to course website: <strong>Yes</strong></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction.<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<section id="a-brief-explanation-of-competitive-bouldering">
+<h2>A Brief Explanation of Competitive Bouldering.<a class="headerlink" href="#a-brief-explanation-of-competitive-bouldering" title="Link to this heading">#</a></h2>
+<p><em>Note: This short introduction provides what I believe to be interesting context for some of the analyses later in the project, but is not essential to the actual data science. Feel free to skim.</em></p>
+<p>Every year, USA Climbing (the U.S. governing body for competitive sport climbing) holds officially sanctioned events where youth athletes aged 8-19 compete in three disciplines of climbing. In this project, we will focus on the bouldering discipline.</p>
+<p>In a bouldering competition, athletes have either a certain amount of attempts or a certain amount of time to try 4-10 ‘boulders,’ which are short, intense, climbing challenges. On each boulder, athletes are awarded a ‘Top’ if they reached the top, and a ‘Zone’ if they reached a specific halfway-hold (a kind of partial credit). These challenges are created by officials known as ‘Routesetters.’ Routesetters have a difficult job - they must create a fair playing field where the best climbers are able to separate themselves from the pack. If the boulders are too easy (or too hard), there will be many ties in the scores, leading to less separation between the top climbers.</p>
+<p>In this project, we will consider boulders from the 2022, 2023, and 2024 USA Climbing Youth Bouldering series, evaluating trends in the routesetting across competition levels and categories.</p>
+</section>
+<section id="the-dataset">
+<h2>The Dataset.<a class="headerlink" href="#the-dataset" title="Link to this heading">#</a></h2>
+<section id="source">
+<h3>Source<a class="headerlink" href="#source" title="Link to this heading">#</a></h3>
+<p>This dataset was compiled by me, as a python project separate from this one, when I was independently studying the basics of web-scraping. In the extra section at the end of the project, I do a small demonstration of the methods I used to collect the data.</p>
+<p>It is not published anywhere, but it can be accessed from this <a href='https://drive.google.com/drive/folders/1Jsota5B4Irvs4Zwu6MBVGTXHjozMBYYu?usp=drive_link'>Google Drive link</a>.</p>
+</section>
+<section id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Link to this heading">#</a></h3>
+<p><strong>Each row of the data represents one boulder from a competition.</strong> For each boulder, the following are recorded:</p>
+<p><strong>eid.</strong> The event id. It is useful for retracing the website where results come from.</p>
+<p><strong>Category.</strong> Thecategory of competition the boulder was from. The first letter is the gender of the category, the last two letters signify age: YD-Under 12, YC-Under 14, YB-Under16, YA-Under 18, JR-Under 20. For example, MYB means Male Under 16.</p>
+<p><strong>Location.</strong> The location of the competition. The country is split geographically into 18 regions and 9 divisions.</p>
+<p><strong>Level.</strong> The level of the event, which may be the following, from lowest to highest: ‘QE’, ‘Regional’, ‘Divisional’, ‘National’.</p>
+<p><strong>Round.</strong> The round within the event. Some competitions may have multiple rounds (e.g. qualifier, semifinal, final).</p>
+<p><strong>#.</strong> The index of the boulder within the competition. As mentioned earlier, competitions typically have anywhere between 4-10 boulders</p>
+<p><strong>Climbers.</strong> The number of athletes that attempted the boulder.</p>
+<p><strong>Tops.</strong> The number of athletes that scored a Top on the boulder.</p>
+<p><strong>Zones.</strong> The number of athletes that scored a Zone on the boulder.</p>
+<p><strong>Lows.</strong> This is the number of athletes that scored a Low Zone on the boulder. Note that most high-level competitions (divisionals and nationals) typically do not use low zones for scoring.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;bouldering_data.xlsx&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eid</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Level</th>
+      <th>Round</th>
+      <th>#</th>
+      <th>Climbers</th>
+      <th>Tops</th>
+      <th>Zones</th>
+      <th>Lows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>15</td>
+      <td>0</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>15</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>15</td>
+      <td>1</td>
+      <td>2</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>15</td>
+      <td>9</td>
+      <td>9</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>17</td>
+      <td>8</td>
+      <td>17</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>17</td>
+      <td>12</td>
+      <td>13</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>17</td>
+      <td>6</td>
+      <td>6</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>17</td>
+      <td>13</td>
+      <td>13</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1667</td>
+      <td>FJR</td>
+      <td>D1</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>13</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1667</td>
+      <td>FJR</td>
+      <td>D1</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>13</td>
+      <td>9</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-i-feature-engineering-and-dataframe-manipulation">
+<h1>Part I. Feature Engineering and DataFrame Manipulation.<a class="headerlink" href="#part-i-feature-engineering-and-dataframe-manipulation" title="Link to this heading">#</a></h1>
+<p>In this section, we use the pandas Dataframe to create new columns for use in later sections, as well as an entire new DataFrame where each row contains data one competition, rather than one boulder.</p>
+<section id="proportion-stats">
+<h2>Proportion stats.<a class="headerlink" href="#proportion-stats" title="Link to this heading">#</a></h2>
+<p>Alone, the raw number of tops and zones is not very useful if we wish to compare boulders from different competitions. as a boulder that was topped by 12/50 competitors is likely harder than a boulder topped by 8/15. Using pandas, we can create features ‘Tpct’, ‘Zpct’, and ‘Lpct’ that are simply the proportion of athletes receiving a score:</p>
+<p><span class="math notranslate nohighlight">\( \text{Tpct} = \frac{\# Tops}{\# Climbers} \)</span></p>
+<p><span class="math notranslate nohighlight">\( \text{Zpct} = \frac{\# Zones}{\# Climbers} \)</span></p>
+<p><span class="math notranslate nohighlight">\( \text{Lpct} = \frac{\# Lows}{\# Climbers} \)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Tpct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Tops&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Climbers&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Zones&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Climbers&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lpct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Lows&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Climbers&#39;</span><span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eid</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Level</th>
+      <th>Round</th>
+      <th>#</th>
+      <th>Climbers</th>
+      <th>Tops</th>
+      <th>Zones</th>
+      <th>Lows</th>
+      <th>Tpct</th>
+      <th>Zpct</th>
+      <th>Lpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>15</td>
+      <td>0</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0.000000</td>
+      <td>0.266667</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>15</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+      <td>0.600000</td>
+      <td>0.666667</td>
+      <td>0.866667</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>15</td>
+      <td>1</td>
+      <td>2</td>
+      <td>9</td>
+      <td>0.066667</td>
+      <td>0.133333</td>
+      <td>0.600000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>15</td>
+      <td>9</td>
+      <td>9</td>
+      <td>14</td>
+      <td>0.600000</td>
+      <td>0.600000</td>
+      <td>0.933333</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>17</td>
+      <td>8</td>
+      <td>17</td>
+      <td>17</td>
+      <td>0.470588</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="category-dummies">
+<h2>Category Dummies.<a class="headerlink" href="#category-dummies" title="Link to this heading">#</a></h2>
+<p>Currently, age and gender are both stored in the ‘Category’ column. Later, it will be useful to have these attributes in a separate columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;J&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;J&#39;</span> 
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">gender</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">gender</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eid</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Level</th>
+      <th>Round</th>
+      <th>#</th>
+      <th>Climbers</th>
+      <th>Tops</th>
+      <th>Zones</th>
+      <th>Lows</th>
+      <th>Tpct</th>
+      <th>Zpct</th>
+      <th>Lpct</th>
+      <th>Gender</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>15</td>
+      <td>0</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0.000000</td>
+      <td>0.266667</td>
+      <td>0.333333</td>
+      <td>M</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>15</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+      <td>0.600000</td>
+      <td>0.666667</td>
+      <td>0.866667</td>
+      <td>M</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>15</td>
+      <td>1</td>
+      <td>2</td>
+      <td>9</td>
+      <td>0.066667</td>
+      <td>0.133333</td>
+      <td>0.600000</td>
+      <td>M</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1645</td>
+      <td>MYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>15</td>
+      <td>9</td>
+      <td>9</td>
+      <td>14</td>
+      <td>0.600000</td>
+      <td>0.600000</td>
+      <td>0.933333</td>
+      <td>M</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1645</td>
+      <td>FYD</td>
+      <td>R22</td>
+      <td>Regional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>17</td>
+      <td>8</td>
+      <td>17</td>
+      <td>17</td>
+      <td>0.470588</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>F</td>
+      <td>D</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="quali-final-dataframe">
+<h2>Quali-Final Dataframe.<a class="headerlink" href="#quali-final-dataframe" title="Link to this heading">#</a></h2>
+<p>In the next section, we will explore whether or not the qualifier and final round results of divisional level events are correlated. We will need a DataFrame where each row observation represents a divisional competition, with the following features:</p>
+<p><strong>eid</strong>: The event id.</p>
+<p><strong>Gender</strong>: The gender category of the competition.</p>
+<p><strong>Age</strong>: The age category of the competition.</p>
+<p><strong>Quali_TPct</strong>: The average top percentage of boulders in the qualifying round.</p>
+<p><strong>Final_TPct</strong>: The average top percentage of boulders in the final round.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Divisionals_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Level&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Divisional&#39;</span><span class="p">]</span>
+<span class="n">Divisionals_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># take advantage of the results being in a consistent order:</span>
+<span class="c1"># 4 final boulders, 4 quali boulders.</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">8</span><span class="p">):</span>
+    <span class="n">eid</span> <span class="o">=</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;eid&#39;</span><span class="p">]</span>
+    <span class="n">gender</span> <span class="o">=</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Gender</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Age</span> 
+    <span class="n">QTP</span> <span class="o">=</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">):(</span><span class="n">i</span><span class="o">+</span><span class="mi">7</span><span class="p">)][</span><span class="s1">&#39;Tpct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">FTP</span> <span class="o">=</span> <span class="n">Divisionals_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)][</span><span class="s1">&#39;Tpct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">eid</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">QTP</span><span class="p">,</span> <span class="n">FTP</span><span class="p">])</span>
+
+<span class="n">Quali_Final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;eid&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Quali_Tpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Final_Tpct&#39;</span><span class="p">])</span>
+
+<span class="n">Quali_Final</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eid</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Quali_Tpct</th>
+      <th>Final_Tpct</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1667</td>
+      <td>F</td>
+      <td>J</td>
+      <td>0.316667</td>
+      <td>0.423077</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1667</td>
+      <td>F</td>
+      <td>A</td>
+      <td>0.151961</td>
+      <td>0.192308</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1667</td>
+      <td>F</td>
+      <td>B</td>
+      <td>0.052885</td>
+      <td>0.303571</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1667</td>
+      <td>F</td>
+      <td>C</td>
+      <td>0.204082</td>
+      <td>0.326923</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1667</td>
+      <td>M</td>
+      <td>J</td>
+      <td>0.218750</td>
+      <td>0.265625</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1667</td>
+      <td>M</td>
+      <td>A</td>
+      <td>0.140351</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1667</td>
+      <td>M</td>
+      <td>B</td>
+      <td>0.148936</td>
+      <td>0.464286</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1667</td>
+      <td>M</td>
+      <td>C</td>
+      <td>0.296875</td>
+      <td>0.480769</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-ii-seaborn-visualizations">
+<h1>Part II. Seaborn Visualizations.<a class="headerlink" href="#part-ii-seaborn-visualizations" title="Link to this heading">#</a></h1>
+<section id="top-rates-by-category">
+<h2>Top Rates by Category<a class="headerlink" href="#top-rates-by-category" title="Link to this heading">#</a></h2>
+<p>Here, we can plot ten boxplots next to each other and compare the top rates across the categories of competition. Note that we limit the sample to only championship events (Regionals and above).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">championships_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Level&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;QE&#39;</span><span class="p">]</span>
+<span class="n">championships_df</span> <span class="o">=</span> <span class="n">championships_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Category&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;total sample size = </span><span class="si">{</span><span class="n">championships_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> boulders&#39;</span><span class="p">)</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">championships_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Category&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Tpct&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Category&#39;</span><span class="p">);</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Top Rate&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total sample size = 4064 boulders
+</pre></div>
+</div>
+<img alt="../_images/34c68b2b69857ae0ebda675e3e9306ca428dea7611b3485b5126229dbd5f4132.png" src="../_images/34c68b2b69857ae0ebda675e3e9306ca428dea7611b3485b5126229dbd5f4132.png" />
+</div>
+</div>
+<p>The younger categories of C (under 14) and D (under 12) tend to get the highest top rates. This makes some amount of sense, routesetters tend to go easier on the younger kids, in order to not completely shut them down mentally.</p>
+<p>We can also view this same data in ten separate histograms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">championships_df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;Category&#39;</span><span class="p">,</span> <span class="n">col_wrap</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Category&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;proportion&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">set_xlabels</span><span class="p">(</span><span class="s1">&#39;Top %&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/31cc93fa3ee396760d015ac450947c66513355111a335929a95f39f7d3dc4187.png" src="../_images/31cc93fa3ee396760d015ac450947c66513355111a335929a95f39f7d3dc4187.png" />
+</div>
+</div>
+<p>An interesting result is that female youth D has the highest proportion of boulders topped by less than 10% of the field.</p>
+<p>From this plot, it is easier to see that all categories follow roughly the same distribution, but the scale of each is slightly different.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-iii-linear-regression-analysis-of-qualifier-final-events">
+<h1>Part III. Linear Regression Analysis of Qualifier-Final Events.<a class="headerlink" href="#part-iii-linear-regression-analysis-of-qualifier-final-events" title="Link to this heading">#</a></h1>
+<p>In this section, we will analyze results from divisional championships, which have a qualifying round and a final round. I was talking to my climbing coach about possible interesting topics for this project, and she brought up the idea of routesetting correction: sometimes, if a qualifying round of boulders is overall too easy, then the setters will tweak the finals boulders to be harder to correct for their misjudgement of the athlets in the qualifiers, and vice versa.</p>
+<p>Setter over-correction is something that has been observed as well: rounds where the qualifying round is embarrassingly easy, so the routesetters make the final round’s boulders hard (or the reverse may happen). If setter over-correction is a pattern, then we ought to see a negative relation between qualfier top% and final top%, that is, when one decreases the other increases.</p>
+<section id="all-categories">
+<h2>All Categories.<a class="headerlink" href="#all-categories" title="Link to this heading">#</a></h2>
+<p>In this first cell, we fit a simple linear model to the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Quali_Final</span><span class="p">[</span><span class="s1">&#39;Quali_Tpct&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Quali_Final</span><span class="p">[</span><span class="s1">&#39;Final_Tpct&#39;</span><span class="p">])</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">();</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Model: y = </span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">, R-squared = </span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Quali top%&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Final top%&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">x_graph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_graph</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_graph</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3774486bfbce19233550f4c635d9f5c17271975e80d782fb4f292fc8aaaf36f8.png" src="../_images/3774486bfbce19233550f4c635d9f5c17271975e80d782fb4f292fc8aaaf36f8.png" />
+</div>
+</div>
+<p>The R-squared value is near zero, so a strong linear correlation relationship between qualifier and final top percentages does not exist, at least over all categories of competition.</p>
+</section>
+<section id="individual-categories">
+<h2>Individual Categories<a class="headerlink" href="#individual-categories" title="Link to this heading">#</a></h2>
+<p>Though there is no relation between Qualifier top percentages and Final top percentages over all categories, some categories are more difficult to set for than others. We will run a similar regression procedure for all 8 categories that compete at divisional championships, to see if any particular category is more prone to difficulty overcorrection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Quali top%&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">gen</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gen</span> <span class="o">=</span> <span class="s1">&#39;M&#39;</span>
+        
+        <span class="n">c_df</span> <span class="o">=</span> <span class="n">Quali_Final</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">Quali_Final</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">categories</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Quali_Final</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">gen</span><span class="p">)]</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c_df</span><span class="p">[</span><span class="s1">&#39;Quali_Tpct&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c_df</span><span class="p">[</span><span class="s1">&#39;Final_Tpct&#39;</span><span class="p">])</span>
+
+        <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_graph</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_graph</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">);</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">gen</span><span class="si">}{</span><span class="n">categories</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">: R^2 = </span><span class="si">{</span><span class="n">lm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Final top%&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Final top%&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2c7ad985f76c661ad1403a16adc4d068e44b7a85cb51176c0299c2d36b16ba46.png" src="../_images/2c7ad985f76c661ad1403a16adc4d068e44b7a85cb51176c0299c2d36b16ba46.png" />
+</div>
+</div>
+<p>For all of the individual categories except Female B, the R-squared value is also near zero, so there is no linear correlation for any of them either. In the case of Female B (R^2 ~.28), the linear coefficient is actually positive (upwards slope), which is the opposite of what we would expect to see if the routesetters were overcorrecting their rounds.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-iv-binary-classification-of-1-and-4-boulders">
+<h1>Part IV. Binary Classification of #1 and #4 Boulders.<a class="headerlink" href="#part-iv-binary-classification-of-1-and-4-boulders" title="Link to this heading">#</a></h1>
+<p>Though there is no rule that forces routesetters to order boulders according to difficulty, in a 4-boulder round, climbers tend to agree that boulder #1 of the round tends to be the easiest, with boulder #4 being the hardest. In this section, we will fit logistic-regression and nearest-neighbor type classifiers to data from regional-level competitions, and attempt to discern between them.</p>
+<section id="visualization">
+<h2>Visualization.<a class="headerlink" href="#visualization" title="Link to this heading">#</a></h2>
+<p>The below plot shows a scatterplot of Tpct and Zpct with color showing the boulder number. Note that Tpct is a limiting factor of Zpct, since every Top also scores a Zone.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Regional_results</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Level&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Regional&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">))]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">],</span> <span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;Tpct&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">]);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">]);</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2fede3ddad4b631d43b9e63dd61a789386283e5c4259292f2a2a88ded09dded4.png" src="../_images/2fede3ddad4b631d43b9e63dd61a789386283e5c4259292f2a2a88ded09dded4.png" />
+</div>
+</div>
+<p>Here, the red dots are #4 boulders, and the blue dots are #1 boulders.</p>
+</section>
+<section id="logistic-regression-method">
+<h2>Logistic Regression Method.<a class="headerlink" href="#logistic-regression-method" title="Link to this heading">#</a></h2>
+<p>Here, a logistic regression classifier is fitted to predict whether a boulder is #1 or #4 in the round based on  its top and zone percentange. It should be clear from the above plot that we do not expect perfect classification, but we can notice that #4 boulders (gray dots) are noticeably more clustered in the low-score area (bottom left).</p>
+<p>We will use a 80/20 train-test split as validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.inspection</span> <span class="kn">import</span> <span class="n">DecisionBoundaryDisplay</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">88</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># decision boundary code adapted from course notes</span>
+<span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">grid_resolution</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">response_method</span><span class="o">=</span><span class="s1">&#39;predict_proba&#39;</span><span class="p">)</span>
+<span class="n">DecisionBoundaryDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">grid_resolution</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">response_method</span><span class="o">=</span><span class="s1">&#39;predict&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Tpct&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Predicted Probability&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;Tpct&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision Boundary&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Classification Accuracy (Training): </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Classification Accuracy (Testing): </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_set</span><span class="p">[[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tpct&#39;</span><span class="p">]],</span><span class="w"> </span><span class="n">test_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Accuracy (Training): 65.51%
+Classification Accuracy (Testing): 64.29%
+</pre></div>
+</div>
+<img alt="../_images/e7a9df3e426deb944d9d9a655bb6023e88923f31c9660d71544686731a6cee85.png" src="../_images/e7a9df3e426deb944d9d9a655bb6023e88923f31c9660d71544686731a6cee85.png" />
+</div>
+</div>
+<p>The model classifies points with an accuracy of around 64% - significantly better than just flipping a coin to guess one way or the other, but far from perfect. As stated before it is definitely impossible to classify these points perfectly, because of how mixed together they are (the decision boundary for a logistic regression model is a line through 2-D space). Since we do have a classifying accuracy significantly greater than 50%, it is probably safe to say that #4 boulders are, on average, a bit harder than #1 boulders, but perhaps not by as much as is typically thought.</p>
+</section>
+<section id="k-neighbors-method">
+<h2>K-Neighbors Method.<a class="headerlink" href="#k-neighbors-method" title="Link to this heading">#</a></h2>
+<p>Here, we will attempt to solve the same problem using the k-neighbors classification algorithm, and compare the training and testing accuracies for <span class="math notranslate nohighlight">\( k = 1, 2, \dots 30 \)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">train_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">):</span>
+    <span class="n">knc</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">]]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span>
+    <span class="n">knc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="n">train_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">knc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)])</span>
+    <span class="n">test_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">k</span><span class="p">,</span> <span class="n">knc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_set</span><span class="p">[[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">]],</span> <span class="n">test_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">])])</span>
+
+<span class="n">train_accuracies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_accuracies</span><span class="p">)</span>
+<span class="n">test_accuracies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_accuracies</span><span class="p">)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_accuracies</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">train_accuracies</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train split Accuracy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_accuracies</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">test_accuracies</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test split Accuracy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$ k $&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b6e46e35b9b39e527ffdb210cde8004d4da0cd7c701730f24a2c0b9451abc117.png" src="../_images/b6e46e35b9b39e527ffdb210cde8004d4da0cd7c701730f24a2c0b9451abc117.png" />
+</div>
+</div>
+<p>Here, the bias-variance tradeoff we expect to see is very apparent. When <span class="math notranslate nohighlight">\( k \)</span> is small, the testing error is low but the training error is realtively high. As k increases (and the model complexity decreases), the testing error decreases and the training error increases, until both level off past <span class="math notranslate nohighlight">\( k = 9 \)</span>.</p>
+</section>
+<section id="classification-with-principal-component-dimension-reduction">
+<h2>Classification with Principal-Component Dimension Reduction.<a class="headerlink" href="#classification-with-principal-component-dimension-reduction" title="Link to this heading">#</a></h2>
+<p>One might observe that tops and zones are somewhat related to each other - harder climbs tend to have both harder zones and tops, after all, and since every top also scores a zone, tops are a limiting factor on zones. This leads to a question - using principal component analysis, can we reduce the two dimensions of Top% and Zone% into a single ‘combined difficulty’ dimension, and still get decent results in classification?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="c1"># there was something buggy happening with the Dataframe assignments and the documentation told me to write this</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">mode</span><span class="o">.</span><span class="n">copy_on_write</span> <span class="o">=</span> <span class="kc">True</span> 
+<span class="c1"># i basically have no idea what it does but it fixed the issue</span>
+<span class="c1"># something about mutable types and memory allocation idk i&#39;m a math major not a CS major</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">[[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">]])</span>
+<span class="n">combined</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Regional_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">,</span> <span class="s1">&#39;Tpct&#39;</span><span class="p">]]))</span>
+
+<span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;Combined&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">combined</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can visualize the first principal compenent by plotting the axis it deterimines on the original scatterplot, as well as by creating a histogram showing how the points are distributed after being projected onto this axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;Zpct&#39;</span><span class="p">],</span> <span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;Tpct&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.10</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">]);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">]);</span>
+
+<span class="n">graph_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axline</span><span class="p">(</span><span class="n">xy1</span><span class="o">=</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">mean_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pca</span><span class="o">.</span><span class="n">mean_</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">slope</span><span class="o">=</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;1st-Principal-Component Axis&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Visualization of 1st-Principal-Component Axis&#39;</span><span class="p">)</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">Regional_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Combined&#39;</span><span class="p">],</span> <span class="n">Regional_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Combined&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;#1 Boulders&#39;</span><span class="p">,</span> <span class="s1">&#39;#4 Boulders&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribution Along Principal Component Axis&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">mean_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pca</span><span class="o">.</span><span class="n">mean_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.5421019152018077, 0.30049327596852743)
+</pre></div>
+</div>
+<img alt="../_images/3360bb818caff73ead6bf672bda5261917db30b4939a0595dcba3ca98fdbb8e0.png" src="../_images/3360bb818caff73ead6bf672bda5261917db30b4939a0595dcba3ca98fdbb8e0.png" />
+</div>
+</div>
+<p>Now, we can repeat the previous logistic-regression classification, but using only the single ‘Combined’ feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">Regional_results</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">Regional_results</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">],</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">88</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[[</span><span class="s1">&#39;Combined&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">]</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Classification Accuracy (Training): </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Classification Accuracy (Testing): </span><span class="si">{</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_set</span><span class="p">[[</span><span class="s1">&#39;Combined&#39;</span><span class="p">]],</span><span class="w"> </span><span class="n">test_set</span><span class="p">[</span><span class="s1">&#39;#&#39;</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Accuracy (Training): 62.89%
+Classification Accuracy (Testing): 63.81%
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this single principal component, we lose only a couple percentage points of classification accuracy. Though at this relatively small sample size (n~1000) and feature space (2) the difference in execution time is negligible, if the sample size or feature space were much bigger this reduction in dimension could speed up calculation significantly.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="extra-demonstration-of-web-scraping-data-collection-methods">
+<h1>Extra: Demonstration of Web Scraping/Data Collection Methods.<a class="headerlink" href="#extra-demonstration-of-web-scraping-data-collection-methods" title="Link to this heading">#</a></h1>
+<p>This extra section is a short demonstration of how the data for this project was collected. The original data collection was significantly more involved - I had scraped results for individual climbers rather than individual boulders from over 400 competitions. Here, I construct a small dataset from a single <a href='https://usacresults.org/scores/?eid=1243'>competition</a>, in the same format as the dataset for this project.</p>
+<section id="scraping">
+<h2>Scraping<a class="headerlink" href="#scraping" title="Link to this heading">#</a></h2>
+<p>The Selenium package allows python to control a browser window, simulating live user activity. This is useful for loading the dynamic-HTML elements on the USA climbing results page in which the results are stored. The <code class="docutils literal notranslate"><span class="pre">implicitly_wait()</span></code> function establishes an amount of time to wait for an element to appear when finding it, in this case 5 seconds. Once the driver finds the desired element, the tbody that holds the competition results, we use the BeutifulSoup constructor from the bs4 package to parse the html.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">selenium.webdriver</span> <span class="k">as</span> <span class="nn">Webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">Webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://usacresults.org/scores/?eid=1243&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">XPATH</span><span class="p">,</span> <span class="s2">&quot;/html/body/section/div[3]/table[1]/tbody[1]&quot;</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">soup</span></code> object now holds the HTML source code of the site in an easily indexable and searchable tree. We use the BeautifulSoup methods <code class="docutils literal notranslate"><span class="pre">.find</span></code> and <code class="docutils literal notranslate"><span class="pre">.find_all</span></code> to get a list of &lt;tbody&gt; elements that correspond to each round of the compeition in each category.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">score_tbodys</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;table&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;scoreTable21 scoreBoulder&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;tbody&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="processing">
+<h2>Processing<a class="headerlink" href="#processing" title="Link to this heading">#</a></h2>
+<p>Before we start extracting the data from the <code class="docutils literal notranslate"><span class="pre">soup</span></code>, we define a helper function. If a climber achieves a top or zone on a climb, the &lt;div&gt; element that holds the result will hold a number, and we will want to increment a counter by 1. Otherwise, it will hold a \xa0 character, and we will not increment the counter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_success</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\xa0</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can loop through each table in the <code class="docutils literal notranslate"><span class="pre">score_tbodys</span></code> list, counting the number of tops and zones for each boulder in each round. This step involved a lot of reverse-engineering HTML, and for brevity I will not explain it in detail.</p>
+<p>We initialize a list, and append lists to it after every round that correspond to each boulder’s results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">17</span><span class="p">):</span> 
+    <span class="c1"># There are 16 table bodies that contain results - qualifers and finals for all 8 categories.</span>
+    <span class="n">tb</span> <span class="o">=</span> <span class="n">score_tbodys</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+    <span class="c1"># 4 Boulders per round. Each list of three elements holds tops, zones, and lowzones for a boulder.</span>
+    <span class="n">boulders</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">]</span>
+    <span class="n">climbers</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># this is where category is stored in the tree</span>
+    <span class="n">category</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span> 
+
+    <span class="k">for</span> <span class="n">tr</span> <span class="ow">in</span> <span class="n">tb</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;tr&#39;</span><span class="p">):</span> 
+        <span class="c1"># each table row corresponds to one climber.</span>
+        <span class="k">if</span> <span class="s1">&#39;class&#39;</span> <span class="ow">in</span> <span class="n">tr</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># a no-show climber is skipped.</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">climbers</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">score_data</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">)[</span><span class="mi">7</span><span class="p">:]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span> 
+                <span class="c1"># loops once for each boulder</span>
+                <span class="n">divs</span> <span class="o">=</span> <span class="n">score_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+                <span class="n">boulders</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">is_success</span><span class="p">(</span><span class="n">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="c1"># increment tops if the climber topped</span>
+                <span class="n">boulders</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">is_success</span><span class="p">(</span><span class="n">divs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="c1"># increment zone</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">divs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span> 
+                    <span class="c1"># only if the round uses low zones</span>
+                    <span class="n">boulders</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">is_success</span><span class="p">(</span><span class="n">divs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="c1"># increment lowzone</span>
+
+    <span class="nb">round</span> <span class="o">=</span> <span class="s1">&#39;final&#39;</span>
+
+    <span class="c1"># the last 8 table bodies correspond to qualifier rounds</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="nb">round</span> <span class="o">=</span> <span class="s1">&#39;quali&#39;</span>
+
+    <span class="c1"># we know some things about this comp already - specifically the eid, location, and level</span>
+    <span class="c1"># but in the original project I wrote code to parse that information as well.</span>
+    <span class="c1"># we append a list that corresponds to one row of our eventual dataframe:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">1243</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="s1">&#39;D3&#39;</span><span class="p">,</span> <span class="s1">&#39;Divisional&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">climbers</span><span class="p">]</span> <span class="o">+</span> <span class="n">boulders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1243, &#39;FJR&#39;, &#39;D3&#39;, &#39;Divisional&#39;, &#39;final&#39;, 1, 13, 3, 12, 0]
+[1243, &#39;FJR&#39;, &#39;D3&#39;, &#39;Divisional&#39;, &#39;final&#39;, 2, 13, 4, 10, 0]
+[1243, &#39;FJR&#39;, &#39;D3&#39;, &#39;Divisional&#39;, &#39;final&#39;, 3, 13, 1, 12, 0]
+[1243, &#39;FJR&#39;, &#39;D3&#39;, &#39;Divisional&#39;, &#39;final&#39;, 4, 13, 1, 5, 0]
+[1243, &#39;FYA&#39;, &#39;D3&#39;, &#39;Divisional&#39;, &#39;final&#39;, 1, 13, 3, 13, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, using pandas, we can convert this nested list into a dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+
+<span class="n">column_titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;eid&#39;</span><span class="p">,</span> <span class="s1">&#39;Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="s1">&#39;Level&#39;</span><span class="p">,</span> <span class="s1">&#39;Round&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;Climbers&#39;</span><span class="p">,</span> <span class="s1">&#39;Tops&#39;</span><span class="p">,</span> <span class="s1">&#39;Zones&#39;</span><span class="p">,</span> <span class="s1">&#39;Lows&#39;</span><span class="p">]</span>
+<span class="n">New_df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">data_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_titles</span><span class="p">)</span>
+<span class="n">New_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eid</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Level</th>
+      <th>Round</th>
+      <th>#</th>
+      <th>Climbers</th>
+      <th>Tops</th>
+      <th>Zones</th>
+      <th>Lows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1243</td>
+      <td>FJR</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>13</td>
+      <td>3</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1243</td>
+      <td>FJR</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>13</td>
+      <td>4</td>
+      <td>10</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1243</td>
+      <td>FJR</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>13</td>
+      <td>1</td>
+      <td>12</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1243</td>
+      <td>FJR</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>13</td>
+      <td>1</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1243</td>
+      <td>FYA</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>13</td>
+      <td>3</td>
+      <td>13</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1243</td>
+      <td>FYA</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>13</td>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1243</td>
+      <td>FYA</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>13</td>
+      <td>2</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1243</td>
+      <td>FYA</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>13</td>
+      <td>1</td>
+      <td>11</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1243</td>
+      <td>FYB</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>1</td>
+      <td>13</td>
+      <td>6</td>
+      <td>9</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1243</td>
+      <td>FYB</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>2</td>
+      <td>13</td>
+      <td>1</td>
+      <td>13</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1243</td>
+      <td>FYB</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>3</td>
+      <td>13</td>
+      <td>4</td>
+      <td>8</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1243</td>
+      <td>FYB</td>
+      <td>D3</td>
+      <td>Divisional</td>
+      <td>final</td>
+      <td>4</td>
+      <td>13</td>
+      <td>1</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./final_project_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="caotranhoangthuc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cancer Prediction Based on Medical and Lifestyle Information</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chenyu.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Predicting computer prices using multiple linear regression and decision trees</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-brief-explanation-of-competitive-bouldering">A Brief Explanation of Competitive Bouldering.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The Dataset.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#source">Source</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-feature-engineering-and-dataframe-manipulation">Part I. Feature Engineering and DataFrame Manipulation.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proportion-stats">Proportion stats.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#category-dummies">Category Dummies.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quali-final-dataframe">Quali-Final Dataframe.</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-seaborn-visualizations">Part II. Seaborn Visualizations.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-rates-by-category">Top Rates by Category</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iii-linear-regression-analysis-of-qualifier-final-events">Part III. Linear Regression Analysis of Qualifier-Final Events.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#all-categories">All Categories.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#individual-categories">Individual Categories</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-iv-binary-classification-of-1-and-4-boulders">Part IV. Binary Classification of #1 and #4 Boulders.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization">Visualization.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-method">Logistic Regression Method.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-neighbors-method">K-Neighbors Method.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-with-principal-component-dimension-reduction">Classification with Principal-Component Dimension Reduction.</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-demonstration-of-web-scraping-data-collection-methods">Extra: Demonstration of Web Scraping/Data Collection Methods.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scraping">Scraping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#processing">Processing</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,2243 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Youtube Video Trending Prediction &#8212; UCI Math 10, Spring 2024</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'final_project_demo/huanganita';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Wine Quality Analysis" href="huynhstanley.html" />
+    <link rel="prev" title="Analyzing Tennis Match Outcomes in the 2014 Grand Slams" href="dabirarjun.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">UCI Math 10, Spring 2024</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    UC Irvine, Math 10, Fall 2023
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">Course Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_instruction.html">Final Project Instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../final_project_template.html">[Title here]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../notes/notes_intro.html">Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/python_review.html">Python review</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/OOP.html">OOP and Gradient Descent</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/prob_stat.html">Probability and Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/pandas.html">Pandas dataframe</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/visualization.html">Visualization</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/linear_regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/multi_linear_reg.html">Multiple Linear Regression</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/trade_off.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/cv.html">Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/feature_scaling.html">Feature Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_binary.html">Binary Classification with logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/logistic_multiclass.html">Logistic Regression for Multiclass Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/knn.html">Nearest Neighbor Regression and Classification</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../notes/pca.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/kmeans.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/intro_nn.html">Nerual Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/gan.html">Generative Adversarial Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/fairness.html">Bias and Fairness</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lectures/intro.html">Lectures</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Mon.html">week1 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Wed.html">week1 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week1_Fri.html">week1 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Mon.html">week2 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Wed.html">week2 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week2_Fri.html">week2 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Mon.html">week3 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Wed.html">week3 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week3_Fri.html">week3 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Mon.html">week4 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week4_Fri.html">week4 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Mon.html">week5 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week5_Wed.html">week4 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Mon.html">week6 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Wed.html">week6 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week6_Fri.html">week6 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Mon.html">week7 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Wed.html">week7 Wed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week7_Fri.html">week7 Fri</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Mon.html">week8 Mon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lectures/week8_Wed.html">week8 Wed</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../homework/intro.html">Homework</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg.html">worksheet week 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/worksheet_mpg_sol.html">worksheet week 3 Solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework1_sol.html">Homework 1 (Due 4/12)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework2_sol.html">Homework 2 (Due 4/19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework3_sol.html">Homework 3 (Due 4/26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework4_sol.html">Homework 4 (Due 5/10)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework5_sol.html">Homework 5 (Due 5/17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework6_sol.html">Homework 6 (Due 5/24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../homework/homework7_sol.html">Homework 7 (Due 5/31)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Student Projects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="baosi.html">Predicting NBA Game Outcomes Project</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="caotranhoangthuc.html">Cancer Prediction Based on Medical and Lifestyle Information</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="changsilas.html">An Analysis of USA Climbing’s Youth Bouldering Series.</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="chenyu.html">Predicting computer prices using multiple linear regression and decision trees</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="dabirarjun.html">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Youtube Video Trending Prediction</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="huynhstanley.html">Wine Quality Analysis</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="jiaoyuhao.html">Analysis of house price forecasts and influencing factors</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="kimmalex.html">Sleep, Exercise, and UCI Life’s Effect on a College Student’s Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="milleradamchristopher.html">Classifying Songs by Genre using its Features</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="mongiadron.html">US GDP Forecasting</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenalexanderdavid.html">MOVIE SUCCESS IN RELATION TO ITS FILM DISTRIBUTION COMPANY</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nguyenmilanngoc.html">LPGA 2022 Rolex Ranking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="presnyakovoleg.html">Phone cost prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roblesisabellaesther.html">Predicting Medical Expenses for Insurance and Analyzing Factors</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="sonnevillenicolecaroline.html">Predicting ratings on Sephora based on price and number of ingredients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tongbenjaminv.html">Prediction and Classification of Stellar Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torreshornbeakelijahcharles.html">Methods for Analyzing the Best NBA Players</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="trancrystal.html">Analysis of Mushroom Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tranethank.html">Top Valorant Players</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="wunathan.html">Image Classfication on “Heart Failure Cinical Records” Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yangchenxi.html">Analysis of Tesla Stock Price in the most recnet 6 months</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zhangzhiwei.html">CO2 Emissions and Renewable Energy Trends</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhangzidong.html">Math 10 Final Project: Analyzing the weather conditions in 10 locations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="zhaomickey.html">[Predicting CO2 Emissions of Vehicles]</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/final_project_demo/huanganita.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Youtube Video Trending Prediction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Youtube Video Trending Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-kind-of-videos-are-the-most-popular-ones">What kind of videos are the “most popular” ones?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-for-different-categories">Plots for Different Categories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-for-fraud-check">Linear Regression for Fraud Check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-outliers-and-remove-them">Identify Outliers and Remove Them</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-regression">Decision Tree Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-regression">Random Forest Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fold-cross-validation">10-fold Cross Validation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-the-video-be-trending">When would the video be trending?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="youtube-video-trending-prediction">
+<h1>Youtube Video Trending Prediction<a class="headerlink" href="#youtube-video-trending-prediction" title="Link to this heading">#</a></h1>
+<p>Author: Anita Huang</p>
+<p>Course Project, UC Irvine, Math 10, S24</p>
+<p>I would like to post my notebook on the course’s website. Yes</p>
+</section>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>In this project, I tried to conduct a comprehensive analysis of trending YouTube videos in Japan. The goal was to identify key factors that influence the popularity of these videos. Through a systematic approach that included data cleaning, exploratory data analysis, and predictive modeling, I was able to gain several important insights.</p></li>
+</ul>
+</section>
+<section id="exploratory-data-analysis">
+<h1>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sk</span> 
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># videos = pd.read_csv(&quot;JPvideos.csv&quot;, encoding=&#39;shift_jis&#39;, errors=&#39;replace&#39;)</span>
+<span class="n">videos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;JPvideos.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">encoding_errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">])</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">])</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;like_dislike_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;likes&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;dislikes&#39;</span><span class="p">]</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;like_views_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;likes&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>video_id</th>
+      <th>trending_date</th>
+      <th>title</th>
+      <th>channel_title</th>
+      <th>category_id</th>
+      <th>publish_time</th>
+      <th>tags</th>
+      <th>views</th>
+      <th>likes</th>
+      <th>dislikes</th>
+      <th>comment_count</th>
+      <th>thumbnail_link</th>
+      <th>comments_disabled</th>
+      <th>ratings_disabled</th>
+      <th>video_error_or_removed</th>
+      <th>description</th>
+      <th>like_dislike_ratio</th>
+      <th>like_views_ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5ugKfHgsmYw</td>
+      <td>18.07.02</td>
+      <td>陸自ヘリ、垂直に落下＝路上の車が撮影</td>
+      <td>時事通信映像センター</td>
+      <td>25</td>
+      <td>2018-02-06 03:04:37+00:00</td>
+      <td>[事故, "佐賀", "佐賀県", "ヘリコプター", "ヘリ", "自衛隊", "墜落",...</td>
+      <td>188085</td>
+      <td>591</td>
+      <td>189</td>
+      <td>0</td>
+      <td>https://i.ytimg.com/vi/5ugKfHgsmYw/default.jpg</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>佐賀県神埼市の民家に墜落した陸上自衛隊のＡＨ６４Ｄ戦闘ヘリコプターが垂直に落下する様子を、近...</td>
+      <td>3.126984</td>
+      <td>0.003142</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ohObafdd34Y</td>
+      <td>18.07.02</td>
+      <td>イッテQ お祭り男宮川×手越 巨大ブランコ②</td>
+      <td>神谷えりな Kamiya Erina 2</td>
+      <td>1</td>
+      <td>2018-02-06 04:01:56+00:00</td>
+      <td>[[none]]</td>
+      <td>90929</td>
+      <td>442</td>
+      <td>88</td>
+      <td>174</td>
+      <td>https://i.ytimg.com/vi/ohObafdd34Y/default.jpg</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>5.022727</td>
+      <td>0.004861</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>aBr2kKAHN6M</td>
+      <td>18.07.02</td>
+      <td>Live Views of Starman</td>
+      <td>SpaceX</td>
+      <td>28</td>
+      <td>2018-02-06 21:38:22+00:00</td>
+      <td>[[none]]</td>
+      <td>6408303</td>
+      <td>165892</td>
+      <td>2331</td>
+      <td>3006</td>
+      <td>https://i.ytimg.com/vi/aBr2kKAHN6M/default.jpg</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>71.167739</td>
+      <td>0.025887</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5wNnwChvmsQ</td>
+      <td>18.07.02</td>
+      <td>東京ディズニーリゾートの元キャストが暴露した秘密5選</td>
+      <td>アシタノワダイ</td>
+      <td>25</td>
+      <td>2018-02-06 06:08:49+00:00</td>
+      <td>[アシタノワダイ]</td>
+      <td>96255</td>
+      <td>1165</td>
+      <td>277</td>
+      <td>545</td>
+      <td>https://i.ytimg.com/vi/5wNnwChvmsQ/default.jpg</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>東京ディズニーリゾートの元キャストが暴露した秘密5選\n\nかたまりクリエイトさま\n【検証...</td>
+      <td>4.205776</td>
+      <td>0.012103</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>B7J47qFvdsk</td>
+      <td>18.07.02</td>
+      <td>榮倉奈々、衝撃の死んだふり！映画『家に帰ると妻が必ず死んだふりをしています。』特報</td>
+      <td>シネマトゥデイ</td>
+      <td>1</td>
+      <td>2018-02-06 02:30:00+00:00</td>
+      <td>[[none]]</td>
+      <td>108408</td>
+      <td>1336</td>
+      <td>74</td>
+      <td>201</td>
+      <td>https://i.ytimg.com/vi/B7J47qFvdsk/default.jpg</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>家に帰ってきたサラリーマンのじゅん（安田顕）は、玄関で血を出して倒れている妻ちえ（榮倉奈々）...</td>
+      <td>18.054054</td>
+      <td>0.012324</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%y.</span><span class="si">%d</span><span class="s1">.%m&#39;</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;time_till_trending&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">]</span>
+
+<span class="c1"># Align datetime object format for tableau analysis</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">)</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;hours_till_trending&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;time_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span> <span class="o">/</span> <span class="mi">3600</span>
+<span class="n">videos</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;time_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">,</span><span class="s1">&#39;publish_time&#39;</span><span class="p">,</span><span class="s1">&#39;time_till_trending&#39;</span><span class="p">,</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>trending_date</th>
+      <th>publish_time</th>
+      <th>time_till_trending</th>
+      <th>days_till_trending</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2018-02-07T00:00:00</td>
+      <td>2018-02-06T03:04:37</td>
+      <td>0 days 20:55:23</td>
+      <td>0.871794</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2018-02-07T00:00:00</td>
+      <td>2018-02-06T04:01:56</td>
+      <td>0 days 19:58:04</td>
+      <td>0.831991</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-02-07T00:00:00</td>
+      <td>2018-02-06T21:38:22</td>
+      <td>0 days 02:21:38</td>
+      <td>0.098356</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2018-02-07T00:00:00</td>
+      <td>2018-02-06T06:08:49</td>
+      <td>0 days 17:51:11</td>
+      <td>0.743877</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2018-02-07T00:00:00</td>
+      <td>2018-02-06T02:30:00</td>
+      <td>0 days 21:30:00</td>
+      <td>0.895833</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;JP_videos.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">category</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;JP_category_id.json&quot;</span><span class="p">)</span>
+<span class="n">category</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">category</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">category</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">category</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+<span class="c1">#category.to_csv(&#39;JP_videos_category.csv&#39;)</span>
+<span class="n">videos</span> <span class="o">=</span> <span class="n">videos</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">category</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;category_id&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="c1">#videos.to_csv(&#39;JP_videos_complete.csv&#39;)</span>
+<span class="n">videos</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20505 entries, 0 to 20504
+Data columns (total 27 columns):
+ #   Column                  Non-Null Count  Dtype          
+---  ------                  --------------  -----          
+ 0   video_id                20505 non-null  object         
+ 1   trending_date           20505 non-null  object         
+ 2   title                   20505 non-null  object         
+ 3   channel_title           20505 non-null  object         
+ 4   category_id             20505 non-null  int64          
+ 5   publish_time            20505 non-null  object         
+ 6   tags                    20505 non-null  object         
+ 7   views                   20505 non-null  int64          
+ 8   likes                   20505 non-null  int64          
+ 9   dislikes                20505 non-null  int64          
+ 10  comment_count           20505 non-null  int64          
+ 11  thumbnail_link          20505 non-null  object         
+ 12  comments_disabled       20505 non-null  bool           
+ 13  ratings_disabled        20505 non-null  bool           
+ 14  video_error_or_removed  20505 non-null  bool           
+ 15  description             18381 non-null  object         
+ 16  like_dislike_ratio      19114 non-null  float64        
+ 17  like_views_ratio        20505 non-null  float64        
+ 18  time_till_trending      20505 non-null  timedelta64[ns]
+ 19  hours_till_trending     20505 non-null  float64        
+ 20  days_till_trending      20505 non-null  float64        
+ 21  kind                    20505 non-null  object         
+ 22  etag                    20505 non-null  object         
+ 23  id                      20505 non-null  int64          
+ 24  snippet.channelId       20505 non-null  object         
+ 25  snippet.title           20505 non-null  object         
+ 26  snippet.assignable      20505 non-null  bool           
+dtypes: bool(4), float64(4), int64(6), object(12), timedelta64[ns](1)
+memory usage: 3.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">videos</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="n">videos</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">11</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.PairGrid at 0x282b47eb200&gt;
+</pre></div>
+</div>
+<img alt="../_images/2aaeaaf45b8934e96b81852b68f592bc24f6dd1e8018b71e56c6be4c9e6154d3.png" src="../_images/2aaeaaf45b8934e96b81852b68f592bc24f6dd1e8018b71e56c6be4c9e6154d3.png" />
+</div>
+</div>
+<p>Finding relationships between numeric variables and possible linear relationships between likes and dislikes</p>
+<ul class="simple">
+<li><p>Multiple linear lines in a pair plot suggest that there may be linear relationships between Views, Likes, Dislikes, and # of Comments, but these relationships may be different within each video category.
+or dominated by video content.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;likes&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>video_id</th>
+      <th>trending_date</th>
+      <th>title</th>
+      <th>channel_title</th>
+      <th>category_id</th>
+      <th>publish_time</th>
+      <th>tags</th>
+      <th>views</th>
+      <th>likes</th>
+      <th>dislikes</th>
+      <th>...</th>
+      <th>like_views_ratio</th>
+      <th>time_till_trending</th>
+      <th>hours_till_trending</th>
+      <th>days_till_trending</th>
+      <th>kind</th>
+      <th>etag</th>
+      <th>id</th>
+      <th>snippet.channelId</th>
+      <th>snippet.title</th>
+      <th>snippet.assignable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16331</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16317</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16303</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16289</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14599</th>
+      <td>p8npDG2ulKQ</td>
+      <td>2018-05-08T00:00:00</td>
+      <td>BTS (방탄소년단) LOVE YOURSELF 轉 Tear 'Singularity'...</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-06T15:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄"]</td>
+      <td>15875379</td>
+      <td>2285436</td>
+      <td>19400</td>
+      <td>...</td>
+      <td>0.143961</td>
+      <td>1 days 08:59:58</td>
+      <td>32.999444</td>
+      <td>1.374977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>video_id</th>
+      <th>trending_date</th>
+      <th>title</th>
+      <th>channel_title</th>
+      <th>category_id</th>
+      <th>publish_time</th>
+      <th>tags</th>
+      <th>views</th>
+      <th>likes</th>
+      <th>dislikes</th>
+      <th>...</th>
+      <th>like_views_ratio</th>
+      <th>time_till_trending</th>
+      <th>hours_till_trending</th>
+      <th>days_till_trending</th>
+      <th>kind</th>
+      <th>etag</th>
+      <th>id</th>
+      <th>snippet.channelId</th>
+      <th>snippet.title</th>
+      <th>snippet.assignable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16289</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16303</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16317</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>16331</th>
+      <td>7C2z4GqqS5E</td>
+      <td>2018-05-20T00:00:00</td>
+      <td>BTS (방탄소년단) 'FAKE LOVE' Official MV</td>
+      <td>ibighit</td>
+      <td>10</td>
+      <td>2018-05-18T09:00:02</td>
+      <td>[BIGHIT, "빅히트", "방탄소년단", "BTS", "BANGTAN", "방탄...</td>
+      <td>62796390</td>
+      <td>4470923</td>
+      <td>119053</td>
+      <td>...</td>
+      <td>0.071197</td>
+      <td>1 days 14:59:58</td>
+      <td>38.999444</td>
+      <td>1.624977</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/nqRIq97-xe5XRZTxb...</td>
+      <td>10</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Music</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>12338</th>
+      <td>u9Mv98Gr5pY</td>
+      <td>2018-04-26T00:00:00</td>
+      <td>VENOM - Official Trailer (HD)</td>
+      <td>Sony Pictures Entertainment</td>
+      <td>24</td>
+      <td>2018-04-24T03:45:03</td>
+      <td>[Venom, "Venom Movie", "Venom (2018)", "Marvel...</td>
+      <td>39128403</td>
+      <td>1077732</td>
+      <td>35764</td>
+      <td>...</td>
+      <td>0.027543</td>
+      <td>1 days 20:14:57</td>
+      <td>44.249167</td>
+      <td>1.843715</td>
+      <td>youtube#videoCategory</td>
+      <td>"XI7nbFXulYBIpL0ayR_gDh3eu1k/UVB9oxX2Bvqa_w_y3...</td>
+      <td>24</td>
+      <td>UCBR8-60-B28hp2BmDPdntcQ</td>
+      <td>Entertainment</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">)[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>snippet.title
+Science &amp; Technology    1.213748e+06
+Music                   8.297243e+05
+Comedy                  3.781614e+05
+Sports                  2.850889e+05
+Entertainment           2.821966e+05
+Name: views, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the previous analysis, amongst the previously trending videos, a significant portion is in  “music” category.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;People &amp; Blogs&#39;</span><span class="p">][</span><span class="s1">&#39;like_views_ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    3915.000000
+mean        0.015004
+std         0.020466
+min         0.000000
+25%         0.002627
+50%         0.006597
+75%         0.020536
+max         0.194951
+Name: like_views_ratio, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now We try to determine the videos that were trending because of “fake views” (those with possibly flawed views), especially in “people and blog” catergory, by checking if some videos’ like-view ratio is considered as outlier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;People &amp; Blogs&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;like_views_ratio&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.01</span><span class="p">)]</span>
+<span class="n">fake</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2287, 27)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;likes&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;views&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Entertainment&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.JointGrid at 0x282e14f5ac0&gt;
+</pre></div>
+</div>
+<img alt="../_images/7ad3364f2accf7d2b84e2f7a85226609150cfd470b8dd0c2b919537ecfb07ec3.png" src="../_images/7ad3364f2accf7d2b84e2f7a85226609150cfd470b8dd0c2b919537ecfb07ec3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;likes&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;views&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;People &amp; Blogs&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.JointGrid at 0x282e14f7e60&gt;
+</pre></div>
+</div>
+<img alt="../_images/a3aee307a0204e3a2584128259f944be8e7daf89737b5c79f51a07642e42722b.png" src="../_images/a3aee307a0204e3a2584128259f944be8e7daf89737b5c79f51a07642e42722b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;likes&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;views&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">videos</span><span class="p">)</span>
+<span class="n">videos</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20505 entries, 0 to 20504
+Data columns (total 27 columns):
+ #   Column                  Non-Null Count  Dtype          
+---  ------                  --------------  -----          
+ 0   video_id                20505 non-null  object         
+ 1   trending_date           20505 non-null  object         
+ 2   title                   20505 non-null  object         
+ 3   channel_title           20505 non-null  object         
+ 4   category_id             20505 non-null  int64          
+ 5   publish_time            20505 non-null  object         
+ 6   tags                    20505 non-null  object         
+ 7   views                   20505 non-null  int64          
+ 8   likes                   20505 non-null  int64          
+ 9   dislikes                20505 non-null  int64          
+ 10  comment_count           20505 non-null  int64          
+ 11  thumbnail_link          20505 non-null  object         
+ 12  comments_disabled       20505 non-null  bool           
+ 13  ratings_disabled        20505 non-null  bool           
+ 14  video_error_or_removed  20505 non-null  bool           
+ 15  description             18381 non-null  object         
+ 16  like_dislike_ratio      19114 non-null  float64        
+ 17  like_views_ratio        20505 non-null  float64        
+ 18  time_till_trending      20505 non-null  timedelta64[ns]
+ 19  hours_till_trending     20505 non-null  float64        
+ 20  days_till_trending      20505 non-null  float64        
+ 21  kind                    20505 non-null  object         
+ 22  etag                    20505 non-null  object         
+ 23  id                      20505 non-null  int64          
+ 24  snippet.channelId       20505 non-null  object         
+ 25  snippet.title           20505 non-null  object         
+ 26  snippet.assignable      20505 non-null  bool           
+dtypes: bool(4), float64(4), int64(6), object(12), timedelta64[ns](1)
+memory usage: 3.7+ MB
+</pre></div>
+</div>
+<img alt="../_images/65fa0c27b954c7ade37533aa056058b1d6517a209b5299a9a3d7008fbba1a110.png" src="../_images/65fa0c27b954c7ade37533aa056058b1d6517a209b5299a9a3d7008fbba1a110.png" />
+</div>
+</div>
+</section>
+<section id="what-kind-of-videos-are-the-most-popular-ones">
+<h1>What kind of videos are the “most popular” ones?<a class="headerlink" href="#what-kind-of-videos-are-the-most-popular-ones" title="Link to this heading">#</a></h1>
+<section id="plots-for-different-categories">
+<h2>Plots for Different Categories<a class="headerlink" href="#plots-for-different-categories" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Here we use aggregate heatmap to analyze the popularity of each catergory</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">video_count_by_category</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Plotting the bar chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">current_palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span> 
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">video_count_by_category</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">video_count_by_category</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">video_count_by_category</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">current_palette</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Total Video Count by Different Category IDs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Category ID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Videos&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># Rotates the category ID labels for better readability</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/30b807e046a4ad7e91c4ba7a9c6480e83720187b7c523f5fe0a2815f7fc04b53.png" src="../_images/30b807e046a4ad7e91c4ba7a9c6480e83720187b7c523f5fe0a2815f7fc04b53.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aggregate total views by category_id</span>
+<span class="n">total_views_by_category</span> <span class="o">=</span> <span class="n">videos</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;category_id&#39;</span><span class="p">)[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Sort the data for better visualization</span>
+<span class="n">total_views_by_category</span> <span class="o">=</span> <span class="n">total_views_by_category</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Plotting the bar chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">total_views_by_category</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">total_views_by_category</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">total_views_by_category</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">current_palette</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Total Views Count by Different Category IDs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Category ID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Views&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>  <span class="c1"># Rotates the category ID labels for better readability</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06b7511b6487514488e60f87cfe1438275760a8fa3bcde3f63b6ccc6c154b578.png" src="../_images/06b7511b6487514488e60f87cfe1438275760a8fa3bcde3f63b6ccc6c154b578.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">24</span><span class="p">][</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Entertainment&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the histogram, videos in “Music” category have the greatest total views.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For an Aggregated Heatmap, we first need to aggregate the data.</span>
+<span class="c1"># Let&#39;s create an aggregated DataFrame with mean views, likes, dislikes, and comment counts for each category</span>
+
+<span class="c1"># Aggregating the data</span>
+<span class="n">agg_data</span> <span class="o">=</span> <span class="n">videos</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;category_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;views&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;likes&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dislikes&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;comment_count&#39;</span><span class="p">:</span> <span class="s1">&#39;mean&#39;</span>
+<span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">pivot_table</span> <span class="o">=</span> <span class="n">agg_data</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;category_id&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;views&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;likes&quot;</span><span class="p">)</span>
+
+<span class="c1"># Continue with your plotting code</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pivot_table</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Heatmap of Average Likes by Category ID and Views&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Category ID&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Average Views&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/50e90ca49f851cff58ef2fd3fb3d49c812fcb3f6a4b5219cb51aa7ae6734c75f.png" src="../_images/50e90ca49f851cff58ef2fd3fb3d49c812fcb3f6a4b5219cb51aa7ae6734c75f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span><span class="p">][</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Music&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Based on the aggregate heatmap, videos in “Music” category tend to be those with the popular.</p>
+</section>
+<section id="linear-regression-for-fraud-check">
+<h2>Linear Regression for Fraud Check<a class="headerlink" href="#linear-regression-for-fraud-check" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For music category</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Music&#39;</span><span class="p">]</span>
+<span class="c1"># df = videos</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;likes&#39;</span><span class="p">,</span><span class="s1">&#39;dislikes&#39;</span><span class="p">,</span><span class="s1">&#39;comment_count&#39;</span><span class="p">]]</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([1678710.4584304 , 1985409.18248571,  576865.44128654]),
+ 879282.0397286821)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_1</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred_1</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;slateblue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Predicted Y&#39;)
+</pre></div>
+</div>
+<img alt="../_images/089d2ae4fe7625e5cbc25936f3bf2c161732d2afa5cfcee85a0c95ebf17909bf.png" src="../_images/089d2ae4fe7625e5cbc25936f3bf2c161732d2afa5cfcee85a0c95ebf17909bf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## RMSE</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSE:&quot;</span><span class="p">,</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred_1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE:&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred_1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 791171311427.6908
+RMSE: 889478.1118317025
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## R^2</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9525663278976524
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identify-outliers-and-remove-them">
+<h2>Identify Outliers and Remove Them<a class="headerlink" href="#identify-outliers-and-remove-them" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate residuals</span>
+<span class="n">pred_df</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># Use training data for predictions</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">pred_df</span>  <span class="c1"># Calculate residuals for the entire DataFrame</span>
+
+<span class="c1"># Set a threshold for identifying outliers (e.g., 3 standard deviations)</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+
+<span class="c1"># Identify outliers</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">threshold</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">residuals</span><span class="p">))</span>
+
+<span class="c1"># Create a cleaned DataFrame (excluding outliers)</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">outliers</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[[</span><span class="s1">&#39;likes&#39;</span><span class="p">,</span><span class="s1">&#39;dislikes&#39;</span><span class="p">,</span><span class="s1">&#39;comment_count&#39;</span><span class="p">]]</span>
+<span class="n">X1_train</span><span class="p">,</span> <span class="n">X1_test</span><span class="p">,</span> <span class="n">y1_train</span><span class="p">,</span> <span class="n">y1_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">X1_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X1_train</span><span class="p">)</span>
+<span class="n">X1_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+<span class="n">lm1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lm1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X1_train</span><span class="p">,</span><span class="n">y1_train</span><span class="p">)</span>
+<span class="n">pred_11</span> <span class="o">=</span> <span class="n">lm1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X1_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span><span class="n">pred_11</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;mediumpurple&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Y&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSE:&quot;</span><span class="p">,</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span><span class="n">pred_11</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R^2:&quot;</span><span class="p">,</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y1_test</span><span class="p">,</span> <span class="n">pred_11</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 954687579800.9286
+R^2: 0.7166970758420361
+</pre></div>
+</div>
+<img alt="../_images/7ec14cfa1c94c5ad9ce04005d7770ba8d0547c8b19a5451aa0a6644604b2d31e.png" src="../_images/7ec14cfa1c94c5ad9ce04005d7770ba8d0547c8b19a5451aa0a6644604b2d31e.png" />
+</div>
+</div>
+<p>We try to use different machine learning models to predict the trending status of videos. Models such as ridge regression, decision trees, and random forests were trained and evaluated. The performance of these models was measured using appropriate metrics to provide a robust framework for prediction.</p>
+</section>
+<section id="decision-tree-regression">
+<h2>Decision Tree Regression<a class="headerlink" href="#decision-tree-regression" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">pred_2</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MSE</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MSE:&quot;</span><span class="p">,</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">pred_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 757936993054.9852
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># R^2</span>
+<span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9545588492864666
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;max_depth=2&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28300eddd60&gt;
+</pre></div>
+</div>
+<img alt="../_images/2b28077e1ed8467b10a608db0f595342ed587d106917c3c02a658ea5152cf613.png" src="../_images/2b28077e1ed8467b10a608db0f595342ed587d106917c3c02a658ea5152cf613.png" />
+</div>
+</div>
+</section>
+<section id="random-forest-regression">
+<h2>Random Forest Regression<a class="headerlink" href="#random-forest-regression" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">pred_3</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x28301031d00&gt;
+</pre></div>
+</div>
+<img alt="../_images/73d00997eed0e020d2b42e3feaafd9ce3d3ae74fb818e0bb4c9adc3f97467918.png" src="../_images/73d00997eed0e020d2b42e3feaafd9ce3d3ae74fb818e0bb4c9adc3f97467918.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## R^2</span>
+<span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.955550878511539
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ridge-regression">
+<h2>Ridge Regression<a class="headerlink" href="#ridge-regression" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standardize the data</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Initialize the Ridge model</span>
+<span class="n">rg</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1"># Adjust alpha as needed</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">rg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Make predictions</span>
+<span class="n">pred_4</span> <span class="o">=</span> <span class="n">rg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Y Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orchid&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x2830358bd10&gt;
+</pre></div>
+</div>
+<img alt="../_images/db41b1d3291b75c9ec0448345f45bb44021c3759a7c6e35de8ec939989f3ec65.png" src="../_images/db41b1d3291b75c9ec0448345f45bb44021c3759a7c6e35de8ec939989f3ec65.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## R^2</span>
+<span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9525963263828874
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fold-cross-validation">
+<h2>10-fold Cross Validation<a class="headerlink" href="#fold-cross-validation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="c1"># Linear model</span>
+<span class="n">score_lm</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">score_lm</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7723659637449632
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Decision tree regression</span>
+<span class="n">score_dt</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">score_dt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5014532073170431
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random forest regression</span>
+<span class="n">score_dt</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">score_dt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5874674659994525
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lasso Regression</span>
+<span class="n">score_dt</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">score_dt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5874674659994525
+</pre></div>
+</div>
+</div>
+</div>
+<p>All the R^2 scores of the models are above 0.5, which acceptable for our purposes, especially since most of the explanatory variables are statistically significant.
+The linear regression model, with a mean R^2 score greater than 0.7 after 10 folds validation, seems to be the one with considerable significance describing how the’likes’,’dislikes’,’comment_count’ of a video are correlated to its’view’.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="when-would-the-video-be-trending">
+<h1>When would the video be trending?<a class="headerlink" href="#when-would-the-video-be-trending" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span> <span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1000000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;publish_time&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;publish_time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;trending_date&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;trending_date&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2830352c0b0&gt;
+</pre></div>
+</div>
+<img alt="../_images/750e6423dfa8e21bf6e2aab1babe2eabcbb5d88ddb096d897c39e962a60cbe75.png" src="../_images/750e6423dfa8e21bf6e2aab1babe2eabcbb5d88ddb096d897c39e962a60cbe75.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/aa756e7fbae7a4a8a09af7db27df991a750c1a207cf0fbb555f6c29c14ea5ea2.png" src="../_images/aa756e7fbae7a4a8a09af7db27df991a750c1a207cf0fbb555f6c29c14ea5ea2.png" />
+</div>
+</div>
+<p>Most trending videos in Japan were on the trending board within 3 days after its publish time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.082795635604581
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7291666666666666
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.729167
+Name: days_till_trending, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">popular_time</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">target_categories</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">target_categories</span><span class="p">:</span>
+    <span class="n">popular</span> <span class="o">=</span> <span class="n">videos</span><span class="p">[(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">category</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;views&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1000000</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mf">0.001</span><span class="p">:</span>
+        <span class="c1"># Remove outliers</span>
+        <span class="k">continue</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">],</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">videos</span><span class="p">[</span><span class="s1">&#39;snippet.title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">category</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="s2">&quot; &quot;</span><span class="p">),</span> <span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+    <span class="n">popular_time</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">category</span><span class="p">,</span> <span class="n">popular</span><span class="p">[</span><span class="s1">&#39;days_till_trending&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>News &amp; Politics        0.8379629629629629
+Film &amp; Animation       0.687494212962963
+Science &amp; Technology   1.1228703703703704
+People &amp; Blogs         1.0109027777777777
+Comedy                 0.8438888888888889
+Entertainment          0.6840277777777778
+Howto &amp; Style          0.5371122685185186
+Autos &amp; Vehicles       1.597037037037037
+Sports                 0.7689178240740742
+Music                  0.49997685185185187
+Gaming                 0.9085185185185185
+Education              0.3283449074074074
+</pre></div>
+</div>
+<img alt="../_images/0d2d28dadc69532603a4137e3412bc97f9398d88ebcafaa8898a8bb0606c8e62.png" src="../_images/0d2d28dadc69532603a4137e3412bc97f9398d88ebcafaa8898a8bb0606c8e62.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popular_time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">popular_time</span><span class="p">)</span>
+<span class="n">popular_time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>News &amp; Politics</td>
+      <td>0.837963</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Film &amp; Animation</td>
+      <td>0.687494</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Science &amp; Technology</td>
+      <td>1.122870</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>People &amp; Blogs</td>
+      <td>1.010903</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Comedy</td>
+      <td>0.843889</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Entertainment</td>
+      <td>0.684028</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Howto &amp; Style</td>
+      <td>0.537112</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Autos &amp; Vehicles</td>
+      <td>1.597037</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Sports</td>
+      <td>0.768918</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Music</td>
+      <td>0.499977</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Gaming</td>
+      <td>0.908519</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Education</td>
+      <td>0.328345</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Previous analysis implies that Youtube videos in the music category with certain tags are more likely to trend in Japan. Engagement metrics such as likes, dislikes, and number of comments have a significant impact on a video’s trending potential. In addition, the time of release and the initial performance of the video play a critical role in its virality, as most popular videos start trending within 2 days of being uploaded.</p></li>
+</ul>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<p>Data</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kaggle.com/datasets/rsrishav/youtube-trending-video-dataset/data?select=JP_youtube_trending_data.csv">kaggle</a></p></li>
+</ul>
+<p>Algorithm and Methods</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.datacamp.com/tutorial/decision-tree-classification-python">Decision Tree</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/random-forest-regression-in-python/">Random Forest</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/random-forest-regression-in-python/">kde plot</a></p></li>
+<li><p>Math 10 Course website</p></li>
+</ul>
+<p>Thanks for reading :)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./final_project_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dabirarjun.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analyzing Tennis Match Outcomes in the 2014 Grand Slams</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="huynhstanley.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Wine Quality Analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Youtube Video Trending Prediction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-kind-of-videos-are-the-most-popular-ones">What kind of videos are the “most popular” ones?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-for-different-categories">Plots for Different Categories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression-for-fraud-check">Linear Regression for Fraud Check</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-outliers-and-remove-them">Identify Outliers and Remove Them</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-regression">Decision Tree Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest-regression">Random Forest Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression">Ridge Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fold-cross-validation">10-fold Cross Validation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-the-video-be-trending">When would the video be trending?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ray Zirui Zhang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
