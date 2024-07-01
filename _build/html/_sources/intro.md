@@ -1,34 +1,32 @@
 # UC Irvine, Math 10, Fall 2023 
 
-Use the Navigation menu on the left to find the course content. 
+## Introduction to Programming for Data Science
 
-**Introduction to Programming for Data Science**
+**[Syllabus](syllabus.md)**
 
-**About the class:**  The goal of this course is to introduce programming in Python, with an emphasis on some of the tools that are most relevant to *data science*.  There are two primary parts of the course:
-* Part 1:  Exploratory Data Analysis
-* Part 2:  Introduction to Machine Learning
+**[Course schedule](https://docs.google.com/spreadsheets/d/1E9i-irHGnLF4z9bycO2hNG9cjHS-SnitHNgiwwSiu1Y/edit?usp=sharing)**
 
-**Lecture notes:**
-* Week 0: Introduction to Data Science and Machine Learning
-* Week 1-2: Mastering Functions, Introduction to Numpy and Pandas
-* Week 3: Getting Started with Altair for Data Visualization
-* Week 4: Advanced Data Operations with Pandas 
-* Week 5-6: Linear Regression
-* Week 7: Logistic Regression and Classification 
-* Week 8: Decision Trees and Random Forests
-* Week 9: Dimension Reduction and Clustering 
+**[Final Project Instruction](final_project_instruction.md)**
+
+**Software:** We will use Python and Jupyter Notebook for this class. You can download Anaconda from [here](https://www.anaconda.com/products/individual) and install it on your computer. It is also available in the lab. You can also use any online platform like Google Colab, Deepnote, or Kaggle, etc. 
+
+**About the class:**
+* Basic Python
+* Probability and Statistics
+* Data visualization
+* Linear Regression
+* Logistic Regression
+* Principal Component Analysis
+* Clustering
+* Neural Networks
+* Fairness, Privacy
+
+
 
 **Reference Materials::**
-- [A Byte of Python](https://python.swaroopch.com/) 
-- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
-- [An Introduction to Statistical Learning](https://statlearning.com/) 
+
 - [The Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/)
-- [Probabilistic Machine Learning: An Introduction (2021 edition)](https://probml.github.io/pml-book/book1.html) 
-- Lecture notes from Dr. Christopher Davis and Dr. Peijie Zhou
-
-<!-- **Earlier versions of these notes**
-
-* [Fall 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-F22/intro.html)
-* [Spring 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-S22/intro.html)
-* [Winter 2022 version](https://christopherdavisuci.github.io/UCI-Math-10-W22/intro.html)
-* [Fall 2021 version](https://christopherdavisuci.github.io/UCI-Math-10-F21/intro.html) -->
+- [Fall 2023 by Dr. Yutong Sha](https://yutongo.github.io/UCI_MATH10_F23/intro.html)
+- [Spring 2021 by Prof. Peijie Zhou](https://github.com/cliffzhou92/UCI_MATH_10/)
+- [Spring 2023 by Prof. Christopher Davis](https://christopherdavisuci.github.io/UCI-Math-10-S23/intro.html)
+- [Videos by Prof. Christopher Davis](https://www.youtube.com/channel/UCwm9SiqPX4wvbiVXCC0XLJg)

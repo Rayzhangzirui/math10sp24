@@ -1,0 +1,8 @@
+run at this directory
+Build 
+jupyter-book build ./
+
+Publish: From main branch, 
+see https://jupyterbook.org/en/stable/start/publish.html
+
+ghp-import -n -p -f _build/html
