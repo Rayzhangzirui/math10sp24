@@ -1,12 +1,94 @@
+
 format: jb-book
 root: intro
 chapters:
-  - file: Week0/Week0_Intro
+  - file: syllabus
+  - file: final_project_instruction
+  - file: final_project_template
+  - file: notes/notes_intro
     sections:
-      - file: Week0/Week_0_Friday
-  - file: Week1/Week1_Intro
+      - file: notes/python_review
+      - file: notes/OOP
+      - file: notes/prob_stat
+      - file: notes/pandas
+      - file: notes/visualization
+      - file: notes/linear_regression
+      - file: notes/multi_linear_reg
+      - file: notes/trade_off
+      - file: notes/cv
+      - file: notes/feature_scaling
+      - file: notes/regularization
+      - file: notes/logistic_binary
+      - file: notes/logistic_multiclass
+      - file: notes/knn
+      - file: notes/pca
+      - file: notes/kmeans
+      - file: notes/intro_nn
+      - file: notes/gan
+      - file: notes/fairness
+  - file: lectures/intro
     sections:
-      - file: Week1/Week_1_Monday
-      - file: Week1/Week_1_Wednesday
-      - file: Week1/Week_1_Friday
-  
+      - file: lectures/week1_Mon
+      - file: lectures/week1_Wed
+      - file: lectures/week1_Fri
+      - file: lectures/week2_Mon
+      - file: lectures/week2_Wed
+      - file: lectures/week2_Fri
+      - file: lectures/week3_Mon
+      - file: lectures/week3_Wed
+      - file: lectures/week3_Fri
+      - file: lectures/week4_Mon
+      - file: lectures/week4_Wed
+      - file: lectures/week4_Fri
+      - file: lectures/week5_Mon
+      - file: lectures/week5_Wed
+      - file: lectures/week6_Mon
+      - file: lectures/week6_Wed
+      - file: lectures/week6_Fri
+      - file: lectures/week7_Mon
+      - file: lectures/week7_Wed
+      - file: lectures/week7_Fri
+      - file: lectures/week8_Mon
+      - file: lectures/week8_Wed
+      
+  - file: homework/intro
+    sections:
+      - file: homework/worksheet_mpg
+      - file: homework/worksheet_mpg_sol
+      - file: homework/homework1_sol
+      - file: homework/homework2_sol
+      - file: homework/homework3_sol
+      - file: homework/homework4_sol
+      - file: homework/homework5_sol
+      - file: homework/homework6_sol
+      - file: homework/homework7_sol
+
+  - file: final_project_demo/intro
+    sections:
+      - file: final_project_demo/baosi.ipynb
+      - file: final_project_demo/caotranhoangthuc.ipynb
+      - file: final_project_demo/changsilas.ipynb
+      - file: final_project_demo/chenyu.ipynb
+      - file: final_project_demo/dabirarjun.ipynb
+      - file: final_project_demo/huanganita.ipynb
+      - file: final_project_demo/huynhstanley.ipynb
+      - file: final_project_demo/jiaoyuhao.ipynb
+      - file: final_project_demo/kimmalex.ipynb
+      - file: final_project_demo/milleradamchristopher.ipynb
+      - file: final_project_demo/mongiadron.ipynb
+      - file: final_project_demo/nguyenalexanderdavid.ipynb
+      - file: final_project_demo/nguyenmilanngoc.ipynb
+      - file: final_project_demo/presnyakovoleg.ipynb
+      - file: final_project_demo/roblesisabellaesther.ipynb
+      - file: final_project_demo/sonnevillenicolecaroline.ipynb
+      - file: final_project_demo/tongbenjaminv.ipynb
+      - file: final_project_demo/torreshornbeakelijahcharles.ipynb
+      - file: final_project_demo/trancrystal.ipynb
+      - file: final_project_demo/tranethank.ipynb
+      - file: final_project_demo/wunathan.ipynb
+      - file: final_project_demo/yangchenxi.ipynb
+      - file: final_project_demo/zhangzhiwei.ipynb
+      - file: final_project_demo/zhangzidong.ipynb
+      - file: final_project_demo/zhaomickey.ipynb
+
+
