@@ -1,4 +1,4 @@
-# UC Irvine, Math 10, Fall 2023 
+# UC Irvine, Math 10, Spring 2024
 
 ## Introduction to Programming for Data Science
 
