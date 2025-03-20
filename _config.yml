@@ -11,6 +11,8 @@ copyright: "2024"
 execute:
   execute_notebooks: 'off'
 
+exclude_patterns:
+  - 'homework/**'
   # exclude_patterns:
   #   - 'Week?/*.ipynb'
   #   - 'Week??/*.ipynb'

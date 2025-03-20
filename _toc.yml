@@ -51,17 +51,17 @@ chapters:
       - file: lectures/week8_Mon
       - file: lectures/week8_Wed
       
-  - file: homework/intro
-    sections:
-      - file: homework/worksheet_mpg
-      - file: homework/worksheet_mpg_sol
-      - file: homework/homework1_sol
-      - file: homework/homework2_sol
-      - file: homework/homework3_sol
-      - file: homework/homework4_sol
-      - file: homework/homework5_sol
-      - file: homework/homework6_sol
-      - file: homework/homework7_sol
+  # - file: homework/intro
+  #   sections:
+  #     - file: homework/worksheet_mpg
+  #     - file: homework/worksheet_mpg_sol
+  #     - file: homework/homework1_sol
+  #     - file: homework/homework2_sol
+  #     - file: homework/homework3_sol
+  #     - file: homework/homework4_sol
+  #     - file: homework/homework5_sol
+  #     - file: homework/homework6_sol
+  #     - file: homework/homework7_sol
 
   - file: final_project_demo/intro
     sections:
